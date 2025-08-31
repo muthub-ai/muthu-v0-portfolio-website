@@ -41,19 +41,19 @@
     "bio": "Empowering businesses to thrive in a rapidly evolving technological landscape, I am a seasoned technology leader with a proven track record of designing and delivering cutting-edge solutions that propel organizations forward. With a unique blend of technical expertise, business acumen, and leadership skills, I excel in driving digital transformation and fostering a culture of innovation. With a passion for collaboration and a talent for communicating complex ideas, I am a trusted advisor to senior leadership and a driving force behind organizational success.",
     "focus": [
       "Designing and implementing comprehensive Data and AI architecture frameworks for multi-cloud and hybrid-cloud strategies.",
-      "Architecting and deploying end-to-end Generative AI solutions on cloud platforms like GCP to drive business productivity and cost savings.",
+      "Architecting and deploying end-to-end AI solutions on cloud platforms like GCP to drive business productivity and cost savings.",
       "Leading large-scale modernization initiatives, including migration to Big Query, and developing enterprise data platforms to align with business objectives."
     ],
     "languages": [
       {
         "name": "English",
-        "proficiency": "Native",
+        "proficiency": "Fluent",
         "level": 100,
         "flag": "🇺🇸"
       },
       {
         "name": "Tamil",
-        "proficiency": "Fluent",
+        "proficiency": "Native",
         "level": 100,
         "flag": "🇮🇳"
       },
@@ -65,11 +65,14 @@
       }
     ],
     "interests": [
-      "Generative AI",
+      "Machine Learning",
+      "agenticAndGenerativeAI",
+      "Cloud Computing",
       "Multi-Cloud Strategy",
       "Digital Transformation",
       "Product Innovation",
-      "Agile Architecture"
+      "Agile Architecture",
+      "Data Architecture"
     ]
   },
   "navigation": [
@@ -213,10 +216,35 @@
     ]
   },
   "technicalSkills": {
-    "design": [
-      "UI Design",
-      "Graphic Design",
-      "UX Research"
+    "agenticAndGenerativeAI": [
+      "Large Language Model (LLM) Deployment Strategy",
+      "Modular & Scalable AI Architecture Design",
+      "Data Management and Governance for AI",
+      "Business Use Case Integration & Launch",
+      "Productivity and Cost-Savings Analysis"
+    ],
+    "machineLearningAndMLOps": [
+      "End-to-End ML Lifecycle Management",
+      "CI/CD for ML (Code, Model, and Data Pipelines)",
+      "Automated Model Deployment & Management (MLOps)",
+      "Predictive Analytics Environments (SPSS, SAS)",
+      "Cloud ML Platforms (AWS Sagemaker, Domino)",
+      "Distributed Frameworks (Spark, H20)"
+    ],
+    "cloudDataAndMigration": [
+      "Multi-Cloud Strategy (AWS, GCP, Azure)",
+      "Large-Scale Database Migration (Teradata to Big Query)",
+      "Cloud Data Architecture Frameworks & Archetypes",
+      "Cloud-Native Analytics & Data Warehousing (Big Query, S3)",
+      "Cloud Service Enablement & Optimization (EMR, Kinesis)"
+    ],
+    "dataPipelinesAndEngineering": [
+      "High-Volume Data Processing (25B+ records/day)",
+      "Configuration-Driven & Automated Data Movement",
+      "Workflow Orchestration (Apache Airflow)",
+      "Real-time Data Acquisition (AWS Kinesis)",
+      "End-to-End Observability (Datadog, Elk)",
+      "High-Scalability Architecture (20X improvement)"
     ],
     "development": [
       "JavaScript",
