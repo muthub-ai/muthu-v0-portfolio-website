@@ -189,7 +189,14 @@
     }
   ],
   "credentials": {
-    "certifications": [],
+    "certifications": [
+  { "name": "IBM WebSphere Advanced Certification (6)" },
+  { "name": "TIBCO Certification (2)" },
+  { "name": "AWS Certification (2)" },
+  { "name": "Google Certification (2)" },
+  { "name": "BizzDesign Certification" },
+  { "name": "Archimate Certification" }
+    ],
     "education": [
       {
         "degree": "Master of Science in Computer Science",
@@ -216,38 +223,45 @@
     ]
   },
   "technicalSkills": {
+    "architectureAndStrategy": [
+      "Enterprise Architecture",
+      "Data & AI Strategy",
+      "Microservices",
+      "CI/CD"
+    ],
+    "design": [
+      "UI/UX Design",
+      "Design Systems",
+      "Wireframing",
+      "Prototyping"
+    ],
     "agenticAndGenerativeAI": [
-      "Large Language Model (LLM) Deployment Strategy",
-      "Modular & Scalable AI Architecture Design",
-      "Data Management and Governance for AI",
-      "Business Use Case Integration & Launch",
-      "Productivity and Cost-Savings Analysis"
+      "Generative AI",
+      "LLMs",
+      "Prompt Engineering",
+      "Agentic Workflows"
     ],
     "machineLearningAndMLOps": [
-      "End-to-End ML Lifecycle Management",
-      "CI/CD for ML (Code, Model, and Data Pipelines)",
-      "Automated Model Deployment & Management (MLOps)",
-      "Predictive Analytics Environments (SPSS, SAS)",
-      "Cloud ML Platforms (AWS Sagemaker, Domino)",
-      "Distributed Frameworks (Spark, H20)"
+      "Machine Learning",
+      "MLOps",
+      "Model Deployment",
+      "Model Monitoring"
     ],
     "cloudDataAndMigration": [
-      "Multi-Cloud Strategy (AWS, GCP, Azure)",
-      "Large-Scale Database Migration (Teradata to Big Query)",
-      "Cloud Data Architecture Frameworks & Archetypes",
-      "Cloud-Native Analytics & Data Warehousing (Big Query, S3)",
-      "Cloud Service Enablement & Optimization (EMR, Kinesis)"
+      "Cloud Data Migration",
+      "BigQuery",
+      "AWS S3",
+      "Azure Data Lake"
     ],
     "dataPipelinesAndEngineering": [
-      "High-Volume Data Processing (25B+ records/day)",
-      "Configuration-Driven & Automated Data Movement",
-      "Workflow Orchestration (Apache Airflow)",
-      "Real-time Data Acquisition (AWS Kinesis)",
-      "End-to-End Observability (Datadog, Elk)",
-      "High-Scalability Architecture (20X improvement)"
+      "Data Engineering",
+      "ETL Pipelines",
+      "Apache Airflow",
+      "Kafka"
     ],
     "development": [
       "JavaScript",
+      "TypeScript",
       "React",
       "Node.js"
     ],
@@ -256,24 +270,11 @@
       "Persona Creation",
       "Usability Testing"
     ],
-    "architectureAndStrategy": [
-      "Enterprise Architecture",
-      "Data & AI Strategy",
-      "Generative AI / LLMs",
-      "MLOps",
-      "CI/CD",
-      "Agile Architecture",
-      "Microservices",
-      "Data Governance"
-    ],
     "cloudPlatformsAndData": [
-      "AWS (Sagemaker, EMR, S3)",
-      "Google Cloud Platform (GCP)",
-      "Microsoft Azure",
-      "Google Big Query",
-      "Kubernetes & OpenShift",
-      "Domino Data Science Platform",
-      "Teradata"
+      "GCP",
+      "AWS",
+      "Azure",
+      "Kubernetes"
     ],
     "languagesAndFrameworks": [
       "Python",
