@@ -7,21 +7,33 @@
     "name": "Muthukrishnan Bommiah",
     "title": "Executive Director, Principal Architect Cloud Data and AI",
     "location": "San Antonio, TX",
-    "avatar": "/confident-professional.png",
+    "avatar": "/confident-professional.jpeg",
     "email": "muthukrishnanb@gmail.com",
     "phone": "210-415-8342",
     "workingHours": "Monday - Friday, 9am - 5pm CST",
     "availableForWork": false,
     "badges": [
       "Data and AI Strategy",
+      "Agentic AI",
+      "AI Augmented SDLC",
       "Enterprise Architecture",
-      "Multi-Cloud"
+      "Multi-Cloud (GCP, AWS, Azure)"
     ],
     "social": [
       {
         "platform": "LinkedIn",
-        "url": "#",
+        "url": "https://www.linkedin.com/in/mbommiah/",
         "icon": "Linkedin"
+      },
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/muthub-ai",
+        "icon": "GitHub"
+      },
+      {
+        "platform": "Medium",
+        "url": "https://medium.com/@muthukrishnanb",
+        "icon": "FaMedium"
       }
     ]
   },
@@ -38,6 +50,18 @@
         "proficiency": "Native",
         "level": 100,
         "flag": "🇺🇸"
+      },
+      {
+        "name": "Tamil",
+        "proficiency": "Fluent",
+        "level": 100,
+        "flag": "🇮🇳"
+      },
+      {
+        "name": "Telugu",
+        "proficiency": "Conversational",
+        "level": 80,
+        "flag": "🇮🇳"
       }
     ],
     "interests": [
@@ -121,6 +145,44 @@
         "Java",
         "Scala"
       ]
+    },
+    {
+      "title": "IT Technical Manager, Middleware Platforms",
+      "company": "Bunge North America",
+      "period": "2009-2012",
+      "description": "As a technical leader, managed a team of 12 members responsible for hosting and administering applications including WebSphere, SAS, Tibco, Tableau, and Linux Servers[cite: 89]. [cite_start]Created a strategic vision for the web application team and managed project resources to reduce operational costs without affecting SLAs[cite: 90].",
+      "achievements": [
+        "Designed and developed a Single Sign-On (SSO) solution across multiple applications, resulting in a 30% reduction in login times and a 25% increase in user adoption[cite: 94].",
+        "Managed a Tibco upgrade, resulting in a 40% reduction in data processing time and a 20% increase in system uptime[cite: 95].",
+        "Supervised the migration of WebSphere Application Server, resulting in a 30% reduction in IT costs and a 20% increase in system efficiency[cite: 97]."
+      ],
+      "technologies": [
+        "WebSphere",
+        "SAS",
+        "Tibco",
+        "Webfocus",
+        "Tableau",
+        "Hyperion"
+      ]
+    },
+    {
+      "title": "Lead System Administrator, Middleware Platforms",
+      "company": "Bunge North America",
+      "period": "2004-2009",
+      "description": "Installed and configured monitoring tools like Zabbix and SiteScope for application and server monitoring[cite: 104]. [cite_start]Designed and implemented security infrastructure for web applications, including global security and SSO with SiteMinder[cite: 105].",
+      "achievements": [
+        "Enhanced security by implementing a new infrastructure that led to a 30% reduction in security breaches and a 20% increase in customer trust[cite: 105].",
+        "Improved customer experience by working with deployment teams to troubleshoot production issues, resulting in a 25% increase in customer satisfaction[cite: 107].",
+        "Reduced application downtime by 25% and increased system performance by 15% through the implementation of new monitoring tools[cite: 104]."
+      ],
+      "technologies": [
+        "Zabbix",
+        "SiteScope",
+        "SiteMinder",
+        "WebSphere",
+        "Tibco",
+        "Apache"
+      ]
     }
   ],
   "credentials": {
@@ -130,13 +192,13 @@
         "degree": "Master of Science in Computer Science",
         "institution": "University of Oklahoma, Norman, Oklahoma",
         "year": "2001-2003",
-        "logo": "/generic-university-logo.png"
+        "logo": "/ou-logo.png"
       },
       {
         "degree": "Bachelor of Engineering in Electronics and Communication",
         "institution": "Kamaraj University, India",
         "year": "1996-2000",
-        "logo": "/generic-university-logo.png"
+        "logo": "/mku.jpg"
       }
     ],
     "skills": [
@@ -160,6 +222,11 @@
       "JavaScript",
       "React",
       "Node.js"
+    ],
+    "uxMethods": [
+      "User Interviews",
+      "Persona Creation",
+      "Usability Testing"
     ],
     "architectureAndStrategy": [
       "Enterprise Architecture",
