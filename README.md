@@ -178,7 +178,6 @@ flowchart TD
 	click POSTCSS "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/postcss.config.mjs"
 	click NEXTCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/next.config.mjs"
 	click TSCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/tsconfig.json"
-	click RESUME "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/public/Muthu_resume.pdf""
 ```
 ---
 ## 📁 Content Management
