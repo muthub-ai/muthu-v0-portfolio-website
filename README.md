@@ -1,30 +1,4 @@
-
 # Muthukrishnan Bommiah – Personal Portfolio 🚀
-
----
-
-
-
-
-## � Table of Contents
-
-<details open>
-	<summary><strong>Quick Navigation 🚀</strong></summary>
-  
-	- 💡 [Prompts](./prompts.md)
-	- 📝 [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
-	- 👋 [Welcome](#-welcome)
-	- 🧑‍💼 [About Me](#-about-me)
-	- 🌐 [Live Site](#-live-site)
-	- ✨ [Features](#-features)
-	- 🗺️ [Architecture Overview](#architecture-overview)
-	- 📁 [Content Management](#-content-management)
-	- 🖼️ [Images & Assets](#-images--assets)
-	- ⚡ [Getting Started](#-getting-started)
-	- 🤝 [Contributing](#-contributing)
-	- 📄 [License](#-license)
-
-</details>
 
 ---
 
@@ -34,17 +8,25 @@
 
 ---
 
-## 👋 Welcome!
+## 🚦 Table of Contents
 
-This is my personal portfolio, crafted to showcase my journey, expertise, and passion for building innovative, enterprise-scale solutions.
+<details open>
+	<summary><strong>Quick Navigation 🚀</strong></summary>
+  
+	- 💡 [Prompts](./prompts.md)
+	- 📝 [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
+	- 🌐 [Live Site](#live-site)
+	- 🏆 [Highlights](#highlights)
+	- ✨ [Features](#features)
+	- 🗺️ [Architecture Overview](#architecture-overview)
+	- 📁 [Content Management](#content-management)
+	- 🖼️ [Images & Assets](#images--assets)
+	- ⚡ [Getting Started](#getting-started)
+	- 🤝 [Contributing](#contributing)
+	- 📄 [Reference](#reference)
+	- 📄 [License](#license)
 
----
-
-
-## 🧑‍💼 About Me
-
-- 📍 **Location:** San Antonio, TX
-- 💼 **LinkedIn:** [mbommiah](https://www.linkedin.com/in/mbommiah/)
+</details>
 
 ---
 
@@ -66,33 +48,17 @@ Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel
 - 📈 **Analytics**: Integrated with Vercel Analytics for traffic insights.
 
 ---
-
 - 🏅 **20+ years** in technology leadership, architecture, and engineering
 - 🏅 **Cloud & AI Strategy** for Fortune 100 enterprises
 - 🏅 **Multi-cloud** (GCP, AWS, Azure) & Generative AI expert
 - 🏅 **Mentor, Speaker, and Innovator**
 
----
 
 ## Architecture Overview
 
-```mermaid
-flowchart TD
-	%% Developer Workflow
-	subgraph "Developer Workflow"
-		DEV["Developer"]:::developer
-		CICD["CI/CD Pipeline"]:::developer
-		DEV -->|"push code"| CICD
-	end
 
-	%% Build System
 	subgraph "Next.js Build Server" 
-		BUILD["Next.js Build Server"]:::build
-		DATA_JSON[("portfolio-data.json")]:::data
-		UTIL_DATA["lib/data.ts"]:::build
-		UTIL_PROJECTS["lib/projects.ts"]:::build
 		UTIL_UTILS["lib/utils.ts"]:::build
-		APP_FOLDER["app/ (App Router)"]:::build
 		LAYOUT["layout.tsx"]:::build
 		HOME_PAGE["page.tsx"]:::build
 		ROUTES["projects/[slug]"]:::build
