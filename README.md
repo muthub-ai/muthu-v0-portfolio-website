@@ -165,7 +165,6 @@ flowchart TD
 	click NEXTCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/next.config.mjs"
 	click TSCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/tsconfig.json"
 ```
-```
 ---
 ## 📁 Content Management
 
