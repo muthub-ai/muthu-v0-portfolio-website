@@ -11,19 +11,19 @@
 ## 🚦 Table of Contents
 
 <details open>
-	<summary><strong>Quick Navigation 🚀</strong></summary>
+	<summary><strong>Quick Navigation</strong></summary>
 
-	- 💡 [Prompts](./prompts.md)
-	- 📝 [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
-	- 🌐 [Live Site](#live-site)
-	- ✨ [Features](#features)
-	- 🗺️ [Architecture Overview](#architecture-overview)
-	- 📁 [Content Management](#content-management)
-	- 🖼️ [Images & Assets](#images--assets)
-	- ⚡ [Getting Started](#getting-started)
-	- 🤝 [Contributing](#contributing)
-	- 📄 [Reference](#reference)
-	- 📄 [License](./LICENSE)
+	- [Prompts](./prompts.md)
+	- [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
+	- [Live Site](#live-site)
+	- [Features](#features)
+	- [Architecture Overview](#architecture-overview)
+	- [Content Management](#content-management)
+	- [Images & Assets](#images--assets)
+	- [Getting Started](#getting-started)
+	- [Contributing](#contributing)
+	- [Reference](#reference)
+	- [License](./LICENSE)
 
 </details>
 
