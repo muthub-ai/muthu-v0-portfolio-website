@@ -1,33 +1,65 @@
+
 # Muthukrishnan Bommiah – Personal Portfolio 🚀
+
+---
+
+
+## 📚 Table of Contents
+
+- [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
+
+- [Welcome](#-welcome)
+- [About Me](#-about-me)
+- [Live Site](#-live-site)
+- [Highlights](#-highlights)
+- [Features](#-features)
+- [Architecture Overview](#architecture-overview)
+- [Content Management](#-content-management)
+- [Images & Assets](#-images--assets)
+- [Getting Started](#-getting-started)
+- [Contributing](#-contributing)
+- [License](#-license)
+
+---
 
 [![Next.js](https://img.shields.io/badge/Next.js-000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
-[![GCP](https://img.shields.io/badge/GCP-4285F4?style=for-the-badge&logo=googlecloud&logoColor=white)](https://cloud.google.com/)
-[![AWS](https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
-[![Azure](https://img.shields.io/badge/Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white)](https://azure.microsoft.com/)
-[![Generative AI](https://img.shields.io/badge/Generative%20AI-FFB300?style=for-the-badge&logo=OpenAI&logoColor=black)](https://openai.com/)
 
 ---
 
 ## 👋 Welcome!
 
-Hi, I’m **Muthukrishnan Bommiah** — Executive Director & Principal Architect (Cloud, Data & AI). This is my personal portfolio, crafted to showcase my journey, expertise, and passion for building innovative, enterprise-scale solutions.
+This is my personal portfolio, crafted to showcase my journey, expertise, and passion for building innovative, enterprise-scale solutions.
 
 ---
+
 
 ## 🧑‍💼 About Me
 
 - 📍 **Location:** San Antonio, TX
-- 📧 **Email:** muthukrishnanb@gmail.com
 - 💼 **LinkedIn:** [mbommiah](https://www.linkedin.com/in/mbommiah/)
-- 🐙 **GitHub:** [muthub-ai](https://github.com/muthub-ai)
-- ✍️ **Medium:** [@muthukrishnanb](https://medium.com/@muthukrishnanb)
-- 🌐 **Languages:** English 🇺🇸 | Tamil 🇮🇳 | Telugu 🇮🇳
 
 ---
 
-## 🏆 Highlights
+## 🌐 Live Site
+
+Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel.app/)**
+
+---
+
+## ✨ Features
+
+- 📂 **Projects**: Showcases recent and featured work with images, descriptions, and tech stack.
+- 🧑‍💼 **Experience**: Timeline of professional roles, achievements, and technologies used.
+- 🏅 **Credentials**: Certifications, education, and key skills.
+- 🛠️ **Technical Skills**: Categorized skills grid for quick overview.
+- 🌍 **Languages & Interests**: Multilingual and diverse interests.
+- 🖼️ **Customizable Content**: All data managed via a single JSON file.
+- 🏗️ **Modern Stack**: Built with Next.js, TypeScript, Tailwind CSS, and more.
+- 📈 **Analytics**: Integrated with Vercel Analytics for traffic insights.
+
+---
 
 - 🏅 **20+ years** in technology leadership, architecture, and engineering
 - 🏅 **Cloud & AI Strategy** for Fortune 100 enterprises
@@ -36,22 +68,119 @@ Hi, I’m **Muthukrishnan Bommiah** — Executive Director & Principal Architect
 
 ---
 
-## 🚀 Tech Stack
+## Architecture Overview
 
-![Next.js](https://img.shields.io/badge/Next.js-000?style=flat-square&logo=nextdotjs&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
-![GCP](https://img.shields.io/badge/GCP-4285F4?style=flat-square&logo=googlecloud&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white)
-![Azure](https://img.shields.io/badge/Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
-![BigQuery](https://img.shields.io/badge/BigQuery-669DF6?style=flat-square&logo=googlebigquery&logoColor=white)
-![Spark](https://img.shields.io/badge/Spark-E25A1C?style=flat-square&logo=apachespark&logoColor=white)
-![Datadog](https://img.shields.io/badge/Datadog-632CA6?style=flat-square&logo=datadog&logoColor=white)
-![OpenAI](https://img.shields.io/badge/Generative%20AI-FFB300?style=flat-square&logo=OpenAI&logoColor=black)
+```mermaid
+flowchart TD
+	%% Developer Workflow
+	subgraph "Developer Workflow"
+		DEV["Developer"]:::developer
+		CICD["CI/CD Pipeline"]:::developer
+		DEV -->|"push code"| CICD
+	end
 
+	%% Build System
+	subgraph "Next.js Build Server" 
+		BUILD["Next.js Build Server"]:::build
+		DATA_JSON[("portfolio-data.json")]:::data
+		UTIL_DATA["lib/data.ts"]:::build
+		UTIL_PROJECTS["lib/projects.ts"]:::build
+		UTIL_UTILS["lib/utils.ts"]:::build
+		APP_FOLDER["app/ (App Router)"]:::build
+		LAYOUT["layout.tsx"]:::build
+		HOME_PAGE["page.tsx"]:::build
+		ROUTES["projects/[slug]"]:::build
+		NOTFOUND["not-found.tsx"]:::build
+		PROJECT_PAGE["page.tsx"]:::build
+		BUILD -->|"reads JSON"| DATA_JSON
+		DATA_JSON -->|"data-fetch"| UTIL_DATA
+		UTIL_DATA --> BUILD
+		UTIL_PROJECTS --> BUILD
+		UTIL_UTILS --> BUILD
+		CICD -->|"triggers build"| BUILD
+		BUILD -->|"process routes"| APP_FOLDER
+		APP_FOLDER --> LAYOUT
+		APP_FOLDER --> HOME_PAGE
+		APP_FOLDER --> ROUTES
+		ROUTES --> NOTFOUND
+		ROUTES --> PROJECT_PAGE
+	end
+
+	%% Static Assets & Styles
+	subgraph "Static Assets & Styles"
+		PUBLIC["public/"]:::asset
+		RESUME["Muthu_resume.pdf"]:::asset
+		GLOBALS_APP["app/globals.css"]:::asset
+		GLOBALS_STYLE["styles/globals.css"]:::asset
+		TAILWIND["tailwind.config.ts"]:::asset
+		POSTCSS["postcss.config.mjs"]:::asset
+		NEXTCFG["next.config.mjs"]:::asset
+		TSCFG["tsconfig.json"]:::asset
+		BUILD -->|"outputs assets"| PUBLIC
+		PUBLIC --> RESUME
+		BUILD --> GLOBALS_APP
+		BUILD --> GLOBALS_STYLE
+		BUILD --> TAILWIND
+		BUILD --> POSTCSS
+		BUILD --> NEXTCFG
+		BUILD --> TSCFG
+	end
+
+	%% CDN & Hosting
+	subgraph "CDN / Cloud Hosting"
+		CDN["CDN / Cloud Provider"]:::cloud
+		PUBLIC -->|"deploy assets"| CDN
+		BUILD -->|"deploy static HTML"| CDN
+	end
+
+	%% Client Side
+	subgraph "Client (Browser)"
+		BROWSER["Browser"]:::client
+		BROWSER -->|"request page"| CDN
+		CDN -->|"serve HTML/JS/CSS"| BROWSER
+		subgraph "Hydration & UI"
+			CONTEXT["Animation Context"]:::client
+			HOOK["use-intersection-observer"]:::client
+			UI_DIR["components/"]:::client
+			UI_ATOM["components/ui/"]:::client
+			BROWSER --> CONTEXT
+			BROWSER --> HOOK
+			BROWSER --> UI_DIR
+			BROWSER --> UI_ATOM
+		end
+	end
+
+	%% Styles
+	classDef developer fill:#f0f8ff,stroke:#000
+	classDef build fill:#e6f7ff,stroke:#000
+	classDef data fill:#dfffe0,stroke:#000
+	classDef asset fill:#fff7e6,stroke:#000
+	classDef cloud fill:#f0e6ff,stroke:#000
+	classDef client fill:#ffe6e6,stroke:#000
+
+	%% Click Events
+	click APP_FOLDER "https://github.com/muthub-ai/muthu-v0-portfolio-website/tree/main/app/"
+	click LAYOUT "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/app/layout.tsx"
+	click HOME_PAGE "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/app/page.tsx"
+	click NOTFOUND "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/app/projects/[slug]/not-found.tsx"
+	click PROJECT_PAGE "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/app/projects/[slug]/page.tsx"
+	click UI_DIR "https://github.com/muthub-ai/muthu-v0-portfolio-website/tree/main/components/"
+	click UI_ATOM "https://github.com/muthub-ai/muthu-v0-portfolio-website/tree/main/components/ui/"
+	click CONTEXT "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/contexts/animation-context.tsx"
+	click HOOK "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/hooks/use-intersection-observer.ts"
+	click DATA_JSON "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/data/portfolio-data.json"
+	click UTIL_DATA "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/lib/data.ts"
+	click UTIL_PROJECTS "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/lib/projects.ts"
+	click UTIL_UTILS "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/lib/utils.ts"
+	click GLOBALS_APP "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/app/globals.css"
+	click GLOBALS_STYLE "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/styles/globals.css"
+	click TAILWIND "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/tailwind.config.ts"
+	click POSTCSS "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/postcss.config.mjs"
+	click NEXTCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/next.config.mjs"
+	click TSCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/tsconfig.json"
+	click RESUME "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/public/Muthu_resume.pdf""
+```
 ---
-
 ## 📁 Content Management
 
 All content is managed in [`data/portfolio-data.json`](./data/portfolio-data.json). Update your:
@@ -81,8 +210,10 @@ Open [http://localhost:3000](http://localhost:3000) to view your portfolio.
 ## 🤝 Contributing
 This is a personal project, but feel free to fork and adapt for your own portfolio!
 
+
 ## 📄 License
-MIT License
+
+This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
