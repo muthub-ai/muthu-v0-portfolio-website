@@ -10,22 +10,17 @@
 
 ## 🚦 Table of Contents
 
-<details open>
-	<summary><strong>Quick Navigation</strong></summary>
-
-	- [Prompts](./prompts.md)
-	- [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
-	- [Live Site](#live-site)
-	- [Features](#features)
-	- [Architecture Overview](#architecture-overview)
-	- [Content Management](#content-management)
-	- [Images & Assets](#images--assets)
-	- [Getting Started](#getting-started)
-	- [Contributing](#contributing)
-	- [Reference](#reference)
-	- [License](./LICENSE)
-
-</details>
+- [Prompts](./prompts.md)
+- [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
+- [Live Site](#live-site)
+- [Features](#features)
+- [Architecture Overview](#architecture-overview)
+- [Content Management](#content-management)
+- [Images & Assets](#images--assets)
+- [Getting Started](#getting-started)
+- [Contributing](#contributing)
+- [Reference](#reference)
+- [License](./LICENSE)
 
 ---
 
@@ -47,10 +42,7 @@ Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel
 - 📈 **Analytics**: Integrated with Vercel Analytics for traffic insights.
 
 ---
-- 🏅 **20+ years** in technology leadership, architecture, and engineering
-- 🏅 **Cloud & AI Strategy** for Fortune 100 enterprises
-- 🏅 **Multi-cloud** (GCP, AWS, Azure) & Generative AI expert
-- 🏅 **Mentor, Speaker, and Innovator**
+
 
 
 ## Architecture Overview
