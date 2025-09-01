@@ -32,12 +32,129 @@ export interface Project {
 
 const projects: Project[] = [
   {
+    id: 11,
+    slug: "multi-cloud-ai-strategy",
+    title: "Enterprise Multi-Cloud Data & AI Strategy",
+    category: "Cloud & AI Strategy",
+    shortDescription:
+      "Architected and operationalized the bank's enterprise multi-cloud strategy for GCP and Azure, establishing architectural consistency, accelerating secure service adoption, and enabling faster time-to-market.",
+    description: [
+      "In 2024, I architected the bank's Enterprise Multi-Cloud Data & AI Strategy, serving as the principal architect behind a transformative initiative to unify Data and AI capabilities across GCP and Azure.",
+      "I developed a comprehensive reference architecture—shared with senior executives—that defined the strategic, logical, and physical layers of the bank’s cloud-native data and AI ecosystem. This established a clear target state vision centered on scalable and secure services across cloud platforms.",
+    ],
+    features: [
+      "Introduced Cloud Data Archetypes—prescriptive, reusable patterns that accelerated solution delivery.",
+      "Significantly accelerated secure cloud service adoption and reduced redundant design efforts.",
+      "Improved cross-cloud interoperability and enhanced architectural governance.",
+      "The architecture's reuse and visibility at the executive level reinforced its strategic value and enterprise impact.",
+    ],
+    technologies: ["GCP", "Azure", "Cloud Data Archetypes", "Enterprise Architecture"],
+    coverImage: "/mc.jpeg",
+    thumbnailImage: "/mc.jpeg",
+    client: "Major Financial Institution (Internal)",
+    timeline: "2024",
+    role: "Principal Architect",
+  },
+  {
+    id: 10,
+    slug: "controlled-data-movement-archetype",
+    title: "Petabyte-Scale Controlled Data Movement (CDM) Archetype",
+    category: "Data Governance & Cloud Architecture",
+    shortDescription:
+      "Architected a petabyte-scale CDM pipeline at USAA and led its implementation as a bank-wide archetype at Wells Fargo, providing a resilient data backbone for analytics and AI/ML that moves 25 TB/hour.",
+    description: [
+      "I architected and delivered a petabyte-scale, configuration-driven Controlled Data Movement (CDM) pipeline at USAA for secure and scalable data transfers. Following its success, I brought this architectural blueprint to Wells Fargo, where I led the design and implementation of a bank-wide CDM archetype aligned with enterprise data governance standards.",
+      "The architecture implements a dual-perimeter security model to enforce strict data isolation, granular access controls (IAM and VPC SC), and perimeter-based ingress/egress rules. Sensitive data is protected through column-level encryption and Google DLP-based de-identification.",
+    ],
+    features: [
+      "Achieved a 20x improvement in scalability and 10x reduction in latency at USAA.",
+      "Features automated audit logging, data validation, and rule-based reprocessing for end-to-end observability.",
+      "Integrates with observability tools like Datadog and ELK, BI tools like Power BI and Looker, and governance platforms like Google Dataplex and Azure Purview.",
+      "Ensured compliance with regulatory mandates (e.g., ISCR 808-00, 809-11).",
+    ],
+    technologies: ["AWS S3", "Snowflake", "Google DLP", "CMEKs", "Datadog", "ELK", "Power BI", "Google Dataplex", "Azure Purview"],
+    coverImage: "/cdm.png",
+    thumbnailImage: "/cdm.png",
+    client: "USAA & Wells Fargo",
+    timeline: "2020 - 2023",
+    role: "Architect",
+  },
+  {
+    id: 9,
+    slug: "data-movement-pipeline-usaa",
+    title: "High-Throughput Data Movement Pipeline",
+    category: "Data Engineering & Architecture",
+    shortDescription:
+      "Designed and delivered a high-throughput pipeline at USAA processing 15-18 billion records daily. This initiative reduced data processing latency by 90% and improved platform scalability by 20X.",
+    description: [
+      "At USAA, I designed and delivered a configuration-driven data movement pipeline capable of processing 15-18 billion records and over 800,000 files daily, transferring more than 250TB of conformed data to AWS S3.",
+      "The architecture featured modular orchestration, parallelized ingestion, and dynamic workload partitioning, forming the backbone for enterprise-wide analytics and reporting. This platform became foundational to USAA's data ecosystem.",
+    ],
+    features: [
+      "Re-engineered the platform for 20x scalability and 10x latency reduction, achieving a 99.9% service level objective.",
+      "As System Engineer, spearheaded the secure enablement of strategic AWS services including SageMaker, EMR, Textract, Rekognition, Macie, and Kinesis.",
+      "Led the evaluation and integration of the OpenShift Container Platform, Oracle Identity and Access Management, and IBM SPSS to establish a predictive analytics environment.",
+    ],
+    technologies: ["AWS (S3, SageMaker, EMR, Macie, Kinesis)", "OpenShift", "Oracle IAM", "IBM SPSS"],
+    coverImage: "/dp.jpeg",
+    thumbnailImage: "/dp.jpeg",
+    client: "USAA",
+    timeline: "2018 - 2021",
+    role: "System Engineer, Cloud Data CoE",
+  },
+  {
+    id: 8,
+    slug: "middleware-modernization-bunge",
+    title: "Middleware & Business Application Platform Modernization",
+    category: "Platform Management & Automation",
+    shortDescription:
+      "Provided strategic oversight for Bunge's diverse portfolio of middleware and business application platforms, improving operational efficiency, reducing technical debt, and enhancing platform resilience through modernization and automation.",
+    description: [
+      "As IT Technical Manager at Bunge, I provided strategic oversight and operational leadership for platforms including IBM WebSphere, SAS, Tibco, Hyperion Financial Management, and Tableau, leading a globally distributed team of 10 engineers.",
+      "I drove major platform upgrades and consolidation efforts while instilling robust observability and support practices. My work integrating IBM WebSphere Portal with IBM Connections enabled seamless collaboration and content sharing across business units.",
+    ],
+    features: [
+      "Introduced automation into platform operations by implementing Ansible playbooks and Jenkins pipelines for orchestrating upgrades and patching.",
+      "Deployed Nagios, Zabbix, and custom Python scripts to automate health checks, service restarts, and alerting, significantly reducing manual intervention.",
+      "The modernization and consolidation efforts improved operational efficiency and enhanced platform resilience.",
+    ],
+    technologies: ["IBM WebSphere", "Tibco", "Hyperion", "Tableau", "Ansible", "Jenkins", "Nagios", "Zabbix", "Python"],
+    coverImage: "/modern.jpeg",
+    thumbnailImage: "/modern.jpeg",
+    client: "Bunge",
+    timeline: "2009 - 2012",
+    role: "IT Technical Manager",
+  },
+  {
+    id: 7,
+    slug: "global-systems-implementation-bunge",
+    title: "Global Enterprise Systems Implementation",
+    category: "IT Transformation & Program Management",
+    shortDescription:
+      "Led the successful global implementation of mission-critical systems at Bunge, including Hyperion Financial Management and IBM Connections, impacting over 2,000 users across diverse international business units.",
+    description: [
+      "At Bunge, I led the successful global implementation of critical enterprise systems while managing a geographically and culturally diverse technical team of 10.",
+      "I was responsible for orchestrating complex, multi-country system upgrades and integrations, which required deep cross-cultural collaboration, strategic stakeholder engagement, and disciplined program execution across time zones.",
+    ],
+    features: [
+      "The enterprise-wide upgrade of Hyperion Financial Management significantly improved financial consolidation timelines and compliance readiness.",
+      "Championed the adoption of IBM Connections as a unified collaboration platform, driving alignment across international IT functions.",
+      "Through effective change management and strategic evangelism, I drove high user adoption rates and built a cohesive, high-performing technical team.",
+    ],
+    technologies: ["Hyperion Financial Management", "IBM Connections", "Program Management"],
+    coverImage: "/system.jepg",
+    thumbnailImage: "/system.jpeg",
+    client: "Bunge",
+    timeline: "2009 - 2012",
+    role: "Global Implementation Lead",
+  },
+  {
     id: 6,
     slug: "enterprise-genai-architecture",
     title: "Enterprise Generative AI Technical Architecture",
     category: "Generative AI Architecture",
     shortDescription:
-      "Established the foundational blueprint for secure, scalable, and governed Generative AI adoption across the bank, enabling the delivery of high-impact use cases like Banker Virtual Assistants and Advisor GPT.",
+      "Established the foundational blueprint for secure, scalable, and governed Generative AI adoption across the bank, enabling the delivery of high-impact use cases.",
     description: [
       "In 2024, I architected and secured Cloud Architecture Panel endorsement for the bank's first enterprise-grade Generative AI Technical Architecture. My design introduced a phased modular approach, an evolutionary model aligned with business priorities, and a comprehensive reference model now widely reused by multiple lines of business.",
       "The architecture details data ingestion, processing, embedding, retrieval, generation, and validation pipelines. It also incorporates advanced governance constructs such as Model Armor and Gen AI Gateways to mitigate risks like prompt injection, data leakage, and model drift.",
@@ -50,25 +167,11 @@ const projects: Project[] = [
     ],
     technologies: ["Generative AI", "GCP", "Vertex AI", "Gecko Embeddings", "Apigee", "Cloud Composer", "Tachyron APIs"],
     coverImage: "/genai-architecture-cover.png",
-    thumbnailImage: "/genai-architecture-thumbnail.png",
-    gallery: [{ url: "/genai-architecture-diagram.png", caption: "Target State Gen AI Architecture" }],
+    thumbnailImage: "/genai.png",
+    gallery: [{ url: "/genai.png", caption: "Target State Gen AI Architecture" }],
     client: "Major Financial Institution (Internal)",
     timeline: "2024",
     role: "Lead AIML Architect",
-    relatedProjects: [
-      {
-        slug: "ai-augmented-sdlc",
-        title: "AI-Augmented SDLC",
-        category: "Enterprise AI Initiative",
-        image: "/ai-sdlc-thumbnail.png",
-      },
-      {
-        slug: "unified-ml-platform",
-        title: "Unified Machine Learning Platform",
-        category: "MLOps & Platform Engineering",
-        image: "/unified-ml-platform-thumbnail.png",
-      },
-    ],
   },
   {
     id: 5,
@@ -88,26 +191,12 @@ const projects: Project[] = [
       "Supported diverse use cases across risk, fraud, marketing, and customer analytics.",
     ],
     technologies: ["Python", "R", "SAS", "H2O", "MLOps", "DevOps", "Microservices", "CI/CD"],
-    coverImage: "/unified-ml-platform-cover.png",
-    thumbnailImage: "/unified-ml-platform-thumbnail.png",
+    coverImage: "/mlops.jpeg",
+    thumbnailImage: "/mlops.jpeg",
     gallery: [{ url: "/model-development-lifecycle.png", caption: "Model Development Life Cycle" }],
     client: "USAA (Internal)",
     timeline: "2019 - 2021",
     role: "Platform Architect",
-    relatedProjects: [
-      {
-        slug: "ai-augmented-sdlc",
-        title: "AI-Augmented SDLC",
-        category: "Enterprise AI Initiative",
-        image: "/ai-sdlc-thumbnail.png",
-      },
-      {
-        slug: "enterprise-genai-architecture",
-        title: "Enterprise Generative AI Architecture",
-        category: "Generative AI Architecture",
-        image: "/genai-architecture-thumbnail.png",
-      },
-    ],
   },
   {
     id: 4,
@@ -122,16 +211,15 @@ const projects: Project[] = [
       "The outcomes, already recognized by the Chief Development Officer, are projected to significantly enhance developer experience, improve code quality and security through intelligent automation, and accelerate delivery velocity.",
     ],
     features: [
-      "**Model Context Protocol (MCP):** Enables rich, contextual data exchange between engineering systems.",
-      "**Unified AI Gateway:** Provides secure, governed, and scalable access to diverse LLMs and specialized AI services across a multi-cloud environment.",
-      "**Autonomous AI Agents:** Deployed to handle complex tasks within the development lifecycle.",
-      "**Inner-Loop Augmentation:** Includes AI-assisted code generation, intelligent debugging, and automated unit testing.",
-      "**Outer-Loop Optimization:** Features AI-optimized CI/CD pipelines and agent-driven quality assurance.",
-      "**Production Rollout:** As of May 2025, services are live for 10,000 VSCode developers.",
+      "Model Context Protocol (MCP):** Enables rich, contextual data exchange between engineering systems.",
+      "Unified AI Gateway: Provides secure, governed, and scalable access to diverse LLMs and specialized AI services across a multi-cloud environment.",
+      "Autonomous AI Agents: Deployed to handle complex tasks within the development lifecycle.",
+      "Inner-Loop Augmentation: Includes AI-assisted code generation, intelligent debugging, and automated unit testing.",
+      "Outer-Loop Optimization: Features AI-optimized CI/CD pipelines and agent-driven quality assurance."
     ],
     technologies: ["Generative AI", "LLMs", "Autonomous Agents", "Multi-Cloud Architecture", "AI-Optimized CI/CD", "VSCode Extensions"],
-    coverImage: "/ai-sdlc-cover.png",
-    thumbnailImage: "/ai-sdlc-thumbnail.png",
+    coverImage: "/sdlc.jpeg",
+    thumbnailImage: "/sdlc.jpeg",
     gallery: [
       { url: "/ai-sdlc-portfolio-view.png", caption: "AI Augmented SDLC Portfolio View" },
       { url: "/ai-sdlc-improvement-chart.png", caption: "Projected Improvements from LLM Integration" },
@@ -139,20 +227,6 @@ const projects: Project[] = [
     client: "Major Financial Institution (Internal)",
     timeline: "2024 - 2025",
     role: "Principal Architect for Generative AI",
-    relatedProjects: [
-      {
-        slug: "finance-dashboard",
-        title: "Finance Dashboard",
-        category: "Web Application",
-        image: "/modern-finance-overview.png",
-      },
-      {
-        slug: "job-finder-app",
-        title: "Job Finder App",
-        category: "Mobile App",
-        image: "/modern-finance-app.png",
-      },
-    ],
   },
 ]
 

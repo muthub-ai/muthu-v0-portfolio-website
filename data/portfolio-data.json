@@ -17,7 +17,8 @@
       "Agentic AI",
       "AI Augmented SDLC",
       "Enterprise Architecture",
-      "Multi-Cloud (GCP, AWS, Azure)"
+      "Multi-Cloud (GCP, AWS, Azure)",
+      "Data Architecture and Engineering"
     ],
     "social": [
       {
@@ -42,7 +43,7 @@
     "focus": [
       "Designing and implementing comprehensive Data and AI architecture frameworks for multi-cloud and hybrid-cloud strategies.",
       "Architecting and deploying end-to-end AI solutions on cloud platforms like GCP to drive business productivity and cost savings.",
-      "Leading large-scale modernization initiatives, including migration to Big Query, and developing enterprise data platforms to align with business objectives."
+      "Leading large-scale modernization initiatives, including migration to GCP, and developing enterprise data platforms to align with business objectives."
     ],
     "languages": [
       {
@@ -100,14 +101,14 @@
       "period": "2022 - Present",
       "description": "A transformational leader designing and implementing comprehensive data architecture frameworks to drive business growth through technology innovation. Serving as a strategic advisor to senior leadership on enterprise architecture, Data and AI strategy, and engineering leadership, with a proven track record of leading large-scale modernization initiatives and transforming customer experience through advanced analytics and artificial intelligence.",
       "achievements": [
-        "Architected and launched the first business use case for Generative AI, improving employee productivity by 30-40% and paving the way for 12 additional use cases with an estimated $65 million in cost savings.",
+        "Architected and launched the first business use case for Generative AI and Augmenting AI in SDLC, improving employee productivity by 30-40% and paving the way for 30 additional use cases.",
         "Led the development of a Customer Analytics platform, deploying the first application with confidential data in Google Big Query to empower advanced analytics and ML models.",
-        "Drove the realization of significant business solutions, including Flex Loans (53MM unique offers in the first month) and a Debt to Income application (2MM API calls per day)"
+        "Drove the realization of significant business solutions, including Flex Loans and a Debt to Income application"
       ],
       "technologies": [
         "Google Cloud Platform (GCP)",
         "Microsoft Azure",
-        "Google Big Query",
+        "Agentic AI",
         "Generative AI",
         "Large Language Models"
       ]
@@ -264,11 +265,6 @@
       "TypeScript",
       "React",
       "Node.js"
-    ],
-    "uxMethods": [
-      "User Interviews",
-      "Persona Creation",
-      "Usability Testing"
     ],
     "cloudPlatformsAndData": [
       "GCP",
