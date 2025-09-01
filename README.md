@@ -12,11 +12,10 @@
 
 <details open>
 	<summary><strong>Quick Navigation 🚀</strong></summary>
-  
+
 	- 💡 [Prompts](./prompts.md)
 	- 📝 [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
 	- 🌐 [Live Site](#live-site)
-	- 🏆 [Highlights](#highlights)
 	- ✨ [Features](#features)
 	- 🗺️ [Architecture Overview](#architecture-overview)
 	- 📁 [Content Management](#content-management)
@@ -24,7 +23,7 @@
 	- ⚡ [Getting Started](#getting-started)
 	- 🤝 [Contributing](#contributing)
 	- 📄 [Reference](#reference)
-	- 📄 [License](#license)
+	- 📄 [License](./LICENSE)
 
 </details>
 
