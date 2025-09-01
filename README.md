@@ -4,21 +4,27 @@
 ---
 
 
-## 📚 Table of Contents
 
-- [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
 
-- [Welcome](#-welcome)
-- [About Me](#-about-me)
-- [Live Site](#-live-site)
-- [Highlights](#-highlights)
-- [Features](#-features)
-- [Architecture Overview](#architecture-overview)
-- [Content Management](#-content-management)
-- [Images & Assets](#-images--assets)
-- [Getting Started](#-getting-started)
-- [Contributing](#-contributing)
-- [License](#-license)
+## � Table of Contents
+
+<details open>
+	<summary><strong>Quick Navigation 🚀</strong></summary>
+  
+	- 💡 [Prompts](./prompts.md)
+	- 📝 [Wiki](https://deepwiki.com/muthub-ai/muthu-v0-portfolio-website/1-overview)
+	- 👋 [Welcome](#-welcome)
+	- 🧑‍💼 [About Me](#-about-me)
+	- 🌐 [Live Site](#-live-site)
+	- ✨ [Features](#-features)
+	- 🗺️ [Architecture Overview](#architecture-overview)
+	- 📁 [Content Management](#-content-management)
+	- 🖼️ [Images & Assets](#-images--assets)
+	- ⚡ [Getting Started](#-getting-started)
+	- 🤝 [Contributing](#-contributing)
+	- 📄 [License](#-license)
+
+</details>
 
 ---
 
@@ -210,7 +216,10 @@ Open [http://localhost:3000](http://localhost:3000) to view your portfolio.
 This is a personal project, but feel free to fork and adapt for your own portfolio!
 
 
-## 📄 License
+
+## 📄 Reference
+
+- [Project Prompts](./prompts.md)
 
 This project is licensed under the [MIT License](./LICENSE).
 
