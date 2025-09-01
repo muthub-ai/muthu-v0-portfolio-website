@@ -56,9 +56,23 @@ Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel
 
 ## Architecture Overview
 
+```mermaid
+flowchart TD
+	%% Developer Workflow
+	subgraph "Developer Workflow"
+		DEV["Developer"]:::developer
+		CICD["CI/CD Pipeline"]:::developer
+		DEV -->|"push code"| CICD
+	end
 
+	%% Build System
 	subgraph "Next.js Build Server" 
+		BUILD["Next.js Build Server"]:::build
+		DATA_JSON[("portfolio-data.json")]:::data
+		UTIL_DATA["lib/data.ts"]:::build
+		UTIL_PROJECTS["lib/projects.ts"]:::build
 		UTIL_UTILS["lib/utils.ts"]:::build
+		APP_FOLDER["app/ (App Router)"]:::build
 		LAYOUT["layout.tsx"]:::build
 		HOME_PAGE["page.tsx"]:::build
 		ROUTES["projects/[slug]"]:::build
@@ -150,6 +164,7 @@ Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel
 	click POSTCSS "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/postcss.config.mjs"
 	click NEXTCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/next.config.mjs"
 	click TSCFG "https://github.com/muthub-ai/muthu-v0-portfolio-website/blob/main/tsconfig.json"
+```
 ```
 ---
 ## 📁 Content Management
