@@ -58,12 +58,12 @@ export function PortfolioHeader() {
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo/Name */}
-        <Link href="/" className="flex items-center group">
-          <div className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-xl relative overflow-hidden transition-transform duration-300 group-hover:scale-105 flex items-center">
+        <Link href="/" className="flex items-center group min-w-0">
+          <div className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 font-bold text-lg sm:text-xl relative overflow-hidden transition-transform duration-300 group-hover:scale-105 flex items-center leading-tight">
             {personalInfo.name}
-            <span className="mx-2 text-cyan-400 font-normal">/</span>
+            <span className="mx-1 sm:mx-2 text-cyan-400 font-normal">/</span>
           </div>
-          <span className="text-cyan-400 text-xs sm:text-sm ml-1 sm:ml-2 max-w-xs sm:max-w-lg truncate whitespace-normal block transition-all duration-300 group-hover:text-zinc-300 text-left" style={{lineHeight: '1.2'}}>
+          <span className="text-cyan-400 text-[10px] sm:text-xs ml-1 sm:ml-2 max-w-[120px] sm:max-w-xs truncate whitespace-normal block transition-all duration-300 group-hover:text-zinc-300 text-left" style={{lineHeight: '1.1'}}>
             Architecting the Future of Enterprise Data and AI: Driving Transformation and Delivering Measurable ROI through Cloud and AI Innovation
           </span>
         </Link>

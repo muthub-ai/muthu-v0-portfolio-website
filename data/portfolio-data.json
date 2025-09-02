@@ -4,7 +4,7 @@
     "description": "Portfolio for a seasoned technology leader specializing in designing and delivering cutting-edge cloud, data, and AI solutions that propel organizations forward."
   },
   "personal": {
-    "name": "Muthukrishnan Bommiah",
+  "name": "Muthukrishnan Bommiah",
     "title": "Executive Director, Principal Architect Cloud Data and AI",
     "location": "San Antonio, TX",
     "avatar": "/confident-professional.jpeg",
@@ -94,7 +94,11 @@
       "href": "#skills"
     },
     {
-  "label": "Key Initiatives",
+      "label": "Leadership Philosophy",
+      "href": "#leadership-philosophy"
+    },
+    {
+      "label": "Key Initiatives",
       "href": "#recent-projects"
     }
   ],
