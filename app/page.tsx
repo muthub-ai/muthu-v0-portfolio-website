@@ -119,7 +119,7 @@ export default function Home() {
                   <div className="flex items-center justify-between mb-4 sm:mb-6">
                     <div className="flex items-center">
                       <GlobeIcon className="w-5 h-5 mr-2 text-cyan-400" />
-                      <h3 className="text-lg font-medium">Recent Projects</h3>
+                      <h3 className="text-lg font-medium">Key Initiatives</h3>
                     </div>
                     <Button variant="ghost" size="sm" className="text-xs sm:text-sm px-2 sm:px-3">
                       View All

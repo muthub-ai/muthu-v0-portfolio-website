@@ -42,7 +42,7 @@ Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel
 - 🏗️ **Modern Stack**: Built with Next.js, TypeScript, Tailwind CSS, and more.
 - 📈 **Analytics**: Integrated with Vercel Analytics for traffic insights.
 
-## Recent Projects
+## Key Initiatives
 
 - [Generative AI SDLC Accelerator](https://muthu-m9.vercel.app/projects/generative-ai-sdlc)
 - [Customer Analytics Platform](https://muthu-m9.vercel.app/projects/customer-analytics)
