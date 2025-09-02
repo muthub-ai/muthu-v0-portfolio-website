@@ -10,14 +10,16 @@ interface ExperienceCardProps {
   technologies: string[]
 }
 
-export function ExperienceCard({
+import * as React from "react"
+
+export const ExperienceCard: React.FC<ExperienceCardProps> = ({
   title,
   company,
   period,
   description,
   achievements,
   technologies,
-}: ExperienceCardProps) {
+}) => {
   return (
     <div className="space-y-4 pb-6 border-b border-zinc-800 last:border-0 last:pb-0">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
@@ -37,7 +39,7 @@ export function ExperienceCard({
         <ul className="space-y-2">
           {achievements.map((achievement, index) => (
             <li key={index} className="flex text-sm text-zinc-300">
-              <CheckCircle2 className="w-4 h-4 mr-2 text-cyan-400 flex-shrink-0 mt-0.5" />
+              {React.createElement(CheckCircle2, { className: "w-4 h-4 mr-2 text-cyan-400 flex-shrink-0 mt-0.5" })}
               <span>{achievement}</span>
             </li>
           ))}
@@ -47,11 +49,9 @@ export function ExperienceCard({
       <div>
         <h5 className="text-sm font-medium text-zinc-400 mb-2">Technologies & Skills</h5>
         <div className="flex flex-wrap gap-2">
-          {technologies.map((tech, index) => (
-            <Badge key={index} variant="outline" className="text-xs bg-zinc-800/50 hover:bg-zinc-800">
-              {tech}
-            </Badge>
-          ))}
+          {technologies.map((tech, index) =>
+            React.createElement(Badge, { key: index, variant: "outline", className: "text-xs bg-zinc-800/50 hover:bg-zinc-800" }, tech)
+          )}
         </div>
       </div>
     </div>

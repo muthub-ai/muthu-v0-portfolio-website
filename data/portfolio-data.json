@@ -92,6 +92,10 @@
     {
       "label": "Skills",
       "href": "#skills"
+    },
+    {
+      "label": "Recent Projects",
+      "href": "#recent-projects"
     }
   ],
   "experience": [

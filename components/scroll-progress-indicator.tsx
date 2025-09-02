@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from "react"
 
-export function ScrollProgressIndicator() {
+import type { FC } from "react"
+
+export const ScrollProgressIndicator: FC = () => {
   const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {

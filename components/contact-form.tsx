@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { SendIcon, Loader2 } from "lucide-react"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import * as React from "react"
 
 // Define the form schema with validation rules
 const formSchema = z.object({
@@ -20,7 +21,9 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>
 
-export function ContactForm() {
+import { FC } from "react"
+
+export const ContactForm: FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false)
 
   // Initialize the form with react-hook-form and zod validation
@@ -47,15 +50,13 @@ export function ContactForm() {
     return (
       <div className="flex flex-col items-center justify-center p-6">
         <div className="w-16 h-16 mb-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
-          <SendIcon className="w-6 h-6 text-white" />
+          {React.createElement(SendIcon, { className: "w-6 h-6 text-white" })}
         </div>
         <h4 className="text-lg font-medium mb-2">Message Sent!</h4>
         <p className="text-sm text-center text-zinc-400 mb-4">
           Thanks for reaching out. I'll get back to you as soon as possible.
         </p>
-        <Button variant="outline" onClick={() => setIsSubmitted(false)}>
-          Send Another Message
-        </Button>
+  {React.createElement(Button, { variant: "outline", onClick: () => setIsSubmitted(false) }, "Send Another Message")}
       </div>
     )
   }
@@ -67,7 +68,7 @@ export function ContactForm() {
           <FormField
             control={form.control}
             name="name"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 <FormLabel className="text-zinc-400">Name</FormLabel>
                 <FormControl>
@@ -85,7 +86,7 @@ export function ContactForm() {
           <FormField
             control={form.control}
             name="email"
-            render={({ field }) => (
+            render={({ field }: { field: any }) => (
               <FormItem>
                 <FormLabel className="text-zinc-400">Email</FormLabel>
                 <FormControl>
@@ -105,7 +106,7 @@ export function ContactForm() {
         <FormField
           control={form.control}
           name="subject"
-          render={({ field }) => (
+          render={({ field }: { field: any }) => (
             <FormItem>
               <FormLabel className="text-zinc-400">Subject</FormLabel>
               <FormControl>
@@ -123,7 +124,7 @@ export function ContactForm() {
         <FormField
           control={form.control}
           name="message"
-          render={({ field }) => (
+          render={({ field }: { field: any }) => (
             <FormItem>
               <FormLabel className="text-zinc-400">Message</FormLabel>
               <FormControl>
@@ -138,23 +139,23 @@ export function ContactForm() {
           )}
         />
 
-        <Button
-          type="submit"
-          className="w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600"
-          disabled={form.formState.isSubmitting}
-        >
-          {form.formState.isSubmitting ? (
-            <>
-              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
-              Sending...
-            </>
-          ) : (
-            <>
-              <SendIcon className="w-4 h-4 mr-2" />
-              Send Message
-            </>
-          )}
-        </Button>
+        {React.createElement(
+          Button,
+          {
+            type: "submit",
+            className: "w-full bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600",
+            disabled: form.formState.isSubmitting,
+          },
+          form.formState.isSubmitting
+            ? [
+                React.createElement(Loader2, { key: "loader", className: "w-4 h-4 mr-2 animate-spin" }),
+                "Sending...",
+              ]
+            : [
+                React.createElement(SendIcon, { key: "send", className: "w-4 h-4 mr-2" }),
+                "Send Message",
+              ]
+        )}
       </form>
     </Form>
   )

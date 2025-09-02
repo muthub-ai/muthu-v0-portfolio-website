@@ -8,6 +8,15 @@
 
 ---
 
+
+## Recent Projects
+
+- [Generative AI SDLC Accelerator](https://muthu-m9.vercel.app/projects/generative-ai-sdlc)
+- [Customer Analytics Platform](https://muthu-m9.vercel.app/projects/customer-analytics)
+- [Cloud Data Migration Suite](https://muthu-m9.vercel.app/projects/cloud-data-migration)
+
+<!-- Add or update project names/links as needed -->
+
 ## 🚦 Table of Contents
 
 - [Prompts](./prompts.md)
@@ -30,6 +39,7 @@ Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel
 
 ---
 
+
 ## ✨ Features
 
 - 📂 **Projects**: Showcases recent and featured work with images, descriptions, and tech stack.
@@ -40,6 +50,14 @@ Visit the portfolio at: **[https://muthu-m9.vercel.app/](https://muthu-m9.vercel
 - 🖼️ **Customizable Content**: All data managed via a single JSON file.
 - 🏗️ **Modern Stack**: Built with Next.js, TypeScript, Tailwind CSS, and more.
 - 📈 **Analytics**: Integrated with Vercel Analytics for traffic insights.
+
+## Recent Projects
+
+- [Generative AI SDLC Accelerator](https://muthu-m9.vercel.app/projects/generative-ai-sdlc)
+- [Customer Analytics Platform](https://muthu-m9.vercel.app/projects/customer-analytics)
+- [Cloud Data Migration Suite](https://muthu-m9.vercel.app/projects/cloud-data-migration)
+
+<!-- Add or update project names/links as needed -->
 
 ---
 

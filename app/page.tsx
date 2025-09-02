@@ -27,7 +27,9 @@ export default function Home() {
       <div className="fixed inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px] opacity-20 z-0"></div>
 
       {/* Header */}
+
       <PortfolioHeader />
+
 
       <div className="relative z-10 container mx-auto p-3 sm:p-4 pt-20 sm:pt-24 pb-6 sm:pb-8">
         {/* Main Content Grid */}
@@ -111,7 +113,7 @@ export default function Home() {
             </AnimatedSection>
 
             {/* Projects Section */}
-            <AnimatedSection animation="fade-up" id="projects">
+            <AnimatedSection animation="fade-up" id="recent-projects">
               <Card className="bg-zinc-900/70 border-zinc-800 backdrop-blur-sm">
                 <CardContent className="p-4 sm:p-6">
                   <div className="flex items-center justify-between mb-4 sm:mb-6">
@@ -148,7 +150,10 @@ export default function Home() {
           delay={500}
           className="mt-8 sm:mt-12 py-4 sm:py-6 text-center text-xs sm:text-sm text-zinc-500"
         >
-          <p>© {new Date().getFullYear()} Muthu. All rights reserved.</p>
+          <p>
+            © {new Date().getFullYear()} Muthu. All rights reserved.
+            <span className="ml-3 text-cyan-400 font-medium">Last updated May 2025</span>
+          </p>
         </AnimatedSection>
       </div>
 

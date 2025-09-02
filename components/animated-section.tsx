@@ -18,7 +18,9 @@ interface AnimatedSectionProps {
   forceAnimate?: boolean
 }
 
-export function AnimatedSection({
+import type { FC } from "react"
+
+export const AnimatedSection: FC<AnimatedSectionProps> = ({
   children,
   animation = "fade-up",
   delay = 0,
@@ -27,7 +29,7 @@ export function AnimatedSection({
   rootMargin = "-50px",
   id,
   forceAnimate = false,
-}: AnimatedSectionProps) {
+}) => {
   const { ref, isIntersecting } = useIntersectionObserver({
     threshold,
     rootMargin,

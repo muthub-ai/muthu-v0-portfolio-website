@@ -61,7 +61,9 @@ const presets: Record<AnimationPreset, Partial<AnimationSettings>> = {
 
 const AnimationContext = createContext<AnimationContextType | undefined>(undefined)
 
-export function AnimationProvider({ children }: { children: ReactNode }) {
+import type { FC } from "react"
+
+export const AnimationProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<AnimationSettings>(defaultSettings)
 
   // Load settings from localStorage on initial render
