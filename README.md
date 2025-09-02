@@ -8,15 +8,6 @@
 
 ---
 
-
-## Recent Projects
-
-- [Generative AI SDLC Accelerator](https://muthu-m9.vercel.app/projects/generative-ai-sdlc)
-- [Customer Analytics Platform](https://muthu-m9.vercel.app/projects/customer-analytics)
-- [Cloud Data Migration Suite](https://muthu-m9.vercel.app/projects/cloud-data-migration)
-
-<!-- Add or update project names/links as needed -->
-
 ## 🚦 Table of Contents
 
 - [Prompts](./prompts.md)
