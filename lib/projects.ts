@@ -32,6 +32,45 @@ export interface Project {
 
 const projects: Project[] = [
   {
+    id: 12,
+    slug: "enterprise-iam-oracle",
+    title: "Enterprise Identity & Access Management (IAM)",
+    category: "Security & Identity Management",
+    shortDescription:
+      "Architected and led the implementation of the enterprise Oracle IAM suite, delivering seamless, secure SSO, federated access, and automated identity governance for a global organization.",
+    description: [
+      "As the lead architect, I designed and implemented a robust, enterprise-scale Oracle Identity & Access Management (IAM) solution, modernizing the organization's approach to security, compliance, and user experience.",
+      "The project featured an active-active configuration for Oracle Access Manager (OAM) and Oracle Directory Services, ensuring high availability and zero-downtime failover across global data centers.",
+      "I enabled seamless Single Sign-On (SSO) for all internal and external users, integrating with key partners such as Salesforce and Okta through SAML and OAuth federation.",
+      "Automated provisioning, deprovisioning, and regulatory access reviews were implemented using Oracle Identity Governance (OIG), significantly reducing manual effort and audit risk.",
+      "The initiative established a unified identity platform, improved security posture, and ensured compliance with SOX, GDPR, and other regulatory mandates."
+    ],
+    features: [
+      "Active-active Oracle Access Manager and Directory Services for high availability.",
+      "Seamless SSO and federated authentication with Salesforce, Okta, and other partners.",
+      "Automated identity lifecycle management and access reviews.",
+      "Role-based access control (RBAC) and fine-grained policy enforcement.",
+      "Comprehensive audit logging and compliance reporting.",
+      "Reduced onboarding time and improved user experience across the enterprise."
+    ],
+    technologies: ["Oracle IAM Suite", "OAM", "OIG", "Oracle Directory Services", "SAML", "OAuth", "RBAC", "Okta", "Salesforce", "Active Directory", "High Availability"],
+    coverImage: "/bg1.png",
+    thumbnailImage: "/bg1.png",
+    gallery: [
+      { url: "/bg1.png", caption: "Enterprise IAM Architecture" },
+      { url: "/bg1.png", caption: "SSO & Federation Flow" }
+    ],
+    client: "Global Enterprise (Internal)",
+    timeline: "2016 - 2018",
+    role: "Lead IAM Architect",
+    liveUrl: undefined,
+    githubUrl: undefined,
+    relatedProjects: [
+      { slug: "middleware-modernization-bunge", title: "Middleware & Business Application Platform Modernization", category: "Platform Management & Automation", image: "/bg4.jpg" },
+      { slug: "global-systems-implementation-bunge", title: "Global Enterprise Systems Implementation", category: "IT Transformation & Program Management", image: "/bg5.avif" }
+    ]
+  },
+  {
     id: 11,
     slug: "multi-cloud-ai-strategy",
     title: "Enterprise Multi-Cloud Data & AI Strategy",
@@ -81,26 +120,33 @@ const projects: Project[] = [
   },
   {
     id: 9,
-    slug: "data-movement-pipeline-usaa",
-    title: "High-Throughput Data Movement Pipeline",
-    category: "Data Engineering & Architecture",
+    slug: "data-analytics-platform-usaa",
+    title: "Data and Analytics Platform",
+    category: "Data Platforms & Analytics",
     shortDescription:
-      "Designed and delivered a high-throughput pipeline at USAA processing 15-18 billion records daily. This initiative reduced data processing latency by 90% and improved platform scalability by 20X.",
+      "Architected and delivered a modern Data and Analytics Platform at USAA, enabling real-time, large-scale data processing, advanced analytics, and AI/ML for enterprise-wide business impact.",
     description: [
-      "At USAA, I designed and delivered a configuration-driven data movement pipeline capable of processing 15-18 billion records and over 800,000 files daily, transferring more than 250TB of conformed data to AWS S3.",
-      "The architecture featured modular orchestration, parallelized ingestion, and dynamic workload partitioning, forming the backbone for enterprise-wide analytics and reporting. This platform became foundational to USAA's data ecosystem.",
+      "At USAA, I led the design and implementation of a next-generation Data and Analytics Platform that became the digital backbone for the organization's analytics and AI transformation.",
+      "The platform ingested, processed, and curated 15-18 billion records and over 800,000 files daily, moving more than 250TB of data to AWS S3 and other cloud destinations.",
+      "I architected modular orchestration, parallelized ingestion, and dynamic workload partitioning, supporting real-time and batch analytics, regulatory reporting, and machine learning at scale.",
+      "The platform integrated with AWS SageMaker, EMR, and Kinesis for advanced analytics and ML, and provided secure, governed access to data for business, risk, and compliance teams.",
+      "This initiative established a foundation for predictive analytics, self-service BI, and data-driven decision making across the enterprise."
     ],
     features: [
-      "Re-engineered the platform for 20x scalability and 10x latency reduction, achieving a 99.9% service level objective.",
-      "As System Engineer, spearheaded the secure enablement of strategic AWS services including SageMaker, EMR, Textract, Rekognition, Macie, and Kinesis.",
-      "Led the evaluation and integration of the OpenShift Container Platform, Oracle Identity and Access Management, and IBM SPSS to establish a predictive analytics environment.",
+      "Real-time and batch data processing at petabyte scale.",
+      "20x scalability improvement and 90% reduction in data latency.",
+      "Integrated with AWS SageMaker, EMR, Textract, Rekognition, and Macie for advanced analytics and AI/ML.",
+      "Enabled secure, governed data access and regulatory compliance (SOX, GLBA, etc.).",
+      "Self-service analytics and BI for business users via OpenShift and IBM SPSS integration.",
+      "Automated data quality, validation, and monitoring for end-to-end reliability.",
+      "Empowered cross-functional teams to deliver insights and drive business value."
     ],
-    technologies: ["AWS (S3, SageMaker, EMR, Macie, Kinesis)", "OpenShift", "Oracle IAM", "IBM SPSS"],
+    technologies: ["AWS S3", "SageMaker", "EMR", "Textract", "Rekognition", "Macie", "Kinesis", "OpenShift", "Oracle IAM", "IBM SPSS", "Data Orchestration", "Data Governance"],
     coverImage: "/bg3.avif",
     thumbnailImage: "/bg3.avif",
     client: "USAA",
     timeline: "2018 - 2021",
-    role: "System Engineer, Cloud Data CoE",
+    role: "Lead Data Platform Engineer & Architect",
   },
   {
     id: 8,

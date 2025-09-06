@@ -1,23 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://muthu-m9.vercel.app/</loc>
-    <changefreq>weekly</changefreq>
+  <loc>https://muthu-m9.vercel.app/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://muthu-m9.vercel.app/projects</loc>
-    <changefreq>weekly</changefreq>
+  <loc>https://muthu-m9.vercel.app/#experience</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://muthu-m9.vercel.app/about</loc>
-    <changefreq>monthly</changefreq>
+  <loc>https://muthu-m9.vercel.app/#credentials</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/#skills</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/#leadership-philosophy</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/#recent-projects</loc>
+    <priority>0.7</priority>
+  </url>
+  <!-- Project detail pages -->
+  <url>
+  <loc>https://muthu-m9.vercel.app/projects/multi-cloud-ai-strategy</loc>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://muthu-m9.vercel.app/contact</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+  <loc>https://muthu-m9.vercel.app/projects/controlled-data-movement-archetype</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/projects/data-movement-pipeline-usaa</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/projects/middleware-modernization-bunge</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/projects/global-systems-implementation-bunge</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/projects/enterprise-genai-architecture</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/projects/unified-ml-platform</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+  <loc>https://muthu-m9.vercel.app/projects/ai-augmented-sdlc</loc>
+    <priority>0.6</priority>
   </url>
 </urlset>

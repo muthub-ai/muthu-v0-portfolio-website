@@ -205,4 +205,13 @@ This project is licensed under the [MIT License](./LICENSE).
 
 ---
 
+
+---
+
+## 🛠️ Credits & Stack
+
+Loosely designed in Figma (design tool) and fully built and maintained in Visual Studio Code (code editor) by yours truly. Built with Next.js and Tailwind CSS, deployed with Vercel. All text is set in the Inter typeface.
+
+---
+
 > Built and maintained by Muthukrishnan Bommiah. Thank you for visiting my portfolio! ✨

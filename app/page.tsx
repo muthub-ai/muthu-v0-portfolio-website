@@ -181,9 +181,22 @@ export default function Home() {
           © {new Date().getFullYear()} Muthu. All rights reserved.
           <span className="ml-3 text-cyan-400 font-medium">Last updated May 2025</span>
         </p>
+        <div className="mt-2 flex justify-center">
+          <a
+            href="https://stats.uptimerobot.com/iALcI93wI3"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 transition-colors text-xs font-medium shadow-sm"
+            aria-label="View system status page (opens in new tab)"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="w-4 h-4" stroke="currentColor"><circle cx="10" cy="10" r="8" strokeWidth="2"/><path d="M6 10l2 2 4-4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <span>Status Page</span>
+          </a>
+        </div>
       </AnimatedSection>
       {/* Scroll to Top Button */}
       <EnhancedScrollIndicator />
+
     </main>
   );
 }
