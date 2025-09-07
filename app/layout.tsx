@@ -27,7 +27,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="google-site-verification" content="m1tOQodciY7a9D2qxYrcnGqB16TgZjazsXJDsIQLrpw" />
+  <meta name="google-site-verification" content="m1tOQodciY7a9D2qxYrcnGqB16TgZjazsXJDsIQLrpw" />
+  <meta name="google-site-verification" content="B7i-SXGOWSOAtKCLaDb1UEXDiENZYwQvVOmUV6pFgnE" />
         <link rel="icon" href="/favicon.png" type="image/png" />
       </head>
       <body className={inter.className}>
