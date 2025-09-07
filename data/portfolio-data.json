@@ -17,9 +17,8 @@
       "Agentic AI",
       "AI Augmented SDLC",
       "Enterprise Architecture",
-      "Multi-Cloud (GCP, AWS, Azure)",
-      "Data Architecture and Engineering"
-    ],
+      "Multi-Cloud (GCP, AWS, Azure)"
+      ],
     "social": [
       {
         "platform": "LinkedIn",
@@ -107,18 +106,20 @@
       "title": "Executive Director, Principal Architect Cloud Data and Al",
       "company": "Wells Fargo",
       "period": "2022 - Present",
-      "description": "A transformational leader designing and implementing comprehensive data architecture frameworks to drive business growth through technology innovation. Serving as a strategic advisor to senior leadership on enterprise architecture, Data and AI strategy, and engineering leadership, with a proven track record of leading large-scale modernization initiatives and transforming customer experience through advanced analytics and artificial intelligence.",
+      "description": "A transformational leader designing and implementing comprehensive Data and AI architecture frameworks to drive business growth through technology innovation. Serving as a strategic advisor to senior leadership on enterprise architecture, Data and AI strategy, and engineering leadership, with a proven track record of leading large-scale modernization initiatives and transforming customer experience through advanced analytics and artificial intelligence.",
       "achievements": [
         "Architected bank's foundational framework for Generative and Agentic AI, launching the AI-Augmented SDLC to enhance inner-loop developer productivity and outer-loop CI/CD pipelines; this strategy established a roadmap for AI-augmented observability and service management, unlocking a 30% productivity gain.",
         "Developed and evangelized prescriptive Cloud Data and AI archetypes that became integral to GCP and Microsoft Azure product development, providing a common framework that unified and accelerated delivery of business solutions across the organization.",
         "As the Portofolio architect for the Customer Analytics Portfolio, I transformed the customer experience by developing the target state for customer analytics in the cloud and delivering the first application on Google BigQuery with confidential data for advanced machine learning."
       ],
       "technologies": [
-        "Google Cloud Platform (GCP)",
+        "Google Cloud Platform",
         "Microsoft Azure",
         "Agentic AI",
         "Generative AI",
-        "Large Language Models"
+        "GitHub Copliot",
+        "Model Context Protocol",
+        "AI Augmented SDLC"
       ]
     },
     {
@@ -134,7 +135,10 @@
       "technologies": [
         "AWS (Sagemaker, EMR, Textract, Macie, Kinesis)",
         "Datadog",
-        "Elk"
+        "Cloud Data Migration",
+        "Apache Airflow",
+        "Data Platform and Engineering",
+        "ML OPS"
       ]
     },
     {
