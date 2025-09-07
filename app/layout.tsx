@@ -27,9 +27,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-  <meta name="google-site-verification" content="m1tOQodciY7a9D2qxYrcnGqB16TgZjazsXJDsIQLrpw" />
-  <meta name="google-site-verification" content="B7i-SXGOWSOAtKCLaDb1UEXDiENZYwQvVOmUV6pFgnE" />
+        <meta name="google-site-verification" content="m1tOQodciY7a9D2qxYrcnGqB16TgZjazsXJDsIQLrpw" />
+        <meta name="google-site-verification" content="B7i-SXGOWSOAtKCLaDb1UEXDiENZYwQvVOmUV6pFgnE" />
         <link rel="icon" href="/favicon.png" type="image/png" />
+        <script type="text/javascript" dangerouslySetInnerHTML={{__html: `
+          (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "t6w5pnlllv");
+        `}} />
       </head>
       <body className={inter.className}>
         <AnimationProvider>
