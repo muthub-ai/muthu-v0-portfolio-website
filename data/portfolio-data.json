@@ -144,7 +144,7 @@
     {
       "title": "Lead Software Engineer, Data and Analytics Platform",
       "company": "USAA",
-      "period": "2016 - 2019",
+      "period": "2012 - 2019",
       "description": "Designed and implemented a unified ML platform using Domino Data Science Platform, accelerating research and improving the model lifecycle. Architected cloud-native ML systems with microservices, developed a single-click model deployment console, and commoditized AWS compute deployments for data scientists across the enterprise.",
       "achievements": [
         "Designed and implemented the Model Deploy Console, providing single-click model deployment from Domino to OpenShift Container Platform and Airflow.",

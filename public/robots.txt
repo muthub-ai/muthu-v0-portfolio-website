@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://muthub.org/sitemap.xml

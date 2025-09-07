@@ -177,22 +177,23 @@ export default function Home() {
         delay={500}
         className="mt-8 sm:mt-12 py-4 sm:py-6 text-center text-xs sm:text-sm text-zinc-500"
       >
-        <p>
-          © {new Date().getFullYear()} Muthu. All rights reserved.
-          <span className="ml-3 text-cyan-400 font-medium">Last updated May 2025</span>
+        <p className="flex flex-col sm:flex-row items-center justify-center gap-2">
+          <span>
+            © {new Date().getFullYear()} Muthu. All rights reserved.
+          </span>
+          <span className="flex items-center gap-2">
+            <span className="text-cyan-400 font-medium">Last updated May 2025</span>
+            <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
+            <a
+              href="https://stats.uptimerobot.com/iALcI93wI3"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-400 text-xs font-medium hover:underline"
+            >
+              All systems normal
+            </a>
+          </span>
         </p>
-        <div className="mt-2 flex justify-center">
-          <a
-            href="https://stats.uptimerobot.com/iALcI93wI3"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1 rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 transition-colors text-xs font-medium shadow-sm"
-            aria-label="View system status page (opens in new tab)"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" className="w-4 h-4" stroke="currentColor"><circle cx="10" cy="10" r="8" strokeWidth="2"/><path d="M6 10l2 2 4-4" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>
-            <span>Status Page</span>
-          </a>
-        </div>
       </AnimatedSection>
       {/* Scroll to Top Button */}
       <EnhancedScrollIndicator />
