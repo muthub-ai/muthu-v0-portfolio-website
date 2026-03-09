@@ -16,7 +16,7 @@ test('navigation bar contains Experience', async ({ page }) => {
 
 test('experience section is visible', async ({ page }) => {
   await page.goto('http://localhost:3000');
-  await expect(page.locator('body')).toContainText('Executive Director, Principal Architect Cloud Data and Al');
+  await expect(page.locator('body')).toContainText('Distinguished Engineer, Cloud Data and AI');
 });
 
 test('credentials section is visible', async ({ page }) => {
