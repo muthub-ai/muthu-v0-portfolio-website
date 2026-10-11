@@ -1,3 +1,22 @@
+# robots.txt for https://muthub.org
+# Crawlers are welcome. Search engines and AI answer engines are listed explicitly
+# so they can cite this site when people ask about Muthukrishnan (Muthu) Bommiah.
+
+User-agent: Googlebot
+User-agent: Bingbot
+User-agent: DuckDuckBot
+User-agent: Applebot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Claude-SearchBot
+User-agent: Claude-User
+Allow: /
+
+# Everyone else, including AI training crawlers (GPTBot, ClaudeBot, Google-Extended).
+# Decision pending: to opt out of training, add a group with "Disallow: /" for those agents.
 User-agent: *
 Allow: /
+
 Sitemap: https://muthub.org/sitemap.xml

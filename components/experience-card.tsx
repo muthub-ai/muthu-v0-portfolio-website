@@ -34,17 +34,19 @@ export const ExperienceCard: React.FC<ExperienceCardProps> = ({
 
       <p className="text-sm text-zinc-300">{description}</p>
 
-      <div className="space-y-3">
-        <h5 className="text-sm font-medium text-zinc-400">Key Achievements</h5>
-        <ul className="space-y-2">
-          {achievements.map((achievement, index) => (
-            <li key={index} className="flex text-sm text-zinc-300">
-              {React.createElement(CheckCircle2, { className: "w-4 h-4 mr-2 text-cyan-400 flex-shrink-0 mt-0.5" })}
-              <span>{achievement}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {achievements.length > 0 && (
+        <div className="space-y-3">
+          <h5 className="text-sm font-medium text-zinc-400">Key Achievements</h5>
+          <ul className="space-y-2">
+            {achievements.map((achievement, index) => (
+              <li key={index} className="flex text-sm text-zinc-300">
+                {React.createElement(CheckCircle2, { className: "w-4 h-4 mr-2 text-cyan-400 flex-shrink-0 mt-0.5" })}
+                <span>{achievement}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
 
       <div>
         <h5 className="text-sm font-medium text-zinc-400 mb-2">Technologies & Skills</h5>

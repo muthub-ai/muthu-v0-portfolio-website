@@ -1,6 +1,6 @@
 import type React from "react"
+import type { Metadata } from "next"
 import { GlobeIcon, CodeIcon, BriefcaseIcon } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { ProjectCard } from "@/components/project-card"
 import { getAllProjects } from "@/lib/data"
@@ -10,7 +10,18 @@ import { AnimatedSection } from "@/components/animated-section"
 import { EnhancedProfile } from "@/components/enhanced-profile"
 import { CredentialsSection } from "@/components/credentials-section"
 import { PortfolioHeader } from "@/components/portfolio-header"
-import { getExperienceInfo, getTechnicalSkillsInfo } from "@/lib/data"
+import { SiteFooter } from "@/components/site-footer"
+import { PersonJsonLd } from "@/components/person-json-ld"
+import { getExperienceInfo, getMetaInfo, getTechnicalSkillsInfo } from "@/lib/data"
+import { pageMetadata } from "@/lib/seo"
+
+const metaInfo = getMetaInfo()
+
+export const metadata: Metadata = pageMetadata({
+  path: "/",
+  title: metaInfo.title,
+  description: metaInfo.description,
+})
 
 const SkillTagComponent = ({ children }: { children: React.ReactNode }) => {
   return <div className="px-2 py-1 bg-zinc-800 rounded-full text-xs font-medium text-zinc-400">{children}</div>
@@ -23,6 +34,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-black text-white">
+      <PersonJsonLd />
       {/* Background Grid Pattern */}
       <div className="fixed inset-0 bg-[radial-gradient(#333_1px,transparent_1px)] [background-size:20px_20px] opacity-20 z-0"></div>
       {/* Header */}
@@ -75,29 +87,22 @@ export default function Home() {
                     <h3 className="text-base font-medium">Technical Skills</h3>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                    {technicalSkills &&
-                      Object.entries(technicalSkills).map(([category, skills], idx) => (
-                        <AnimatedSection
-                          key={category}
-                          animation={idx % 2 === 0 ? "slide-right" : "slide-left"}
-                          delay={100 * (idx + 1)}
-                        >
-                          <div className="space-y-3">
-                            <h4 className="text-sm font-medium text-zinc-400">
-                              {category
-                                .replace(/([A-Z])/g, " $1")
-                                .replace(/^./, str => str.toUpperCase())
-                                .replace("And", "&")}
-                            </h4>
-                            <div className="flex flex-wrap gap-2">
-                              {Array.isArray(skills) &&
-                                skills.map((skill, index) => (
-                                  <SkillTagComponent key={index}>{skill}</SkillTagComponent>
-                                ))}
-                            </div>
+                    {technicalSkills.map((group, idx) => (
+                      <AnimatedSection
+                        key={group.label}
+                        animation={idx % 2 === 0 ? "slide-right" : "slide-left"}
+                        delay={100 * (idx + 1)}
+                      >
+                        <div className="space-y-3">
+                          <h4 className="text-sm font-medium text-zinc-400">{group.label}</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {group.skills.map((skill, index) => (
+                              <SkillTagComponent key={index}>{skill}</SkillTagComponent>
+                            ))}
                           </div>
-                        </AnimatedSection>
-                      ))}
+                        </div>
+                      </AnimatedSection>
+                    ))}
                   </div>
                 </CardContent>
               </Card>
@@ -116,7 +121,7 @@ export default function Home() {
                       <CardContent className="p-4 sm:p-6">
                         <h4 className="text-cyan-400 text-base font-semibold mb-2">The Origin: A Passion for Solving Complex Puzzles</h4>
                         <p className="text-zinc-300 text-sm mb-2">My fascination with technology didn't begin with code; it started with a deep-seated curiosity for solving complex, large-scale puzzles. Early in my career, I was drawn to the intricate systems that power global enterprises—the digital equivalent of a city's complex infrastructure. I saw technology not as an end in itself, but as the most powerful tool for bringing order to chaos, for creating efficiency where there was friction, and for building platforms that could unlock human potential at an unprecedented scale.</p>
-                        <p className="text-zinc-300 text-sm">This perspective has been the driving force behind my two-decade journey. It has taken me from managing middleware platforms to architecting petabyte-scale data ecosystems and pioneering enterprise-grade Generative AI. Each step has reinforced my core belief: the greatest value of technology lies in its ability to solve tangible business problems and create elegant, scalable solutions for the most demanding challenges. This journey has been less about mastering specific technologies and more about mastering the art of applying technology to drive meaningful and measurable business outcomes.</p>
+                        <p className="text-zinc-300 text-sm">This perspective has been the driving force behind a journey of more than two decades. It has taken me from managing middleware platforms to architecting data platforms that move billions of records a day and to bringing governed Generative AI into production at a major bank. Each step has reinforced my core belief: the greatest value of technology lies in its ability to solve tangible business problems and create elegant, scalable solutions for the most demanding challenges. This journey has been less about mastering specific technologies and more about mastering the art of applying technology to drive meaningful and measurable business outcomes.</p>
                       </CardContent>
                     </Card>
                     {/* Philosophy Box */}
@@ -149,9 +154,6 @@ export default function Home() {
                       <GlobeIcon className="w-5 h-5 mr-2 text-cyan-400" />
                       <h3 className="text-base font-medium">Key Initiatives</h3>
                     </div>
-                    <Button variant="ghost" size="sm" className="text-xs sm:text-sm px-2 sm:px-3">
-                      View All
-                    </Button>
                   </div>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
                     {projects.map((project, index) => (
@@ -171,30 +173,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* Footer */}
-      <AnimatedSection
-        animation="fade-in"
-        delay={500}
-        className="mt-8 sm:mt-12 py-4 sm:py-6 text-center text-xs sm:text-sm text-zinc-500"
-      >
-        <p className="flex flex-col sm:flex-row items-center justify-center gap-2">
-          <span>
-            © {new Date().getFullYear()} Muthu. All rights reserved.
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="text-cyan-400 font-medium">Last updated May 2025</span>
-            <span className="w-2 h-2 rounded-full bg-green-500 inline-block"></span>
-            <a
-              href="https://stats.uptimerobot.com/iALcI93wI3"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-green-400 text-xs font-medium hover:underline"
-            >
-              All systems normal
-            </a>
-          </span>
-        </p>
-      </AnimatedSection>
+      <SiteFooter />
       {/* Scroll to Top Button */}
       <EnhancedScrollIndicator />
 

@@ -1,24 +1,28 @@
 {
   "meta": {
-    "title": "Muthukrishnan Bommiah | Distinguished Engineer, Cloud Data and AI",
-    "description": "Portfolio for a seasoned technology leader specializing in designing and delivering cutting-edge cloud, data, and AI solutions that propel organizations forward."
+    "siteUrl": "https://muthub.org",
+    "title": "Muthukrishnan (Muthu) Bommiah | Governed Enterprise AI in Financial Services",
+    "shortTitle": "Muthu Bommiah",
+    "description": "Muthukrishnan (Muthu) Bommiah is a Distinguished Engineer at Wells Fargo who builds governed Generative and agentic AI for regulated enterprises: AI strategy, AI-augmented software delivery, Architecture-as-Code and production ML at scale.",
+    "disclosure": "Views are my own and do not represent my employer."
   },
   "personal": {
-  "name": "Muthukrishnan Bommiah",
-    "title": "Distinguished Engineer, Cloud Data and AI",
+    "name": "Muthukrishnan Bommiah",
+    "alternateName": "Muthu Bommiah",
+    "title": "Distinguished Engineer, Wells Fargo",
+    "jobTitle": "Distinguished Engineer",
+    "employer": "Wells Fargo",
+    "tagline": "Governed AI for regulated enterprises: guardrails, provenance and policy by design.",
     "location": "San Antonio, TX",
     "avatar": "/confident-professional.jpeg",
     "email": "muthukrishnanb@gmail.com",
-    "phone": "210-415-8342",
-    "workingHours": "Monday - Friday, 9am - 5pm CST",
-    "availableForWork": false,
     "badges": [
-      "Data and AI Strategy",
-      "Agentic AI",
-      "AI Augmented SDLC",
-      "Enterprise Architecture",
-      "Multi-Cloud (GCP, AWS, Azure)"
-      ],
+      "Governed AI",
+      "Generative & Agentic AI",
+      "AI-Augmented SDLC",
+      "Architecture-as-Code",
+      "Multi-Cloud Data & AI"
+    ],
     "social": [
       {
         "platform": "LinkedIn",
@@ -38,11 +42,11 @@
     ]
   },
   "about": {
-  "bio": "My career has been driven by a passion for solving complex puzzles—viewing technology not just as a tool, but as a way to bring order, create efficiency, and unlock human potential. I lead with a philosophy of 'Extreme Ownership,' taking full responsibility for outcomes and empowering my teams to do the same. This approach was critical when we launched the company's first Generative AI use case, where we took on the challenge and improved employee productivity by over 30%. I focus on building the intelligent, data-driven foundations that transform technology from a support function into a core driver of business strategy and innovation",
+    "bio": "I help regulated enterprises put AI to work safely and at scale. As a Distinguished Engineer at Wells Fargo, I advise technology leadership on enterprise Generative and agentic AI, co-authored the CTO's AI strategy, and led the AI-Augmented SDLC transformation that lifted productivity 30% across 25,000 developers. Before that, at USAA, I built the enterprise machine learning platform that brought 360 data scientists onto one governed environment, in partnership with Model Risk Management. My point of view: guardrails, provenance and policy belong in the design, not bolted on afterwards.",
     "focus": [
-      "Designing and implementing comprehensive Data and AI architecture frameworks for multi-cloud and hybrid-cloud strategies.",
-      "Architecting and deploying end-to-end AI solutions on cloud platforms like GCP to drive business productivity and cost savings.",
-      "Leading large-scale modernization initiatives, including migration to GCP, and developing enterprise data platforms to align with business objectives."
+      "Enterprise strategy and architecture for Generative and agentic AI: AI gateways, agent frameworks, Model Context Protocol (MCP) and banking-grade risk guardrails.",
+      "AI-native software delivery: bringing coding agents into the SDLC with context, maker/checker controls, provenance and measured productivity.",
+      "Governance as code: Architecture-as-Code and policy-as-code that check designs automatically before anything reaches production."
     ],
     "languages": [
       {
@@ -65,14 +69,13 @@
       }
     ],
     "interests": [
-      "Machine Learning",
-      "agenticAndGenerativeAI",
-      "Cloud Computing",
-      "Multi-Cloud Strategy",
-      "Digital Transformation",
-      "Product Innovation",
-      "Agile Architecture",
-      "Data Architecture"
+      "Governed AI",
+      "Agentic & Generative AI",
+      "AI-Native SDLC",
+      "Architecture-as-Code",
+      "Enterprise Context Engineering",
+      "Machine Learning Platforms",
+      "Multi-Cloud Data Architecture"
     ]
   },
   "navigation": [
@@ -103,119 +106,148 @@
   ],
   "experience": [
     {
-      "title": "Distinguished Engineer, Cloud Data and AI",
-      "company": "Wells Fargo",
-      "period": "2026 - Present",
-      "description": "A transformational leader designing and implementing comprehensive Data and AI architecture frameworks to drive business growth through technology innovation. Serving as a strategic advisor to senior leadership on enterprise architecture, Data and AI strategy, and engineering leadership, with a proven track record of leading large-scale modernization initiatives and transforming customer experience through advanced analytics and artificial intelligence.",
+      "title": "Distinguished Engineer",
+      "company": "Wells Fargo · Chief Technology Office, Enterprise Architecture",
+      "period": "Feb 2026 – Present",
+      "description": "Strategic advisor to the Technology Leadership Team on enterprise Generative and agentic AI across Chief Technology Office platforms and the software development lifecycle: AI gateways, agent frameworks and lifecycle, Model Context Protocol (MCP) and banking-specific risk guardrails. Represents the CTO at the Chief Architect and GenAI Architecture forums. Distinguished Engineers are fewer than 0.1% of the bank's engineers.",
       "achievements": [
-        "Architected bank's foundational framework for Generative and Agentic AI, launching the AI-Augmented SDLC to enhance inner-loop developer productivity and outer-loop CI/CD pipelines; this strategy established a roadmap for AI-augmented observability and service management, unlocking a 30% productivity gain.",
-        "Developed and evangelized prescriptive Cloud Data and AI archetypes that became integral to GCP and Microsoft Azure product development, providing a common framework that unified and accelerated delivery of business solutions across the organization.",
-        "As the Portofolio architect for the Customer Analytics Portfolio, I transformed the customer experience by developing the target state for customer analytics in the cloud and delivering the first application on Google BigQuery with confidential data for advanced machine learning."
+        "Led the AI-Augmented SDLC transformation with the Chief Development Officer, integrating coding agents (GitHub Copilot, Cognition Devin, Anthropic Claude, Cursor) with a bank-built context layer and a unified AI gateway with maker/checker controls, delivering a 30% productivity gain across 25,000 developers.",
+        "Co-authored the CTO's enterprise AI strategy; serving as chief architect for Data & AI since 2023, enabled 20+ business AI use cases.",
+        "Architecture approver within Enterprise Architecture for Generative AI products, and a stakeholder on the AI Architecture Review Board that reviews every GenAI and agentic use case at the bank.",
+        "Created and led architecture review boards for the CTO, driving architecture decisions that span multiple lines of business.",
+        "Built an Architecture-as-Code control plane with the Chief Architects (automated guardrails plus permit-to-build and permit-to-operate checks) adopted across 4,500+ applications, cutting architecture review time 50%.",
+        "Leads the managers of 8 teams in a 90-person virtual organization across 4 lines of business, setting architecture, standards and priorities for enterprise AI, data and cloud platforms."
       ],
       "technologies": [
-        "Google Cloud Platform",
-        "Microsoft Azure",
-        "Agentic AI",
         "Generative AI",
-        "GitHub Copliot",
+        "Agentic AI",
         "Model Context Protocol",
-        "AI Augmented SDLC"
+        "AI Gateways",
+        "GitHub Copilot",
+        "Cognition Devin",
+        "Anthropic Claude",
+        "Cursor",
+        "Architecture-as-Code",
+        "Policy-as-Code (OPA/Rego)"
       ]
     },
     {
-      "title": "Principal Architect, Cloud Data and AI",
-      "company": "Wells Fargo",
-      "period": "2022 - 2026",
-      "description": "A transformational leader designing and implementing comprehensive Data and AI architecture frameworks to drive business growth through technology innovation. Serving as a strategic advisor to senior leadership on enterprise architecture, Data and AI strategy, and engineering leadership, with a proven track record of leading large-scale modernization initiatives and transforming customer experience through advanced analytics and artificial intelligence.",
+      "title": "Principal Architect",
+      "company": "Wells Fargo · Chief Technology Office",
+      "period": "Oct 2022 – Feb 2026",
+      "description": "Multi-cloud (GCP, Azure) Data & AI architecture for the Chief Technology Office: the bank's principal cloud data architect and trusted architect for AI/ML initiatives. In 2023, enterprise and data architect for Customer Analytics, mentoring a team of architects.",
       "achievements": [
-        "Architected bank's foundational framework for Generative and Agentic AI, launching the AI-Augmented SDLC to enhance inner-loop developer productivity and outer-loop CI/CD pipelines; this strategy established a roadmap for AI-augmented observability and service management, unlocking a 30% productivity gain.",
-        "Developed and evangelized prescriptive Cloud Data and AI archetypes that became integral to GCP and Microsoft Azure product development, providing a common framework that unified and accelerated delivery of business solutions across the organization.",
-        "As the Portofolio architect for the Customer Analytics Portfolio, I transformed the customer experience by developing the target state for customer analytics in the cloud and delivering the first application on Google BigQuery with confidential data for advanced machine learning."
+        "Designed and deployed the bank's first enterprise Generative AI architecture, endorsed by the Cloud Architecture Panel and presented to the CTO and CIO; adopted as the reference model across business lines.",
+        "Took the bank's first Generative AI use case live in September 2024: a retrieval-augmented assistant giving bankers real-time policy guidance, piloted with 5,000 bankers, with guardrails against prompt injection and data leakage.",
+        "Served as chief architect for Data & AI on public cloud (2024), enabling Gemini models, the Vertex AI platform and the model development lifecycle for predictive and generative models on GCP.",
+        "Led the Teradata-to-BigQuery modernization, cutting infrastructure costs 35%, and delivered the bank's first BigQuery application with confidential data.",
+        "Architected the customer analytics platform behind a consumer lending launch that generated more than 10 million unique offers in its first week.",
+        "Defined the multi-cloud Data & AI strategy and reusable cloud data and AI archetypes that enabled 14 GCP services; trained the CTO and CTO direct reports on LLMs, agentic AI and responsible AI."
       ],
       "technologies": [
-        "Google Cloud Platform",
+        "Google Cloud (Vertex AI, Gemini, BigQuery)",
         "Microsoft Azure",
-        "Agentic AI",
-        "Generative AI",
-        "GitHub Copliot",
-        "Model Context Protocol",
-        "AI Augmented SDLC"
+        "Retrieval-Augmented Generation",
+        "Model Guardrails",
+        "Dataflow",
+        "Dataproc",
+        "Lakehouse",
+        "Data Governance"
       ]
     },
     {
-      "title": "Staff Engineer, Data and Analytics Platform",
+      "title": "Staff Engineer, Data & Analytics Platform",
       "company": "USAA",
-      "period": "2019 - 2022",
-      "description": "Spearheaded the design and maintenance of large-scale cloud-native data and analytics platforms, driving transformative modernization, performance enhancements, and cost reductions. Led modernization efforts, developed cutting-edge machine learning platforms, and implemented robust continuous delivery pipelines, resulting in a 45% reduction in data processing time and a 25% increase in system uptime.",
+      "period": "May 2020 – Oct 2022",
+      "description": "Led data and machine learning platform engineering for USAA's Data & Analytics Platform as lead of leads across 4 agile teams, and served as technical advisor to the Enterprise Model Risk Management Committee.",
       "achievements": [
-        "Implemented continuous delivery principles, reducing machine learning deployment time from 8 weeks to under 1 week.",
-        "Engineered data movement pipelines processing over 25 billion records per day and moving over 500 TB of data to AWS S3 with an automated governance framework.",
-        "Modernized data platforms to achieve 20X improved scalability and a 10X reduction in latency."
+        "Architected a configuration-driven controlled data movement platform processing 25B+ records and 800K files per day into AWS and Snowflake, with automated lineage and sensitive-data protection.",
+        "Delivered its next generation with 20x scalability, 10x lower latency, a 0.01% exception rate and a 99.9% SLO.",
+        "Wrote and gave final approval on AWS architecture specifications for identity, data protection, infrastructure security and detective controls for the cloud data platform.",
+        "Helped create USAA's first-line model risk operating model with the Modeling Center of Excellence and the Enterprise Model Risk Management Committee."
       ],
       "technologies": [
-        "AWS (Sagemaker, EMR, Textract, Macie, Kinesis)",
-        "Datadog",
-        "Cloud Data Migration",
+        "AWS (S3, SageMaker, EMR, Kinesis, Macie)",
+        "Snowflake",
         "Apache Airflow",
-        "Data Platform and Engineering",
-        "ML OPS"
+        "Datadog",
+        "ELK",
+        "Data Governance & Lineage"
       ]
     },
     {
-      "title": "Lead Software Engineer, Data and Analytics Platform",
+      "title": "Lead Software Engineer, Data & Analytics Platform",
       "company": "USAA",
-      "period": "2012 - 2019",
-      "description": "Designed and implemented a unified ML platform using Domino Data Science Platform, accelerating research and improving the model lifecycle. Architected cloud-native ML systems with microservices, developed a single-click model deployment console, and commoditized AWS compute deployments for data scientists across the enterprise.",
+      "period": "Nov 2017 – May 2020",
+      "description": "Built USAA's enterprise machine learning platform and model deployment pipelines, used by data scientists, data engineers and the Model Risk Management team.",
       "achievements": [
-        "Designed and implemented the Model Deploy Console, providing single-click model deployment from Domino to OpenShift Container Platform and Airflow.",
-        "Influenced enterprise-wide decisions for the analytics community by helping develop new standards and setting the strategic direction for data science IT platforms.",
-        "Served as the Technical SME and application owner for numerous tools, including Domino, SAS, Spark, Airflow, and various development paradigms."
+        "Consolidated 360 data scientists and modeling analysts onto a single governed ML platform, saving $25M in license costs over 3 years; Risk used the platform for independent model validation.",
+        "Cut model deployment time from 8 weeks to 5 days with CI/CD pipelines for on-demand, batch, event-driven and retraining workloads; introduced Apache Airflow at USAA.",
+        "Scaled real-time scoring for 5 cyber financial-crime models to 24M+ scores per day at under 500 ms.",
+        "Built a one-click Model Deploy Console with audit traceability, used for 45+ models across 5 business units; 22 models reached production in 6 months across 3 lines of business."
       ],
       "technologies": [
         "Domino Data Science Platform",
         "OpenShift",
         "Apache Airflow",
-        "AWS",
-        "Spark",
+        "Kafka",
         "Python",
-        "Java",
-        "Scala"
+        "R",
+        "SAS",
+        "H2O",
+        "Prometheus & Grafana"
+      ]
+    },
+    {
+      "title": "Senior Computer Systems Engineer",
+      "company": "USAA · IT Operations and Machine Learning Lab",
+      "period": "Aug 2012 – Nov 2017",
+      "description": "Joined USAA as a Computer Systems Engineer and was promoted to Senior Computer Systems Engineer in 2013, working on enterprise middleware, identity and container platforms and, in 2017, the Machine Learning Lab.",
+      "achievements": [
+        "Core member of USAA's container strategy team; led the OpenShift/Kubernetes evaluation that made OpenShift the enterprise application standard.",
+        "Presented AI and platform strategies to USAA's CTO, CEO and Chairman of the Board.",
+        "Built USAA's first Oracle Identity Federation servers and the access-management foundation (SSO, MFA, authorization) for later Okta and Salesforce integrations.",
+        "Received the \"Defender of Availability\" award (2016) for preventing a complete outage of usaa.com."
+      ],
+      "technologies": [
+        "OpenShift",
+        "Kubernetes",
+        "Oracle Access Manager",
+        "Oracle Identity Federation",
+        "WebLogic",
+        "WebSphere"
       ]
     },
     {
       "title": "IT Technical Manager, Middleware Platforms",
       "company": "Bunge North America",
-      "period": "2009-2012",
-      "description": "As a technical leader, managed a team of 12 members responsible for hosting and administering applications including WebSphere, SAS, Tibco, Tableau, and Linux Servers[cite: 89]. [cite_start]Created a strategic vision for the web application team and managed project resources to reduce operational costs without affecting SLAs[cite: 90].",
+      "period": "Apr 2009 – Aug 2012",
+      "description": "Managed the team that hosted Bunge's middleware and business-application platforms, including WebSphere, SAS, Tibco, WebFOCUS, IBM Connections, Hyperion and Tableau.",
       "achievements": [
-        "Designed and developed a Single Sign-On (SSO) solution across multiple applications, resulting in a 30% reduction in login times and a 25% increase in user adoption[cite: 94].",
-        "Managed a Tibco upgrade, resulting in a 40% reduction in data processing time and a 20% increase in system uptime[cite: 95].",
-        "Supervised the migration of WebSphere Application Server, resulting in a 30% reduction in IT costs and a 20% increase in system efficiency[cite: 97]."
+        "Delivered the Hyperion Financial Management upgrade for 2,000 users worldwide.",
+        "Defined the enterprise service bus (Tibco) strategy, adopted across Bunge companies globally.",
+        "Implemented federated single sign-on across the portal, SAS, Tableau, IBM Connections and Hyperion (SiteMinder, Ping Federate, SAML 2.0)."
       ],
       "technologies": [
         "WebSphere",
         "SAS",
         "Tibco",
-        "Webfocus",
+        "WebFOCUS",
         "Tableau",
         "Hyperion"
       ]
     },
     {
-      "title": "Lead System Administrator, Middleware Platforms",
+      "title": "Systems Administration Roles, Middleware Platforms",
       "company": "Bunge North America",
-      "period": "2004-2009",
-      "description": "Installed and configured monitoring tools like Zabbix and SiteScope for application and server monitoring[cite: 104]. [cite_start]Designed and implemented security infrastructure for web applications, including global security and SSO with SiteMinder[cite: 105].",
-      "achievements": [
-        "Enhanced security by implementing a new infrastructure that led to a 30% reduction in security breaches and a 20% increase in customer trust[cite: 105].",
-        "Improved customer experience by working with deployment teams to troubleshoot production issues, resulting in a 25% increase in customer satisfaction[cite: 107].",
-        "Reduced application downtime by 25% and increased system performance by 15% through the implementation of new monitoring tools[cite: 104]."
-      ],
+      "period": "2004 – 2009",
+      "description": "Administered WebSphere and middleware platforms; set up application and server monitoring (Zabbix, SiteScope) and web-application security, including global security and single sign-on with SiteMinder.",
+      "achievements": [],
       "technologies": [
+        "WebSphere",
+        "SiteMinder",
         "Zabbix",
         "SiteScope",
-        "SiteMinder",
-        "WebSphere",
         "Tibco",
         "Apache"
       ]
@@ -223,12 +255,12 @@
   ],
   "credentials": {
     "certifications": [
-  { "name": "IBM WebSphere Advanced Certification (6)" },
-  { "name": "TIBCO Certification (2)" },
-  { "name": "AWS Certification (2)" },
-  { "name": "Google Certification (2)" },
-  { "name": "BizzDesign Certification" },
-  { "name": "Archimate Certification" }
+      { "name": "Google Cloud Certification (2)" },
+      { "name": "AWS Certification (2)" },
+      { "name": "ArchiMate Certification" },
+      { "name": "BizzDesign Certification" },
+      { "name": "TIBCO Certification (2)" },
+      { "name": "IBM WebSphere Advanced Certification (6)" }
     ],
     "education": [
       {
@@ -239,85 +271,58 @@
       },
       {
         "degree": "Bachelor of Engineering in Electronics and Communication",
-        "institution": "Kamaraj University, India",
+        "institution": "Madurai Kamaraj University, India",
         "year": "1996-2000",
         "logo": "/mku.jpg"
       }
     ],
     "skills": [
-      "Technical Leadership and Strategy",
-      "Enterprise Architecture",
-      "Data and AI Strategy Development",
-      "Cloud Native and Distributed Systems",
-      "Machine Learning and AI",
-      "Multi-Cloud (AWS, Google Cloud & Microsoft Azure)",
-      "Product Research and Innovation",
-      "Risk Mitigation and Solution Delivery"
+      "Enterprise AI Strategy",
+      "AI Governance & Architecture Review",
+      "Generative & Agentic AI",
+      "AI-Augmented Software Delivery",
+      "Production ML & MLOps",
+      "Multi-Cloud Data & AI Platforms",
+      "Architecture-as-Code",
+      "Executive Advisory & Change Leadership"
     ]
   },
-  "technicalSkills": {
-    "architectureAndStrategy": [
-      "Enterprise Architecture",
-      "Data & AI Strategy",
-      "Microservices",
-      "CI/CD"
-    ],
-    "design": [
-      "UI/UX Design",
-      "Design Systems",
-      "Wireframing",
-      "Prototyping"
-    ],
-    "agenticAndGenerativeAI": [
-      "Generative AI",
-      "LLMs",
-      "Prompt Engineering",
-      "Agentic Workflows"
-    ],
-    "machineLearningAndMLOps": [
-      "Machine Learning",
-      "MLOps",
-      "Model Deployment",
-      "Model Monitoring"
-    ],
-    "cloudDataAndMigration": [
-      "Cloud Data Migration",
-      "BigQuery",
-      "AWS S3",
-      "Azure Data Lake"
-    ],
-    "dataPipelinesAndEngineering": [
-      "Data Engineering",
-      "ETL Pipelines",
-      "Apache Airflow",
-      "Kafka"
-    ],
-    "development": [
-      "JavaScript",
-      "TypeScript",
-      "React",
-      "Node.js"
-    ],
-    "cloudPlatformsAndData": [
-      "GCP",
-      "AWS",
-      "Azure",
-      "Kubernetes"
-    ],
-    "languagesAndFrameworks": [
-      "Python",
-      "R",
-      "Java",
-      "Scala",
-      "Spark"
-    ],
-    "softSkills": [
-      "Executive Leadership",
-      "Strategic Advisory",
-      "Stakeholder Management",
-      "Change Management",
-      "Mentorship",
-      "Extreme Ownership"
-    ]
-  }
+  "technicalSkills": [
+    {
+      "label": "Governed AI",
+      "skills": ["AI Governance & Architecture Review", "Model Guardrails", "AI Gateways", "Policy-as-Code (OPA/Rego)", "Model Risk Partnership"]
+    },
+    {
+      "label": "Agentic & Generative AI",
+      "skills": ["Generative AI", "Agentic AI", "LLM Strategy", "RAG & Graph RAG", "MCP & A2A", "Context Engineering"]
+    },
+    {
+      "label": "AI-Native SDLC",
+      "skills": ["AI-Augmented SDLC", "Coding Agents", "Spec-Driven Development", "Maker/Checker Controls", "Developer Productivity Metrics"]
+    },
+    {
+      "label": "Machine Learning & MLOps",
+      "skills": ["MLOps", "Model Deployment", "Model Monitoring", "Real-Time Scoring"]
+    },
+    {
+      "label": "Data Platforms",
+      "skills": ["Controlled Data Movement", "Lakehouse", "BigQuery", "Snowflake", "Data Governance & Lineage"]
+    },
+    {
+      "label": "Cloud Platforms",
+      "skills": ["Google Cloud (Vertex AI, Gemini, BigQuery)", "Microsoft Azure", "AWS (SageMaker)", "Kubernetes & OpenShift"]
+    },
+    {
+      "label": "Architecture & Strategy",
+      "skills": ["Enterprise Architecture", "Architecture-as-Code", "Reference Architectures", "Technology Roadmaps"]
+    },
+    {
+      "label": "Languages & Frameworks",
+      "skills": ["Python", "Java", "Scala", "R", "Spark"]
+    },
+    {
+      "label": "Leadership",
+      "skills": ["Executive Advisory", "Stakeholder Management", "Change Management", "Mentoring", "Extreme Ownership"]
+    }
+  ]
 }

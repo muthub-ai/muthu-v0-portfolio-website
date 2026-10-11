@@ -95,7 +95,7 @@ flowchart TD
 	%% Static Assets & Styles
 	subgraph "Static Assets & Styles"
 		PUBLIC["public/"]:::asset
-		RESUME["Muthu_resume.pdf"]:::asset
+		OGIMG["og-image.png + robots.txt"]:::asset
 		GLOBALS_APP["app/globals.css"]:::asset
 		GLOBALS_STYLE["styles/globals.css"]:::asset
 		TAILWIND["tailwind.config.ts"]:::asset
@@ -103,7 +103,7 @@ flowchart TD
 		NEXTCFG["next.config.mjs"]:::asset
 		TSCFG["tsconfig.json"]:::asset
 		BUILD -->|"outputs assets"| PUBLIC
-		PUBLIC --> RESUME
+		PUBLIC --> OGIMG
 		BUILD --> GLOBALS_APP
 		BUILD --> GLOBALS_STYLE
 		BUILD --> TAILWIND

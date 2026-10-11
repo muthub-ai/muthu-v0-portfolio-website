@@ -1,22 +1,44 @@
-
 import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { ScrollProgressIndicator } from "@/components/scroll-progress-indicator"
 import { AnimationProvider } from "@/contexts/animation-context"
-import { getMetaInfo } from "@/lib/data"
+import { getMetaInfo, getPersonalInfo } from "@/lib/data"
+import { ogImage } from "@/lib/seo"
 import { Analytics } from "@vercel/analytics/next"
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const inter = Inter({ subsets: ["latin"] })
 
 const metaInfo = getMetaInfo()
+const personalInfo = getPersonalInfo()
 
 export const metadata: Metadata = {
-  title: metaInfo.title,
+  metadataBase: new URL(metaInfo.siteUrl),
+  title: {
+    default: metaInfo.title,
+    template: `%s | ${metaInfo.shortTitle}`,
+  },
   description: metaInfo.description,
-    generator: 'v0.app'
+  applicationName: metaInfo.shortTitle,
+  authors: [{ name: personalInfo.name, url: metaInfo.siteUrl }],
+  creator: personalInfo.name,
+  robots: { index: true, follow: true },
+  openGraph: {
+    type: "website",
+    siteName: metaInfo.shortTitle,
+    locale: "en_US",
+    title: metaInfo.title,
+    description: metaInfo.description,
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: metaInfo.title,
+    description: metaInfo.description,
+    images: [ogImage.url],
+  },
 }
 
 export default function RootLayout({

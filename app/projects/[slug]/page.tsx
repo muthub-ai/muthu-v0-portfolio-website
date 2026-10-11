@@ -4,15 +4,41 @@ import { ArrowLeft, ExternalLink, Github } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { SkillTag } from "@/components/skill-tag"
-import { getProjectBySlug } from "@/lib/data"
+import type { Metadata } from "next"
+import { getAllProjects, getProjectBySlug, getRelatedProjects } from "@/lib/data"
+import { pageMetadata } from "@/lib/seo"
 import { notFound } from "next/navigation"
 import { EnhancedScrollIndicator } from "@/components/enhanced-scroll-indicator"
 import { AnimatedSection } from "@/components/animated-section"
 import { PortfolioHeader } from "@/components/portfolio-header"
+import { SiteFooter } from "@/components/site-footer"
 
 interface ProjectPageProps {
   params: {
     slug: string
+  }
+}
+
+// Pre-render every initiative page at build time; unknown slugs return 404.
+export const dynamicParams = false
+
+export function generateStaticParams() {
+  return getAllProjects().map((project) => ({ slug: project.slug }))
+}
+
+export function generateMetadata({ params }: ProjectPageProps): Metadata {
+  const project = getProjectBySlug(params.slug)
+  if (!project) {
+    return {}
+  }
+  return {
+    title: project.title,
+    description: project.shortDescription,
+    ...pageMetadata({
+      path: `/projects/${project.slug}`,
+      title: project.title,
+      description: project.shortDescription,
+    }),
   }
 }
 
@@ -22,6 +48,8 @@ export default function ProjectPage({ params }: ProjectPageProps) {
   if (!project) {
     notFound()
   }
+
+  const relatedProjects = getRelatedProjects(project.slug)
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -39,7 +67,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             className="inline-flex items-center text-xs sm:text-sm text-zinc-400 hover:text-white mb-4 sm:mb-6 transition-colors"
           >
             <ArrowLeft className="w-3 h-3 sm:w-4 sm:h-4 mr-1 sm:mr-2" />
-            Back to Portfolio
+            Back to home
           </Link>
         </AnimatedSection>
 
@@ -69,7 +97,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <AnimatedSection animation="fade-up" delay={100}>
               <Card className="bg-zinc-900/70 border-zinc-800 backdrop-blur-sm">
                 <CardContent className="p-4 sm:p-6">
-                  <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Project Overview</h2>
+                  <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Overview</h2>
                   <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-zinc-300">
                     {project.description.map((paragraph, index) => (
                       <p key={index}>{paragraph}</p>
@@ -77,7 +105,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   </div>
 
                   <AnimatedSection animation="fade-up" delay={200}>
-                    <h3 className="text-base sm:text-lg font-bold mt-6 sm:mt-8 mb-2 sm:mb-3">Key Features</h3>
+                    <h3 className="text-base sm:text-lg font-bold mt-6 sm:mt-8 mb-2 sm:mb-3">Highlights</h3>
                     <ul className="list-disc pl-5 space-y-1 sm:space-y-2 text-sm sm:text-base text-zinc-300">
                       {project.features.map((feature, index) => (
                         <li key={index}>{feature}</li>
@@ -86,7 +114,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
                   </AnimatedSection>
 
                   <AnimatedSection animation="fade-up" delay={300}>
-                    <h3 className="text-base sm:text-lg font-bold mt-6 sm:mt-8 mb-2 sm:mb-3">Technologies Used</h3>
+                    <h3 className="text-base sm:text-lg font-bold mt-6 sm:mt-8 mb-2 sm:mb-3">Technologies</h3>
                     <div className="flex flex-wrap gap-2 mb-4 sm:mb-6">
                       {project.technologies.map((tech, index) => (
                         <SkillTag key={index}>{tech}</SkillTag>
@@ -153,12 +181,12 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <AnimatedSection animation="slide-left" delay={100}>
               <Card className="bg-zinc-900/70 border-zinc-800 backdrop-blur-sm">
                 <CardContent className="p-4 sm:p-6">
-                  <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Project Details</h2>
+                  <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">Details</h2>
 
                   <div className="space-y-3 sm:space-y-4">
                     <div>
-                      <h3 className="text-xs sm:text-sm font-medium text-zinc-400">Client</h3>
-                      <p className="text-sm sm:text-base">{project.client || "Personal Project"}</p>
+                      <h3 className="text-xs sm:text-sm font-medium text-zinc-400">Organization</h3>
+                      <p className="text-sm sm:text-base">{project.client || "Personal project"}</p>
                     </div>
 
                     <div>
@@ -179,10 +207,9 @@ export default function ProjectPage({ params }: ProjectPageProps) {
             <AnimatedSection animation="slide-left" delay={200}>
               <Card className="bg-zinc-900/70 border-zinc-800 backdrop-blur-sm">
                 <CardContent className="p-4 sm:p-6">
-                  <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">More Projects</h2>
+                  <h2 className="text-lg sm:text-xl font-bold mb-3 sm:mb-4">More Initiatives</h2>
                   <div className="space-y-3 sm:space-y-4">
-                    {project.relatedProjects &&
-                      project.relatedProjects.map((related, index) => (
+                    {relatedProjects.map((related, index) => (
                         <AnimatedSection key={index} animation="fade-up" delay={100 * (index + 1)}>
                           <Link href={`/projects/${related.slug}`} className="block group">
                             <div className="flex items-center gap-2 sm:gap-3">
@@ -211,14 +238,7 @@ export default function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
 
-        {/* Footer */}
-        <AnimatedSection
-          animation="fade-in"
-          delay={500}
-          className="mt-8 sm:mt-12 py-4 sm:py-6 text-center text-xs sm:text-sm text-zinc-500"
-        >
-          <p>© {new Date().getFullYear()} Muthu. All rights reserved.</p>
-        </AnimatedSection>
+        <SiteFooter />
       </div>
 
       {/* Scroll to Top Button */}

@@ -6,7 +6,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { SocialLinks } from "@/components/social-links"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { User, MapPin, Mail, Phone, Languages, Clock, Briefcase } from "lucide-react"
+import { User, MapPin, Mail, Languages, Briefcase } from "lucide-react"
 import { getPersonalInfo, getAboutInfo } from "@/lib/data"
 
 export function EnhancedProfile() {
@@ -30,8 +30,9 @@ export function EnhancedProfile() {
               />
             </div>
             <div className="text-center">
-              <h2 className="text-xl sm:text-2xl font-bold">{personalInfo.name}</h2>
+              <h1 className="text-xl sm:text-2xl font-bold">{personalInfo.name}</h1>
               <p className="text-sm text-cyan-400 mb-1">{personalInfo.title}</p>
+              <p className="text-xs text-zinc-300 mb-2 max-w-xs mx-auto">{personalInfo.tagline}</p>
               <div className="flex items-center justify-center text-xs text-zinc-400 mb-3">
                 <MapPin className="w-3 h-3 mr-1" />
                 <span>{personalInfo.location}</span>
@@ -139,48 +140,15 @@ export function EnhancedProfile() {
               </div>
 
               <div className="flex items-start">
-                <Phone className="w-5 h-5 mr-3 text-cyan-400 mt-0.5" />
-                <div>
-                  <h4 className="font-medium">Phone</h4>
-                  <a
-                    href={`tel:${personalInfo.phone}`}
-                    className="text-sm text-zinc-400 hover:text-cyan-400 transition-colors"
-                  >
-                    {personalInfo.phone}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start">
                 <MapPin className="w-5 h-5 mr-3 text-cyan-400 mt-0.5" />
                 <div>
                   <h4 className="font-medium">Location</h4>
                   <p className="text-sm text-zinc-400">{personalInfo.location}</p>
                 </div>
               </div>
-
-              <div className="flex items-start">
-                <Clock className="w-5 h-5 mr-3 text-cyan-400 mt-0.5" />
-                <div>
-                  <h4 className="font-medium">Working Hours</h4>
-                  <p className="text-sm text-zinc-400">{personalInfo.workingHours}</p>
-                </div>
-              </div>
             </div>
           </TabsContent>
         </Tabs>
-
-        {/* Profile Footer - Availability Status */}
-        <div className="p-3 sm:p-4 border-t border-zinc-800 flex items-center justify-center">
-          <div className="flex items-center">
-            <span
-              className={`w-2 h-2 ${personalInfo.availableForWork ? "bg-green-500" : "bg-red-500"} rounded-full mr-2`}
-            ></span>
-            <span className="text-xs text-zinc-400">
-              {personalInfo.availableForWork ? "Available for new projects" : "Not available for new projects"}
-            </span>
-          </div>
-        </div>
       </CardContent>
     </Card>
   )
