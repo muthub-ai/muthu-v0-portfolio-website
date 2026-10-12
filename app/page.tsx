@@ -54,20 +54,6 @@ export default function HomePage() {
           <p className="eyebrow">{site.displayName}</p>
           <h1 className="h-display max-w-[820px] text-[2.75rem] leading-[1.05] sm:text-[4rem]">{site.tagline}</h1>
           <p className="max-w-[640px] text-xl leading-relaxed text-body">{site.shortBio}</p>
-          <p className="flex flex-wrap gap-x-7 gap-y-2 text-[15px] text-muted">
-            {site.numbers.map((n, i) => (
-              <span key={n.label} className="flex gap-7">
-                {i > 0 && (
-                  <span aria-hidden="true" className="text-strong">
-                    /
-                  </span>
-                )}
-                <span>
-                  <strong className="font-semibold text-ink">{n.value}</strong> {n.label}
-                </span>
-              </span>
-            ))}
-          </p>
           <div className="mt-1 flex flex-wrap gap-3">
             <Link href="/writing" className="btn-primary">
               Read the writing

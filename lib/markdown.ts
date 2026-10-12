@@ -10,7 +10,6 @@ export function homeMarkdown() {
   const essays = getEssays().slice(0, 5)
   return (
     `# ${site.displayName}\n\n> ${site.tagline}\n\n${site.shortBio}\n\n` +
-    `${site.numbers.map((n) => `${n.value} ${n.label}`).join(" · ")}\n\n` +
     `## Featured initiatives\n\n${getInitiatives()
       .filter((i) => i.featured)
       .map((i) => `- [${i.title}](${site.url}/initiatives/${i.slug}.md): ${i.summary}`)
