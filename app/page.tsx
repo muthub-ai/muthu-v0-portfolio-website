@@ -1,4 +1,3 @@
-import Image from "next/image"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { site, themeName, themes } from "@/content/site"
@@ -6,6 +5,7 @@ import { dateLabel, getEssays, getInitiatives } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
 import { JsonLd, profilePageSchema } from "@/components/json-ld"
 import { Newsletter } from "@/components/newsletter"
+import { Portrait } from "@/components/portrait"
 
 export const metadata: Metadata = pageMetadata({ path: "/", description: site.description })
 
@@ -74,7 +74,7 @@ export default function HomePage() {
           </div>
         </div>
         <figure className="flex max-w-[260px] flex-[1_1_220px] flex-col gap-3">
-          <Image src={site.headshot} alt={`Portrait of ${site.name}`} width={520} height={520} priority className="aspect-square w-full rounded object-cover" />
+          <Portrait size={520} priority className="aspect-square w-full rounded-md object-cover" />
           <figcaption className="text-[13px] text-muted">{site.location}</figcaption>
         </figure>
       </section>
