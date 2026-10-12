@@ -145,7 +145,20 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "You cannot manage what you do not count. Pick one workflow, such as incident triage or change approval, and measure how long it takes to assemble the context before any real work starts. Count how many people get pulled in to answer the same questions. That number is your cost of unmanaged context, and in my experience it is large enough to fund the fix. If you timed the first hour of your next major incident, how much of it would go to rediscovering something your organization already knew?"
+        "text": "You cannot manage what you do not count. Pick one workflow, such as incident triage or change approval, and measure how long it takes to assemble the context before any real work starts. Count how many people get pulled in to answer the same questions. That number is your cost of unmanaged context, and in my experience it is large enough to fund the fix."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Time the first hour of your next major incident and record how many minutes go to assembling context before anyone attempts a fix.",
+          "Name one accountable **owner** for the context of your most critical application, with a review-by date attached.",
+          "Add a context-assembly cost line to the business case template for every new AI agent proposal.",
+          "Ask your architects to list the five questions engineers repeatedly ask about one tier-one service, and where each answer lives today."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "If you timed the first hour of your next major incident, how much of it would go to rediscovering something your organization already knew?"
       },
       {
         "type": "bottomLine",
@@ -252,10 +265,6 @@ export const contextEngineeringEssays: Essay[] = [
         "text": "Once that unit exists, agents stop starting from zero. The incident assistant, the coding agent and the architecture reviewer all read the same context. A correction made once is a correction everywhere. The question *what breaks if this goes down?* becomes a lookup and a traversal instead of an investigation."
       },
       {
-        "type": "h2",
-        "text": "Anatomy of a coherent unit"
-      },
-      {
         "type": "p",
         "text": "In my experience a useful outline covers a handful of areas, the same way, for every application:"
       },
@@ -306,6 +315,14 @@ export const contextEngineeringEssays: Essay[] = [
           "**Pick the unit.** For most technology organizations it is the application or service. Define what a complete body of context for one looks like.",
           "**Name an owner.** Context without an owner fragments again within a quarter.",
           "**Serve it once.** Expose it through one governed interface, for example an MCP server, so every agent uses the same context instead of building its own."
+        ]
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Ask two of your AI assistants the same dependency question about one critical application and put their answers side by side.",
+          "Inventory the connectors your teams built this year to the configuration database, ticketing and code systems, and flag the duplicates.",
+          "Route the next correction to a wrong agent answer back to its source, then check whether every other assistant now reflects the fix."
         ]
       },
       {
@@ -374,36 +391,24 @@ export const contextEngineeringEssays: Essay[] = [
         "text": "The alternative is an overlay: a thin, curated layer of knowledge that sits *on top of* the systems of record instead of replacing them. Four design principles make the difference."
       },
       {
-        "type": "h2",
-        "text": "1. Source systems stay authoritative"
+        "type": "p",
+        "text": "**Source systems stay authoritative.** The code repository remains the truth about code, the configuration database the truth about infrastructure, the ticketing system the truth about work. The context layer holds what those systems cannot: synthesis, relationships and rationale. Every claim links back to where it came from, so when the two disagree, everyone knows which one wins."
       },
       {
         "type": "p",
-        "text": "The code repository remains the truth about code, the configuration database the truth about infrastructure, the ticketing system the truth about work. The context layer holds what those systems cannot: synthesis, relationships and rationale. Every claim links back to where it came from, so when the two disagree, everyone knows which one wins."
-      },
-      {
-        "type": "h2",
-        "text": "2. Retrieval-first, not copy-first"
+        "text": "**Retrieval-first, not copy-first.** Store pointers and summaries, and fetch details just in time. This is how Anthropic describes effective agents: keep [lightweight identifiers](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) such as file paths and load data when it is needed. A context layer should behave the same way at enterprise scale."
       },
       {
         "type": "p",
-        "text": "Store pointers and summaries, and fetch details just in time. This is how Anthropic describes effective agents: keep [lightweight identifiers](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) such as file paths and load data when it is needed. A context layer should behave the same way at enterprise scale."
-      },
-      {
-        "type": "h2",
-        "text": "3. Ownership and governance from day one"
+        "text": "**Ownership and governance from day one.** The data lake lesson fits in one sentence: decide ownership and metadata requirements first, because deferral is what turns a lake into a swamp. Every unit of context needs an owner, a classification and a review date before it is published. Zhamak Dehghani's [data mesh](https://martinfowler.com/articles/data-monolith-to-mesh.html) made the same argument for analytical data, that it should be a product owned by the domain that understands it. I would apply that thinking to context even more strictly, because an agent cannot tell a stale page from a current one unless someone has said so."
       },
       {
         "type": "p",
-        "text": "The data lake lesson fits in one sentence: decide ownership and metadata requirements first, because deferral is what turns a lake into a swamp. Every unit of context needs an owner, a classification and a review date before it is published. Zhamak Dehghani's [data mesh](https://martinfowler.com/articles/data-monolith-to-mesh.html) made the same argument for analytical data, that it should be a product owned by the domain that understands it. I would apply that thinking to context even more strictly, because an agent cannot tell a stale page from a current one unless someone has said so."
-      },
-      {
-        "type": "h2",
-        "text": "4. Not a production dependency"
+        "text": "**Not a production dependency.** A context layer should make people and agents faster and safer, but production systems must never need it to run. If it goes down, you lose speed, not service. That boundary keeps the blast radius small and the architecture honest, and it makes the risk conversation far shorter."
       },
       {
         "type": "p",
-        "text": "A context layer should make people and agents faster and safer, but production systems must never need it to run. If it goes down, you lose speed, not service. That boundary keeps the blast radius small and the architecture honest, and it makes the risk conversation far shorter."
+        "text": "Here is where I disagree with the common advice to start broad and prune later. Pruning almost never happens. Once a source is connected, someone's workflow depends on it, and removing it turns into a negotiation. Start narrow instead: one workflow, the handful of sources it truly needs, and an owner for each. Add a source only when a real question cannot be answered without it. This feels slow in the first quarter. By the third quarter it is faster, because the team is no longer arguing about which of four conflicting answers is right."
       },
       {
         "type": "h2",
@@ -464,6 +469,15 @@ export const contextEngineeringEssays: Essay[] = [
       {
         "type": "p",
         "text": "Partly. Graphs are excellent for relationships, and Gartner positions context graphs as [augmenting knowledge graphs](https://atlan.com/know/gartner-context-graphs/) with a procedural layer of decisions, workflows and traces. But a graph is a representation, not a governance model. What matters is curation: who decides what goes in, how it is verified and when it expires. You can store a curated overlay as files, as a graph, or both. You cannot skip the curation."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Audit the sources already connected to your AI assistants and flag every one that has no named owner willing to sign for it.",
+          "Write a one-page admission rule requiring an owner, a classification and a review date before anything enters the context layer.",
+          "Test whether an agent acting for a junior user can retrieve knowledge derived from records that user cannot open.",
+          "Ask one team to list facts that appear in several places with different values, and name the authoritative source for each."
+        ]
       },
       {
         "type": "p",
@@ -559,12 +573,20 @@ export const contextEngineeringEssays: Essay[] = [
         "text": "Here is the counterintuitive part. The human gate is what makes the system fast over time, not what slows it down. Without it, a single confidently wrong page can poison trust in the whole layer, and teams go back to asking the expert. With it, every approved fact carries a name and a date, and people stop double-checking."
       },
       {
+        "type": "p",
+        "text": "A practical decision rule keeps the gate cheap: tier it by consequence. A new contact name or a corrected link can be published as a clearly labeled draft and confirmed in a weekly batch. A new failure mode, a changed dependency, or anything that would alter how someone responds to an incident needs the owner's approval before agents treat it as verified. The review load stays small, and the risky changes still get a human."
+      },
+      {
         "type": "h2",
         "text": "A feedback loop, not a pipeline"
       },
       {
         "type": "p",
         "text": "Passive capture is not a one-way flow. Every time an agent uses context and a person corrects it (an answer was wrong, a dependency was missing, a runbook step was outdated) that correction is itself a signal. Feed it back through the same steps. Over time the knowledge corrects itself where it is used, which is the only place anyone notices errors."
+      },
+      {
+        "type": "p",
+        "text": "The failure mode to watch for is the rubber stamp. If owners approve every proposal within seconds, the gate has turned into theater. I would sample a few approved changes each month and check them against their sources, the way internal audit samples a control. When the sample turns up errors, the fix is usually upstream, in better classification or tighter extraction, rather than more reviewers."
       },
       {
         "type": "h2",
@@ -614,6 +636,15 @@ export const contextEngineeringEssays: Essay[] = [
           "**Capture decisions at the point of approval.** If an architecture or change review happens in a tool, record the rationale there, structured and linked.",
           "**Measure the approval load.** If owners spend more than a few minutes a week approving, the process is not filtering enough.",
           "**Track freshness.** Every captured fact gets a date and a review-by date, so decay is visible instead of silent."
+        ]
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Take one incident from last month, have an agent draft the context updates its post-mortem implies, and ask the owner to review them.",
+          "Publish a short list of sources in scope for capture, and those explicitly excluded, to the teams whose work it touches.",
+          "Set a target for owner approval time, such as ten minutes a week, and measure it from the first pilot.",
+          "Add a last-verified date and a review-by date to every runbook for one critical service."
         ]
       },
       {
@@ -752,6 +783,22 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "Keep the profile small"
+      },
+      {
+        "type": "p",
+        "text": "Once teams see the value of metadata, the temptation is to keep adding fields. I have watched this happen with data catalogs: dozens of attributes per table, most of them empty, and the empty ones quietly teaching everyone that the metadata cannot be trusted. A field that is filled in for a third of concepts can be worse than no field, because consumers cannot tell missing from unknown."
+      },
+      {
+        "type": "p",
+        "text": "My rule is that a field earns its place only if an agent or a control will act on it. Owner, freshness, confidence and classification pass that test easily, because each one changes what an agent is allowed to do. A field such as business criticality might pass if your incident tooling reads it. Most other details belong in the body of the file, where people can read them, rather than in frontmatter that implies someone maintains them."
+      },
+      {
+        "type": "p",
+        "text": "Enforce the profile where files are written, not where they are read. A check on the pull request that rejects a concept without an owner or a review date costs almost nothing, and it stops decay before it starts."
+      },
+      {
+        "type": "h2",
         "text": "Cautions"
       },
       {
@@ -760,7 +807,20 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Treat it as a strong direction rather than a finished standard: adopt the core, keep your enterprise fields in a documented profile, and contribute back. The worst outcome would be every enterprise inventing its own incompatible extensions and recreating the fragmentation the format was meant to solve. If your organization published its enterprise profile tomorrow, which of these fields would your current knowledge actually be able to fill in?"
+        "text": "Treat it as a strong direction rather than a finished standard: adopt the core, keep your enterprise fields in a documented profile, and contribute back. The worst outcome would be every enterprise inventing its own incompatible extensions and recreating the fragmentation the format was meant to solve."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Pick ten knowledge files for one critical application and check whether each could state its owner, sources and last verified date.",
+          "Draft an enterprise profile of no more than seven fields on top of the OKF core and circulate it to architecture and risk.",
+          "Add a pull request check that rejects any knowledge file missing an **owner** or a review-by date.",
+          "Instruct one internal agent to label unverified content as draft and to decline actions based on expired knowledge."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "In the end, the format question is a readiness question. If your organization published its enterprise profile tomorrow, which of these fields would your current knowledge actually be able to fill in?"
       },
       {
         "type": "bottomLine",

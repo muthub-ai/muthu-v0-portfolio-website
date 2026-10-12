@@ -19,7 +19,7 @@ export function WritingHub({ theme }: { theme?: ThemeSlug }) {
           </Link>
         )}
         <h1 className="h-display text-5xl leading-[1.05] sm:text-[56px]">{current ? current.name : "Writing"}</h1>
-        <p className="text-[19px] leading-relaxed text-body">
+        <p className="lede">
           {current
             ? current.blurb
             : "Essays and notes on governed AI in financial services. Essays argue one idea; notes are shorter takes on what I am reading and testing."}
@@ -83,7 +83,7 @@ export function WritingHub({ theme }: { theme?: ThemeSlug }) {
                     {post.title}
                   </Link>
                 </h3>
-                <p className="text-[17px] leading-relaxed text-body">{post.summary}</p>
+                <p className="text-copy leading-relaxed text-body">{post.summary}</p>
                 <div className="flex flex-wrap items-center gap-2 pt-1">
                   {!theme && <span className="chip">{themeName(post.theme)}</span>}
                   <span className="text-[15px] text-muted">{readingMinutes(post.body)} min read</span>
@@ -101,10 +101,10 @@ export function WritingHub({ theme }: { theme?: ThemeSlug }) {
             {notes.map((note) => (
               <div key={note.slug} className="flex flex-col gap-1.5 border-t border-line py-5">
                 <span className="text-[15px] text-muted">{dateLabel(note)}</span>
-                <Link href={`/writing/${note.slug}`} className="text-[17px] font-semibold leading-snug text-ink hover:text-accent">
+                <Link href={`/writing/${note.slug}`} className="text-copy font-semibold leading-snug text-ink hover:text-accent">
                   {note.title}
                 </Link>
-                <span className="text-[16px] leading-relaxed text-body">{note.summary}</span>
+                <span className="text-copy leading-relaxed text-body">{note.summary}</span>
               </div>
             ))}
           </aside>
@@ -116,17 +116,17 @@ export function WritingHub({ theme }: { theme?: ThemeSlug }) {
           <h2 id="archive-heading" className="h-display text-[32px]">
             From the archive
           </h2>
-          <p className="mb-4 text-[17px] text-muted">Earlier essays on data platforms, MLOps and cloud architecture, published on Medium.</p>
+          <p className="lede mb-4">Earlier essays on data platforms, MLOps and cloud architecture, published on Medium.</p>
           <ul className="grid gap-x-10 [grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))]">
             {archive.map((a) => (
               <li key={a.url} className="flex flex-col gap-1 border-t border-line py-5">
                 <span className="text-[15px] text-muted">
                   {new Date(`${a.date}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })} · Medium
                 </span>
-                <a href={a.url} className="text-[17px] font-semibold leading-snug text-ink hover:text-accent" rel="noopener noreferrer">
+                <a href={a.url} className="text-copy font-semibold leading-snug text-ink hover:text-accent" rel="noopener noreferrer">
                   {a.title}
                 </a>
-                <span className="text-[16px] leading-relaxed text-body">{a.summary}</span>
+                <span className="text-copy leading-relaxed text-body">{a.summary}</span>
               </li>
             ))}
           </ul>

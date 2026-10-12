@@ -1,4 +1,5 @@
 import { about, now } from "@/content/about"
+import { playbook } from "@/content/playbook"
 import { archive } from "@/content/archive"
 import { site, themeName, themes } from "@/content/site"
 import { blocksToMarkdown, dateLabel, getEssay, getEssays, getInitiative, getInitiatives, getNote, getNotes } from "@/lib/content"
@@ -112,6 +113,15 @@ export function nowMarkdown() {
   return `# Now\n\nUpdated ${now.updated}.\n\n${now.items.map((x) => `- ${x}`).join("\n")}` + footer
 }
 
+export function playbookMarkdown() {
+  return (
+    `# ${playbook.title}\n\n> ${playbook.summary}\n\nLast reviewed ${playbook.reviewed}.\n\n${playbook.intro.join("\n\n")}\n\n` +
+    playbook.items.map((item, i) => `## ${i + 1}. ${item.title}\n\n${item.text}\n\n**Check:** ${item.check}`).join("\n\n") +
+    `\n\n${playbook.closing}` +
+    footer
+  )
+}
+
 export function llmsTxt() {
   const essays = getEssays()
   return (
@@ -122,6 +132,7 @@ export function llmsTxt() {
     `- [About](${site.url}/about.md): biography, career, education, certifications and speaker bios\n` +
     `- [Initiatives](${site.url}/initiatives.md): case studies of work he has led\n` +
     `- [Writing](${site.url}/writing.md): essays and notes\n` +
+    `- [Playbook](${site.url}/playbook.md): ${playbook.title}\n` +
     `- [Now](${site.url}/now.md): current focus\n` +
     `- [Reach me](${site.url}/reach.md): how to get in touch\n\n` +
     `## Initiatives\n\n${getInitiatives().map((i) => `- [${i.title}](${site.url}/initiatives/${i.slug}.md): ${i.summary}`).join("\n")}\n\n` +

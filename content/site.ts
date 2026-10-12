@@ -79,3 +79,4 @@ export type Block =
   | { type: "bottomLine"; text: string }
   | { type: "code"; text: string; lang?: string }
   | { type: "figure"; name: FigureName }
+  | { type: "monday"; items: string[] }

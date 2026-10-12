@@ -46,7 +46,7 @@ export function SpeakerKit({ bios, headshot }: { bios: { short: string; long: st
         </a>
       </div>
       <div className="flex flex-col gap-4 rounded-md border border-line bg-page px-8 py-7">
-        <p className="text-[17px] leading-[1.7] text-ink/90">{bios[length]}</p>
+        <p className="text-copy leading-[1.7] text-ink/90">{bios[length]}</p>
         <button type="button" onClick={copy} className="min-h-[44px] self-start rounded-full border border-strong px-[18px] text-[15px] font-semibold hover:border-ink">
           {copied ? "Copied" : "Copy bio"}
         </button>

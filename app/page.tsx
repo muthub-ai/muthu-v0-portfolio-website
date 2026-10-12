@@ -18,6 +18,7 @@ const startHere: Record<string, { label: string; href: string }[]> = {
     { label: "Self-describing knowledge", href: "/writing/self-describing-knowledge-open-knowledge-format" },
   ],
   "governed-ai": [
+    { label: "Playbook: governing coding agents", href: "/playbook" },
     { label: "Architecture that runs", href: "/writing/architecture-that-runs" },
     { label: "Inside an Architecture-as-Code platform", href: "/writing/inside-an-architecture-as-code-platform" },
     { label: "Model is a tool, harness is the strategy", href: "/writing/model-is-a-tool-harness-is-the-strategy" },
@@ -42,7 +43,7 @@ const startHere: Record<string, { label: string; href: string }[]> = {
 
 function StartList({ theme, visibleSlugs }: { theme: string; visibleSlugs: Set<string> }) {
   return (
-    <ul className="flex list-disc flex-col gap-2 pl-[18px] text-[16px] leading-snug">
+    <ul className="flex list-disc flex-col gap-2 pl-[18px] text-copy leading-snug">
       {startHere[theme]
         .filter((piece) => !piece.href.startsWith("/writing/") || visibleSlugs.has(piece.href.replace("/writing/", "")))
         .map((piece) => (
@@ -125,7 +126,7 @@ export default function HomePage() {
                 className="group flex flex-col gap-3.5 rounded-md border border-line bg-page p-7 transition-all hover:-translate-y-0.5 hover:border-strong hover:shadow-[0_8px_24px_-12px_rgb(0_0_0/0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0"
               >
                 <span className="font-serif text-[26px] font-medium leading-tight group-hover:text-accent">{item.title}</span>
-                <span className="text-[17px] leading-relaxed text-body">{item.summary}</span>
+                <span className="text-copy leading-relaxed text-body">{item.summary}</span>
                 <span className="mt-auto border-t border-line pt-4 text-[15px] text-muted">
                   {item.organization} · {item.period}
                 </span>
@@ -140,7 +141,7 @@ export default function HomePage() {
           <h2 id="latest" className="h-display text-4xl tracking-[-0.01em]">
             Latest writing
           </h2>
-          <p className="text-[17px] leading-relaxed text-muted">Essays and short notes on putting AI to work inside regulated institutions. Every piece is dated and kept current.</p>
+          <p className="lede">Essays and short notes on putting AI to work inside regulated institutions. Every piece is dated and kept current.</p>
           <Link href="/writing" className="link text-[15px] font-semibold">
             All writing and notes
           </Link>
@@ -154,7 +155,7 @@ export default function HomePage() {
                 <Link href={`/writing/${post.slug}`} className="font-serif text-[23px] font-medium leading-snug text-ink hover:text-accent">
                   {post.title}
                 </Link>
-                <span className="text-[17px] leading-relaxed text-body">{post.summary}</span>
+                <span className="text-copy leading-relaxed text-body">{post.summary}</span>
                 <span className="flex flex-wrap items-center gap-2 pt-1">
                   <span className="chip">{themeName(post.theme)}</span>
                   <span className="text-[15px] text-muted">Essay · {readingMinutes(post.body)} min read</span>
@@ -171,7 +172,7 @@ export default function HomePage() {
             <h2 id="start" className="h-display text-4xl tracking-[-0.01em]">
               Start here
             </h2>
-            <p className="text-[17px] text-muted">New here? Five themes, the best pieces in each.</p>
+            <p className="lede">New here? Five themes, the best pieces in each.</p>
           </div>
           <div className="hidden gap-6 sm:grid sm:[grid-template-columns:repeat(auto-fit,minmax(180px,1fr))]">
             {themes.map((theme) => (
@@ -181,7 +182,7 @@ export default function HomePage() {
                     {theme.name}
                   </Link>
                 </h3>
-                <p className="text-[16px] leading-relaxed text-muted">{theme.blurb}</p>
+                <p className="text-copy leading-relaxed text-muted">{theme.blurb}</p>
                 <StartList theme={theme.slug} visibleSlugs={visibleSlugs} />
               </div>
             ))}
@@ -196,7 +197,7 @@ export default function HomePage() {
                   </span>
                 </summary>
                 <div className="flex flex-col gap-3 pt-2">
-                  <p className="text-[16px] leading-relaxed text-muted">{theme.blurb}</p>
+                  <p className="text-copy leading-relaxed text-muted">{theme.blurb}</p>
                   <StartList theme={theme.slug} visibleSlugs={visibleSlugs} />
                 </div>
               </details>

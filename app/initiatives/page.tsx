@@ -15,7 +15,7 @@ export default function InitiativesPage() {
     <div className="container-site flex flex-col gap-12 pb-24 pt-16 sm:pt-[72px]">
       <div className="flex max-w-[720px] flex-col gap-4">
         <h1 className="h-display text-5xl leading-[1.05] sm:text-[56px]">Initiatives</h1>
-        <p className="text-[19px] leading-relaxed text-body">
+        <p className="lede">
           Public summaries of work I have led. Each one covers the problem, the approach, how it was governed, what changed, and what I learned.
         </p>
       </div>
@@ -29,7 +29,7 @@ export default function InitiativesPage() {
               </div>
               <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-2">
                 <span className="font-serif text-[28px] font-medium leading-tight text-ink group-hover:text-accent">{item.title}</span>
-                <span className="text-[17px] leading-relaxed text-body">{item.summary}</span>
+                <span className="text-copy leading-relaxed text-body">{item.summary}</span>
               </div>
             </Link>
           </li>

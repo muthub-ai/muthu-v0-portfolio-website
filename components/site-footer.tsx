@@ -25,6 +25,9 @@ export function SiteFooter() {
               {s.label}
             </a>
           ))}
+          <Link href="/playbook" className="link">
+            Playbook
+          </Link>
           <Link href="/now" className="link">
             Now
           </Link>

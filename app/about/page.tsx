@@ -26,7 +26,7 @@ export default function AboutPage() {
               {p}
             </p>
           ))}
-          <p className="text-[17px] text-muted">
+          <p className="text-copy text-muted">
             What I am working on this quarter is on my{" "}
             <Link href="/now" className="link">
               Now page
@@ -46,7 +46,7 @@ export default function AboutPage() {
             <h2 id="principles" className="h-display text-[32px] sm:text-4xl">
               How I think and lead
             </h2>
-            <p className="text-[17px] leading-relaxed text-muted">The principles behind the work and the writing. Each one came from something that went right, or wrong, in a real program.</p>
+            <p className="lede">The principles behind the work and the writing. Each one came from something that went right, or wrong, in a real program.</p>
           </div>
           <div className="grid gap-12 md:grid-cols-2">
             {[
@@ -63,7 +63,7 @@ export default function AboutPage() {
                       </span>
                       <div className="flex flex-col gap-1.5">
                         <strong className="font-serif text-[22px] font-medium leading-snug text-ink">{p.title}</strong>
-                        <span className="text-[17px] leading-relaxed text-body">{p.text}</span>
+                        <span className="text-copy leading-relaxed text-body">{p.text}</span>
                       </div>
                     </li>
                   ))}
@@ -119,7 +119,7 @@ export default function AboutPage() {
             <h2 id="kit" className="h-display text-[32px]">
               Speaker kit
             </h2>
-            <p className="text-[17px] text-muted">For event organizers and editors: bios you can use as written, and a headshot (JPG, 800 × 800).</p>
+            <p className="lede">For event organizers and editors: bios you can use as written, and a headshot (JPG, 800 × 800).</p>
           </div>
           <SpeakerKit bios={about.bios} headshot={site.headshot} />
         </div>

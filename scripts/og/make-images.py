@@ -115,7 +115,7 @@ def item_card(item):
     img = Image.new("RGB", (W, H), PAGE)
     d = ImageDraw.Draw(img)
     d.rectangle([0, 0, W, 8], fill=ACCENT)
-    label = (THEMES.get(item.get("theme", ""), "Note") if item.get("theme") else "Note").upper()
+    label = item.get("label") or (THEMES.get(item.get("theme", ""), "Note") if item.get("theme") else "Note").upper()
     if item.get("series"):
         label += f"  ·  PART {item['series']}"
     tracked(d, (PAD, 96), label, font(SANS_BOLD, 22), ACCENT, 2.6)
@@ -155,6 +155,10 @@ def read_items():
                 "published": get("published"),
                 "series": part.group(1) if part else None,
             })
+    pb = (ROOT / "content/playbook.ts").read_text()
+    title = re.search(r'title: "((?:[^"\\]|\\.)*)"', pb)
+    if title:
+        items.append({"slug": "playbook", "title": title.group(1), "label": "PLAYBOOK", "published": None, "series": None})
     return items
 
 

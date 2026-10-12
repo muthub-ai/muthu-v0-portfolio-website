@@ -7,6 +7,7 @@ import {
   initiativeMarkdown,
   initiativesMarkdown,
   nowMarkdown,
+  playbookMarkdown,
   reachMarkdown,
   themeMarkdown,
   writingMarkdown,
@@ -24,6 +25,7 @@ export function generateStaticParams() {
     { path: ["about"] },
     { path: ["reach"] },
     { path: ["now"] },
+    { path: ["playbook"] },
     ...[...getEssays(), ...getNotes()].map((e) => ({ path: ["writing", e.slug] })),
     ...getInitiatives().map((i) => ({ path: ["initiatives", i.slug] })),
     ...themes.map((t) => ({ path: ["writing", "theme", t.slug] })),
@@ -46,6 +48,8 @@ function render(path: string[]): string | null {
         return reachMarkdown()
       case "now":
         return nowMarkdown()
+      case "playbook":
+        return playbookMarkdown()
       default:
         return null
     }

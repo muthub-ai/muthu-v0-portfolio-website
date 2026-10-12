@@ -130,6 +130,22 @@ export const essays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "One rule, followed end to end"
+      },
+      {
+        "type": "p",
+        "text": "It helps to watch a single rule travel through the whole system. Take a standard most banks already have on paper: every new data store must declare the classification of the data it holds, and anything holding customer data must be encrypted with managed keys."
+      },
+      {
+        "type": "p",
+        "text": "In the document world, that rule lives in a standards page. An engineer may or may not read it, a reviewer may or may not catch the gap, and an auditor finds the unencrypted bucket eighteen months later. In the executable world, the rule exists once, as data. The agent's context layer serves the approved storage pattern with the classification field already in the template, so the first draft is usually right. The pipeline check rejects any store that has no classification or the wrong key type, and it says exactly which field failed. If a team genuinely cannot comply yet, it files a waiver with an owner and an expiry, and the check honors it until that date."
+      },
+      {
+        "type": "p",
+        "text": "Notice what the architect did not do: attend a meeting, read a diff or chase a team by email. The architect's work moved upstream into writing the rule well and deciding what counts as an acceptable exception. That is a better use of the most experienced people in the building, and in my experience it is also the part of the job they enjoy most."
+      },
+      {
+        "type": "h2",
         "text": "The outer loop is where the next gains are"
       },
       {
@@ -139,6 +155,15 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "I have seen this pattern before. When we consolidated 360 data scientists onto one governed ML platform at USAA, model deployment went from eight weeks to five days. The lesson I took was that the speed came from building the controls into the platform rather than stacking them in front of it. Agents will follow the same rule. The organizations that encode their architecture will let agents move quickly inside it, and the ones that keep it in documents will keep slowing everything down to read."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Pick **five** architecture standards where two senior architects would always agree, and assign an owner to rewrite each as a machine-readable rule.",
+          "Choose one standard, such as data classification on new data stores, and run it as a non-blocking pipeline check for one product line to measure violations.",
+          "Expose your approved patterns to coding assistants through one read-only context endpoint before adding any new merge gate.",
+          "Stand up a waiver register where every exception has a named owner, a risk rating and an expiry date, and move existing exceptions into it."
+        ]
       },
       {
         "type": "p",
@@ -205,6 +230,10 @@ export const essays: Essay[] = [
         "text": "A simple test works here. Ask each team where its saved hours went. If the answer is \"more tickets closed\", you have bought volume. If the answer is \"we prototyped three approaches before committing\" or \"we finally paid down that brittle integration\", you have bought quality."
       },
       {
+        "type": "p",
+        "text": "There is a failure mode hiding in that test. When generation is cheap, teams stop throwing work away. A prototype that took a week used to die quietly if it was wrong; one that took an afternoon gets polished and shipped because it already exists. I now ask teams to treat agent output as disposable by default, and to judge a spike by whether the design deserves to survive."
+      },
+      {
         "type": "h2",
         "text": "A lifecycle that remembers"
       },
@@ -241,6 +270,18 @@ export const essays: Essay[] = [
         "text": "Here is where I disagree with a common assumption. Many leaders plan AI capacity by counting generation: seats, tokens, agents. The binding constraint is review capacity, and it does not scale with licenses. If agents triple the number of pull requests and your review practice stays the same, you have not tripled throughput. You have built a queue, or worse, a rubber stamp. Plan verification the way you plan production capacity, with automated tests, policy checks and evidence capture first, and human judgment reserved for the decisions that need it."
       },
       {
+        "type": "p",
+        "text": "The decision rule I use for how closely a human must look comes down to two questions: how far can this change reach, and how quickly can we undo it? A test fixture or an internal report query is narrow and reversible, so automated checks and a light human pass are enough. A change to an entitlement rule, a payment path or a shared library is wide and hard to unwind, so it gets a named senior reviewer no matter who or what wrote it."
+      },
+      {
+        "type": "p",
+        "text": "Notice that the author does not appear in that rule. Treating agent code as uniquely suspect wastes review time on trivial changes. Treating it like a trusted colleague's work lets wide changes through on reputation that the agent never earned."
+      },
+      {
+        "type": "p",
+        "text": "Rubber-stamping deserves its own warning. When one reviewer approves forty agent pull requests in an afternoon, the approval record looks perfect and means very little. I would rather see fewer approvals with comments that show real reasoning. Sample a handful each month and ask the reviewer to walk a peer through one of them. You find out quickly whether your maker/checker control still works."
+      },
+      {
         "type": "quote",
         "text": "Code fast, verify hard, and keep the humans in the loop."
       },
@@ -263,6 +304,15 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "The quality of an AI-native lifecycle will not be decided by how well an agent writes code. It will be decided by the chain around the code: intent, requirements, design, plan, code, tests, approvals and production learnings, versioned and traceable so people and agents work from the same context. DORA's 2025 AI capabilities model points the same way, naming healthy data ecosystems, AI-accessible internal data and strong version control among the practices that magnify AI's benefit."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Ask each delivery lead to state, in one sentence, where their team's AI-saved hours went last quarter, then compare the answers side by side.",
+          "Add time-to-verify and 30-day rework rate for accepted AI changes to your engineering dashboard, next to change failure rate.",
+          "Sample ten recently approved agent pull requests and have each reviewer explain the change to a peer.",
+          "Pick the most used context source your agents read and assign it a named **owner** and a review date."
+        ]
       },
       {
         "type": "p",
@@ -358,6 +408,22 @@ export const essays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "How harnesses fail"
+      },
+      {
+        "type": "p",
+        "text": "Harnesses fail in predictable ways, and almost none of them involve the model getting dumber. The first is the agent that can edit its own sensors. If an agent can modify the test, loosen the lint rule or add an ignore comment, a determined optimizer will eventually do exactly that to make the build go green. That is why the instruction in Anthropic's harness about never removing or editing tests matters so much, and why I would not rely on the instruction alone. Sensor configuration should sit outside the agent's write permissions, and any change to it should need a human approval."
+      },
+      {
+        "type": "p",
+        "text": "The second is the flaky sensor. A check that fails randomly teaches agents and engineers the same lesson: retry until it passes. Within weeks nobody treats a failure as information. One flaky check can do more damage to a harness than a missing one, so I quarantine unreliable checks quickly rather than leave them running."
+      },
+      {
+        "type": "p",
+        "text": "The third is the harness that is too tight. When every change trips a dozen rules, developers stop using the agent or quietly turn the harness off for their repository. The fix is to measure both directions: how often sensors catch real problems, and how often they block work that was fine."
+      },
+      {
+        "type": "h2",
         "text": "Who owns the harness"
       },
       {
@@ -379,6 +445,15 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "A practical order of work: first restrict what agents can reach, then give them the approved patterns and standards as context, then add deterministic checks to the pipeline, and only then widen their autonomy. Each step earns the right to the next. Teams that start with autonomy and add controls later spend months cleaning up what the agent already merged."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Inventory the tools, credentials and data every coding agent in your organization can reach today, and remove anything that exceeds its current task.",
+          "Move test files, lint configuration and policy rules outside agent write permissions so any change to a sensor requires human approval.",
+          "Start reporting sensor rejection rate by rule for agent-generated changes, and review the top three offending rules with their owners.",
+          "Assign a single platform owner for shared agent guardrails and sensors, with a backlog that product teams can submit rules to."
+        ]
       },
       {
         "type": "p",
@@ -599,6 +674,22 @@ export const essays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "Why spec programs decay"
+      },
+      {
+        "type": "p",
+        "text": "The failure I see most often is not a bad first spec. It is drift. An incident at two in the morning gets fixed in the code, the fix is correct, and nobody updates the spec. Three months later the spec describes a system that no longer exists, and the audit trail it was meant to provide points confidently at the wrong behavior. A drifted spec is worse than none, because people trust it."
+      },
+      {
+        "type": "p",
+        "text": "Two rules prevent most of this. First, any change to a spec-anchored service that does not reference a spec version fails the pipeline. Emergency fixes are included; they get a short window to amend the spec, not an exemption. Second, each spec has a named owner on the business side as well as in engineering. Engineers can keep contract files accurate, but only someone accountable for the business outcome can say whether a requirement is still the requirement."
+      },
+      {
+        "type": "p",
+        "text": "The other quiet failure is the spec written after the code to satisfy a process. It is easy to spot: the spec matches the implementation perfectly, accidents included. A spec that never disagreed with the code was never doing any work. When I review a program, I ask to see one spec change that caused code to be rejected. If nobody can show me one, the process is documentation, not control."
+      },
+      {
+        "type": "h2",
         "text": "Make conformance mechanical"
       },
       {
@@ -608,6 +699,15 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "There is a condition attached, and it is the point I most want leaders to take away. Auditing the spec instead of the code is only legitimate when conformance between them is checked by machines: contract tests generated from the OpenAPI file, schema validation in the pipeline, policy-as-code for data handling, all tied to the spec version. Without that link you have not reduced the audit burden. You have moved the gap from the code to the space between the spec and the code, where nobody is looking. [DORA's 2025 research](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report) adds a practical warning: AI raises change volume, and without strong testing, version control and fast feedback, that volume turns into instability."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Choose one high-risk service and mark which lines of its current specification could fail a build today.",
+          "Add a pipeline check that rejects changes to spec-anchored services when the commit does not reference a spec version.",
+          "Name a business owner alongside the engineering owner for each spec on your most examined system.",
+          "Define three risk tiers for spec ceremony and publish which kinds of change fall into each."
+        ]
       },
       {
         "type": "p",
@@ -708,6 +808,22 @@ export const essays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "A decision trace, worked through"
+      },
+      {
+        "type": "p",
+        "text": "Take an architecture waiver, the kind every large technology organization grants every week. A team wants to run a service on a database pattern the standards do not allow, because a deadline is close and the approved option is not ready. A review board says yes, for twelve months, with conditions."
+      },
+      {
+        "type": "p",
+        "text": "What usually survives is a ticket marked approved. What should survive is small and specific: the standard being waived and its version, the reason given, the alternatives considered and why they were rejected, the conditions attached, the named approver, the expiry date and the systems affected. That is perhaps ten fields and a paragraph. It takes the requester a few minutes if the review tool asks at the moment of approval, and it is close to impossible to reconstruct a year later."
+      },
+      {
+        "type": "p",
+        "text": "Now consider who reads it. Eleven months on, an agent preparing a change to that service can see that the waiver is about to expire and that one of its conditions was never met. A new architect asking why the service looks different from its peers gets the answer in one lookup. An auditor sampling exceptions finds the evidence attached to the decision instead of scattered across email. One record serves three readers, which is why I think decision capture pays for itself faster than most documentation efforts."
+      },
+      {
+        "type": "h2",
         "text": "Where to start"
       },
       {
@@ -717,6 +833,15 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "In large regulated organizations I have worked in, the people who carry the why are usually a handful of senior engineers and risk partners whose calendars are already full. A knowledge layer that captures their reasoning as a by-product of the work, rather than as extra documentation, is the only version I have seen survive."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Pick one exception-heavy decision flow, such as architecture waivers, and list the fields a reviewer would need to understand it a year later.",
+          "Add required rationale, approver and expiry fields to that flow's approval form so the why is recorded when the decision is made.",
+          "Ask an agent to explain three past exceptions using only recorded material, and note what it could not find.",
+          "Label every generated document in one repository with whether a person or a model wrote it and when it was last confirmed."
+        ]
       },
       {
         "type": "p",
@@ -809,6 +934,22 @@ export const essays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "A worked example: onboarding one server"
+      },
+      {
+        "type": "p",
+        "text": "Abstract controls are easier to agree with than to apply, so here is how I would take a single MCP server from request to production. Suppose a team wants an agent to look up a customer's recent transactions to help service staff answer questions."
+      },
+      {
+        "type": "p",
+        "text": "First, classify the server by the most sensitive thing it can return, which here is customer financial data. That one decision sets the rest: regional deployment, field-level masking for account numbers, and a model endpoint approved for that data class. Second, scope it to read-only, with a token bound to that server alone and no ability to pass it downstream. Third, pin the tool descriptions, hash them, and register the approved version in the internal registry so a later change triggers review instead of silently taking effect."
+      },
+      {
+        "type": "p",
+        "text": "Fourth, write the audit record before the agent exists: who asked, under which identity, which policy version allowed it, what the model saw and what it returned. Then run it with a person reviewing every response for a defined period. Only when the record can answer a mock examiner's question end to end would I consider a second tool, and a write tool would go through the same steps again with a mandatory human approval in front of it. The pattern is slow for the first server and fast for the tenth, because the controls are reused."
+      },
+      {
+        "type": "h2",
         "text": "Use the risk framework you already have"
       },
       {
@@ -826,6 +967,15 @@ export const essays: Essay[] = [
       {
         "type": "quote",
         "text": "Architecture is not what you say you'll build; it's what you actually allow into production."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Inventory every MCP server already in use across engineering, including local ones in developer tools, and classify each by the most sensitive data it can return.",
+          "Require tool descriptions to be pinned, hashed and diffed, and route any changed description back through approval like a code change.",
+          "Draft the audit record schema for one agent use case and test whether it can answer a mock examiner's question end to end.",
+          "Stand up a private MCP registry and block agents from connecting to any server that is not published in it."
+        ]
       },
       {
         "type": "p",
@@ -925,7 +1075,23 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Writes deserve separate treatment. Most agent-ready designs I review focus on read access, because that is where pilots start. The harder problems arrive when agents write back: updating a record, opening a case, adjusting a parameter. Writes need idempotency so a retried call does not double-apply, a clear compensating action for when the agent is wrong, and a record of which agent changed what. I would not let an agent write to a governed table until all three exist."
+        "text": "Writes deserve separate treatment. Most agent-ready designs I review focus on read access, because that is where pilots start. The harder problems arrive when agents write back: updating a record, opening a case, adjusting a parameter. Writes need idempotency so a retried call does not double-apply, a clear compensating action for when the agent is wrong, and a record of which agent changed what. I would not let an agent write to a governed table until all three exist. The [OWASP guidance on excessive agency](https://genai.owasp.org/llmrisk/llm062025-excessive-agency/) adds a point I wish more teams followed: enforce authorization in the downstream system rather than trusting the model to decide whether an action is allowed."
+      },
+      {
+        "type": "h2",
+        "text": "Where I disagree with the common advice"
+      },
+      {
+        "type": "p",
+        "text": "The common advice is to make all your data AI-ready before agents arrive. I think that is a plan to never start. No large enterprise will finish cleaning, describing and contracting its whole estate, and the attempt consumes the budget that should go to the few datasets agents actually need."
+      },
+      {
+        "type": "p",
+        "text": "I prefer a narrow, certified surface. Pick the ten or twenty data products the first agent use cases depend on, bring those to the standard in this essay, and make everything else unreachable by default. Agents get what has been certified, not whatever a service account happens to see. That reverses the usual pattern, where an agent inherits broad read access from a legacy integration account and the team discovers months later what it could touch."
+      },
+      {
+        "type": "p",
+        "text": "There is a useful side effect. The certified list becomes a demand signal. When a new use case needs a dataset that is not on it, the request goes to the data owner with a business reason attached, and the use case that needs the data funds the work to bring it up to standard. Data quality stops being an endless cleanup program and becomes a queue ranked by value."
       },
       {
         "type": "h2",
@@ -942,6 +1108,15 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "I learned the value of one governed path at USAA, when we consolidated 360 data scientists onto a single ML platform and cut model deployment from eight weeks to five days. The speed came from standardization, not heroics. Agents will reward the same discipline, and punish its absence faster."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "List every dataset your current agent pilots can reach and compare it with the datasets they actually need.",
+          "Ask three teams' agents to compute active customers and bring the differing answers to your data governance council.",
+          "Set per-agent query quotas and cost budgets on your main warehouse before the next pilot goes live.",
+          "Block agent writes to governed tables until each has idempotency, a compensating action and per-agent change records."
+        ]
       },
       {
         "type": "p",

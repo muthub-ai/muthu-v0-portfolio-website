@@ -97,6 +97,24 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
             )
           case "figure":
             return <Figure key={index} name={block.name} />
+          case "monday":
+            return (
+              <aside key={index} aria-label="What to do Monday" className="!mt-10 rounded-md border border-line border-l-4 border-l-accent px-7 py-6 font-sans">
+                <p className="label">What to do Monday</p>
+                <ul className="mt-3 flex !list-none flex-col gap-3 !pl-0 text-copy text-ink">
+                  {block.items.map((item, i) => (
+                    <li key={i} className="flex gap-3 !mt-0">
+                      <span aria-hidden="true" className="mt-[3px] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-strong text-[12px] text-muted">
+                        {i + 1}
+                      </span>
+                      <span>
+                        <Inline text={item} />
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </aside>
+            )
           case "bottomLine":
             return (
               <div key={index} className="!mt-10 rounded-md bg-accent-soft px-8 py-7">

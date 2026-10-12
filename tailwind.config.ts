@@ -30,6 +30,10 @@ const config = {
         serif: ["var(--font-serif)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
+      fontSize: {
+        copy: ["var(--text-copy)", { lineHeight: "1.65" }],
+        lede: ["var(--text-lede)", { lineHeight: "1.4" }],
+      },
       maxWidth: {
         site: "1120px",
         prose: "720px",

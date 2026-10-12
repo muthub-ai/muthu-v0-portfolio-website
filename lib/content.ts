@@ -79,6 +79,8 @@ export function blocksToMarkdown(body: Block[]) {
           return `**Bottom line:** ${block.text}`
         case "code":
           return "```" + (block.lang ?? "") + "\n" + block.text + "\n```"
+        case "monday":
+          return `**What to do Monday**\n\n${block.items.map((item) => `- ${item}`).join("\n")}`
         case "figure":
           return `*Figure: ${figureMeta[block.name].alt} ${figureMeta[block.name].caption}*`
       }

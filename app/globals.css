@@ -4,6 +4,9 @@
 
 /* Palette as RGB triplets. Text colors meet WCAG AA on their backgrounds in both themes. */
 :root {
+  /* Type scale: running copy and section-intro lede. */
+  --text-copy: 1.0625rem;
+  --text-lede: 1.375rem;
   --page: 255 255 255;
   --ink: 21 23 28;
   --body: 63 68 80;
@@ -86,6 +89,9 @@ body {
   .btn-secondary {
     @apply inline-flex min-h-[48px] items-center rounded-full border border-strong px-6 text-[15px] font-semibold text-ink transition-colors hover:border-ink;
   }
+  .lede {
+    @apply max-w-[680px] font-serif text-lede text-body;
+  }
   .chip {
     @apply rounded-full bg-chip px-3 py-1 text-[14px] text-body;
   }
@@ -130,6 +136,12 @@ body {
 .prose-essay strong {
   font-weight: 600;
   color: rgb(var(--ink));
+}
+
+@media (min-width: 640px) {
+  :root {
+    --text-lede: 1.5rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

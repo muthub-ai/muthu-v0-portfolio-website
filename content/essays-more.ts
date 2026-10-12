@@ -70,7 +70,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Architecture moves through the same lifecycle as code. **Plan** the design from requirements. **Build** the artifacts for standards, archetypes and components in an IDE or visual tool, with local validation. **Test** them with schema validation and unit tests in CI. **Accept** them through automated compliance checks that also generate the Markdown and diagrams, gated by a pull request. **Deploy** by publishing the approved architecture to policy-as-code pipelines and the enterprise catalog."
+        "text": "Architecture moves through the same lifecycle as code. **Define** the design from requirements. **Build** the artifacts for standards, archetypes and components in an IDE or visual tool, with local validation. **Test** them with schema validation and unit tests in CI. **Accept** them through automated compliance checks that also generate the Markdown and diagrams, gated by a pull request. **Deploy** by publishing the approved architecture to policy-as-code pipelines and the enterprise catalog."
       },
       {
         "type": "p",
@@ -109,6 +109,26 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "Where a prototype stops and a program starts"
+      },
+      {
+        "type": "p",
+        "text": "A prototype on a fictional portfolio proves the mechanics. It does not prove that an enterprise can run it, and I want to be honest about the gap, because it is where most Architecture-as-Code efforts stall."
+      },
+      {
+        "type": "p",
+        "text": "The first gap is the catalog itself. In the prototype every system record is complete because I wrote them. In a real enterprise the inventory is partial, duplicated across tools and owned by nobody in particular. My rule is to never import a catalog wholesale. Seed it from the systems that change most often, require an owner for every record, and let the policy checks expose missing data. A check that fails because the classification field is blank is doing useful work."
+      },
+      {
+        "type": "p",
+        "text": "The second gap is trust in the rules. A policy that produces false positives in its first month loses its audience for a year. Run every new rule in report-only mode first, publish the results, and switch it to blocking only after the owning teams agree the findings are real."
+      },
+      {
+        "type": "p",
+        "text": "The third is ownership of the platform. Someone has to maintain the schemas, review rule changes and keep the MCP server current as standards change. If that work is a side project for an architecture team already in review meetings all week, the control plane decays into another stale repository. Fund it as a product, with a small team and a backlog, or do not start."
+      },
+      {
+        "type": "h2",
         "text": "Putting the rules where code is written"
       },
       {
@@ -118,6 +138,15 @@ export const moreEssays: Essay[] = [
       {
         "type": "p",
         "text": "I deliberately started small: five compliance rules in the MCP server and three OPA checks in the pipeline. A handful of rules that everyone trusts beats a hundred that generate noise. Next on the roadmap is an AI review agent that also handles natural-language-to-YAML authoring and drift detection, and *aac2iac*, which turns architecture models into Terraform, OpenTofu, CloudFormation or Pulumi."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Open the prototype at aac.muthub.org with your lead architect and list which of the four catalogs your enterprise could seed from existing data.",
+          "Export every open architecture exception you can find into one versioned file with owner and expiry fields, and count how many lack either.",
+          "Choose **three** enterprise standards and write each as a testable requirement that a pipeline could check with a clear pass or fail.",
+          "Name an owner and a small team for the architecture control plane before writing any policy code."
+        ]
       },
       {
         "type": "p",
@@ -325,6 +354,22 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "One change, three agents"
+      },
+      {
+        "type": "p",
+        "text": "A worked example makes the trade-offs concrete. Say a shared logging library has a flaw, and forty services need to move to a patched version that also changes one method signature. Every large estate has a backlog of chores like this."
+      },
+      {
+        "type": "p",
+        "text": "A platform-embedded agent treats it as forty issues and forty draft pull requests, each passing through the branch protection and reviewers that service already has. The governance is familiar, and the cost lands on reviewers: forty approvals, many for near-identical diffs. A sandboxed agent runs the forty upgrades in parallel and returns each with its test log. Where a service has real coverage around logging, that evidence is worth more than a reviewer's skim. Where it has none, the green result tells you the code compiles and little else. Evolutionary search has nothing to offer here, because there is no score to improve, only a migration that is right or wrong."
+      },
+      {
+        "type": "p",
+        "text": "In practice the answer mixes them. Let the sandboxed agent do the work and attach evidence, route the result through existing review, and spend human attention on the few services where tests are thin. The choice was made per service, by looking at its verification, rather than once for the whole firm by looking at a vendor slide."
+      },
+      {
+        "type": "h2",
         "text": "What enterprises should take from this"
       },
       {
@@ -340,6 +385,15 @@ export const moreEssays: Essay[] = [
       {
         "type": "p",
         "text": "[Anthropic's guidance on building agents](https://www.anthropic.com/research/building-effective-agents) is a useful brake on all of this: start with the simplest solution that works, and add autonomy only when it pays for itself. It also notes that code suits agents well because solutions can be verified through automated tests. I read that as a condition, not a compliment. Agents are safest exactly where your verification is strongest, so the order of investment is tests and controls first, autonomy second."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Rate your twenty most active repositories on test coverage and review discipline, then map each to the agent architecture it can safely supervise.",
+          "Issue a scoped non-human identity to each coding agent in your pilot and confirm its actions appear in audit logs.",
+          "Run one multi-service backlog chore through a sandboxed agent, routing its evidence into your existing pull request review.",
+          "Name a **merge owner** for every team running parallel background agents."
+        ]
       },
       {
         "type": "p",
@@ -614,7 +668,7 @@ export const moreEssays: Essay[] = [
         "items": [
           "**More than code.** Software lifecycles center on code. Machine learning also depends on data and models, which are harder to version and harder to diff.",
           "**Experimental by nature.** Development is a series of experiments that must be tracked to be reproducible.",
-          "**Never finished.** After deployment, models need monitoring for drift and retraining, not only bug fixes."
+          "**Never finished.** After deployment, models need monitoring for drift and periodic retraining as well as bug fixes."
         ]
       },
       {
@@ -651,6 +705,22 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "What does not carry over"
+      },
+      {
+        "type": "p",
+        "text": "The analogy has limits, and teams that miss them get hurt. The first is determinism. A classical model given the same input returns the same score. A generative system can answer the same question differently on consecutive runs, so a single pass of your evaluation set proves less than it seems. [Anthropic's guidance on agent evaluations](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) recommends running each task several times and distinguishing between succeeding at least once and succeeding every time. For a customer-facing system in a bank, the second measure is the one that matters."
+      },
+      {
+        "type": "p",
+        "text": "The second is grading. Held-out data came with labels. Many generative outputs have no single right answer, so teams use one model to grade another. That is workable, but the grader is now a model in production too, and it needs the same calibration against human experts that we demanded of any other model before we trusted its scores, plus an explicit way to say it does not know."
+      },
+      {
+        "type": "p",
+        "text": "The third is cost. A classical model's inference cost was close to fixed. An agent that decides how many steps to take can make the same task many times more expensive on a bad day, so cost per task belongs on the monitoring dashboard next to accuracy and drift. Model risk teams that treat these three as footnotes will approve systems whose behavior they have only sampled once."
+      },
+      {
+        "type": "h2",
         "text": "From MLOps to AI engineering"
       },
       {
@@ -672,6 +742,15 @@ export const moreEssays: Essay[] = [
       {
         "type": "h2",
         "text": "The head start nobody talks about"
+      },
+      {
+        "type": "monday",
+        "items": [
+          "Inventory the prompts, retrieval corpora and tool definitions behind your most important generative use case and put each under version control.",
+          "Build an evaluation set of fifty real questions for that use case and run it automatically on every prompt or model change.",
+          "Add cost per task and a provider model-version alert to the monitoring dashboard of each production agent.",
+          "Give your model risk team access to evaluation results on the same platform where builders see them."
+        ]
       },
       {
         "type": "p",
@@ -771,6 +850,22 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "h2",
+        "text": "When influence runs out"
+      },
+      {
+        "type": "p",
+        "text": "Sometimes influence is not enough. A team is about to take on a risk the enterprise should not carry, the conversation has gone nowhere, and the date is close. Architects without authority tend to make one of two mistakes here: they never escalate and quietly absorb the risk, or they escalate everything and become the person leaders learn to route around."
+      },
+      {
+        "type": "p",
+        "text": "My decision rule is to escalate risks, never preferences. If the disagreement is about style, technology taste or a pattern I would have chosen differently, I let it go and record it. If it is about customer data, resilience, regulatory exposure or a cost the business has not agreed to carry, I escalate, and I say plainly which one it is."
+      },
+      {
+        "type": "p",
+        "text": "How you escalate matters as much as whether. Tell the team first that you are going to raise it, and why. Bring their argument to the meeting as fairly as your own. Frame the decision as a choice with options and consequences, not a verdict you want rubber-stamped, and accept that a leader may knowingly choose the risk. If they do, write it down as a decision with an owner. You have done your job. Done this way, an escalation can actually add to your credibility, because teams learn that you play fair even when you lose."
+      },
+      {
+        "type": "h2",
         "text": "What has worked for me"
       },
       {
@@ -786,6 +881,15 @@ export const moreEssays: Essay[] = [
       {
         "type": "p",
         "text": "Culture is the multiplier under all of this. DORA's research holds that [\"a high-trust, generative culture predicts software delivery and organizational performance\"](https://dora.dev/capabilities/generative-organizational-culture/). An architect without authority depends on that trust more than anyone, because information has to flow toward you voluntarily. If teams hide problems from architecture, you will always be designing for an organization that does not exist."
+      },
+      {
+        "type": "monday",
+        "items": [
+          "List your current architecture standards and mark which ones teams actually follow, then interview two teams about the most ignored one.",
+          "Apply three tests to every standard awaiting publication: adoption cost, how teams will know they comply, and what happens when they cannot.",
+          "Pick one standard and make the compliant path cheaper with a template, pattern or automated check rather than another memo.",
+          "Write down your escalation rule, risks versus preferences, and share it with the delivery leaders you work with most."
+        ]
       },
       {
         "type": "p",

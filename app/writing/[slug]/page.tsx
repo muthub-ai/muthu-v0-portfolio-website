@@ -5,7 +5,7 @@ import type { Metadata } from "next"
 import { site, themeName } from "@/content/site"
 import { dateLabel, getEssay, getEssays, getNote, getNotes, getSeries, readingMinutes } from "@/lib/content"
 import { pageMetadata, writingImage } from "@/lib/seo"
-import { Blocks, headingId } from "@/components/rich-text"
+import { Blocks, Inline, headingId } from "@/components/rich-text"
 import { ShareActions } from "@/components/share-actions"
 import { JsonLd, personId, personSchema } from "@/components/json-ld"
 import { Newsletter } from "@/components/newsletter"
@@ -63,6 +63,7 @@ export default function WritingItemPage({ params }: Props) {
   const minutes = readingMinutes(item.body)
   const sections = item.body.filter((b): b is { type: "h2"; text: string } => b.type === "h2")
   const showContents = kind === "Essay" && sections.length >= 3 && minutes >= 4
+  const takeaway = kind === "Essay" && minutes >= 4 ? item.body.find((b): b is { type: "bottomLine"; text: string } => b.type === "bottomLine") : undefined
   const year = item.published?.slice(0, 4) ?? ""
   const citeDate = item.published
     ? new Date(`${item.published}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", timeZone: "UTC" })
@@ -125,10 +126,19 @@ export default function WritingItemPage({ params }: Props) {
           </a>
         </div>
 
+        {takeaway && (
+          <div className="rounded-md bg-accent-soft px-6 py-5">
+            <p className="label">The short version</p>
+            <p className="mt-2 font-serif text-[21px] leading-snug text-ink">
+              <Inline text={takeaway.text} />
+            </p>
+          </div>
+        )}
+
         {showContents && (
           <nav aria-label="In this essay" className="rounded-md border border-line px-6 py-5">
             <p className="label">In this essay</p>
-            <ol className="mt-3 flex list-decimal flex-col gap-1.5 pl-5 text-[16px] leading-snug marker:text-muted">
+            <ol className="mt-3 flex list-decimal flex-col gap-1.5 pl-5 text-copy leading-snug marker:text-muted">
               {sections.map((h) => (
                 <li key={h.text}>
                   <a href={`#${headingId(h.text)}`} className="link">

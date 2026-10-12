@@ -11,7 +11,7 @@ export function Newsletter({ compact = false }: { compact?: boolean }) {
           <h2 id="newsletter-heading" className="font-serif text-[2rem] font-medium leading-tight tracking-[-0.01em] sm:text-4xl">
             A monthly note on AI in banking
           </h2>
-          <p className="text-[17px] leading-relaxed text-band-muted">One essay and three short notes, once a month. No spam, unsubscribe any time.</p>
+          <p className="text-copy leading-relaxed text-band-muted">One essay and three short notes, once a month. No spam, unsubscribe any time.</p>
         </div>
         {site.newsletterAction ? (
           <form action={site.newsletterAction} method="post" target="_blank" className="flex flex-[1_1_380px] flex-wrap gap-3">
@@ -33,7 +33,7 @@ export function Newsletter({ compact = false }: { compact?: boolean }) {
           </form>
         ) : (
           <div className="flex flex-[1_1_380px] flex-col gap-3">
-            <p className="text-[17px] text-band-muted">The first issue goes out soon. Until then, follow along on LinkedIn.</p>
+            <p className="text-copy text-band-muted">The first issue goes out soon. Until then, follow along on LinkedIn.</p>
             <a href={linkedin} className="inline-flex min-h-[48px] w-fit items-center rounded-full bg-band-ink px-6 font-semibold text-band" rel="noopener noreferrer">
               Follow on LinkedIn
             </a>
