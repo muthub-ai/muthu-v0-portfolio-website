@@ -1,46 +1,43 @@
-import { getMetaInfo, getPersonalInfo } from "@/lib/data"
+import type { Metadata } from "next"
+import { site } from "@/content/site"
 
-const metaInfo = getMetaInfo()
-const personalInfo = getPersonalInfo()
-
-export const siteUrl = metaInfo.siteUrl
-
-// Shared social preview image (public/og-image.png, 1200x630).
-// If the tagline in data/portfolio-data.json changes, regenerate this image too.
 export const ogImage = {
-  url: "/og-image.png",
+  url: site.ogImage,
   width: 1200,
   height: 630,
-  alt: `${personalInfo.name}: ${personalInfo.tagline}`,
+  alt: `${site.fullName}: ${site.tagline}`,
 }
 
 interface PageSeo {
   path: string
-  title: string
+  title?: string
   description: string
+  type?: "website" | "article"
+  publishedTime?: string
+  modifiedTime?: string
 }
 
 /**
- * Canonical URL, Open Graph and X card metadata for one page.
+ * Canonical URL, Markdown alternate, Open Graph and X card for one page.
  * Child pages replace (not merge) the layout's openGraph/twitter objects, so every page sets them in full.
  */
-export function pageMetadata({ path, title, description }: PageSeo) {
+export function pageMetadata({ path, title, description, type = "website", publishedTime, modifiedTime }: PageSeo): Metadata {
+  const fullTitle = title ? `${title} | ${site.name}` : `${site.displayName} | ${site.tagline}`
+  const mdPath = path === "/" ? "/index.md" : `${path}.md`
   return {
-    alternates: { canonical: path },
+    ...(title ? { title } : {}),
+    description,
+    alternates: { canonical: path, types: { "text/markdown": mdPath } },
     openGraph: {
-      type: "website" as const,
+      type,
       url: path,
-      siteName: metaInfo.shortTitle,
+      siteName: site.name,
       locale: "en_US",
-      title,
+      title: fullTitle,
       description,
       images: [ogImage],
+      ...(type === "article" ? { publishedTime, modifiedTime, authors: [site.fullName] } : {}),
     },
-    twitter: {
-      card: "summary_large_image" as const,
-      title,
-      description,
-      images: [ogImage.url],
-    },
+    twitter: { card: "summary_large_image", title: fullTitle, description, images: [ogImage.url] },
   }
 }

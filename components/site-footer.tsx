@@ -1,19 +1,33 @@
-import { getMetaInfo, getPersonalInfo } from "@/lib/data"
+import Link from "next/link"
+import { site } from "@/content/site"
 
 export function SiteFooter() {
-  const meta = getMetaInfo()
-  const personal = getPersonalInfo()
-
   return (
-    <footer className="relative z-10 mt-8 sm:mt-12 py-4 sm:py-6 px-4 text-center text-xs sm:text-sm text-zinc-500 space-y-1">
-      <p>
-        © {new Date().getFullYear()} {personal.name}. {meta.disclosure}
-      </p>
-      <p>
-        <a href={`mailto:${personal.email}`} className="hover:text-cyan-400 transition-colors">
-          {personal.email}
-        </a>
-      </p>
+    <footer className="border-t border-line">
+      <div className="container-site flex flex-wrap justify-between gap-5 py-10 text-sm text-muted">
+        <p>
+          © {new Date().getFullYear()} {site.fullName}. {site.disclosure}
+        </p>
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-5 gap-y-2">
+          {site.social.map((s) => (
+            <a key={s.label} href={s.url} className="link" rel="me noopener noreferrer">
+              {s.label}
+            </a>
+          ))}
+          <Link href="/now" className="link">
+            Now
+          </Link>
+          <a href="/rss.xml" className="link">
+            RSS
+          </a>
+          <a href="/llms.txt" className="link">
+            llms.txt
+          </a>
+          <Link href="/about#disclosures" className="link">
+            Disclosures
+          </Link>
+        </nav>
+      </div>
     </footer>
   )
 }

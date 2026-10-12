@@ -19,6 +19,20 @@ const nextConfig = {
         destination: "https://muthub.org/:path*",
         statusCode: 301,
       },
+      // Old project pages moved to /initiatives.
+      { source: "/projects/middleware-modernization-bunge", destination: "/initiatives/middleware-platforms-bunge", statusCode: 301 },
+      { source: "/projects/global-systems-implementation-bunge", destination: "/initiatives/middleware-platforms-bunge", statusCode: 301 },
+      { source: "/projects/:slug", destination: "/initiatives/:slug", statusCode: 301 },
+      { source: "/projects", destination: "/initiatives", statusCode: 301 },
+      { source: "/Muthu_resume.pdf", destination: "/about", statusCode: 301 },
+    ]
+  },
+  async rewrites() {
+    // Markdown twins of every page for agents: /index.md, /about.md, /writing/<slug>.md, ...
+    return [
+      { source: "/index.md", destination: "/md" },
+      { source: "/:section.md", destination: "/md/:section" },
+      { source: "/:section/:slug.md", destination: "/md/:section/:slug" },
     ]
   },
 }

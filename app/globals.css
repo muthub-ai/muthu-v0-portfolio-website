@@ -2,26 +2,45 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Palette as RGB triplets. Text colors meet WCAG AA on their backgrounds in both themes. */
 :root {
-  --background: 0 0% 0%;
-  --foreground: 0 0% 100%;
-  --card: 240 10% 4%;
-  --card-foreground: 0 0% 100%;
-  --popover: 240 10% 4%;
-  --popover-foreground: 0 0% 100%;
-  --primary: 186 100% 50%;
-  --primary-foreground: 0 0% 0%;
-  --secondary: 240 5% 10%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 240 5% 20%;
-  --muted-foreground: 240 5% 65%;
-  --accent: 240 5% 15%;
-  --accent-foreground: 0 0% 100%;
-  --destructive: 0 100% 50%;
-  --destructive-foreground: 0 0% 100%;
-  --border: 240 5% 26%;
-  --input: 240 5% 26%;
-  --ring: 186 100% 50%;
+  --page: 255 255 255;
+  --ink: 21 23 28;
+  --body: 63 68 80;
+  --muted: 91 97 110;
+  --line: 231 229 224;
+  --strong: 207 204 197;
+  --panel: 246 245 242;
+  --chip: 242 241 238;
+  --accent: 11 92 107;
+  --accent-strong: 7 63 74;
+  --accent-soft: 238 245 246;
+  --band: 21 23 28;
+  --band-ink: 255 255 255;
+  --band-muted: 200 203 210;
+  --draft: 255 244 224;
+  --draft-ink: 122 74 0;
+  color-scheme: light;
+}
+
+.dark {
+  --page: 15 17 20;
+  --ink: 237 237 234;
+  --body: 195 198 204;
+  --muted: 160 166 176;
+  --line: 42 45 51;
+  --strong: 70 74 82;
+  --panel: 23 26 31;
+  --chip: 30 33 38;
+  --accent: 110 196 210;
+  --accent-strong: 160 220 230;
+  --accent-soft: 19 38 42;
+  --band: 28 32 38;
+  --band-ink: 237 237 234;
+  --band-muted: 180 185 194;
+  --draft: 60 44 14;
+  --draft-ink: 250 214 150;
+  color-scheme: dark;
 }
 
 html {
@@ -29,71 +48,92 @@ html {
 }
 
 body {
-  background-color: black;
-  color: white;
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: rgb(var(--page));
+  color: rgb(var(--ink));
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  /* Custom Scrollbar */
-  .scrollbar-thin {
-    scrollbar-width: thin;
-  }
-
-  .scrollbar-thumb-zinc-700::-webkit-scrollbar-thumb {
-    background-color: #3f3f46;
-    border-radius: 3px;
-  }
-
-  .scrollbar-track-zinc-800\/50::-webkit-scrollbar-track {
-    background-color: rgba(39, 39, 42, 0.5);
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-  }
+::selection {
+  background: rgb(var(--accent) / 0.2);
 }
 
-@layer base {
-  * {
-    @apply border-border;
+:focus-visible {
+  outline: 2px solid rgb(var(--accent));
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@layer components {
+  .link {
+    @apply text-accent underline-offset-4 hover:text-accent-strong hover:underline;
   }
-  body {
-    @apply bg-background text-foreground;
+  .eyebrow {
+    @apply text-[13px] font-semibold uppercase tracking-[0.12em] text-accent;
+  }
+  .label {
+    @apply text-[13px] font-semibold uppercase tracking-[0.12em] text-muted;
+  }
+  .h-display {
+    @apply font-serif font-medium tracking-[-0.02em] text-ink;
+  }
+  .container-site {
+    @apply mx-auto w-full max-w-site px-5 sm:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex min-h-[48px] items-center gap-2 rounded-full bg-ink px-6 text-[15px] font-semibold text-page transition-opacity hover:opacity-90;
+  }
+  .btn-secondary {
+    @apply inline-flex min-h-[48px] items-center rounded-full border border-strong px-6 text-[15px] font-semibold text-ink transition-colors hover:border-ink;
+  }
+  .chip {
+    @apply rounded-full bg-chip px-3 py-1 text-sm text-body;
   }
 }
 
-/* Add animation for glowing effects */
-@keyframes pulse-glow {
-  0%,
-  100% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
+/* Long-form reading styles for essays and notes. */
+.prose-essay {
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.3125rem;
+  line-height: 1.65;
+  color: rgb(var(--ink) / 0.92);
+}
+.prose-essay > * + * {
+  margin-top: 1.5rem;
+}
+.prose-essay h2 {
+  font-family: var(--font-sans), system-ui, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-top: 2.5rem;
+  color: rgb(var(--ink));
+}
+.prose-essay ul,
+.prose-essay ol {
+  padding-left: 1.75rem;
+}
+.prose-essay ul {
+  list-style: disc;
+}
+.prose-essay ol {
+  list-style: decimal;
+}
+.prose-essay li + li {
+  margin-top: 0.75rem;
+}
+.prose-essay a {
+  color: rgb(var(--accent));
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.prose-essay strong {
+  font-weight: 600;
+  color: rgb(var(--ink));
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

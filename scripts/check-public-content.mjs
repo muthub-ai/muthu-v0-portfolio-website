@@ -17,7 +17,7 @@ import { existsSync, readdirSync, readFileSync, statSync } from "node:fs"
 import { extname, join, relative } from "node:path"
 
 const root = process.cwd()
-const scanDirs = ["app", "components", "data", "lib", "public"]
+const scanDirs = ["app", "components", "content", "lib", "public"]
 const scanExtensions = new Set([".ts", ".tsx", ".js", ".mjs", ".json", ".md", ".mdx", ".txt", ".xml", ".css"])
 
 const builtInChecks = [
