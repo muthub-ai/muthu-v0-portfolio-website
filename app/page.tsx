@@ -12,18 +12,22 @@ export const metadata: Metadata = pageMetadata({ path: "/", description: site.de
 const startHere: Record<string, { label: string; href: string }[]> = {
   "governed-ai": [
     { label: "Architecture that runs", href: "/writing/architecture-that-runs" },
+    { label: "Inside an Architecture-as-Code platform", href: "/writing/inside-an-architecture-as-code-platform" },
     { label: "Model is a tool, harness is the strategy", href: "/writing/model-is-a-tool-harness-is-the-strategy" },
     { label: "Adopting MCP in a bank", href: "/writing/adopting-mcp-in-a-bank" },
   ],
   "ai-native-sdlc": [
     { label: "The AI-native SDLC", href: "/writing/the-ai-native-sdlc" },
     { label: "Spec-driven development for regulated industries", href: "/writing/spec-driven-development-for-regulated-industries" },
+    { label: "Three architectures for AI coding agents", href: "/writing/three-architectures-for-ai-coding-agents" },
   ],
   "data-ai-platforms": [
     { label: "Capture the why", href: "/writing/capture-the-why" },
     { label: "Agent-first data architecture", href: "/writing/agent-first-data-architecture" },
+    { label: "From MLOps to AI engineering", href: "/writing/from-mlops-to-ai-engineering" },
   ],
   "leading-ai-change": [
+    { label: "Leading architecture change without direct authority", href: "/writing/leading-without-authority" },
     { label: "Case study: AI-Augmented SDLC", href: "/initiatives/ai-augmented-sdlc" },
     { label: "Case study: Enterprise ML platform", href: "/initiatives/unified-ml-platform" },
   ],

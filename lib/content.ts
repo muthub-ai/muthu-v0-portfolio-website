@@ -1,10 +1,14 @@
-import { essays, notes, type Essay } from "@/content/essays"
+import { essays as coreEssays, notes as coreNotes, type Essay } from "@/content/essays"
+import { moreEssays, moreNotes } from "@/content/essays-more"
 import { initiatives, type Initiative } from "@/content/initiatives"
 import type { Block, ThemeSlug } from "@/content/site"
 
 // Drafts are visible in local development, or anywhere NEXT_PUBLIC_SHOW_DRAFTS=true is set.
 // A production build on Vercel hides them until their status is "published".
 export const showDrafts = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_SHOW_DRAFTS === "true"
+
+export const essays: Essay[] = [...coreEssays, ...moreEssays]
+export const notes = [...coreNotes, ...moreNotes]
 
 type Visible = { status: "draft" | "published" }
 const visible = <T extends Visible>(item: T) => item.status === "published" || showDrafts

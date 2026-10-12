@@ -257,7 +257,7 @@ export const essays: Essay[] = [
   },
 ]
 
-export const notes: {
+export interface Note {
   slug: string
   title: string
   summary: string
@@ -266,7 +266,9 @@ export const notes: {
   plannedFor: string
   source: string
   body: Block[]
-}[] = [
+}
+
+export const notes: Note[] = [
   {
     slug: "living-documentation-trust-gap",
     title: "Living documentation and the human trust gap",

@@ -1,6 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { initiatives } from '../../content/initiatives';
-import { essays } from '../../content/essays';
+import { essays as coreEssays } from '../../content/essays';
+import { moreEssays } from '../../content/essays-more';
+const essays = [...coreEssays, ...moreEssays];
 
 // Run against `pnpm dev` (drafts visible). Checks identity, structure, agent-readable files and content hygiene.
 

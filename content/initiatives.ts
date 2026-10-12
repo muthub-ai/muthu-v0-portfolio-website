@@ -17,6 +17,7 @@ export interface Initiative {
   lesson: string
   technologies: string[]
   relatedWriting: string[]
+  links?: { label: string; url: string }[]
 }
 
 export const initiatives: Initiative[] = [
@@ -86,7 +87,42 @@ export const initiatives: Initiative[] = [
     ],
     lesson: "Architecture is not what you say you'll build; it's what you actually allow into production.",
     technologies: ["Architecture-as-Code", "Policy-as-code (OPA/Rego)", "CI/CD", "Model Context Protocol"],
-    relatedWriting: ["architecture-that-runs", "spec-driven-development-for-regulated-industries"],
+    relatedWriting: ["architecture-that-runs", "inside-an-architecture-as-code-platform", "spec-driven-development-for-regulated-industries"],
+    links: [{ label: "See a working example: aac.muthub.org", url: "https://aac.muthub.org" }],
+  },
+  {
+    slug: "aac-reference-platform",
+    title: "Architecture-as-Code Reference Platform (open prototype)",
+    summary:
+      "aac.muthub.org: a public, working prototype of an architecture control plane, with catalogs, OPA policies, waivers, an executive scorecard, a CLI and an MCP server that brings the rules into coding agents.",
+    organization: "Personal project",
+    period: "2026",
+    role: "Designer and builder",
+    stats: [
+      { value: "259K", label: "lines of code across the platform" },
+      { value: "11", label: "repositories, 22 deployable units" },
+      { value: "7", label: "developer utilities (CLI, MCP server, policy engine and more)" },
+    ],
+    problem:
+      "Architecture-as-Code is easy to agree with and hard to picture. Leaders and engineers needed to see what an architecture control plane actually looks like before committing to one.",
+    approach: [
+      "Modeled systems, patterns, standards and waivers as machine-readable, version-controlled catalogs (YAML, JSON and C4/Structurizr).",
+      "Built an operational lifecycle (plan, build, test, accept, deploy) with automated schema validation, compliance checks and generated diagrams and documentation, gated by pull requests.",
+      "Shipped developer utilities: a CLI (aac init, validate), an MCP server for IDEs and AI assistants, an OPA/Rego policy engine, context-driven development with Copilot Spaces and a reference GitHub Actions pipeline.",
+    ],
+    governance: [
+      "Executable guardrails with pass/fail results on every pull request, including encryption, autoscaling and API-gateway policies.",
+      "Waivers as first-class records with risk, expiry and remediation tracking.",
+      "Model-to-runtime drift detection and architecture decision records kept next to the code.",
+    ],
+    outcome: [
+      "An executive scorecard computed directly from the artifacts: standards conformance, risk posture, technical-debt exposure, remediation velocity, pattern reuse and cloud spend at risk.",
+      "A public reference that colleagues and the community can explore, referenced in my most-read Architecture-as-Code writing.",
+    ],
+    lesson: "A working prototype changes more minds than a strategy deck.",
+    technologies: ["Architecture-as-Code", "C4 / Structurizr", "OPA / Rego", "Model Context Protocol", "GitHub Actions", "GitHub Copilot Spaces", "JSON Schema"],
+    relatedWriting: ["inside-an-architecture-as-code-platform", "architecture-that-runs"],
+    links: [{ label: "Explore the live platform: aac.muthub.org", url: "https://aac.muthub.org" }],
   },
   {
     slug: "enterprise-genai-architecture",

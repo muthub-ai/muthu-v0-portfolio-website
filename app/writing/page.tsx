@@ -2,6 +2,7 @@ import Link from "next/link"
 import type { Metadata } from "next"
 import { themeName, themes } from "@/content/site"
 import { dateLabel, getEssays, getNotes } from "@/lib/content"
+import { archive } from "@/content/archive"
 import { pageMetadata } from "@/lib/seo"
 import { WritingList } from "@/components/writing-list"
 
@@ -62,6 +63,26 @@ export default function WritingPage() {
           ))}
         </aside>
       </div>
+
+      <section aria-labelledby="archive-heading" className="flex flex-col gap-2 border-t border-line pt-10">
+        <h2 id="archive-heading" className="h-display text-[32px]">
+          From the archive
+        </h2>
+        <p className="mb-4 text-muted">Earlier essays on data platforms, MLOps and cloud architecture, published on Medium.</p>
+        <ul className="grid gap-x-10 [grid-template-columns:repeat(auto-fit,minmax(320px,1fr))]">
+          {archive.map((a) => (
+            <li key={a.url} className="flex flex-col gap-1 border-t border-line py-5">
+              <span className="text-[13px] text-muted">
+                {new Date(`${a.date}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", year: "numeric", timeZone: "UTC" })} · Medium
+              </span>
+              <a href={a.url} className="text-[17px] font-semibold leading-snug text-ink hover:text-accent" rel="noopener noreferrer">
+                {a.title}
+              </a>
+              <span className="text-[15px] leading-relaxed text-body">{a.summary}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
     </div>
   )
 }

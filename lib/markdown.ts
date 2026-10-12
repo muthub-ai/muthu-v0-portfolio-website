@@ -1,4 +1,5 @@
 import { about, now } from "@/content/about"
+import { archive } from "@/content/archive"
 import { site, themeName, themes } from "@/content/site"
 import { blocksToMarkdown, dateLabel, getEssay, getEssays, getInitiative, getInitiatives, getNote, getNotes } from "@/lib/content"
 
@@ -30,7 +31,8 @@ export function writingMarkdown() {
         return `## ${t.name}\n\n${list.map((e) => `- [${e.title}](${site.url}/writing/${e.slug}.md) (${dateLabel(e)}): ${e.summary}`).join("\n")}\n\n`
       })
       .join("") +
-    `## Notes\n\n${getNotes().map((n) => `- [${n.title}](${site.url}/writing/${n.slug}.md): ${n.summary}`).join("\n")}` +
+    `## Notes\n\n${getNotes().map((n) => `- [${n.title}](${site.url}/writing/${n.slug}.md): ${n.summary}`).join("\n")}\n\n` +
+    `## From the archive (Medium)\n\n${archive.map((a) => `- [${a.title}](${a.url}) (${a.date}): ${a.summary}`).join("\n")}` +
     footer
   )
 }
@@ -70,6 +72,7 @@ export function initiativeMarkdown(slug: string) {
     `${i.stats.map((s) => `- **${s.value}** ${s.label}`).join("\n")}\n\n` +
     `## Problem\n\n${i.problem}\n\n## Approach\n\n${list(i.approach)}\n\n## Governance\n\n${list(i.governance)}\n\n` +
     `## Outcome\n\n${list(i.outcome)}\n\n## Lesson\n\n${i.lesson}\n\nTechnologies: ${i.technologies.join(", ")}` +
+    (i.links?.length ? `\n\nLinks: ${i.links.map((l) => `[${l.label}](${l.url})`).join(", ")}` : "") +
     footer
   )
 }
@@ -111,6 +114,7 @@ export function llmsTxt() {
     `- [Reach me](${site.url}/reach.md): how to get in touch\n\n` +
     `## Initiatives\n\n${getInitiatives().map((i) => `- [${i.title}](${site.url}/initiatives/${i.slug}.md): ${i.summary}`).join("\n")}\n\n` +
     (essays.length ? `## Essays\n\n${essays.map((e) => `- [${e.title}](${site.url}/writing/${e.slug}.md): ${e.summary}`).join("\n")}\n\n` : "") +
-    `## Optional\n\n${site.social.map((s) => `- [${s.label}](${s.url})`).join("\n")}\n`
+    `## Archive\n\n${archive.map((a) => `- [${a.title}](${a.url}): ${a.summary}`).join("\n")}\n\n` +
+    `## Optional\n\n- [Architecture-as-Code reference platform](https://aac.muthub.org): working prototype of an architecture control plane\n${site.social.map((s) => `- [${s.label}](${s.url})`).join("\n")}\n`
   )
 }
