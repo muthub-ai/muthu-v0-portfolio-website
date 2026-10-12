@@ -1,3 +1,4 @@
+import { themes } from "@/content/site"
 import { getEssays, getInitiatives, getNotes } from "@/lib/content"
 import {
   aboutMarkdown,
@@ -7,6 +8,7 @@ import {
   initiativesMarkdown,
   nowMarkdown,
   reachMarkdown,
+  themeMarkdown,
   writingMarkdown,
 } from "@/lib/markdown"
 
@@ -24,11 +26,13 @@ export function generateStaticParams() {
     { path: ["now"] },
     ...[...getEssays(), ...getNotes()].map((e) => ({ path: ["writing", e.slug] })),
     ...getInitiatives().map((i) => ({ path: ["initiatives", i.slug] })),
+    ...themes.map((t) => ({ path: ["writing", "theme", t.slug] })),
   ]
 }
 
 function render(path: string[]): string | null {
-  const [section, slug] = path
+  const [section, slug, sub] = path
+  if (section === "writing" && slug === "theme" && sub) return themeMarkdown(sub)
   if (!section || section === "index") return homeMarkdown()
   if (!slug) {
     switch (section) {

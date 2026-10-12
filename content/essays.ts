@@ -55,6 +55,10 @@ export const essays: Essay[] = [
         "text": "The DORA team's explanation is the one I agree with: a better development process does not automatically produce better delivery unless the basics hold, such as small batches and solid testing. I would add one basic that most enterprises have never automated, which is architectural conformance. We test whether code works. We rarely test whether it belongs."
       },
       {
+        "type": "figure",
+        "name": "architecture-as-code"
+      },
+      {
         "type": "h2",
         "text": "Architecture is still treated as documentation"
       },
@@ -185,6 +189,10 @@ export const essays: Essay[] = [
         "text": "Then there is perception. In [METR's randomized study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) of 16 experienced open-source developers working on 246 real issues, the developers took 19% longer when AI was allowed, yet afterwards still believed it had sped them up by 20%. METR has since marked those results as dated and published newer data, so I do not treat the number as permanent. The lesson I take is about measurement: if experienced engineers cannot feel the difference, self-reported productivity is not evidence."
       },
       {
+        "type": "figure",
+        "name": "ai-native-sdlc"
+      },
+      {
         "type": "h2",
         "text": "Spend the saved time on better problems"
       },
@@ -303,6 +311,10 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "Anthropic's engineering team arrived at similar conclusions from the builder's side. In their write-up on [harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents), the agent works on one feature at a time against a JSON feature list where every item starts as failing, and the prompt states, \"It is unacceptable to remove or edit tests.\" They also report that the model often marked features complete without verifying them end to end. Read that twice. The model was capable. Without a sensor, it was also overconfident."
+      },
+      {
+        "type": "figure",
+        "name": "agent-harness"
       },
       {
         "type": "h2",
@@ -529,6 +541,10 @@ export const essays: Essay[] = [
         "text": "There is a quieter problem too. Prompts encode decisions that nobody reviewed as decisions. A developer who types \"store the customer details\" has made a data-retention choice without realizing it. A spec forces those choices into the open, where a privacy or security partner can see and challenge them."
       },
       {
+        "type": "figure",
+        "name": "spec-driven"
+      },
+      {
         "type": "h2",
         "text": "What changes in the lifecycle"
       },
@@ -750,6 +766,10 @@ export const essays: Essay[] = [
       {
         "type": "p",
         "text": "My working rule is that tool metadata gets the same treatment as code. It is pinned, hashed and diffed on every change, and a changed description goes back through approval. Teams find this tedious until the first time a description changes underneath them."
+      },
+      {
+        "type": "figure",
+        "name": "mcp-gateway"
       },
       {
         "type": "h2",

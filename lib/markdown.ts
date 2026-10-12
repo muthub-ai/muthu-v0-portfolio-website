@@ -36,6 +36,17 @@ export function writingMarkdown() {
   )
 }
 
+export function themeMarkdown(slug: string) {
+  const theme = themes.find((t) => t.slug === slug)
+  if (!theme) return null
+  const list = getEssays(theme.slug)
+  return (
+    `# ${theme.name}\n\n${theme.blurb}\n\n` +
+    list.map((e) => `- [${e.title}](${site.url}/writing/${e.slug}.md) (${dateLabel(e)}): ${e.summary}`).join("\n") +
+    footer
+  )
+}
+
 export function essayMarkdown(slug: string) {
   const essay = getEssay(slug)
   if (essay) {
@@ -79,6 +90,8 @@ export function initiativeMarkdown(slug: string) {
 export function aboutMarkdown() {
   return (
     `# About ${site.displayName}\n\n${about.mission}\n\n${about.paragraphs.join("\n\n")}\n\n` +
+    `## How I think about AI in a bank\n\n${about.principles.ai.map((p, i) => `${i + 1}. **${p.title}** ${p.text}`).join("\n")}\n\n` +
+    `## How I lead\n\n${about.principles.lead.map((p, i) => `${i + 1}. **${p.title}** ${p.text}`).join("\n")}\n\n` +
     `## Career\n\n${about.career.map((c) => `- **${c.org}** (${c.period}): ${c.detail}`).join("\n")}\n\n` +
     `## Education\n\n${about.education.map((e) => `- ${e.degree}, ${e.school}`).join("\n")}\n\n` +
     `## Certifications\n\n${about.certifications.join(" · ")}\n\n` +

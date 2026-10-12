@@ -6,6 +6,7 @@ import { site } from "@/content/site"
 import { getEssay, getInitiative, getInitiatives } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
 import { JsonLd, personId } from "@/components/json-ld"
+import { Figure } from "@/components/figures"
 
 interface Props {
   params: { slug: string }
@@ -98,6 +99,7 @@ export default function InitiativePage({ params }: Props) {
           <Section title="Approach">
             <List items={item.approach} />
           </Section>
+          {item.figure && <Figure name={item.figure} />}
           <Section title="Governance">
             <List items={item.governance} />
           </Section>
@@ -143,7 +145,7 @@ export default function InitiativePage({ params }: Props) {
               </Link>
             ))}
           </div>
-          <a href={`/initiatives/${item.slug}.md`} className="link text-sm">
+          <a href={`/initiatives/${item.slug}.md`} className="link text-[15px]">
             Read as Markdown
           </a>
         </aside>

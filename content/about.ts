@@ -4,6 +4,49 @@ export const about = {
     "As a Distinguished Engineer at Wells Fargo, I advise technology leadership on enterprise Generative and agentic AI. I co-authored the CTO's AI strategy and led the architecture of the AI-Augmented SDLC transformation, which lifted productivity 32% across 21,000 developers. Before that, at USAA, I built the enterprise machine learning platform that brought 360 data scientists onto one governed environment, working alongside Model Risk Management.",
     "My point of view is simple: guardrails, provenance and policy belong in the design, not bolted on afterwards. I write about that here and on LinkedIn.",
   ],
+  // "How I think and lead": stated plainly, in my words. No employer specifics.
+  principles: {
+    ai: [
+      {
+        title: "The harness matters more than the model.",
+        text: "Models change every quarter. The context, tools, guardrails and evaluation around them are what an enterprise owns, and they are what make the output trustworthy.",
+      },
+      {
+        title: "Governance goes into the design.",
+        text: "A control that only exists as a review at the end will be outrun by agents. Policy has to run as code in the pipeline and the platform.",
+      },
+      {
+        title: "Context is curated, not collected.",
+        text: "Agents are only as good as what they are allowed to know. Knowledge that is owned, dated and reviewed beats a bigger index.",
+      },
+      {
+        title: "Prove it before you scale it.",
+        text: "Every pilot gets a measurable outcome and a gate. If it cannot show value on a shared dashboard, it does not get more money.",
+      },
+      {
+        title: "Provenance before velocity.",
+        text: "If we cannot show why an AI system produced something, we cannot ship it in a regulated business, however fast it was written.",
+      },
+    ],
+    lead: [
+      {
+        title: "Influence without authority.",
+        text: "Most of the architecture change I have led crossed teams that did not report to me. Working examples and shared metrics moved them; mandates did not.",
+      },
+      {
+        title: "Make the right way the easy way.",
+        text: "Paved roads, templates and platforms change behavior faster than standards documents do.",
+      },
+      {
+        title: "Build it before you mandate it.",
+        text: "I ship a working reference first and write the standard from what we learned. The Architecture-as-Code prototype at aac.muthub.org is one example.",
+      },
+      {
+        title: "Own the outcome, share the credit.",
+        text: "When something fails, I start with what I could have done differently. When it works, the teams who built it get the credit.",
+      },
+    ],
+  },
   career: [
     { period: "2022 – present", org: "Wells Fargo", detail: "Distinguished Engineer (2026 – present); Principal Architect, Chief Technology Office (2022 – 2026)" },
     { period: "2012 – 2022", org: "USAA", detail: "Staff Engineer and Lead Software Engineer, Data & Analytics Platform; earlier, systems engineering and the Machine Learning Lab" },

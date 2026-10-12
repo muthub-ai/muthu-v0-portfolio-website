@@ -35,9 +35,9 @@
   --accent: 110 196 210;
   --accent-strong: 160 220 230;
   --accent-soft: 19 38 42;
-  --band: 28 32 38;
+  --band: 36 41 49;
   --band-ink: 237 237 234;
-  --band-muted: 180 185 194;
+  --band-muted: 190 195 204;
   --draft: 60 44 14;
   --draft-ink: 250 214 150;
   color-scheme: dark;
@@ -69,7 +69,7 @@ body {
     @apply text-accent underline-offset-4 hover:text-accent-strong hover:underline;
   }
   .eyebrow {
-    @apply text-[13px] font-semibold uppercase tracking-[0.12em] text-accent;
+    @apply text-[13px] font-semibold uppercase tracking-[0.12em] text-muted;
   }
   .label {
     @apply text-[13px] font-semibold uppercase tracking-[0.12em] text-muted;
@@ -87,7 +87,7 @@ body {
     @apply inline-flex min-h-[48px] items-center rounded-full border border-strong px-6 text-[15px] font-semibold text-ink transition-colors hover:border-ink;
   }
   .chip {
-    @apply rounded-full bg-chip px-3 py-1 text-sm text-body;
+    @apply rounded-full bg-chip px-3 py-1 text-[14px] text-body;
   }
 }
 

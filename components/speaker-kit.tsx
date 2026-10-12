@@ -42,7 +42,7 @@ export function SpeakerKit({ bios, headshot }: { bios: { short: string; long: st
           })}
         </div>
         <a href={headshot} download className="link font-semibold">
-          Download headshot
+          Download headshot (JPG, 800 × 800)
         </a>
       </div>
       <div className="flex flex-col gap-4 rounded-md border border-line bg-page px-8 py-7">

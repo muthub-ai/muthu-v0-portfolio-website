@@ -33,6 +33,7 @@ const nextConfig = {
       { source: "/index.md", destination: "/md" },
       { source: "/:section.md", destination: "/md/:section" },
       { source: "/:section/:slug.md", destination: "/md/:section/:slug" },
+      { source: "/writing/theme/:theme.md", destination: "/md/writing/theme/:theme" },
     ]
   },
 }

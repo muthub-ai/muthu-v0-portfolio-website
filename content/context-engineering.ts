@@ -362,6 +362,10 @@ export const contextEngineeringEssays: Essay[] = [
         ]
       },
       {
+        "type": "figure",
+        "name": "context-layer"
+      },
+      {
         "type": "h2",
         "text": "A curated overlay instead"
       },

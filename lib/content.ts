@@ -3,6 +3,7 @@ import { moreEssays, moreNotes } from "@/content/essays-more"
 import { contextEngineeringEssays } from "@/content/context-engineering"
 import { initiatives, type Initiative } from "@/content/initiatives"
 import type { Block, ThemeSlug } from "@/content/site"
+import { figureMeta } from "@/components/figures"
 
 // Drafts are visible in local development, or anywhere NEXT_PUBLIC_SHOW_DRAFTS=true is set.
 // A production build on Vercel hides them until their status is "published".
@@ -49,6 +50,7 @@ export function dateLabel(item: { status: "draft" | "published"; published?: str
 }
 
 function blockText(block: Block) {
+  if (block.type === "figure") return ""
   if ("text" in block) return block.text
   return block.items.join(" ")
 }
@@ -77,6 +79,8 @@ export function blocksToMarkdown(body: Block[]) {
           return `**Bottom line:** ${block.text}`
         case "code":
           return "```" + (block.lang ?? "") + "\n" + block.text + "\n```"
+        case "figure":
+          return `*Figure: ${figureMeta[block.name].alt} ${figureMeta[block.name].caption}*`
       }
     })
     .join("\n\n")

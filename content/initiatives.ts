@@ -1,3 +1,5 @@
+import type { FigureName } from "@/components/figures"
+
 // Public-safe case studies. Facts and numbers come only from the Career Master Profile.
 // No internal system names, regulation IDs, security vendors, dollar figures for Wells Fargo, or unreleased work.
 
@@ -18,6 +20,8 @@ export interface Initiative {
   technologies: string[]
   relatedWriting: string[]
   links?: { label: string; url: string }[]
+  /** Optional diagram from components/figures.tsx, shown after the approach. */
+  figure?: FigureName
 }
 
 export const initiatives: Initiative[] = [
@@ -53,6 +57,7 @@ export const initiatives: Initiative[] = [
     ],
     lesson: "Model is a tool; harness is the strategy. Buy the agents, build the governance layer around them.",
     technologies: ["Generative AI", "Agentic AI", "GitHub Copilot", "Cognition Devin", "Anthropic Claude", "Cursor", "Model Context Protocol", "AI gateway"],
+    figure: "ai-native-sdlc",
     relatedWriting: ["the-ai-native-sdlc", "model-is-a-tool-harness-is-the-strategy"],
   },
   {
@@ -87,6 +92,7 @@ export const initiatives: Initiative[] = [
     ],
     lesson: "Architecture is not what you say you'll build; it's what you actually allow into production.",
     technologies: ["Architecture-as-Code", "Policy-as-code (OPA/Rego)", "CI/CD", "Model Context Protocol"],
+    figure: "architecture-as-code",
     relatedWriting: ["architecture-that-runs", "inside-an-architecture-as-code-platform", "spec-driven-development-for-regulated-industries"],
     links: [{ label: "See a working example: aac.muthub.org", url: "https://aac.muthub.org" }],
   },
@@ -156,6 +162,7 @@ export const initiatives: Initiative[] = [
     ],
     lesson: "Governance designed in from the first use case is what lets the second, third and twentieth move fast.",
     technologies: ["Generative AI", "Retrieval-augmented generation", "Google Cloud", "Vertex AI", "Gemini", "Model Armor", "AI gateway"],
+    figure: "agent-harness",
     relatedWriting: ["adopting-mcp-in-a-bank", "model-is-a-tool-harness-is-the-strategy"],
   },
   {
@@ -223,6 +230,7 @@ export const initiatives: Initiative[] = [
     ],
     lesson: "Make the secure path configuration, not custom code, and teams will choose it.",
     technologies: ["AWS S3", "Snowflake", "Google Cloud", "VPC Service Controls", "Google DLP", "Datadog", "ELK", "Dataplex", "Purview"],
+    figure: "controlled-data-movement",
     relatedWriting: ["agent-first-data-architecture"],
   },
   {
@@ -258,6 +266,7 @@ export const initiatives: Initiative[] = [
     ],
     lesson: "A trained model is only the beginning. Value comes from industrializing deployment, monitoring and validation.",
     technologies: ["Domino", "Apache Airflow", "Kafka", "OpenShift", "Python", "R", "SAS", "H2O", "Prometheus", "Grafana"],
+    figure: "ml-platform-lifecycle",
     relatedWriting: [],
   },
   {

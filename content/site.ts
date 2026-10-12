@@ -1,3 +1,5 @@
+import type { FigureName } from "@/components/figures"
+
 // Site-wide facts. Every number on the public site must trace to the Career Master Profile.
 // Never add anything listed in the private blocklist (.confidential-terms.txt).
 
@@ -46,8 +48,8 @@ export const site = {
 } as const
 
 export const nav = [
-  { label: "Writing", href: "/writing" },
   { label: "Initiatives", href: "/initiatives" },
+  { label: "Writing", href: "/writing" },
   { label: "About", href: "/about" },
   { label: "Reach me", href: "/reach" },
 ] as const
@@ -76,3 +78,4 @@ export type Block =
   | { type: "quote"; text: string }
   | { type: "bottomLine"; text: string }
   | { type: "code"; text: string; lang?: string }
+  | { type: "figure"; name: FigureName }

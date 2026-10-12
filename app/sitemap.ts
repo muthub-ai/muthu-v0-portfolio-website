@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { site } from "@/content/site"
+import { site, themes } from "@/content/site"
 import { getEssays, getInitiatives, getNotes } from "@/lib/content"
 
 // Generated at build time. Drafts are excluded automatically in production builds.
@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     page("/", 1, "weekly"),
     page("/writing", 0.9, "weekly"),
+    ...themes.map((t) => page(`/writing/theme/${t.slug}`, 0.7, "weekly")),
     page("/initiatives", 0.8, "monthly"),
     page("/about", 0.8, "monthly"),
     page("/reach", 0.5, "yearly"),

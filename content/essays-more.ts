@@ -160,6 +160,10 @@ export const moreEssays: Essay[] = [
         "text": "The less obvious reason matters more. A registry is the one place where you can say with confidence which tools exist in your environment. GitHub's design makes the point concrete: administrators point Copilot at an internal registry, and a registry-only policy blocks unlisted servers at runtime. Discovery and allowlisting become the same artifact. Once that is true, security review, third-party risk assessment and data classification share a single gate, and the gate is enforced by software instead of by memo."
       },
       {
+        "type": "figure",
+        "name": "mcp-gateway"
+      },
+      {
         "type": "h2",
         "text": "What the official registry gives you, and what it leaves out"
       },
@@ -612,6 +616,10 @@ export const moreEssays: Essay[] = [
           "**Experimental by nature.** Development is a series of experiments that must be tracked to be reproducible.",
           "**Never finished.** After deployment, models need monitoring for drift and retraining, not only bug fixes."
         ]
+      },
+      {
+        "type": "figure",
+        "name": "ml-platform-lifecycle"
       },
       {
         "type": "h2",

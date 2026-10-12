@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
 import type { Block } from "@/content/site"
+import { Figure } from "@/components/figures"
 
 // Minimal inline Markdown: `code`, **bold**, *italic*, [text](https://url). Anything else renders as plain text.
 const inlinePattern = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)\s]+\))/g
@@ -37,6 +38,14 @@ export function Inline({ text }: { text: string }) {
   )
 }
 
+/** Stable anchor id for an essay section heading. */
+export function headingId(text: string) {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "")
+}
+
 export function Blocks({ blocks }: { blocks: Block[] }) {
   return (
     <div className="prose-essay">
@@ -49,7 +58,11 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
               </p>
             )
           case "h2":
-            return <h2 key={index}>{block.text}</h2>
+            return (
+              <h2 key={index} id={headingId(block.text)} className="scroll-mt-8">
+                {block.text}
+              </h2>
+            )
           case "ul":
             return (
               <ul key={index}>
@@ -82,6 +95,8 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
                 <code>{block.text}</code>
               </pre>
             )
+          case "figure":
+            return <Figure key={index} name={block.name} />
           case "bottomLine":
             return (
               <div key={index} className="!mt-10 rounded-md bg-accent-soft px-8 py-7">

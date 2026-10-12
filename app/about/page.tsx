@@ -26,11 +26,52 @@ export default function AboutPage() {
               {p}
             </p>
           ))}
+          <p className="text-[17px] text-muted">
+            What I am working on this quarter is on my{" "}
+            <Link href="/now" className="link">
+              Now page
+            </Link>
+            .
+          </p>
         </div>
         <figure className="flex max-w-[260px] flex-[1_1_220px] flex-col gap-2.5">
           <Image src={site.headshot} alt={`Portrait of ${site.name}`} width={520} height={520} className="aspect-square w-full rounded object-cover" />
-          <figcaption className="text-[13px] text-muted">{site.location}</figcaption>
+          <figcaption className="text-[15px] text-muted">{site.location}</figcaption>
         </figure>
+      </section>
+
+      <section id="how-i-think" aria-labelledby="principles" className="border-t border-line bg-panel">
+        <div className="container-site flex flex-col gap-10 py-16">
+          <div className="flex max-w-[720px] flex-col gap-3">
+            <h2 id="principles" className="h-display text-[32px] sm:text-4xl">
+              How I think and lead
+            </h2>
+            <p className="text-[17px] leading-relaxed text-muted">The principles behind the work and the writing. Each one came from something that went right, or wrong, in a real program.</p>
+          </div>
+          <div className="grid gap-12 md:grid-cols-2">
+            {[
+              { heading: "How I think about AI in a bank", items: about.principles.ai },
+              { heading: "How I lead", items: about.principles.lead },
+            ].map((group) => (
+              <div key={group.heading} className="flex flex-col">
+                <h3 className="label border-b-2 border-ink pb-3">{group.heading}</h3>
+                <ol className="flex flex-col">
+                  {group.items.map((p, i) => (
+                    <li key={p.title} className="flex gap-4 border-b border-line py-5">
+                      <span aria-hidden="true" className="w-6 shrink-0 pt-0.5 font-serif text-xl text-muted">
+                        {i + 1}
+                      </span>
+                      <div className="flex flex-col gap-1.5">
+                        <strong className="font-serif text-[22px] font-medium leading-snug text-ink">{p.title}</strong>
+                        <span className="text-[17px] leading-relaxed text-body">{p.text}</span>
+                      </div>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="career" className="border-t border-line">
@@ -72,13 +113,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section id="speaker-kit" aria-labelledby="kit" className="border-t border-line bg-panel">
+      <section id="speaker-kit" aria-labelledby="kit" className="border-t border-line">
         <div className="container-site flex flex-col gap-7 py-14">
           <div className="flex flex-col gap-2">
             <h2 id="kit" className="h-display text-[32px]">
               Speaker kit
             </h2>
-            <p className="text-muted">For event organizers and editors: bios you can use as written, and a high-resolution headshot.</p>
+            <p className="text-[17px] text-muted">For event organizers and editors: bios you can use as written, and a headshot (JPG, 800 × 800).</p>
           </div>
           <SpeakerKit bios={about.bios} headshot={site.headshot} />
         </div>

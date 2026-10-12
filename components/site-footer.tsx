@@ -6,7 +6,7 @@ export function SiteFooter() {
   const updated = lastUpdated()
   return (
     <footer className="border-t border-line">
-      <div className="container-site flex flex-wrap justify-between gap-5 py-10 text-sm text-muted">
+      <div className="container-site flex flex-wrap justify-between gap-5 py-10 text-[15px] text-muted">
         <div className="flex flex-col gap-1.5">
           <p>
             © {new Date().getFullYear()} {site.fullName}. {site.disclosure}

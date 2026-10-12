@@ -23,13 +23,13 @@ export default function InitiativesPage() {
         {all.map((item) => (
           <li key={item.slug} className="border-t border-line">
             <Link href={`/initiatives/${item.slug}`} className="group flex flex-wrap gap-x-10 gap-y-3 py-8">
-              <div className="flex flex-[0_0_220px] flex-col gap-1 text-sm text-muted">
+              <div className="flex flex-[0_0_220px] flex-col gap-1 text-[15px] text-muted">
                 <span className="font-semibold text-ink">{item.organization}</span>
                 <span>{item.period}</span>
               </div>
               <div className="flex min-w-0 flex-[1_1_480px] flex-col gap-2">
                 <span className="font-serif text-[28px] font-medium leading-tight text-ink group-hover:text-accent">{item.title}</span>
-                <span className="text-base leading-relaxed text-body">{item.summary}</span>
+                <span className="text-[17px] leading-relaxed text-body">{item.summary}</span>
               </div>
             </Link>
           </li>

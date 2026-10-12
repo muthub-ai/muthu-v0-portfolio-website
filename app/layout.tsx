@@ -21,7 +21,6 @@ export const metadata: Metadata = {
   authors: [{ name: site.fullName, url: site.url }],
   creator: site.fullName,
   robots: { index: true, follow: true },
-  icons: { icon: "/favicon.png" },
   alternates: { types: { "application/rss+xml": "/rss.xml" } },
   verification: { google: ["m1tOQodciY7a9D2qxYrcnGqB16TgZjazsXJDsIQLrpw", "B7i-SXGOWSOAtKCLaDb1UEXDiENZYwQvVOmUV6pFgnE"] },
   openGraph: {
