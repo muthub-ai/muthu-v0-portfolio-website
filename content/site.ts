@@ -59,7 +59,7 @@ export const nav = [
 export type ThemeSlug = "context-engineering" | "governed-ai" | "ai-native-sdlc" | "data-ai-platforms" | "leading-ai-change"
 
 export const themes: { slug: ThemeSlug; name: string; blurb: string }[] = [
-  { slug: "context-engineering", name: "Context engineering", blurb: "A five-part series on making enterprise knowledge trusted and agent-ready." },
+  { slug: "context-engineering", name: "Context engineering", blurb: "Trusted, governed knowledge that people and agents can rely on." },
   { slug: "governed-ai", name: "Governed AI", blurb: "Guardrails, provenance and policy enforced by design." },
   { slug: "ai-native-sdlc", name: "AI-native SDLC", blurb: "How software gets built when agents write much of the code." },
   { slug: "data-ai-platforms", name: "Data & AI platforms", blurb: "The data and context foundations agents depend on." },

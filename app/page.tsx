@@ -146,7 +146,7 @@ export default function HomePage() {
             <h2 id="start" className="h-display text-4xl tracking-[-0.01em]">
               Start here
             </h2>
-            <p className="text-base text-muted">New here? Start with the Context Engineering series, then explore four themes.</p>
+            <p className="text-base text-muted">New here? Five themes, the best pieces in each.</p>
           </div>
           <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))]">
             {themes.map((theme) => (
