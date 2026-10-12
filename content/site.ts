@@ -20,8 +20,6 @@ export const site = {
     "Muthukrishnan (Muthu) Bommiah is a Distinguished Engineer at Wells Fargo who architects how banks put AI to work at scale and under control: governed Generative and agentic AI, AI-augmented software delivery, Architecture-as-Code and production machine learning.",
   disclosure: "Views are my own and do not represent my employer.",
   headshot: "/headshot.jpg",
-  headshotLight: "/headshot-light.jpg",
-  headshotCutout: "/headshot-cutout.png",
   ogImage: "/og-image.png",
   // One quiet numbers line (Career Master Profile §4.1, §3). Confirm before publishing.
   numbers: [

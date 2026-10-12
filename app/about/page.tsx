@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import type { Metadata } from "next"
 import { about } from "@/content/about"
@@ -5,7 +6,6 @@ import { site } from "@/content/site"
 import { pageMetadata } from "@/lib/seo"
 import { JsonLd, profilePageSchema } from "@/components/json-ld"
 import { SpeakerKit } from "@/components/speaker-kit"
-import { Portrait } from "@/components/portrait"
 
 export const metadata: Metadata = pageMetadata({
   path: "/about",
@@ -28,7 +28,7 @@ export default function AboutPage() {
           ))}
         </div>
         <figure className="flex max-w-[260px] flex-[1_1_220px] flex-col gap-2.5">
-          <Portrait size={520} className="aspect-square w-full rounded-md object-cover" />
+          <Image src={site.headshot} alt={`Portrait of ${site.name}`} width={520} height={520} className="aspect-square w-full rounded object-cover" />
           <figcaption className="text-[13px] text-muted">{site.location}</figcaption>
         </figure>
       </section>
@@ -80,7 +80,7 @@ export default function AboutPage() {
             </h2>
             <p className="text-muted">For event organizers and editors: bios you can use as written, and a high-resolution headshot.</p>
           </div>
-          <SpeakerKit bios={about.bios} headshot={site.headshot} cutout={site.headshotCutout} />
+          <SpeakerKit bios={about.bios} headshot={site.headshot} />
         </div>
       </section>
 

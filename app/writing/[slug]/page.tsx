@@ -1,3 +1,4 @@
+import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
@@ -7,7 +8,6 @@ import { pageMetadata } from "@/lib/seo"
 import { Blocks } from "@/components/rich-text"
 import { JsonLd, personId, personSchema } from "@/components/json-ld"
 import { Newsletter } from "@/components/newsletter"
-import { Portrait } from "@/components/portrait"
 
 interface Props {
   params: { slug: string }
@@ -79,7 +79,7 @@ export default function WritingItemPage({ params }: Props) {
         <h1 className="h-display text-[2.5rem] leading-[1.08] sm:text-[52px]">{item.title}</h1>
         <p className="font-serif text-[23px] leading-snug text-body">{item.summary}</p>
         <div className="flex items-center gap-3.5 border-y border-line py-4">
-          <Portrait size={88} decorative className="h-11 w-11 rounded-full object-cover" />
+          <Image src={site.headshot} alt="" width={88} height={88} className="h-11 w-11 rounded-full object-cover" />
           <div className="flex flex-col text-sm">
             <span className="font-semibold">{site.name}</span>
             <span className="text-muted">

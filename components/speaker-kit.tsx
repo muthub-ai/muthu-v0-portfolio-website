@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 
-export function SpeakerKit({ bios, headshot, cutout }: { bios: { short: string; long: string }; headshot: string; cutout: string }) {
+export function SpeakerKit({ bios, headshot }: { bios: { short: string; long: string }; headshot: string }) {
   const [length, setLength] = useState<"short" | "long">("short")
   const [copied, setCopied] = useState(false)
   const options = [
@@ -41,14 +41,9 @@ export function SpeakerKit({ bios, headshot, cutout }: { bios: { short: string; 
             )
           })}
         </div>
-        <div className="flex flex-wrap gap-x-5 gap-y-2">
-          <a href={headshot} download className="link font-semibold">
-            Download headshot
-          </a>
-          <a href={cutout} download className="link font-semibold">
-            Transparent cutout (PNG)
-          </a>
-        </div>
+        <a href={headshot} download className="link font-semibold">
+          Download headshot
+        </a>
       </div>
       <div className="flex flex-col gap-4 rounded-md border border-line bg-page px-8 py-7">
         <p className="text-[17px] leading-[1.7] text-ink/90">{bios[length]}</p>
