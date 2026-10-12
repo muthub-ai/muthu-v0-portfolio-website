@@ -1,14 +1,21 @@
 import type { ReactNode } from "react"
 import type { Block } from "@/content/site"
 
-// Minimal inline Markdown: **bold**, *italic*, [text](https://url). Anything else renders as plain text.
-const inlinePattern = /(\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)\s]+\))/g
+// Minimal inline Markdown: `code`, **bold**, *italic*, [text](https://url). Anything else renders as plain text.
+const inlinePattern = /(`[^`]+`|\*\*[^*]+\*\*|\*[^*]+\*|\[[^\]]+\]\([^)\s]+\))/g
 
 export function Inline({ text }: { text: string }) {
   const parts = text.split(inlinePattern).filter((part) => part !== "")
   return (
     <>
       {parts.map((part, index) => {
+        if (part.startsWith("`") && part.endsWith("`") && part.length > 2) {
+          return (
+            <code key={index} className="rounded bg-chip px-1.5 py-0.5 font-mono text-[0.85em]">
+              {part.slice(1, -1)}
+            </code>
+          )
+        }
         if (part.startsWith("**") && part.endsWith("**")) {
           return <strong key={index}>{part.slice(2, -2)}</strong>
         }
@@ -68,6 +75,12 @@ export function Blocks({ blocks }: { blocks: Block[] }) {
               <blockquote key={index} className="!my-10 rounded-md bg-panel px-8 py-7 text-[1.75rem] italic leading-snug text-ink">
                 “{block.text}”
               </blockquote>
+            )
+          case "code":
+            return (
+              <pre key={index} className="!my-8 overflow-x-auto rounded-md bg-panel px-6 py-5 font-mono text-[0.8rem] leading-relaxed text-ink">
+                <code>{block.text}</code>
+              </pre>
             )
           case "bottomLine":
             return (

@@ -15,6 +15,7 @@ export interface Essay {
   plannedFor: string
   source: string
   related: string[]
+  series?: { name: string; part: number }
   body: Block[]
 }
 

@@ -3,7 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { site, themeName } from "@/content/site"
-import { dateLabel, getEssay, getEssays, getNote, getNotes, readingMinutes } from "@/lib/content"
+import { dateLabel, getEssay, getEssays, getNote, getNotes, getSeries, readingMinutes } from "@/lib/content"
 import { pageMetadata } from "@/lib/seo"
 import { Blocks } from "@/components/rich-text"
 import { JsonLd, personId, personSchema } from "@/components/json-ld"
@@ -96,6 +96,28 @@ export default function WritingItemPage({ params }: Props) {
         <p className="mt-2 text-sm leading-relaxed text-muted">
           {item.source} {site.disclosure}
         </p>
+
+        {"series" in item && item.series && (
+          <nav aria-label={`${item.series.name} series`} className="mt-4 flex flex-col gap-3 rounded-md border border-line px-7 py-6">
+            <span className="eyebrow">Series · {item.series.name}</span>
+            <ol className="flex flex-col gap-2">
+              {getSeries(item.series.name).map((part) => (
+                <li key={part.slug} className="flex gap-3 text-[15px] leading-snug">
+                  <span className="w-5 shrink-0 text-muted">{part.series?.part}.</span>
+                  {part.slug === item.slug ? (
+                    <span aria-current="page" className="font-semibold text-ink">
+                      {part.title}
+                    </span>
+                  ) : (
+                    <Link href={`/writing/${part.slug}`} className="link">
+                      {part.title}
+                    </Link>
+                  )}
+                </li>
+              ))}
+            </ol>
+          </nav>
+        )}
       </article>
 
       {relatedEssays.length > 0 && (

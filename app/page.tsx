@@ -22,6 +22,7 @@ const startHere: Record<string, { label: string; href: string }[]> = {
     { label: "Three architectures for AI coding agents", href: "/writing/three-architectures-for-ai-coding-agents" },
   ],
   "data-ai-platforms": [
+    { label: "Series: Context Engineering (5 parts)", href: "/writing/the-cost-of-unmanaged-context" },
     { label: "Capture the why", href: "/writing/capture-the-why" },
     { label: "Agent-first data architecture", href: "/writing/agent-first-data-architecture" },
     { label: "From MLOps to AI engineering", href: "/writing/from-mlops-to-ai-engineering" },

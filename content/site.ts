@@ -78,3 +78,4 @@ export type Block =
   | { type: "ol"; items: string[] }
   | { type: "quote"; text: string }
   | { type: "bottomLine"; text: string }
+  | { type: "code"; text: string; lang?: string }

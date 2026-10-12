@@ -1,5 +1,6 @@
 import { essays as coreEssays, notes as coreNotes, type Essay } from "@/content/essays"
 import { moreEssays, moreNotes } from "@/content/essays-more"
+import { contextEngineeringEssays } from "@/content/context-engineering"
 import { initiatives, type Initiative } from "@/content/initiatives"
 import type { Block, ThemeSlug } from "@/content/site"
 
@@ -7,7 +8,7 @@ import type { Block, ThemeSlug } from "@/content/site"
 // A production build on Vercel hides them until their status is "published".
 export const showDrafts = process.env.NODE_ENV !== "production" || process.env.NEXT_PUBLIC_SHOW_DRAFTS === "true"
 
-export const essays: Essay[] = [...coreEssays, ...moreEssays]
+export const essays: Essay[] = [...coreEssays, ...moreEssays, ...contextEngineeringEssays]
 export const notes = [...coreNotes, ...moreNotes]
 
 type Visible = { status: "draft" | "published" }
@@ -74,7 +75,15 @@ export function blocksToMarkdown(body: Block[]) {
           return `> ${block.text}`
         case "bottomLine":
           return `**Bottom line:** ${block.text}`
+        case "code":
+          return "```" + (block.lang ?? "") + "\n" + block.text + "\n```"
       }
     })
     .join("\n\n")
+}
+
+export function getSeries(name: string) {
+  return getEssays()
+    .filter((e) => e.series?.name === name)
+    .sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0))
 }
