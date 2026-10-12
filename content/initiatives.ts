@@ -24,14 +24,14 @@ export const initiatives: Initiative[] = [
     slug: "ai-augmented-sdlc",
     title: "AI-Augmented Software Development Lifecycle",
     summary:
-      "Coding agents inside a large bank's software lifecycle, governed by a bank-built context layer, maker/checker controls and one AI gateway. A 30% productivity gain across 25,000 developers.",
+      "Coding agents inside a large bank's software lifecycle, governed by a bank-built context layer, maker/checker controls and one AI gateway. A 32% productivity gain across 21,000 developers.",
     organization: "Wells Fargo",
     period: "2024 – present",
     role: "Lead architect, in partnership with the Chief Development Officer",
     featured: true,
     stats: [
-      { value: "30%", label: "productivity gain, measured by pull-request approval rate per developer" },
-      { value: "25,000", label: "developers in scope" },
+      { value: "32%", label: "productivity gain, measured by pull-request approval rate per developer" },
+      { value: "21,000", label: "developers in scope" },
       { value: "4", label: "coding agents behind one governed platform" },
     ],
     problem:
@@ -48,7 +48,7 @@ export const initiatives: Initiative[] = [
       "Pilots proved value on a shared dashboard and passed stage gates before investment scaled.",
     ],
     outcome: [
-      "A 30% productivity gain across 25,000 developers, measured by pull-request approval rate per developer and corroborated by a developer survey.",
+      "A 32% productivity gain across 21,000 developers, measured by pull-request approval rate per developer and corroborated by a developer survey.",
     ],
     lesson: "Model is a tool; harness is the strategy. Buy the agents, build the governance layer around them.",
     technologies: ["Generative AI", "Agentic AI", "GitHub Copilot", "Cognition Devin", "Anthropic Claude", "Cursor", "Model Context Protocol", "AI gateway"],
@@ -126,14 +126,14 @@ export const initiatives: Initiative[] = [
     slug: "multi-cloud-ai-strategy",
     title: "Data & AI on Public Cloud",
     summary:
-      "A multi-cloud (GCP and Azure) Data & AI strategy and reusable archetypes that made cloud adoption faster and safer, including a Teradata-to-BigQuery modernization that cut infrastructure costs 35%.",
+      "A multi-cloud (GCP and Azure) Data & AI strategy and reusable archetypes that cut public-cloud onboarding from 16 weeks to 4, including a Teradata-to-BigQuery modernization that cut infrastructure costs 35%.",
     organization: "Wells Fargo",
     period: "2023 – 2024",
     role: "Served as chief architect for Data & AI on public cloud",
     stats: [
+      { value: "16 → 4 wks", label: "public-cloud onboarding time with archetypes" },
       { value: "14", label: "GCP services enabled through archetypes" },
       { value: "35%", label: "lower infrastructure cost after Teradata-to-BigQuery" },
-      { value: "1st", label: "BigQuery application with confidential data" },
     ],
     problem:
       "Lines of business were adopting cloud data and AI services one design at a time, with inconsistent controls and duplicated effort.",
@@ -147,6 +147,7 @@ export const initiatives: Initiative[] = [
       "Architecture-led delivery, with every archetype approved once through enterprise architecture review.",
     ],
     outcome: [
+      "Public-cloud onboarding cut 75%, from 16 weeks to 4 weeks, using the archetypes and codified patterns.",
       "Archetypes enabled 14 GCP services across lines of business.",
       "Teradata-to-BigQuery modernization (Dataflow, Dataproc, lakehouse) cut infrastructure costs 35%.",
       "Delivered the bank's first BigQuery application with confidential data.",

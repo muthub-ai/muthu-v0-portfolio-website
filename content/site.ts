@@ -23,7 +23,7 @@ export const site = {
   ogImage: "/og-image.png",
   // One quiet numbers line (Career Master Profile §4.1, §3). Confirm before publishing.
   numbers: [
-    { value: "25,000", label: "developers" },
+    { value: "21,000", label: "developers" },
     { value: "4,500+", label: "applications" },
     { value: "14 years", label: "in regulated banking" },
   ],
