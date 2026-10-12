@@ -14,7 +14,10 @@ type Visible = { status: "draft" | "published" }
 const visible = <T extends Visible>(item: T) => item.status === "published" || showDrafts
 
 export function getEssays(theme?: ThemeSlug): Essay[] {
-  return essays.filter(visible).filter((e) => !theme || e.theme === theme)
+  return essays
+    .filter(visible)
+    .filter((e) => !theme || e.theme === theme)
+    .sort((a, b) => (b.published ?? "9999").localeCompare(a.published ?? "9999"))
 }
 
 export function getEssay(slug: string) {
@@ -22,7 +25,7 @@ export function getEssay(slug: string) {
 }
 
 export function getNotes() {
-  return notes.filter(visible)
+  return notes.filter(visible).sort((a, b) => (b.published ?? "9999").localeCompare(a.published ?? "9999"))
 }
 
 export function getNote(slug: string) {

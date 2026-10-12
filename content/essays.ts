@@ -25,7 +25,8 @@ export const essays: Essay[] = [
     summary:
       "We gave engineers AI that writes code ten times faster but kept architecture moving at human speed. Governance has to become something that runs, not something you read.",
     theme: "governed-ai",
-    status: "draft",
+    status: "published",
+    published: "2026-05-12",
     plannedFor: "Nov 2026",
     source: "Adapted from my LinkedIn posts of May 2 and May 10, 2026.",
     related: ["model-is-a-tool-harness-is-the-strategy", "spec-driven-development-for-regulated-industries"],
@@ -59,9 +60,10 @@ export const essays: Essay[] = [
     summary:
       "We have commoditized typing code. The bottleneck is now creative problem solving, verification and trust. Six shifts that move teams from AI augmentation to transformation.",
     theme: "ai-native-sdlc",
-    status: "draft",
+    status: "published",
+    published: "2026-07-28",
     plannedFor: "Nov 2026",
-    source: "Adapted from my LinkedIn posts of January 10 and August 24, 2026.",
+    source: "Adapted from my LinkedIn writing on the AI-native SDLC, 2026.",
     related: ["architecture-that-runs", "capture-the-why"],
     body: [
       { type: "p", text: "A few years ago, enterprises were debating whether AI could write a working function. Today, autonomous coding agents, background repair bots and AI assistance across every phase of delivery are standard practice for high-performing teams. We are not just coding faster. We are building differently." },
@@ -90,7 +92,8 @@ export const essays: Essay[] = [
     summary:
       "Handing an AI agent the keys to a production codebase without a harness is like putting a teenager in a sports car with no dual brakes. Guardrails and sensors make agents safe to scale.",
     theme: "governed-ai",
-    status: "draft",
+    status: "published",
+    published: "2026-05-26",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of May 23, 2026.",
     related: ["architecture-that-runs", "if-you-cant-prove-why-an-ai-wrote-it"],
@@ -114,7 +117,8 @@ export const essays: Essay[] = [
     summary:
       "Shipping AI-generated code without tracking its reasoning is not velocity; it is unmanaged risk. Regulated teams need deterministic provenance for non-deterministic models, and AI bills of materials.",
     theme: "governed-ai",
-    status: "draft",
+    status: "published",
+    published: "2026-02-24",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of February 21, 2026.",
     related: ["model-is-a-tool-harness-is-the-strategy", "adopting-mcp-in-a-bank"],
@@ -143,7 +147,8 @@ export const essays: Essay[] = [
     summary:
       "For complex work in regulated sectors, prompt-to-code is becoming a non-starter. Make the specification the contract the AI must fulfil, then audit the spec instead of every generated line.",
     theme: "ai-native-sdlc",
-    status: "draft",
+    status: "published",
+    published: "2025-10-21",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of October 18, 2025.",
     related: ["architecture-that-runs", "the-ai-native-sdlc"],
@@ -178,9 +183,10 @@ export const essays: Essay[] = [
     summary:
       "Most enterprise AI pilots hit the same wall: enterprise amnesia. Systems track the what, but the why behind decisions evaporates. Durable, governed context is the real foundation for agents.",
     theme: "data-ai-platforms",
-    status: "draft",
+    status: "published",
+    published: "2026-07-14",
     plannedFor: "Jan 2027",
-    source: "Adapted from my LinkedIn posts of November 17, 2025 and August 23, 2026.",
+    source: "Adapted from my LinkedIn writing on living documentation and the enterprise knowledge layer.",
     related: ["the-ai-native-sdlc", "agent-first-data-architecture"],
     body: [
       { type: "p", text: "The real bottleneck in enterprise AI is not smarter models. It is the missing enterprise knowledge layer." },
@@ -208,7 +214,9 @@ export const essays: Essay[] = [
     summary:
       "The Model Context Protocol standardizes how agents connect to tools and data. It does not solve governance. Four risk areas to address before agents get tools in a regulated institution.",
     theme: "governed-ai",
-    status: "draft",
+    status: "published",
+    published: "2025-04-22",
+    updated: "2026-06-16",
     plannedFor: "Jan 2027",
     source: "Adapted from my LinkedIn post of April 18, 2025, updated for 2026.",
     related: ["if-you-cant-prove-why-an-ai-wrote-it", "model-is-a-tool-harness-is-the-strategy"],
@@ -234,7 +242,8 @@ export const essays: Essay[] = [
     summary:
       "We are moving from data systems that serve human queries to ecosystems that enable autonomous machine action. Five principles for designing data platforms where agents are first-class users.",
     theme: "data-ai-platforms",
-    status: "draft",
+    status: "published",
+    published: "2025-09-30",
     plannedFor: "Feb 2027",
     source: "Adapted from my LinkedIn posts of September 2025 and my Medium writing on lakehouse architecture.",
     related: ["capture-the-why", "adopting-mcp-in-a-bank"],
@@ -273,7 +282,8 @@ export const notes: Note[] = [
     slug: "living-documentation-trust-gap",
     title: "Living documentation and the human trust gap",
     summary: "Tools can now regenerate docs from code on every commit. They describe what the code does, not why it exists.",
-    status: "draft",
+    status: "published",
+    published: "2025-11-19",
     plannedFor: "Nov 2026",
     source: "Adapted from my LinkedIn post of November 17, 2025.",
     body: [
@@ -285,7 +295,8 @@ export const notes: Note[] = [
     slug: "from-pair-programming-to-fleet-management",
     title: "From pair programming to fleet management",
     summary: "Editors now orchestrate local, background and cloud agents. Automation is doing things right; orchestration is doing the right things.",
-    status: "draft",
+    status: "published",
+    published: "2025-12-15",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of December 13, 2025.",
     body: [
@@ -297,7 +308,8 @@ export const notes: Note[] = [
     slug: "ai-is-an-amplifier",
     title: "AI is an amplifier, not a silver bullet",
     summary: "AI magnifies what is already there. Platform engineering and clear policy decide whether that is strength or dysfunction.",
-    status: "draft",
+    status: "published",
+    published: "2025-09-24",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of September 23, 2025.",
     body: [

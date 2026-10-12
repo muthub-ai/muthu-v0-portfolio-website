@@ -10,7 +10,8 @@ export const moreEssays: Essay[] = [
     summary:
       "A tour of aac.muthub.org, the open prototype I built to show architecture as a control plane: catalogs, executable guardrails, waivers, an executive scorecard and an MCP server that puts the rules inside coding agents.",
     theme: "governed-ai",
-    status: "draft",
+    status: "published",
+    published: "2026-06-09",
     plannedFor: "Nov 2026",
     source: "Based on my public prototype at aac.muthub.org and my LinkedIn post of May 2, 2026.",
     related: ["architecture-that-runs", "model-is-a-tool-harness-is-the-strategy"],
@@ -53,7 +54,8 @@ export const moreEssays: Essay[] = [
     summary:
       "As agents multiply, every enterprise will need an authoritative directory of the tools they can call. What an MCP registry must do: discovery, trust, versioning and governance.",
     theme: "governed-ai",
-    status: "draft",
+    status: "published",
+    published: "2025-09-18",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn posts of April 3, 2025 and September 8 and 16, 2025.",
     related: ["adopting-mcp-in-a-bank", "inside-an-architecture-as-code-platform"],
@@ -91,7 +93,8 @@ export const moreEssays: Essay[] = [
     summary:
       "Coding agents arrived in a rush, built on different philosophies: platform-embedded, sandboxed execution and evolutionary search. Then the editor became a fleet manager. How to read the landscape.",
     theme: "ai-native-sdlc",
-    status: "draft",
+    status: "published",
+    published: "2025-12-16",
     plannedFor: "Jan 2027",
     source: "Adapted from my LinkedIn posts of May 19, 2025 and December 13, 2025.",
     related: ["the-ai-native-sdlc", "model-is-a-tool-harness-is-the-strategy"],
@@ -124,7 +127,8 @@ export const moreEssays: Essay[] = [
     summary:
       "Agents act on their own, at machine speed, across many systems. Static credentials and perimeter thinking don't hold up. Verifiable identity, context-aware access and runtime guardrails do.",
     theme: "governed-ai",
-    status: "draft",
+    status: "published",
+    published: "2025-05-29",
     plannedFor: "Jan 2027",
     source: "Adapted from my LinkedIn posts of May 11 and May 27, 2025.",
     related: ["adopting-mcp-in-a-bank", "designing-an-enterprise-mcp-registry"],
@@ -154,7 +158,8 @@ export const moreEssays: Essay[] = [
     summary:
       "Python is unrivaled for research and prototyping. Production enterprise AI is a problem of integration, security and scale, where the JVM's maturity and today's agent frameworks make a strong case.",
     theme: "data-ai-platforms",
-    status: "draft",
+    status: "published",
+    published: "2025-06-24",
     plannedFor: "Feb 2027",
     source: "Adapted from my LinkedIn post of June 19, 2025.",
     related: ["agent-first-data-architecture", "three-architectures-for-ai-coding-agents"],
@@ -175,7 +180,8 @@ export const moreEssays: Essay[] = [
     summary:
       "A trained model is the beginning, not the end. What industrializing machine learning taught me, and why AI engineering now has to unify DataOps, MLOps and DevOps.",
     theme: "data-ai-platforms",
-    status: "draft",
+    status: "published",
+    published: "2024-11-19",
     plannedFor: "Feb 2027",
     source: "Adapted from my Medium article \"The Rise of MLOps\" (2021) and my LinkedIn post of November 14, 2024.",
     related: ["agent-first-data-architecture", "the-ai-native-sdlc"],
@@ -203,7 +209,8 @@ export const moreEssays: Essay[] = [
     summary:
       "In a large organization you rarely own the teams you need to move. Architects lead through clarity, credibility and practical standards, balancing the North Star with today's fires.",
     theme: "leading-ai-change",
-    status: "draft",
+    status: "published",
+    published: "2025-07-08",
     plannedFor: "Mar 2027",
     source: "Adapted from my LinkedIn comments of May 6 and June 30, 2025.",
     related: ["the-ai-native-sdlc", "architecture-that-runs"],
@@ -233,7 +240,8 @@ export const moreNotes: Note[] = [
     slug: "spec-kit-beyond-vibe-coding",
     title: "Beyond vibe coding: specs as executable artifacts",
     summary: "Ad-hoc prompting gives code that looks right but misses the intent. Making the spec the source of truth fixes that.",
-    status: "draft",
+    status: "published",
+    published: "2025-09-08",
     plannedFor: "Nov 2026",
     source: "Adapted from my LinkedIn post of September 5, 2025.",
     body: [
@@ -245,7 +253,8 @@ export const moreNotes: Note[] = [
     slug: "closing-the-loop",
     title: "Closing the loop: agents that verify their own work",
     summary: "The ability to self-verify and correct, instead of waiting for human feedback, separates an autonomous agent from a one-shot tool.",
-    status: "draft",
+    status: "published",
+    published: "2025-08-13",
     plannedFor: "Nov 2026",
     source: "Adapted from my LinkedIn comment of August 11, 2025.",
     body: [
@@ -257,7 +266,8 @@ export const moreNotes: Note[] = [
     slug: "agent-design-is-still-hard",
     title: "Agent design is still hard",
     summary: "SDK abstractions break under real tool use; caching, reinforcement and failure isolation decide reliability.",
-    status: "draft",
+    status: "published",
+    published: "2025-11-25",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of November 24, 2025, on Armin Ronacher's essay.",
     body: [
@@ -269,7 +279,8 @@ export const moreNotes: Note[] = [
     slug: "bigquery-data-engineering-agent",
     title: "A data engineering agent in practice",
     summary: "Pipelines, schema changes, self-reverting mistakes and generated quality checks, all from natural language.",
-    status: "draft",
+    status: "published",
+    published: "2025-07-02",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of June 30, 2025.",
     body: [
@@ -281,7 +292,8 @@ export const moreNotes: Note[] = [
     slug: "technical-debt-is-an-architectural-liability",
     title: "Technical debt is an architectural liability",
     summary: "Not just messy code: a strategic risk that coding agents can now help burn down continuously.",
-    status: "draft",
+    status: "published",
+    published: "2025-06-23",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of June 21, 2025.",
     body: [
@@ -293,7 +305,8 @@ export const moreNotes: Note[] = [
     slug: "mcp-tools-resources-prompts",
     title: "MCP in three primitives: tools, resources, prompts",
     summary: "Why an open protocol for context beat a thousand bespoke integrations.",
-    status: "draft",
+    status: "published",
+    published: "2025-06-18",
     plannedFor: "Jan 2027",
     source: "Adapted from my LinkedIn post of June 17, 2025.",
     body: [
@@ -305,7 +318,8 @@ export const moreNotes: Note[] = [
     slug: "mcp-connector-messages-api",
     title: "Remote MCP, straight from the API",
     summary: "Direct remote MCP access through the Messages API removes a client library and moves agents from clever hacks to engineered solutions.",
-    status: "draft",
+    status: "published",
+    published: "2025-06-04",
     plannedFor: "Jan 2027",
     source: "Adapted from my LinkedIn posts of May 22 and June 3, 2025.",
     body: [
@@ -317,7 +331,8 @@ export const moreNotes: Note[] = [
     slug: "the-mcp-spec-grows-up",
     title: "The MCP spec grows up",
     summary: "OAuth 2.1 authorization, streamable HTTP, batching and tool annotations: the March 2025 update that made enterprise MCP plausible.",
-    status: "draft",
+    status: "published",
+    published: "2025-04-01",
     plannedFor: "Jan 2027",
     source: "Adapted from my LinkedIn posts of March 29 and 30, 2025.",
     body: [
@@ -329,7 +344,8 @@ export const moreNotes: Note[] = [
     slug: "a2a-and-mcp",
     title: "A2A and MCP: complementary, not competing",
     summary: "MCP connects agents to tools; Agent2Agent connects agents to each other, in whatever modality suits them.",
-    status: "draft",
+    status: "published",
+    published: "2025-05-01",
     plannedFor: "Feb 2027",
     source: "Adapted from my LinkedIn posts of April 10 and April 30, 2025.",
     body: [
@@ -341,7 +357,8 @@ export const moreNotes: Note[] = [
     slug: "ai-generated-assertions",
     title: "Code that validates itself: AI-generated assertions",
     summary: "Only a small share of open-source Java projects use production assertions. LLMs can change that.",
-    status: "draft",
+    status: "published",
+    published: "2025-05-13",
     plannedFor: "Feb 2027",
     source: "Adapted from my LinkedIn post of May 11, 2025, on the Assertify paper.",
     body: [
@@ -353,7 +370,8 @@ export const moreNotes: Note[] = [
     slug: "build-for-today-or-tomorrow",
     title: "Build for today's task or tomorrow's platform?",
     summary: "The classic architect's dilemma, upgraded for agents: reusable agents versus brittle single-use ones.",
-    status: "draft",
+    status: "published",
+    published: "2025-09-22",
     plannedFor: "Feb 2027",
     source: "Adapted from my LinkedIn post of September 21, 2025, on McKinsey's agentic AI lessons.",
     body: [
@@ -365,7 +383,8 @@ export const moreNotes: Note[] = [
     slug: "unified-governance-in-the-catalog",
     title: "Governance belongs in the catalog",
     summary: "Technical and business metadata, data products, inferred relationships and semantic search in one open catalog.",
-    status: "draft",
+    status: "published",
+    published: "2025-04-14",
     plannedFor: "Mar 2027",
     source: "Adapted from my LinkedIn post of April 12, 2025.",
     body: [
@@ -377,7 +396,8 @@ export const moreNotes: Note[] = [
     slug: "rethinking-oltp-for-agents",
     title: "Rethinking operational databases for the agent era",
     summary: "The lakehouse unified analytics and AI. The next step joins operational data to it.",
-    status: "draft",
+    status: "published",
+    published: "2025-09-10",
     plannedFor: "Mar 2027",
     source: "Adapted from my LinkedIn post of September 9, 2025.",
     body: [
@@ -389,7 +409,8 @@ export const moreNotes: Note[] = [
     slug: "audit-your-year-with-ai",
     title: "Your prompt history is a more honest review than your calendar",
     summary: "My 2025 balance was 60% enterprise, 40% personal. Here is the prompt to audit your own year.",
-    status: "draft",
+    status: "published",
+    published: "2025-12-08",
     plannedFor: "Dec 2026",
     source: "Adapted from my LinkedIn post of December 6, 2025.",
     body: [
@@ -401,7 +422,8 @@ export const moreNotes: Note[] = [
     slug: "simplicity-in-architecture",
     title: "Simplicity is not simplistic",
     summary: "Designs that are easy to explain, build and maintain take the most effort, and last the longest.",
-    status: "draft",
+    status: "published",
+    published: "2024-11-08",
     plannedFor: "Mar 2027",
     source: "Adapted from my LinkedIn post of November 7, 2024, and Medium.",
     body: [
