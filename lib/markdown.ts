@@ -80,7 +80,7 @@ export function initiativeMarkdown(slug: string) {
   const list = (items: string[]) => items.map((x) => `- ${x}`).join("\n")
   return (
     `# ${i.title}\n\n${i.organization} · ${i.period} · Role: ${i.role}\n\n> ${i.summary}\n\n` +
-    `${i.stats.map((s) => `- **${s.value}** ${s.label}`).join("\n")}\n\n` +
+    (i.stats.length ? `${i.stats.map((s) => `- **${s.value}** ${s.label}`).join("\n")}\n\n` : "") +
     `## Problem\n\n${i.problem}\n\n## Approach\n\n${list(i.approach)}\n\n## Governance\n\n${list(i.governance)}\n\n` +
     `## Outcome\n\n${list(i.outcome)}\n\n## Lesson\n\n${i.lesson}\n\nTechnologies: ${i.technologies.join(", ")}` +
     (i.links?.length ? `\n\nLinks: ${i.links.map((l) => `[${l.label}](${l.url})`).join(", ")}` : "") +

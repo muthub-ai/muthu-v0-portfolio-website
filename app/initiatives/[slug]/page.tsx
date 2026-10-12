@@ -81,6 +81,7 @@ export default function InitiativePage({ params }: Props) {
             ))}
           </div>
         )}
+        {item.stats.length > 0 && (
         <div className="mt-4 grid border-y border-line [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]">
           {item.stats.map((s, i) => (
             <div key={s.label} className={`flex flex-col gap-1.5 py-7 ${i > 0 ? "sm:border-l sm:border-line sm:pl-6" : ""} pr-6`}>
@@ -89,6 +90,7 @@ export default function InitiativePage({ params }: Props) {
             </div>
           ))}
         </div>
+        )}
       </section>
 
       <section className="container-site flex flex-wrap gap-16 pb-20 pt-6">
