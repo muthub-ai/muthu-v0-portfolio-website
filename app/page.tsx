@@ -11,11 +11,11 @@ export const metadata: Metadata = pageMetadata({ path: "/", description: site.de
 
 const startHere: Record<string, { label: string; href: string }[]> = {
   "context-engineering": [
-    { label: "1. The cost of unmanaged context", href: "/writing/the-cost-of-unmanaged-context" },
-    { label: "2. Context fragmentation", href: "/writing/context-fragmentation" },
-    { label: "3. Not another data lake", href: "/writing/not-another-data-lake" },
-    { label: "4. Passive capture", href: "/writing/passive-capture" },
-    { label: "5. Self-describing knowledge and the Open Knowledge Format", href: "/writing/self-describing-knowledge-open-knowledge-format" },
+    { label: "The cost of unmanaged context", href: "/writing/the-cost-of-unmanaged-context" },
+    { label: "Context fragmentation", href: "/writing/context-fragmentation" },
+    { label: "Not another data lake", href: "/writing/not-another-data-lake" },
+    { label: "Passive capture", href: "/writing/passive-capture" },
+    { label: "Self-describing knowledge", href: "/writing/self-describing-knowledge-open-knowledge-format" },
   ],
   "governed-ai": [
     { label: "Architecture that runs", href: "/writing/architecture-that-runs" },
