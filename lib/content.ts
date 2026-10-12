@@ -87,3 +87,14 @@ export function getSeries(name: string) {
     .filter((e) => e.series?.name === name)
     .sort((a, b) => (a.series?.part ?? 0) - (b.series?.part ?? 0))
 }
+
+// Most recent publish or update date across visible writing, for the footer's "Last updated" line.
+export function lastUpdated(): string | null {
+  const dates = [...getEssays(), ...getNotes()]
+    .flatMap((item) => [item.published, "updated" in item ? item.updated : undefined])
+    .filter((d): d is string => Boolean(d))
+    .sort()
+  const latest = dates[dates.length - 1]
+  if (!latest) return null
+  return new Date(`${latest}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })
+}

@@ -8,6 +8,7 @@ import { pageMetadata } from "@/lib/seo"
 import { Blocks } from "@/components/rich-text"
 import { JsonLd, personId, personSchema } from "@/components/json-ld"
 import { Newsletter } from "@/components/newsletter"
+import { ReadingProgress } from "@/components/reading-progress"
 
 interface Props {
   params: { slug: string }
@@ -68,6 +69,7 @@ export default function WritingItemPage({ params }: Props) {
   return (
     <>
       <JsonLd data={article} />
+      <ReadingProgress />
       <article className="mx-auto flex max-w-prose flex-col gap-7 px-5 pb-14 pt-16 sm:px-8 sm:pt-[72px]">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted">
           <Link href="/writing" className="eyebrow hover:underline">

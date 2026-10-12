@@ -35,6 +35,8 @@ export const site = {
   // Buttondown (or other) embed-subscribe URL. Leave empty until the newsletter account exists;
   // the signup box then points people to LinkedIn instead of collecting emails.
   newsletterAction: "",
+  // Public uptime page (UptimeRobot).
+  statusUrl: "https://stats.uptimerobot.com/iALcI93wI3",
   knowsAbout: [
     "Enterprise AI strategy",
     "AI governance",
