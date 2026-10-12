@@ -11,7 +11,7 @@ export const contextEngineeringEssays: Essay[] = [
     title: "The cost of unmanaged context",
     summary:
       "Enterprises budget for compute, models and licenses. Almost none budget for the context those models depend on. Unmanaged context is the most expensive line item nobody tracks, and AI agents are about to multiply it.",
-    theme: "data-ai-platforms",
+    theme: "context-engineering",
     status: "published",
     published: "2026-06-02",
     plannedFor: "Jun 2026",
@@ -69,7 +69,7 @@ export const contextEngineeringEssays: Essay[] = [
     title: "Context fragmentation: why your agents keep starting from zero",
     summary:
       "The knowledge an agent needs is scattered across code, tickets, chat, wikis, incident tools and people's heads. Each fragment is accurate on its own and useless alone. Fragmentation, not model quality, is what makes enterprise agents brittle.",
-    theme: "data-ai-platforms",
+    theme: "context-engineering",
     status: "published",
     published: "2026-06-30",
     plannedFor: "Jun 2026",
@@ -149,7 +149,7 @@ export const contextEngineeringEssays: Essay[] = [
     title: "Not another data lake: context needs curation, not collection",
     summary:
       "The tempting answer to fragmented context is to pour everything into one place. We tried that with data, and many lakes became swamps. A context layer has to be a curated overlay: retrieval-first, owned, and pointing back to the systems that hold the truth.",
-    theme: "data-ai-platforms",
+    theme: "context-engineering",
     status: "published",
     published: "2026-07-21",
     plannedFor: "Jul 2026",
@@ -217,7 +217,7 @@ export const contextEngineeringEssays: Essay[] = [
     title: "Passive capture: knowledge that writes itself, with humans who approve it",
     summary:
       "Documentation fails because it is a second job. The knowledge we need is already produced as a by-product of work: commits, tickets, incidents, reviews and decisions. Capture it passively, distill it, and keep a human approval gate before anything becomes trusted.",
-    theme: "data-ai-platforms",
+    theme: "context-engineering",
     status: "published",
     published: "2026-08-18",
     plannedFor: "Aug 2026",
@@ -292,7 +292,7 @@ export const contextEngineeringEssays: Essay[] = [
     title: "Self-describing knowledge: why the Open Knowledge Format matters, and what enterprises must add",
     summary:
       "In June, Google Cloud published the Open Knowledge Format: knowledge as plain Markdown with a little structured metadata. It is the right foundation. For regulated enterprises, the next step is making every piece of knowledge describe its own owner, provenance, freshness and trust.",
-    theme: "data-ai-platforms",
+    theme: "context-engineering",
     status: "published",
     published: "2026-09-15",
     plannedFor: "Sep 2026",

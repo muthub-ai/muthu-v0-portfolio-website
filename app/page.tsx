@@ -10,6 +10,13 @@ import { Newsletter } from "@/components/newsletter"
 export const metadata: Metadata = pageMetadata({ path: "/", description: site.description })
 
 const startHere: Record<string, { label: string; href: string }[]> = {
+  "context-engineering": [
+    { label: "1. The cost of unmanaged context", href: "/writing/the-cost-of-unmanaged-context" },
+    { label: "2. Context fragmentation", href: "/writing/context-fragmentation" },
+    { label: "3. Not another data lake", href: "/writing/not-another-data-lake" },
+    { label: "4. Passive capture", href: "/writing/passive-capture" },
+    { label: "5. Self-describing knowledge and the Open Knowledge Format", href: "/writing/self-describing-knowledge-open-knowledge-format" },
+  ],
   "governed-ai": [
     { label: "Architecture that runs", href: "/writing/architecture-that-runs" },
     { label: "Inside an Architecture-as-Code platform", href: "/writing/inside-an-architecture-as-code-platform" },
@@ -22,7 +29,6 @@ const startHere: Record<string, { label: string; href: string }[]> = {
     { label: "Three architectures for AI coding agents", href: "/writing/three-architectures-for-ai-coding-agents" },
   ],
   "data-ai-platforms": [
-    { label: "Series: Context Engineering (5 parts)", href: "/writing/the-cost-of-unmanaged-context" },
     { label: "Capture the why", href: "/writing/capture-the-why" },
     { label: "Agent-first data architecture", href: "/writing/agent-first-data-architecture" },
     { label: "From MLOps to AI engineering", href: "/writing/from-mlops-to-ai-engineering" },
@@ -140,9 +146,9 @@ export default function HomePage() {
             <h2 id="start" className="h-display text-4xl tracking-[-0.01em]">
               Start here
             </h2>
-            <p className="text-base text-muted">New here? Four themes, the best pieces in each.</p>
+            <p className="text-base text-muted">New here? Start with the Context Engineering series, then explore four themes.</p>
           </div>
-          <div className="grid gap-8 [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))]">
+          <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))]">
             {themes.map((theme) => (
               <div key={theme.slug} className="flex flex-col gap-3 border-t-2 border-ink pt-[18px]">
                 <h3 className="text-lg font-semibold">{theme.name}</h3>
