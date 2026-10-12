@@ -152,6 +152,38 @@ export default function InitiativePage({ params }: Props) {
           </a>
         </aside>
       </section>
+
+      {item.architecture && (
+        <section id="architecture" aria-labelledby="architecture-heading" className="border-t border-line">
+          <div className="container-site flex flex-col gap-6 py-16">
+            <div className="flex max-w-[760px] flex-col gap-3">
+              <p className="eyebrow">C4 model</p>
+              <h2 id="architecture-heading" className="h-display text-[32px] sm:text-4xl">
+                The architecture, level by level
+              </h2>
+              <p className="lede">{item.architecture.intro}</p>
+            </div>
+            <nav aria-label="Architecture levels" className="flex flex-wrap gap-2.5">
+              {item.architecture.levels.map((level, i) => (
+                <a key={level.figure} href={`#level-${i + 1}`} className="chip hover:text-ink">
+                  {level.title}
+                </a>
+              ))}
+            </nav>
+            <div className="flex flex-col">
+              {item.architecture.levels.map((level, i) => (
+                <article key={level.figure} id={`level-${i + 1}`} className="scroll-mt-8 border-t border-line pt-10">
+                  <h3 className="text-2xl font-semibold tracking-[-0.01em]">{level.title}</h3>
+                  <p className="mt-3 max-w-[760px] text-copy leading-[1.7] text-body">{level.text}</p>
+                  <div className="mx-auto max-w-[880px]">
+                    <Figure name={level.figure} />
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   )
 }

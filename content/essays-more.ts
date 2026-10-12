@@ -6,13 +6,14 @@ import type { Essay, Note } from "./essays"
 export const moreEssays: Essay[] = [
   {
     "slug": "inside-an-architecture-as-code-platform",
-    "title": "Inside an Architecture-as-Code platform: a working example",
-    "summary": "A tour of aac.muthub.org, the open prototype I built to show architecture as a control plane, and the design choices that mattered most: catalogs, executable guardrails, waivers as data, a computed scorecard and an MCP server for coding agents.",
+    "title": "Inside an Architecture-as-Code platform: a C4 walkthrough",
+    "summary": "The open prototype at aac.muthub.org, described in its own notation and validated by its own rules. A level-by-level C4 walkthrough of the design decisions that mattered, and what I would change before an enterprise ran it.",
     "theme": "governed-ai",
     "status": "published",
     "published": "2026-06-09",
+    "updated": "2026-10-12",
     "plannedFor": "Nov 2026",
-    "source": "Based on my public prototype at aac.muthub.org and my LinkedIn post of May 2, 2026.",
+    "source": "Based on my public prototype at aac.muthub.org, its source at github.com/muthub-ai/aac, and my LinkedIn post of May 2, 2026.",
     "related": [
       "architecture-that-runs",
       "model-is-a-tool-harness-is-the-strategy"
@@ -20,141 +21,152 @@ export const moreEssays: Essay[] = [
     "body": [
       {
         "type": "p",
-        "text": "**Architecture-as-Code is easiest to understand when you can click through one, so I built one.** [aac.muthub.org](https://aac.muthub.org) is a working prototype of an architecture control plane: enterprise architecture expressed as machine-readable, version-controlled artifacts that drive delivery, risk and cost decisions. It runs on a fictional sample portfolio, not anyone's real systems, but every part of it works."
+        "text": "**The best test of an architecture platform is whether it can describe itself, so I made mine do it.** [aac.muthub.org](https://aac.muthub.org) is a working prototype of an architecture control plane: enterprise architecture held as version-controlled YAML that drives validation, policy, diagrams and an executive scorecard. To write this piece I modeled the platform in its own notation, ran that model through the same JSON Schema and the same five compliance rules it applies to every other system, and drew the diagrams below from it. It passed. The [source is public](https://github.com/muthub-ai/aac) if you want to check my work."
       },
       {
         "type": "p",
-        "text": "Building it taught me more than writing about it did. Some design choices that looked minor turned out to carry the whole thing, and a few things I expected to be hard were easy. This is a tour of what is there and why."
+        "text": "I used Simon Brown's [C4 model](https://c4model.com/) because most engineers already read it fluently: context, containers, components, code. Each level answers a different question for a different reader, and the walkthrough follows that order. The interesting part is less what each box is than why it sits where it does."
       },
       {
         "type": "h2",
-        "text": "Four catalogs as the source of truth"
+        "text": "Level 1: three people, one source of truth, and an agent"
+      },
+      {
+        "type": "figure",
+        "name": "c4-context"
+      },
+      {
+        "type": "p",
+        "text": "The context view shows who the platform serves. Enterprise architects author standards, patterns and models and review exceptions. Application engineers design and change systems. Technology leaders read conformance and risk. Around them sit GitHub, which hosts everything, the npm registry, product teams' own repositories, and an AI coding assistant in the engineer's IDE."
+      },
+      {
+        "type": "p",
+        "text": "The arrow I would point a review board at is the one from the AI assistant into the platform. Two years ago I would have drawn the engineer as the only consumer of architecture standards. Today a large share of design decisions are made, or at least drafted, by an agent in the IDE, and an agent that cannot read your standards will happily invent its own. Treating the agent as a first-class user at Level 1 is the design decision everything else follows from."
+      },
+      {
+        "type": "h2",
+        "text": "Level 2: one repository, seven containers"
+      },
+      {
+        "type": "figure",
+        "name": "c4-container"
+      },
+      {
+        "type": "p",
+        "text": "Inside the boundary there are seven containers, and six of them are projections of the seventh. The Architecture Repository holds system models, patterns, standards, waivers and the schemas that define them. Everything else reads from it: the governance pipeline on every pull request, the web dashboard at build time, the documentation microsite as generated pages, the CLI through the published schemas, the MCP server through a local clone, and the policy engine as tested Rego."
+      },
+      {
+        "type": "p",
+        "text": "Three decisions at this level carry most of the weight."
       },
       {
         "type": "ul",
         "items": [
-          "**Application systems:** a browsable catalog of systems, their containers and deployable units, and a disposition for each (invest, tolerate, migrate, eliminate).",
-          "**Patterns:** reusable reference architectures with maturity levels from draft to production-ready.",
-          "**Standards:** enterprise standards and guardrails, each broken into testable requirements, across security, data, integration, identity, infrastructure, DevOps, FinOps and AI/ML.",
-          "**Waivers:** architecture exceptions as first-class records with risk, expiry and remediation tracking, so an exception is a decision with an owner rather than a forgotten email."
+          "**The dashboard has no database.** It reads the repository at build time through server components and is rebuilt when main changes. There is nothing at runtime that can drift from Git, which is the property you want from a governance view. The cost is that the dashboard is only as fresh as the last merge, and for architecture that is the right cadence.",
+          "**The CLI validates against published schemas, not local copies.** It fetches them from the repository's public URL with ETag caching and falls back to the cache when offline. A product team's pipeline therefore validates against the same contract the platform publishes, and a schema change reaches every team on its next run without anyone upgrading a package.",
+          "**Waivers live next to the standards they bend.** An exception is a versioned record with its risk, compensating controls, financial impact, approver, remediation plan and expiry date. Once exceptions are data, the pipeline can honor them automatically and stop honoring them the day they lapse, and the scorecard can report exception debt the same way it reports technical debt."
         ]
       },
       {
         "type": "p",
-        "text": "The system catalog borrows its vocabulary from Simon Brown's [C4 model](https://c4model.com/), which describes software in four levels: system context, container, component and code. I chose C4 because engineers already recognize it. The important decision was to treat the diagram as a *view* of the data, generated from the catalog, and never as the source. The moment a diagram becomes the thing people edit, it starts drifting from reality."
+        "text": "The scorecard is the payoff for leaders. Conformance, risk posture, remediation velocity and pattern reuse are computed from the artifacts, not assembled for a meeting. The figures on the live site come from a fictional sample portfolio, so ignore the values; the point is that the number is a query and it changes when a pull request merges."
       },
       {
         "type": "h2",
-        "text": "Waivers were the feature that mattered most"
+        "text": "Level 3: governance as an API for agents"
+      },
+      {
+        "type": "figure",
+        "name": "c4-component-mcp"
       },
       {
         "type": "p",
-        "text": "I expected the policy engine to be the heart of the platform. It turned out to be the waiver registry. In every large enterprise I have worked in, the real architecture is the set of standards *minus* the exceptions nobody can find. If exceptions live in email, the conformance number is fiction."
+        "text": "I drew component views for only two containers, and that restraint is deliberate. The C4 site itself says to [create component diagrams only when they add value](https://c4model.com/diagrams/component) and to automate them for long-lived documentation. The platform's own schema stops at containers for the same reason: components change with every refactor, so they belong to the code, not to the model."
       },
       {
         "type": "p",
-        "text": "So a waiver in the prototype is data, versioned in Git next to everything else. A simplified illustration of the shape:"
-      },
-      {
-        "type": "code",
-        "lang": "yaml",
-        "text": "waiver:\n  id: WVR-0007\n  standard: SEC-ENC-01   # encryption at rest with managed keys\n  system: sample-payments-api\n  risk: high\n  owner: platform-lead\n  expires: 2026-12-31\n  remediation: migrate to managed KMS keys before expiry\n  approved_by: architecture-board"
+        "text": "The MCP server is the container that earns a Level 3 view, because its internal shape is the governance contract for agents. Built on the open [Model Context Protocol](https://modelcontextprotocol.io/introduction), it separates three kinds of capability. **Resources** are read-only views of the repository: systems, standards, patterns, schemas and, importantly, `aac://waivers/active`, which returns only approved, unexpired exceptions so an agent never treats a lapsed waiver as permission. **Tools** act: validate a document, run the five compliance rules, scaffold a waiver. **Prompts** are guided workflows for designing a new system or requesting an exception."
       },
       {
         "type": "p",
-        "text": "Two fields do most of the work: `owner` and `expires`. An exception with a named owner and a date is a managed risk. An exception without them is a permanent hole that someone will rediscover during an audit. Once waivers are data, the policy engine can honor them automatically and stop honoring them the day they expire. It also lets you report exception debt the same way you report technical debt."
+        "text": "The distinction matters for risk. Reading a standard is harmless; writing a waiver is a governance act. Keeping them in different MCP primitives means an enterprise can grant an agent the first without the second, and the `scaffold_waiver` tool only drafts a file. The exception still becomes real through a reviewed pull request, the same as one written by a person."
+      },
+      {
+        "type": "figure",
+        "name": "c4-component-web"
+      },
+      {
+        "type": "p",
+        "text": "The web container's components show the other half of the design: pure functions for parsing, validation, view filtering, layout and export, wrapped by a thin layer of React. The same parser and layout code also run in the pipeline's diagram build, which is why a diagram in a pull-request comment and the one in the dashboard agree."
       },
       {
         "type": "h2",
-        "text": "An operational lifecycle, not a review meeting"
+        "text": "Level 4: draw code only where an invariant lives"
+      },
+      {
+        "type": "figure",
+        "name": "c4-code-sync"
       },
       {
         "type": "p",
-        "text": "Architecture moves through the same lifecycle as code. **Define** the design from requirements. **Build** the artifacts for standards, archetypes and components in an IDE or visual tool, with local validation. **Test** them with schema validation and unit tests in CI. **Accept** them through automated compliance checks that also generate the Markdown and diagrams, gated by a pull request. **Deploy** by publishing the approved architecture to policy-as-code pipelines and the enterprise catalog."
+        "text": "C4's guidance on the code level is blunt: [it is optional and usually not recommended](https://c4model.com/diagrams/code), because an IDE can generate it on demand. I agree, with one exception. Draw Level 4 where the design depends on an invariant that is easy to break and hard to see in a diff."
       },
       {
         "type": "p",
-        "text": "The pull request is the review board now. A human architect still approves, but the approval happens on a diff with test results attached, not on a slide deck. Nygard's case for [small, modular decision records](https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions) applies directly: decisions live next to the artifacts they shape, so the reasoning travels with the change."
+        "text": "The diagram editor has one. Engineers can edit YAML or drag boxes on a canvas, and each side updates the other. Without a guard that is an infinite loop: the editor updates the graph, the graph rewrites the YAML, the YAML updates the graph. A single field in the store, `syncSource`, records which side started the change, and each update path returns early if the other side owns it. It is three lines of code that the whole feature depends on, and it is exactly the kind of detail a new contributor would remove while tidying up. That is the case for a code diagram."
       },
       {
         "type": "h2",
-        "text": "Six principles behind it"
+        "text": "A governed change, end to end"
       },
       {
-        "type": "ol",
+        "type": "figure",
+        "name": "c4-dynamic-change"
+      },
+      {
+        "type": "p",
+        "text": "The dynamic view is the one I show executives, because it answers the question they actually have: what happens between someone proposing a change and that change being trusted? An engineer, or an agent working through the MCP server, edits the YAML and validates it locally. A pull request starts the pipeline: a lint and test gate, then parallel stages for schema validation, the five compliance rules, OPA policy tests and catalog and diagram generation. The pipeline comments diagram previews on the pull request, an architect reviews a diff with evidence attached, and the merge publishes the microsite and rebuilds the dashboard."
+      },
+      {
+        "type": "p",
+        "text": "The pull request is the architecture review board now. A person still approves, but they approve a change with test results, not a slide deck. Nygard's case for [small decision records kept with the work](https://www.cognitect.com/blog/2011/11/15/documenting-architecture-decisions) applies directly: the reasoning travels with the change."
+      },
+      {
+        "type": "h2",
+        "text": "What I would change before an enterprise ran it"
+      },
+      {
+        "type": "p",
+        "text": "Modeling the platform in its own notation also exposed its weak spots, and I would rather name them than have a reviewer find them."
+      },
+      {
+        "type": "ul",
         "items": [
-          "**Machine-readable and version-controlled:** YAML, JSON or C4/Structurizr models in Git, with clear ownership and an audit trail.",
-          "**Executable guardrails:** policies run in CI/CD with a clear pass or fail.",
-          "**Model-to-runtime parity:** continuously compare the as-designed model with the as-built infrastructure to catch drift.",
-          "**Shift-left governance:** block non-compliant releases before they reach production.",
-          "**Decisions as code:** architecture decision records live next to the code, preserving the why.",
-          "**Human oversight plus automation:** people make the judgment calls; automation handles repeatability and scale."
+          "**Validation lives in three places.** The CLI and the MCP server each validate with JSON Schema, and the web app validates with Zod. The five compliance rules exist in the pipeline script and again in the MCP tool. They agree today; nothing guarantees they will tomorrow. The fix is one rules package that the pipeline, the MCP server and the editor all import.",
+          "**Some rules infer intent from free text.** The rule that stops a frontend talking directly to a database decides what counts as a frontend from keywords in tags and technology names. That is fine for a prototype and fragile at scale. An enterprise version needs explicit types in the schema, enforced by the schema.",
+          "**Policy lives in two languages.** Structural rules run as TypeScript and infrastructure rules run as Rego in [Open Policy Agent](https://www.openpolicyagent.org/docs). Two engines are defensible, but the boundary should be written down, or teams will add the next rule wherever is convenient."
         ]
       },
       {
         "type": "p",
-        "text": "If I had to rank them, parity is the hardest and the most underrated. Writing rules is straightforward. Proving that what runs in production still matches the model requires reading real infrastructure state, and that is where most programs quietly stop. My advice is to begin parity with one high-value check, such as confirming that every deployed data store matches its declared data classification, and expand from there."
-      },
-      {
-        "type": "h2",
-        "text": "Governance leaders can actually read"
-      },
-      {
-        "type": "p",
-        "text": "Because the architecture is data, the platform computes an executive scorecard straight from the artifacts: standards conformance, risk posture, technical-debt exposure, remediation velocity, pattern reuse and cloud spend at risk, plus a risk heat map by domain. In the sample portfolio, conformance reads 33% with five active waivers. Those figures are invented for the demo, so ignore the values. The point is that nobody assembled a slide. The numbers are a query, and they change when a pull request merges."
-      },
-      {
-        "type": "p",
-        "text": "That shift changes the conversation with executives. Instead of debating whether a status report is accurate, the discussion moves to which waivers to retire first and which standards are generating the most exceptions. A standard that attracts many waivers is often a bad standard, and the data tells you so."
-      },
-      {
-        "type": "h2",
-        "text": "Where a prototype stops and a program starts"
-      },
-      {
-        "type": "p",
-        "text": "A prototype on a fictional portfolio proves the mechanics. It does not prove that an enterprise can run it, and I want to be honest about the gap, because it is where most Architecture-as-Code efforts stall."
-      },
-      {
-        "type": "p",
-        "text": "The first gap is the catalog itself. In the prototype every system record is complete because I wrote them. In a real enterprise the inventory is partial, duplicated across tools and owned by nobody in particular. My rule is to never import a catalog wholesale. Seed it from the systems that change most often, require an owner for every record, and let the policy checks expose missing data. A check that fails because the classification field is blank is doing useful work."
-      },
-      {
-        "type": "p",
-        "text": "The second gap is trust in the rules. A policy that produces false positives in its first month loses its audience for a year. Run every new rule in report-only mode first, publish the results, and switch it to blocking only after the owning teams agree the findings are real."
-      },
-      {
-        "type": "p",
-        "text": "The third is ownership of the platform. Someone has to maintain the schemas, review rule changes and keep the MCP server current as standards change. If that work is a side project for an architecture team already in review meetings all week, the control plane decays into another stale repository. Fund it as a product, with a small team and a backlog, or do not start."
-      },
-      {
-        "type": "h2",
-        "text": "Putting the rules where code is written"
-      },
-      {
-        "type": "p",
-        "text": "The developer utilities are where it becomes practical. A command-line tool validates and scaffolds artifacts (`aac init`). An **MCP server** built on the open [Model Context Protocol](https://modelcontextprotocol.io/introduction) lets IDEs and AI assistants read system models, standards, waivers and patterns, validate YAML against enterprise schemas and run compliance rules. A **policy engine** written in Rego for [Open Policy Agent](https://www.openpolicyagent.org/docs) enforces security, integration and FinOps policies with its own test suite. **Context-driven development** grounds Copilot code generation in approved standards and patterns. A reference GitHub Actions pipeline runs schema validation, the compliance rules and three OPA checks (KMS encryption, autoscaling and API gateway) on every pull request."
-      },
-      {
-        "type": "p",
-        "text": "I deliberately started small: five compliance rules in the MCP server and three OPA checks in the pipeline. A handful of rules that everyone trusts beats a hundred that generate noise. Next on the roadmap is an AI review agent that also handles natural-language-to-YAML authoring and drift detection, and *aac2iac*, which turns architecture models into Terraform, OpenTofu, CloudFormation or Pulumi."
+        "text": "The organizational gaps matter more than the technical ones. Never import a system catalog wholesale; seed it from the systems that change most and require an owner for every record. Run each new rule in report-only mode before it blocks anything, because a rule that cries wolf in its first month loses its audience for a year. And fund the control plane as a product with a small team and a backlog. Architecture-as-Code maintained as a side project decays into one more stale repository."
       },
       {
         "type": "monday",
         "items": [
-          "Open the prototype at aac.muthub.org with your lead architect and list which of the four catalogs your enterprise could seed from existing data.",
-          "Export every open architecture exception you can find into one versioned file with owner and expiry fields, and count how many lack either.",
-          "Choose **three** enterprise standards and write each as a testable requirement that a pipeline could check with a clear pass or fail.",
-          "Name an owner and a small team for the architecture control plane before writing any policy code."
+          "Ask your architecture team to model one platform they own in C4 YAML and run it through the same checks they apply to product teams.",
+          "Inventory where your architecture rules are enforced today and count how many enforce the **same** rule in different code.",
+          "List every place an AI coding agent can read your standards, and the places where it cannot.",
+          "Pick one rule to run in report-only mode for a month before it blocks a release."
         ]
       },
       {
         "type": "p",
-        "text": "If you lead architecture in a regulated enterprise, I am curious: which would you build first, the waiver registry or the policy engine?"
+        "text": "If you run architecture in a regulated enterprise, I would like to know: could your platform pass its own rules?"
       },
       {
         "type": "bottomLine",
-        "text": "Architecture-as-Code is not a document format. It is a control plane: catalogs as truth, policies as tests, waivers as owned and dated decisions, and an MCP server so the AI writing your code knows the rules before it starts."
+        "text": "An architecture platform earns trust when it holds itself to its own rules. Model it in its own notation, draw component and code views only where they explain a real decision, and give AI agents the same governed access to standards that people have."
       }
     ]
   },

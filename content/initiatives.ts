@@ -22,6 +22,8 @@ export interface Initiative {
   links?: { label: string; url: string }[]
   /** Optional diagram from components/figures.tsx, shown after the approach. */
   figure?: FigureName
+  /** Optional level-by-level architecture walkthrough (C4), shown full width after the case study. */
+  architecture?: { intro: string; levels: { title: string; figure: FigureName; text: string }[] }
 }
 
 export const initiatives: Initiative[] = [
@@ -93,35 +95,79 @@ export const initiatives: Initiative[] = [
     slug: "aac-reference-platform",
     title: "Architecture-as-Code Reference Platform (open prototype)",
     summary:
-      "aac.muthub.org: a public, working prototype of an architecture control plane, with catalogs, OPA policies, waivers, an executive scorecard, a CLI and an MCP server that brings the rules into coding agents.",
+      "aac.muthub.org: a public, working prototype of an architecture control plane, with catalogs, OPA policies, waivers, an executive scorecard, a CLI and an MCP server that brings the rules into coding agents. It is modeled in its own notation and passes its own rules.",
     organization: "Personal project",
     period: "2026",
     role: "Designer and builder",
     stats: [
-      { value: "259K", label: "lines of code across the platform" },
-      { value: "11", label: "repositories, 22 deployable units" },
-      { value: "7", label: "developer utilities (CLI, MCP server, policy engine and more)" },
+      { value: "7", label: "containers, all fed by one Git repository of YAML" },
+      { value: "436", label: "automated tests behind a 9-job governance pipeline" },
+      { value: "10 · 3 · 2", label: "MCP resources, tools and prompts for AI coding agents" },
     ],
     problem:
       "Architecture-as-Code is easy to agree with and hard to picture. Leaders and engineers needed to see what an architecture control plane actually looks like before committing to one.",
     approach: [
-      "Modeled systems, patterns, standards and waivers as machine-readable, version-controlled catalogs (YAML, JSON and C4/Structurizr).",
-      "Built an operational lifecycle (plan, build, test, accept, deploy) with automated schema validation, compliance checks and generated diagrams and documentation, gated by pull requests.",
-      "Shipped developer utilities: a CLI (aac init, validate), an MCP server for IDEs and AI assistants, an OPA/Rego policy engine, context-driven development with Copilot Spaces and a reference GitHub Actions pipeline.",
+      "Modeled systems, patterns, standards and waivers as machine-readable, version-controlled YAML validated by JSON Schema, using the C4 model's vocabulary for systems and containers.",
+      "Built an operational lifecycle (define, build, test, accept, deploy) with automated schema validation, compliance checks and generated diagrams and documentation, gated by pull requests.",
+      "Shipped developer utilities: a CLI (aac init, create, validate), an MCP server for IDEs and AI assistants, an OPA/Rego policy engine, context-driven development with Copilot Spaces and a reference GitHub Actions pipeline.",
     ],
     governance: [
-      "Executable guardrails with pass/fail results on every pull request, including encryption, autoscaling and API-gateway policies.",
-      "Waivers as first-class records with risk, expiry and remediation tracking.",
-      "Model-to-runtime drift detection and architecture decision records kept next to the code.",
+      "Executable guardrails with pass/fail results on every pull request: five structural compliance rules plus OPA policies for encryption, API-gateway routing and rightsizing.",
+      "Waivers as first-class records with risk, compensating controls, financial impact, an approver, a remediation plan and an expiry date.",
+      "The platform's own C4 model lives in the repository and passes the same schema and rules it applies to every other system.",
     ],
     outcome: [
-      "An executive scorecard computed directly from the artifacts: standards conformance, risk posture, technical-debt exposure, remediation velocity, pattern reuse and cloud spend at risk.",
-      "A public reference that colleagues and the community can explore, referenced in my most-read Architecture-as-Code writing.",
+      "An executive scorecard computed directly from the artifacts: standards conformance, risk posture, technical-debt exposure, remediation velocity, pattern reuse and cloud spend at risk. The live site runs on a fictional sample portfolio.",
+      "A public reference that colleagues and the community can explore, with its source on GitHub and a level-by-level C4 walkthrough below.",
     ],
-    lesson: "A working prototype changes more minds than a strategy deck.",
-    technologies: ["Architecture-as-Code", "C4 / Structurizr", "OPA / Rego", "Model Context Protocol", "GitHub Actions", "GitHub Copilot Spaces", "JSON Schema"],
+    lesson: "A working prototype changes more minds than a strategy deck, and one that passes its own rules changes more still.",
+    technologies: ["Architecture-as-Code", "C4 model", "YAML and JSON Schema", "OPA / Rego", "Model Context Protocol", "Next.js", "GitHub Actions", "GitHub Copilot Spaces"],
     relatedWriting: ["inside-an-architecture-as-code-platform", "architecture-that-runs"],
-    links: [{ label: "Explore the live platform: aac.muthub.org", url: "https://aac.muthub.org" }],
+    links: [
+      { label: "Explore the live platform: aac.muthub.org", url: "https://aac.muthub.org" },
+      { label: "Read the source on GitHub", url: "https://github.com/muthub-ai/aac" },
+    ],
+    architecture: {
+      intro:
+        "The platform described in its own notation. Levels 1 and 2 and the deployment view are drawn from its C4 model in model/aac-platform, which passes the platform's own schema and compliance rules. Levels 3 and 4 are drawn from the source code, because the model deliberately stops at containers.",
+      levels: [
+        {
+          title: "Level 1: System context",
+          figure: "c4-context",
+          text: "Who the platform serves and what it depends on. Three people use it directly, and an AI coding assistant in the engineer's IDE is treated as a first-class user: it reads standards and validates designs through the MCP server, so agent-written designs meet the same rules as human ones.",
+        },
+        {
+          title: "Level 2: Containers",
+          figure: "c4-container",
+          text: "Seven containers, six of them projections of one Git repository. The dashboard has no database and reads the repository at build time, so nothing at runtime can drift from Git. The CLI validates against the published schemas with ETag caching, so every team's pipeline checks against the same contract the platform publishes.",
+        },
+        {
+          title: "Level 3: Components of the MCP server",
+          figure: "c4-component-mcp",
+          text: "Governance as an API for agents. Resources are read-only views, including only the approved, unexpired waivers; tools validate, lint and scaffold; prompts guide design and exception requests. Separating reading from acting lets an enterprise grant an agent one without the other.",
+        },
+        {
+          title: "Level 3: Components of the web dashboard",
+          figure: "c4-component-web",
+          text: "Pure functions for parsing, validation, view filtering, layout and export, wrapped by a thin React layer. The pipeline's diagram build reuses the same parser, view filter and layout, so previews on pull requests match the dashboard.",
+        },
+        {
+          title: "Level 4: Code of the YAML and diagram sync",
+          figure: "c4-code-sync",
+          text: "Drawn because it guards an invariant. Engineers can edit YAML or drag boxes, and each updates the other; a single syncSource field records which side started the change so the two update paths cannot loop. C4 treats this level as optional, and it is worth drawing only where a detail like this is easy to break.",
+        },
+        {
+          title: "Deployment",
+          figure: "c4-deployment",
+          text: "GitHub hosts the repository, runs the pipeline and serves the documentation microsite; Vercel serves the dashboard at aac.muthub.org; the CLI and MCP server run on engineers' machines, launched by the shell or the IDE.",
+        },
+        {
+          title: "Dynamic: a governed change, end to end",
+          figure: "c4-dynamic-change",
+          text: "From a local edit, by a person or an agent, through pull-request checks, diagram previews and architect review, to a published microsite and a rebuilt dashboard. The pull request is the architecture review board.",
+        },
+      ],
+    },
   },
   {
     slug: "enterprise-genai-architecture",

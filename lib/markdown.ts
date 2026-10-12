@@ -2,6 +2,7 @@ import { about, now } from "@/content/about"
 import { playbook } from "@/content/playbook"
 import { archive } from "@/content/archive"
 import { site, themeName, themes } from "@/content/site"
+import { figureMeta } from "@/components/figures"
 import { blocksToMarkdown, dateLabel, getEssay, getEssays, getInitiative, getInitiatives, getNote, getNotes } from "@/lib/content"
 
 // Markdown copies of every page, served at /<path>.md and listed in /llms.txt.
@@ -84,6 +85,12 @@ export function initiativeMarkdown(slug: string) {
     `## Problem\n\n${i.problem}\n\n## Approach\n\n${list(i.approach)}\n\n## Governance\n\n${list(i.governance)}\n\n` +
     `## Outcome\n\n${list(i.outcome)}\n\n## Lesson\n\n${i.lesson}\n\nTechnologies: ${i.technologies.join(", ")}` +
     (i.links?.length ? `\n\nLinks: ${i.links.map((l) => `[${l.label}](${l.url})`).join(", ")}` : "") +
+    (i.architecture
+      ? `\n\n## The architecture, level by level (C4)\n\n${i.architecture.intro}\n\n` +
+        i.architecture.levels
+          .map((l) => `### ${l.title}\n\n${l.text}\n\n*Figure: ${figureMeta[l.figure].alt}*`)
+          .join("\n\n")
+      : "") +
     footer
   )
 }
