@@ -30,6 +30,10 @@ export const about = {
     ],
     lead: [
       {
+        title: "Extreme ownership.",
+        text: "I own the outcome of every program I lead, including the parts I did not directly control. When something fails, I start with what I could have done differently and fix the plan; when it works, the teams who built it get the credit. The idea comes from Jocko Willink and Leif Babin's book of the same name, and it holds up in a bank as well as anywhere.",
+      },
+      {
         title: "Influence without authority.",
         text: "Most of the architecture change I have led crossed teams that did not report to me. Working examples and shared metrics moved them; mandates did not.",
       },
@@ -40,10 +44,6 @@ export const about = {
       {
         title: "Build it before you mandate it.",
         text: "I ship a working reference first and write the standard from what we learned. The Architecture-as-Code prototype at aac.muthub.org is one example.",
-      },
-      {
-        title: "Own the outcome, share the credit.",
-        text: "When something fails, I start with what I could have done differently. When it works, the teams who built it get the credit.",
       },
     ],
   },
