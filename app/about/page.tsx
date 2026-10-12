@@ -35,7 +35,7 @@ export default function AboutPage() {
           </p>
         </div>
         <figure className="flex max-w-[260px] flex-[1_1_220px] flex-col gap-2.5">
-          <Image src={site.headshot} alt={`Portrait of ${site.name}`} width={520} height={520} className="aspect-square w-full rounded object-cover" />
+          <Image src={site.headshot} alt={`Portrait of ${site.name}`} width={520} height={520} sizes="260px" className="aspect-square w-full rounded object-cover" />
           <figcaption className="text-[15px] text-muted">{site.location}</figcaption>
         </figure>
       </section>
