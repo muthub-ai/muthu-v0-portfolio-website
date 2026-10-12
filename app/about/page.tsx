@@ -119,9 +119,31 @@ export default function AboutPage() {
             <h2 id="kit" className="h-display text-[32px]">
               Speaker kit
             </h2>
-            <p className="lede">For event organizers and editors: bios you can use as written, and a headshot (JPG, 800 × 800).</p>
+            <p className="lede">For event organizers and editors: bios you can use as written, a headshot and a speaking photo.</p>
           </div>
-          <SpeakerKit bios={about.bios} headshot={site.headshot} />
+          <div className="grid items-start gap-10 md:grid-cols-[280px_minmax(0,1fr)] lg:grid-cols-[320px_minmax(0,1fr)]">
+            <figure className="flex flex-col gap-3">
+              <Image
+                src="/speaking.jpg"
+                alt={`${site.name} presenting on stage`}
+                width={800}
+                height={1000}
+                sizes="(min-width: 1024px) 320px, (min-width: 768px) 280px, 100vw"
+                className="aspect-[4/5] w-full max-w-[420px] rounded object-cover"
+              />
+              <figcaption className="text-[15px] leading-relaxed text-muted">
+                On stage, making the case for{" "}
+                <Link href="/writing/the-cost-of-unmanaged-context" className="link">
+                  managed enterprise context
+                </Link>
+                .{" "}
+                <a href="/speaking.jpg" download className="link whitespace-nowrap">
+                  Download (JPG)
+                </a>
+              </figcaption>
+            </figure>
+            <SpeakerKit bios={about.bios} headshot={site.headshot} />
+          </div>
         </div>
       </section>
 
