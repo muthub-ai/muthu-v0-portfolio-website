@@ -49,7 +49,7 @@ export const about = {
   },
   career: [
     { period: "2022 – present", org: "Wells Fargo", detail: "Executive Director (Distinguished Engineer), Chief Technology Office (2026 – present); Executive Director, multi-cloud Data & AI architecture (2022 – 2026)" },
-    { period: "2012 – 2022", org: "USAA", detail: "Director, Data & Analytics Platform (2020 – 2022); Lead Software Engineer (2017 – 2020); earlier, systems engineering and the Machine Learning Lab" },
+    { period: "2012 – 2022", org: "USAA", detail: "Staff Engineer, Data & Analytics Platform (2020 – 2022); Lead Software Engineer (2017 – 2020); earlier, systems engineering and the Machine Learning Lab" },
     { period: "2004 – 2012", org: "Bunge North America", detail: "IT Technical Manager, Middleware Platforms; earlier, systems administration" },
   ],
   education: [
@@ -61,7 +61,7 @@ export const about = {
     short:
       "Muthukrishnan (Muthu) Bommiah is an Executive Director and Distinguished Engineer at Wells Fargo, where he advises technology leadership on enterprise generative and agentic AI and led the architecture of the bank's AI-augmented software lifecycle. Earlier, at USAA, he built the enterprise machine learning platform. He writes about governed AI in banking at muthub.org.",
     long:
-      "Muthukrishnan (Muthu) Bommiah is an Executive Director and Distinguished Engineer at Wells Fargo, where he advises technology leadership on enterprise generative and agentic AI. He helped shape the bank's AI strategy, led the architecture of its AI-augmented software lifecycle and built an Architecture-as-Code control plane that checks designs automatically before they reach production. Before Wells Fargo, Muthu spent a decade at USAA, rising to Director of its Data & Analytics Platform, where he built the enterprise machine learning platform that brought data scientists onto one governed environment and made model deployment dramatically faster. Earlier he led middleware and enterprise platforms at Bunge. He holds an M.S. in Computer Science from the University of Oklahoma and writes about governed AI, the AI-native software lifecycle and enterprise data platforms at muthub.org.",
+      "Muthukrishnan (Muthu) Bommiah is an Executive Director and Distinguished Engineer at Wells Fargo, where he advises technology leadership on enterprise generative and agentic AI. He helped shape the bank's AI strategy, led the architecture of its AI-augmented software lifecycle and built an Architecture-as-Code control plane that checks designs automatically before they reach production. Before Wells Fargo, Muthu spent a decade at USAA, where he built the enterprise machine learning platform that brought data scientists onto one governed environment and made model deployment dramatically faster. Earlier he led middleware and enterprise platforms at Bunge. He holds an M.S. in Computer Science from the University of Oklahoma and writes about governed AI, the AI-native software lifecycle and enterprise data platforms at muthub.org.",
   },
   reach: {
     yes: ["Conference talks and panels", "Podcasts and interviews", "Advisory boards", "Peer exchanges with AI and architecture leaders in regulated industries"],
