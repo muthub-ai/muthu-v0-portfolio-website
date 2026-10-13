@@ -176,7 +176,7 @@ export const initiatives: Initiative[] = [
       "An enterprise-grade Generative AI reference architecture: a governed path from experiment to production, adopted as the reference model across business lines.",
     organization: "Wells Fargo",
     period: "2024",
-    role: "Principal Architect",
+    role: "Executive Director, Data & AI architecture",
     featured: true,
     stats: [],
     problem:
@@ -236,7 +236,7 @@ export const initiatives: Initiative[] = [
       "A configuration-driven, secure data movement pattern built at USAA to move 25B+ records a day, then carried to Wells Fargo as a bank-wide framework for analytics and AI.",
     organization: "USAA and Wells Fargo",
     period: "2020 – 2024",
-    role: "Architect at USAA; Principal Architect at Wells Fargo",
+    role: "Director at USAA; Executive Director at Wells Fargo",
     stats: [
       { value: "25B+", label: "records per day at USAA" },
       { value: "20x", label: "scalability in the next-generation platform" },
@@ -270,7 +270,7 @@ export const initiatives: Initiative[] = [
       "An enterprise MLOps platform that moved 360 data scientists onto one governed environment, saved $25M in license costs over 3 years and cut model deployment from 8 weeks to 5 days.",
     organization: "USAA",
     period: "2017 – 2022",
-    role: "Lead Software Engineer, then Staff Engineer",
+    role: "Lead Software Engineer, then Director, Data & Analytics Platform",
     featured: false,
     stats: [
       { value: "360", label: "data scientists on one governed platform" },
@@ -306,7 +306,7 @@ export const initiatives: Initiative[] = [
       "A cloud data platform at USAA processing 25B+ records a day, with an AWS architecture approved for identity, data protection and detective controls.",
     organization: "USAA",
     period: "2020 – 2022",
-    role: "Staff Engineer, Data & Analytics Platform",
+    role: "Director, Data & Analytics Platform",
     stats: [
       { value: "25B+", label: "records per day" },
       { value: "800K", label: "files per day" },

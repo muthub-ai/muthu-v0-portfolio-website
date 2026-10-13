@@ -17,7 +17,7 @@ export const site = {
   email: "muthukrishnanb@gmail.com",
   tagline: "Architecting how banks put AI to work, at scale and under control.",
   shortBio:
-    "Distinguished Engineer at Wells Fargo. Over two decades building enterprise AI, data and cloud platforms across financial services and global industry. I write about governed AI, the AI-native software lifecycle and the platforms that make both work.",
+    "Executive Director and Distinguished Engineer at Wells Fargo. Over two decades building enterprise AI, data and cloud platforms across financial services and global industry. I write about governed AI, the AI-native software lifecycle and the platforms that make both work.",
   description:
     "Muthukrishnan (Muthu) Bommiah is a Distinguished Engineer at Wells Fargo who architects how banks put AI to work at scale and under control: governed Generative and agentic AI, AI-augmented software delivery, Architecture-as-Code and production machine learning.",
   disclosure: "Views are my own and do not represent my employer.",
