@@ -211,7 +211,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The upstream registry describes itself as an open catalog and API for publicly available MCP servers. It holds self-reported metadata, moderates through community reports and maintainer denylisting, and publishes an open API specification so others can build compatible sub-registries. Its authors say plainly that enterprises with strict security requirements should run private sub-registries that use the public catalog as their upstream."
+        "text": "The upstream registry describes itself as an open catalog and API for publicly available MCP servers. It holds self-reported metadata, moderates through community reports and maintainer denylisting, and publishes an open API specification so others can build compatible sub-registries. Its authors expect enterprises with strict security requirements to run private sub-registries that use the public catalog as their upstream."
       },
       {
         "type": "p",
@@ -577,7 +577,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "[LangChain4j reached 1.0 in May 2025](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0), with model clients, retrieval, tool calling, chat memory and MCP client support. The following week Google announced the [initial Java release of its Agent Development Kit](https://developers.googleblog.com/agents-adk-agent-engine-a2a-enhancements-google-io/), which puts a major cloud provider's agent framework on the JVM alongside its Python original."
+        "text": "[LangChain4j reached 1.0 in May 2025](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0) for its core modules, with model clients, retrieval, tool calling and chat memory, while its MCP client followed as a beta. The following week Google announced the [initial Java release of its Agent Development Kit](https://developers.googleblog.com/agents-adk-agent-engine-a2a-enhancements-google-io/), which puts a major cloud provider's agent framework on the JVM alongside its Python original."
       },
       {
         "type": "h2",
