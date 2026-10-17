@@ -1,0 +1,28 @@
+name: weekly external links
+
+# Sources cited in essays move or disappear. This checks them weekly against the live site and opens
+# an issue when something is broken. It never blocks a deploy.
+on:
+  schedule:
+    - cron: "17 12 * * 1"   # Mondays 12:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - id: check
+        run: node scripts/check-links.mjs --external --strict | tee links.txt
+        env: { BASE_URL: "https://muthub.org" }
+        continue-on-error: true
+      - if: steps.check.outcome == 'failure'
+        run: gh issue create --title "Broken links on muthub.org ($(date -u +%F))" --body-file links.txt --label links || gh issue create --title "Broken links on muthub.org ($(date -u +%F))" --body-file links.txt
+        env: { GH_TOKEN: "${{ github.token }}" }
