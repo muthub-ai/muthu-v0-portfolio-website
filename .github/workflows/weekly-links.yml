@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with: { node-version: 22 }
       - id: check
+        shell: bash   # bash -eo pipefail: the checker's exit code, not tee's, decides the outcome
         run: node scripts/check-links.mjs --external --strict | tee links.txt
         env: { BASE_URL: "https://muthub.org" }
         continue-on-error: true

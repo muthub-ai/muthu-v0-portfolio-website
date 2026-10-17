@@ -17,7 +17,8 @@ const toLocal = (url) => (url.startsWith(site) ? base + url.slice(site.length) :
 
 async function get(url, method = "GET") {
   try {
-    const res = await fetch(url, { method, redirect: "follow", headers: { "user-agent": "muthub-link-check" } })
+    // One slow host must not stall the whole run.
+    const res = await fetch(url, { method, redirect: "follow", headers: { "user-agent": "muthub-link-check" }, signal: AbortSignal.timeout(15000) })
     return { status: res.status, text: method === "GET" ? await res.text() : "" }
   } catch (e) {
     return { status: 0, text: String(e) }
@@ -57,8 +58,8 @@ if (external) {
   for (const [url, from] of outside) {
     let { status } = await get(url, "HEAD")
     if (status === 405 || status === 403 || status === 0) ({ status } = await get(url))
-    // 401/403/429 often mean "bot blocked", not "gone": report them separately.
-    if (status === 404 || status === 410 || status === 0 || status >= 500) externalFailures.push(`${status} ${url} (from ${from})`)
+    // 401/403/429, and non-standard codes such as LinkedIn's 999, mean "bot blocked", not "gone": report them separately.
+    if (status === 404 || status === 410 || status === 0 || (status >= 500 && status < 600)) externalFailures.push(`${status} ${url} (from ${from})`)
     else if (status >= 400) console.log(`  WARN ${status} ${url}`)
   }
   console.log(`external: ${outside.size} checked, ${externalFailures.length} broken`)
