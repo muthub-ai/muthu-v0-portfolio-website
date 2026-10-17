@@ -10,17 +10,6 @@ import { BrandIcon } from "@/components/social-icons"
 
 const headerSocial = site.social.filter((s) => s.label === "LinkedIn" || s.label === "GitHub")
 
-function ReachMe({ className = "" }: { className?: string }) {
-  return (
-    <Link
-      href="/reach"
-      className={`inline-flex min-h-[40px] items-center rounded-full bg-ink px-4 text-[15px] font-medium text-page transition-opacity hover:opacity-90 ${className}`}
-    >
-      Reach me
-    </Link>
-  )
-}
-
 export function SiteHeader() {
   const pathname = usePathname() ?? "/"
   const [open, setOpen] = useState(false)
@@ -69,7 +58,6 @@ export function SiteHeader() {
             </a>
           ))}
           <ThemeToggle />
-          <ReachMe className="ml-1.5" />
         </div>
 
         <div className="flex items-center gap-1 lg:hidden">
@@ -105,7 +93,6 @@ export function SiteHeader() {
               </li>
             ))}
             <li className="flex items-center gap-3 pb-3 pt-2">
-              <ReachMe />
               {headerSocial.map((s) => (
                 <a
                   key={s.label}
