@@ -6,6 +6,7 @@ import {
   type ThemeProviderProps,
 } from 'next-themes'
 
-export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
+// next-themes' props type no longer declares children, so add it explicitly.
+export function ThemeProvider({ children, ...props }: ThemeProviderProps & { children?: React.ReactNode }) {
   return <NextThemesProvider {...props}>{children}</NextThemesProvider>
 }

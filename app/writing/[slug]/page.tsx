@@ -59,7 +59,7 @@ export default function WritingItemPage({ params }: Props) {
   const relatedEssays = [...sameTheme, ...picked, ...getEssays()]
     .filter((e, i, all) => e.slug !== item.slug && all.findIndex((x) => x.slug === e.slug) === i)
     // Prefer pieces published on or before this one, so an older article never reads as pointing forward.
-    .sort((a, b) => Number(a.published > item.published) - Number(b.published > item.published))
+    .sort((a, b) => Number((a.published ?? "") > (item.published ?? "")) - Number((b.published ?? "") > (item.published ?? "")))
     .slice(0, 2)
 
   const minutes = readingMinutes(item.body)

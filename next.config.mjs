@@ -30,7 +30,13 @@ const securityHeaders = [
 const nextConfig = {
   poweredByHeader: false,
   async headers() {
-    return [{ source: "/:path*", headers: securityHeaders }]
+    // Markdown twins are for agents; keep them out of Google's index so they never compete with the HTML pages.
+    const noindex = [{ key: "X-Robots-Tag", value: "noindex, follow" }]
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      { source: "/:path(.*\\.md)", headers: noindex },
+      { source: "/md/:path*", headers: noindex },
+    ]
   },
   eslint: {
     ignoreDuringBuilds: true,

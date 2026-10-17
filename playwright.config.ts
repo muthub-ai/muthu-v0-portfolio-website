@@ -11,12 +11,18 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: 'html',
+  reporter: process.env.CI ? [['list'], ['html', { open: 'never' }]] : 'html',
   use: {
     baseURL: 'http://localhost:3000',
     trace: 'on-first-retry',
   },
-  projects: [
+  // In CI the workflow builds the site first; this starts the production server and waits for it.
+  webServer: process.env.CI
+    ? { command: 'pnpm start', url: 'http://localhost:3000', reuseExistingServer: false, timeout: 120 * 1000 }
+    : undefined,
+  projects: process.env.CI
+    ? [{ name: 'chromium', use: { ...devices['Desktop Chrome'] } }]
+    : [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },

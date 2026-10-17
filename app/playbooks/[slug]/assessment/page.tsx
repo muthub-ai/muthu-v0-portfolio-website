@@ -20,6 +20,7 @@ export function generateMetadata({ params }: Props): Metadata {
   if (!playbook) return {}
   return pageMetadata({
     path: `/playbooks/${playbook.slug}/assessment`,
+    markdownPath: `/playbooks/${playbook.slug}.md`, // the assessment is the playbook's checklist, scored in the browser
     title: `Self-assessment: ${playbook.short}`,
     description: `Score your organization against ${playbook.items.length} points from "${playbook.title}". Runs in your browser; nothing is stored.`,
     image: writingImage(`playbooks-${playbook.slug}`, playbook.title),
