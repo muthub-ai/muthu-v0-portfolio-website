@@ -517,7 +517,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "quote",
-        "text": "Model is a tool. Harness is the strategy."
+        "text": "The model proposes, deterministic code decides."
       },
       {
         "type": "p",

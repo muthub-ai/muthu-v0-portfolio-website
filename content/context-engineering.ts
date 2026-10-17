@@ -468,7 +468,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Partly. Graphs are excellent for relationships, and Gartner's view, as [Atlan summarizes it](https://atlan.com/know/gartner-context-graphs/), is that context graphs augment knowledge graphs rather than replace them, adding a procedural layer of decisions, workflows and traces. But a graph is a representation, not a governance model. What matters is curation: who decides what goes in, how it is verified and when it expires. You can store a curated overlay as files, as a graph, or both. You cannot skip the curation."
+        "text": "Partly. Graphs are excellent for relationships, and Gartner's view, as [Atlan summarizes it](https://atlan.com/know/gartner-context-graphs/), is that context graphs augment knowledge graphs rather than replace them; Atlan adds that they carry a procedural layer of decisions, workflows and traces. But a graph is a representation, not a governance model. What matters is curation: who decides what goes in, how it is verified and when it expires. You can store a curated overlay as files, as a graph, or both. You cannot skip the curation."
       },
       {
         "type": "monday",
