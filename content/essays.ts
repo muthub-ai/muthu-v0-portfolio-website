@@ -44,7 +44,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "h2",
-        "text": "The early evidence points the same way"
+        "text": "The evidence points the same way"
       },
       {
         "type": "p",
@@ -52,7 +52,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The DORA team's explanation is the one I agree with: a better development process does not automatically produce better delivery unless the basics hold, such as small batches and solid testing. I would add one basic that most enterprises have never automated, which is architectural conformance. We test whether code works. We rarely test whether it belongs."
+        "text": "The [2025 DORA report](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report) moved the picture forward without changing its shape: AI adoption now related positively to delivery throughput but still negatively to stability. I agree with the report's explanation. Acceleration exposes weaknesses downstream, and without controls such as automated testing and fast feedback loops, more change means more instability. I would add one control that most enterprises have never automated, which is architectural conformance. We test whether code works. We rarely test whether it belongs."
       },
       {
         "type": "figure",
@@ -110,7 +110,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The delivery channel matters as much as the rules. The [Model Context Protocol](https://modelcontextprotocol.io/introduction) gives coding assistants an open, standard way to reach external systems, so an assistant can query the architecture repository and validate its own output before anything is committed. That is how architectural control scales across thousands of developers: governance in the terminal, where the code is written, instead of in a meeting two weeks later."
+        "text": "The delivery channel matters as much as the rules. The Model Context Protocol gives coding assistants an open, standard way to reach external systems, so an assistant can query the architecture repository and validate its own output before anything is committed. That is how architectural control scales across thousands of developers: governance in the terminal, where the code is written, instead of in a meeting two weeks later."
       },
       {
         "type": "h2",
@@ -211,7 +211,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Then there is perception. In [METR's randomized study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) of 16 experienced open-source developers working on 246 real issues, the developers took 19% longer when AI was allowed, yet afterwards still believed it had sped them up by 20%. METR has since marked those results as dated and published newer data, so I do not treat the number as permanent. The lesson I take is about measurement: if experienced engineers cannot feel the difference, self-reported productivity is not evidence."
+        "text": "Then there is perception. In [METR's randomized study](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) of 16 experienced open-source developers working on 246 real issues, the developers took 19% longer when AI was allowed, yet afterwards still believed it had sped them up by 20%. In February 2026 METR published newer data on late-2025 tools and changed its study design, so I do not treat the number as permanent. The lesson I take is about measurement: if experienced engineers cannot feel the difference, self-reported productivity is not evidence."
       },
       {
         "type": "figure",
@@ -593,7 +593,7 @@ export const essays: Essay[] = [
     "body": [
       {
         "type": "p",
-        "text": "**For complex work in regulated industries, prompt-to-code is a non-starter, and the specification has to become the contract the AI must fulfil.** I first argued this in October 2025, and a year of watching teams try it has sharpened the view rather than softened it. The risk, unpredictability and lack of verifiability of free-form prompting are not acceptable when an examiner can ask why a system behaves the way it does."
+        "text": "**For complex work in regulated industries, prompt-to-code is a non-starter, and the specification has to become the contract the AI must fulfil.** Tools built around this idea have appeared quickly over the past few months, and the enthusiasm is running ahead of the evidence. The risk, unpredictability and lack of verifiability of free-form prompting are not acceptable when an examiner can ask why a system behaves the way it does."
       },
       {
         "type": "p",
@@ -649,7 +649,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "[Thoughtworks placed spec-driven development in Assess](https://www.thoughtworks.com/radar/techniques/spec-driven-development) on its November 2025 Technology Radar for similar reasons: elaborate, opinionated workflows, lengthy spec files that are hard to review, and the risk of relearning the bitter lesson that handcrafted rules for AI do not scale."
+        "text": "There is a deeper risk underneath her critique. Rich Sutton's [bitter lesson](https://www.incompleteideas.net/IncIdeas/BitterLesson.html) is that general methods which scale with computation beat handcrafted knowledge \"by a large margin.\" Elaborate, opinionated workflows and lengthy spec files that are hard to review are handcrafted rules for AI, and some of today's spec ceremony may age badly as models improve."
       },
       {
         "type": "h2",
@@ -694,7 +694,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The business case I made originally still holds. Velocity, because low-level repetitive coding is automated. Predictability, because a formal contract sharply reduces ambiguity and hallucination. Auditability, because the spec becomes the primary artifact for compliance and security review, and it is far more efficient to audit a spec than thousands of lines of generated code."
+        "text": "The business case is simple to state. Velocity, because low-level repetitive coding is automated. Predictability, because a formal contract sharply reduces ambiguity and hallucination. Auditability, because the spec becomes the primary artifact for compliance and security review, and it is far more efficient to audit a spec than thousands of lines of generated code."
       },
       {
         "type": "p",
@@ -771,7 +771,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Context engineering has become the term of the year, for good reason. Anthropic's engineering team defines it as [curating and maintaining the optimal set of tokens during inference](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents), and argues for finding the smallest possible set of high-signal tokens for a task. They also describe agents writing structured notes to memory outside the context window so they can pick up long tasks later."
+        "text": "Context engineering has become a standard term, for good reason. Anthropic's engineering team defines it as [curating and maintaining the optimal set of tokens during inference](https://anthropic.com/engineering/effective-context-engineering-for-ai-agents), and argues for finding the smallest possible set of high-signal tokens for a task. They also describe agents writing structured notes to memory outside the context window so they can pick up long tasks later."
       },
       {
         "type": "p",
@@ -860,9 +860,8 @@ export const essays: Essay[] = [
     "theme": "governed-ai",
     "status": "published",
     "published": "2025-04-22",
-    "updated": "2026-06-16",
     "plannedFor": "Jan 2027",
-    "source": "Adapted from my LinkedIn post of April 18, 2025, updated for 2026.",
+    "source": "Adapted from my LinkedIn post of April 18, 2025.",
     "related": [
       "if-you-cant-prove-why-an-ai-wrote-it",
       "model-is-a-tool-harness-is-the-strategy"
@@ -882,11 +881,11 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Most security reviews start by asking whether the server is patched and authenticated. Those questions matter, but the more interesting risks live where traditional API review never looked. In April 2025, [Invariant Labs described tool poisoning attacks](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks), in which hidden instructions inside a tool's description steer the model while the user sees only a short, harmless tool name. The same research showed two variants that should worry anyone running a shared environment: a server that changes its tool description after the client approved it (a rug pull), and a malicious server whose description changes how the agent uses a different, trusted server."
+        "text": "Most security reviews start by asking whether the server is patched and authenticated. Those questions matter, but the more interesting risks live where traditional API review never looked. Earlier this month, [Invariant Labs described tool poisoning attacks](https://invariantlabs.ai/blog/mcp-security-notification-tool-poisoning-attacks), in which hidden instructions inside a tool's description steer the model while the user sees only a short, harmless tool name. The same research showed two variants that should worry anyone running a shared environment: a server that changes its tool description after the client approved it (a rug pull), and a malicious server whose description changes how the agent uses a different, trusted server."
       },
       {
         "type": "p",
-        "text": "The lesson for a bank is uncomfortable. Text that a model reads behaves like code, even if no engineer would call it that. The specification says as much: [clients must treat tool annotations as untrusted unless they come from trusted servers](https://modelcontextprotocol.io/specification/2025-06-18/server/tools), and a human should always be able to deny a tool call. Prompt injection sits at the top of the [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/llm-top-10/), with excessive agency not far behind. In MCP those two risks meet."
+        "text": "The lesson for a bank is uncomfortable. Text that a model reads behaves like code, even if no engineer would call it that. The current specification says as much: [clients must treat tool annotations as untrusted unless they come from trusted servers](https://modelcontextprotocol.io/specification/2025-03-26/server/tools), and a human should always be able to deny a tool call. Prompt injection sits at the top of the [OWASP Top 10 for LLM Applications 2025](https://genai.owasp.org/llm-top-10/), with excessive agency not far behind. In MCP those two risks meet."
       },
       {
         "type": "p",
@@ -926,11 +925,11 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The protocol has changed a lot in a short time. The current [authorization specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) treats an MCP server as an OAuth 2.1 resource server, requires clients to bind each token to a specific server with a resource indicator, and forbids a server from passing the token it received through to downstream APIs. Those are exactly the controls a bank wants, and plenty of early servers predate them."
+        "text": "The protocol has changed a lot in a short time. The [March 2025 authorization specification](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization) brings OAuth 2.1 to HTTP transports and requires PKCE for every client. That is progress, but authorization is still optional, local servers read credentials from the environment, and the example flow has each MCP server acting as its own authorization server. A bank already has an identity provider. I would require servers to accept its tokens, scope each token to one server, and never pass a received token through to downstream APIs."
       },
       {
         "type": "p",
-        "text": "Registries help. [The official MCP Registry, launched in preview in September 2025](https://blog.modelcontextprotocol.io/posts/2025-09-08-mcp-registry-preview/), is built so enterprises can run private sub-registries with the public catalog as their upstream source. That gives a bank a natural control point: assess public servers once, publish the approved ones internally, block everything else. Legacy integration, performance at enterprise scale and the upkeep of many small servers are still real costs. I budget for them as ongoing platform work, not a one-time project."
+        "text": "Registries will help once they exist. The project's published roadmap plans an official MCP Registry for centralized server discovery, designed as an API layer that marketplaces build on. Until then, public directories offer discovery, not assurance, and a bank should not wait. Build an internal catalog: assess each public server once, publish the approved versions internally, block everything else. Legacy integration, performance at enterprise scale and the upkeep of many small servers are still real costs. I budget for them as ongoing platform work, not a one-time project."
       },
       {
         "type": "h2",
@@ -942,7 +941,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "First, classify the server by the most sensitive thing it can return, which here is customer financial data. That one decision sets the rest: regional deployment, field-level masking for account numbers, and a model endpoint approved for that data class. Second, scope it to read-only, with a token bound to that server alone and no ability to pass it downstream. Third, pin the tool descriptions, hash them, and register the approved version in the internal registry so a later change triggers review instead of silently taking effect."
+        "text": "First, classify the server by the most sensitive thing it can return, which here is customer financial data. That one decision sets the rest: regional deployment, field-level masking for account numbers, and a model endpoint approved for that data class. Second, scope it to read-only, with a token bound to that server alone and no ability to pass it downstream. Third, pin the tool descriptions, hash them, and register the approved version in the internal catalog so a later change triggers review instead of silently taking effect."
       },
       {
         "type": "p",
@@ -974,7 +973,7 @@ export const essays: Essay[] = [
           "Inventory every MCP server already in use across engineering, including local ones in developer tools, and classify each by the most sensitive data it can return.",
           "Require tool descriptions to be pinned, hashed and diffed, and route any changed description back through approval like a code change.",
           "Draft the audit record schema for one agent use case and test whether it can answer a mock examiner's question end to end.",
-          "Stand up a private MCP registry and block agents from connecting to any server that is not published in it."
+          "Stand up an internal catalog of approved MCP servers and block agents from connecting to any server that is not listed in it."
         ]
       },
       {
@@ -983,7 +982,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "bottomLine",
-        "text": "MCP solves connectivity. Trust is still an architecture problem: identity, policy, audit and a governed registry decide whether a bank can use it safely."
+        "text": "MCP solves connectivity. Trust is still an architecture problem: identity, policy, audit and a governed server catalog decide whether a bank can use it safely."
       }
     ]
   },
@@ -1184,7 +1183,7 @@ export const notes: Note[] = [
       },
       {
         "type": "p",
-        "text": "Multi-agent orchestration in the editor changes the shape of the work. A local agent handles strategy and quick answers. Background agents work in isolated worktrees on well-scoped tasks. Cloud agents take the heavy lifting, like large refactors or long test runs. All of them draw on shared context, so nobody has to re-explain the codebase each time."
+        "text": "Multi-agent orchestration in the editor changes the shape of the work. A local agent handles strategy and quick answers. Background agents work in isolated worktrees on well-scoped tasks. Cloud agents take the heavy lifting, like large refactors or long test runs. Ideally all of them draw on the same repository instructions and context, so nobody has to re-explain the codebase each time."
       },
       {
         "type": "p",
@@ -1207,7 +1206,7 @@ export const notes: Note[] = [
     "body": [
       {
         "type": "p",
-        "text": "**AI does not fix a team; it amplifies whatever is already there.** The [2025 DORA report](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report) put data behind what many of us had seen in practice: strong teams get stronger, and struggling teams find their problems arrive faster and louder. The single biggest factor in turning individual gains into organizational performance was the quality of the internal platform."
+        "text": "**AI does not fix a team; it amplifies whatever is already there.** The [2025 DORA report](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report) put data behind what many of us had seen in practice: strong teams get stronger, and struggling teams find their existing problems highlighted and intensified. The greatest return came not from the AI tools themselves but from the quality of internal platforms, the clarity of workflows and the alignment of teams."
       },
       {
         "type": "p",
@@ -1215,7 +1214,7 @@ export const notes: Note[] = [
       },
       {
         "type": "p",
-        "text": "Two other points from the research deserve more attention than they get. First, a clear AI policy is a blueprint, not a blockade. Teams experiment more, not less, when they know where the lines are. Second, faster coding only helps if code review, testing and deployment change too. Otherwise you have moved the queue downstream and called it productivity."
+        "text": "Two other points from the research deserve more attention than they get. First, DORA recommends clarifying and socializing your AI policies. In my experience a clear policy is a blueprint, not a blockade: teams experiment more, not less, when they know where the lines are. Second, acceleration exposes weaknesses downstream. Faster coding only helps if testing, version control and feedback loops keep up. Otherwise you have moved the queue and called it productivity."
       },
       {
         "type": "p",

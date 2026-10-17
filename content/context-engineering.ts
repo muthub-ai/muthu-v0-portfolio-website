@@ -38,7 +38,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The human cost is well documented. Panopto's workplace knowledge study found that knowledge workers spend [5.3 hours a week](https://www.hrdive.com/news/inefficient-knowledge-sharing-costs-large-us-businesses-47m-a-year/527892/) waiting for information from colleagues or recreating information that already exists, and that 42% of institutional knowledge is unique to the person who holds it. Atlassian's State of Teams 2025 put the waste at [2.4 billion hours a year](https://petri.com/inefficient-information-management-costing-businesses/) spent searching for information, and half of knowledge workers said teams were unknowingly working on the same tasks."
+        "text": "The human cost is well documented. Panopto's workplace knowledge study found that knowledge workers spend [5.3 hours a week](https://www.hrdive.com/news/inefficient-knowledge-sharing-costs-large-us-businesses-47m-a-year/527892/) waiting for information from colleagues or recreating information that already exists, and that 42% of institutional knowledge is unique to the person who holds it. Atlassian's State of Teams 2025 put the waste at [2.4 billion hours a year](https://petri.com/inefficient-information-management-costing-businesses/) spent searching for information, and half of the workers surveyed said poor communication had teams duplicating work."
       },
       {
         "type": "p",
@@ -62,7 +62,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Here is the point I think most AI business cases miss. The marginal cost of a new agent is rarely the license. It is the context that agent has to assemble before it is useful. If every agent starts from zero, your context bill grows in step with your AI ambition. The bottleneck has moved from the model to the quality, freshness and governance of what we feed it."
+        "text": "Here is the point I think most AI business cases miss. The marginal cost of a new agent is rarely the license. It is the context that agent has to assemble before it is useful. If every agent starts from zero, your context bill grows in step with your AI ambition."
       },
       {
         "type": "h2",
@@ -468,7 +468,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Partly. Graphs are excellent for relationships, and Gartner positions context graphs as [augmenting knowledge graphs](https://atlan.com/know/gartner-context-graphs/) with a procedural layer of decisions, workflows and traces. But a graph is a representation, not a governance model. What matters is curation: who decides what goes in, how it is verified and when it expires. You can store a curated overlay as files, as a graph, or both. You cannot skip the curation."
+        "text": "Partly. Graphs are excellent for relationships, and Gartner's view, as [Atlan summarizes it](https://atlan.com/know/gartner-context-graphs/), is that context graphs augment knowledge graphs rather than replace them, adding a procedural layer of decisions, workflows and traces. But a graph is a representation, not a governance model. What matters is curation: who decides what goes in, how it is verified and when it expires. You can store a curated overlay as files, as a graph, or both. You cannot skip the curation."
       },
       {
         "type": "monday",
@@ -558,7 +558,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "It is tempting to remove the human to go faster. Resist it. Benchmarks for automated codebase documentation still show accuracy [well short of reliable](/writing/living-documentation-trust-gap), so it needs oversight. A confident, wrong page is more dangerous than an empty one, because people and agents trust it. In regulated industries the approval is also the evidence: it shows who verified a piece of knowledge and when."
+        "text": "It is tempting to remove the human to go faster. Resist it. Generated documentation becomes fluent long before it becomes reliable, which is the [trust gap I wrote about last year](/writing/living-documentation-trust-gap): a page that is 90% right still needs a human, because nobody knows which 10% is wrong. A confident, wrong page is more dangerous than an empty one, because people and agents trust it. In regulated industries the approval is also the evidence: it shows who verified a piece of knowledge and when."
       },
       {
         "type": "p",
@@ -660,7 +660,7 @@ export const contextEngineeringEssays: Essay[] = [
   {
     "slug": "self-describing-knowledge-open-knowledge-format",
     "title": "Self-describing knowledge: why the Open Knowledge Format matters, and what enterprises must add",
-    "summary": "In June, Google Cloud published the Open Knowledge Format: knowledge as plain Markdown with a little structured metadata. It is the right foundation. Regulated enterprises need the next step: knowledge that states its own owner, provenance, freshness and trust.",
+    "summary": "In June, Google Cloud published the Open Knowledge Format, and July's v0.2 added provenance, verification and freshness. It is the right foundation. Regulated enterprises still need to add ownership, classification and a policy for how much trust an agent needs before it acts.",
     "theme": "context-engineering",
     "status": "published",
     "published": "2026-09-15",
@@ -681,7 +681,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "On June 12, 2026, Google Cloud published a candidate answer: the [Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing), or OKF v0.1. I think it gets the foundation right. I also think regulated enterprises need to build on top of it carefully, and together."
+        "text": "On June 12, 2026, Google Cloud published a candidate answer: the [Open Knowledge Format](https://cloud.google.com/blog/products/data-analytics/how-the-open-knowledge-format-can-improve-data-sharing), or OKF. Six weeks later Google shipped [OKF v0.2](https://cloud.google.com/blog/products/data-analytics/okf-v0-2-adds-trust-signals), which added provenance and trust signals. I think it gets the foundation right. I also think regulated enterprises need to build on top of it carefully, and together."
       },
       {
         "type": "h2",
@@ -689,7 +689,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "OKF v0.1 is deliberately small. Knowledge is a directory of Markdown files, one concept per file, where the file path is the concept's identity. A concept can be a table, a dataset, a metric, a runbook or an API. Each file carries YAML frontmatter, and only one field is required: `type`. Optional fields cover a title, a description, a link to the live resource, tags and a timestamp. Concepts link to each other with ordinary Markdown links, which turns the directory into a graph. Optional index files support progressive disclosure, and optional log files record history. The [spec and reference code](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf) are public."
+        "text": "OKF is deliberately small. Knowledge is a directory of Markdown files, one concept per file, where the file path is the concept's identity. Each file carries YAML frontmatter, and only one field is required: `type`. A title, a description, a link to the live resource and tags are recommended. Concepts link to each other with ordinary Markdown links, which turns the directory into a graph. Optional index files support progressive disclosure, and optional log files record history. The [spec and reference code](https://github.com/GoogleCloudPlatform/open-knowledge-format) are public, and since August they have their own repository."
       },
       {
         "type": "p",
@@ -704,7 +704,7 @@ export const contextEngineeringEssays: Essay[] = [
         "items": [
           "**People and agents read the same thing.** Markdown renders in any editor and on GitHub, and models read it natively.",
           "**Version control comes free.** Put knowledge in Git and you get history, diffs, review, blame and rollback, the controls engineering already trusts.",
-          "**Retrieval stays flexible.** The same files can feed keyword search, vector indexes or a graph. The format does not lock you into one retrieval strategy.",
+          "**Retrieval stays flexible.** The same files can feed keyword search, vector indexes or a graph.",
           "**Switching models stays cheap.** Knowledge outlives any one model, vendor or agent framework when it lives in an open format you own."
         ]
       },
@@ -714,32 +714,29 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Here is my main argument. OKF's minimal core says what a concept *is*. A regulated enterprise also needs every concept to say whether it can be **trusted**. The optional fields in v0.1 stop at title, description, resource, tags and timestamp. None of them names an owner, a source or a verifier. That is a sensible choice for a minimal core, because the spec explicitly lets producers choose their own fields. Enterprises should use that freedom deliberately and converge on a common set."
+        "text": "Here is my main argument. A regulated enterprise needs every concept to say not only what it *is* but whether it can be **trusted**, and v0.2 went a long way. It added `sources` for provenance, `generated` and `verified` to separate who wrote a concept from who confirmed it, trust tiers derived from them, a `status` lifecycle and a `stale_after` date. I would adopt those as written. What the core still does not say is who is *accountable*: a verifier checked a page once, an owner answers for it next quarter. There is no sensitivity field, and the trust tiers are explicitly advisory, so the rule for which tier an agent needs before it acts is left to each consumer. The spec lets producers add their own keys, and enterprises should converge on a common set."
       },
       {
         "type": "p",
-        "text": "These are the fields I would standardize on, as an enterprise profile on top of OKF:"
+        "text": "These are the fields I would standardize on, as a small enterprise profile on top of OKF v0.2:"
       },
       {
         "type": "ul",
         "items": [
           "**Identity:** a canonical identifier that ties the concept to the system it describes, so two sets of files never disagree about which application they mean.",
-          "**Owner:** the accountable team or person.",
-          "**Provenance:** the sources the knowledge was derived from, with links.",
-          "**Generator and verifier:** whether a person or an agent wrote it, and which human approved it.",
-          "**Freshness:** when it was last verified and when it must be reassessed.",
-          "**Confidence:** a trust tier, so consumers can tell verified fact from inferred draft.",
-          "**Classification:** sensitivity and handling rules that travel with the knowledge."
+          "**Owner:** the accountable team, distinct from whoever generated or verified it.",
+          "**Classification:** sensitivity and handling rules that travel with the knowledge.",
+          "**Required trust:** the minimum tier an agent needs before acting on the concept, so the policy sits next to the content instead of inside every agent's prompt."
         ]
       },
       {
         "type": "p",
-        "text": "In practice, an enterprise-profiled concept might look like this. The first block is plain OKF, and the rest are producer-defined fields, which the format explicitly allows:"
+        "text": "In practice, an enterprise-profiled concept might look like this. Everything above the comment is OKF v0.2, and the rest are producer-defined fields, which the format explicitly allows:"
       },
       {
         "type": "code",
         "lang": "yaml",
-        "text": "---\ntype: Application\ntitle: Payments Gateway\ndescription: Routes card authorizations between channels and processors.\nresource: https://catalog.example.com/apps/payments-gateway\ntags: [payments, tier-1]\ntimestamp: 2026-09-02T10:15:00Z\n# Enterprise profile (producer-defined)\nid: app:payments-gateway\nowner: team-payments-platform\nsources:\n  - https://git.example.com/payments/gateway\n  - https://tickets.example.com/browse/PAY-1042\ngenerated_by: agent\nverified_by: j.doe\nverified_on: 2026-09-01\nreview_by: 2026-12-01\nconfidence: verified\nclassification: internal\n---"
+        "text": "---\ntype: Application\ntitle: Payments Gateway\ndescription: Routes card authorizations between channels and processors.\nresource: https://catalog.example.com/apps/payments-gateway\ntags: [payments, tier-1]\nstatus: stable\nsources:\n  - id: gateway-repo\n    resource: https://git.example.com/payments/gateway\n  - id: pay-1042\n    resource: https://tickets.example.com/browse/PAY-1042\ngenerated: { by: capture_agent/v3, at: 2026-09-02T10:15:00Z }\nverified: { by: human:j.doe, at: 2026-09-03T09:00:00Z }\nstale_after: 2026-12-01T00:00:00Z\n# Enterprise profile (producer-defined)\nid: app:payments-gateway\nowner: team-payments-platform\nclassification: internal\nrequired_trust: human-reviewed\n---"
       },
       {
         "type": "p",
@@ -755,7 +752,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "It also makes governance computable, which I think is the underrated benefit. You can measure how much of your knowledge is owned, fresh and verified, and where the gaps sit, with a script instead of a survey. Governance that can be counted gets funded. Governance that lives in a policy document gets audited once a year."
+        "text": "It also makes governance computable, the underrated benefit. You can measure how much of your knowledge is owned, fresh and verified, and where the gaps sit, with a script instead of a survey. Governance that can be counted gets funded. Governance that lives in a policy document gets audited once a year."
       },
       {
         "type": "h2",
@@ -763,7 +760,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Format is half the answer, and consistency is the other half. For a technology organization I would pair the format with a standard set of sections that every application's knowledge covers: purpose and business context, architecture and dependencies, what depends on it, security and data handling, resiliency and failure modes, operations and runbooks, recent changes and incidents, and AI readiness. A standard outline lets agents move through any application the same way and lets you measure completeness across a portfolio."
+        "text": "Format is half the answer, and consistency is the other half. For a technology organization I would pair the format with a standard set of sections for every application: purpose, architecture and dependencies, security, failure modes, operations and recent changes. A standard outline lets agents move through any application the same way and lets you measure completeness across a portfolio."
       },
       {
         "type": "p",
@@ -775,11 +772,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Self-describing knowledge does not replace your catalogs, repositories or configuration database. It sits on top of them and points back to them through the resource and source fields. Serve the files through an MCP server and every coding agent, chat assistant and operations tool reads the same governed knowledge. Each convention does one job, and together they give agents instructions, abilities and understanding."
-      },
-      {
-        "type": "p",
-        "text": "Most importantly, the format makes knowledge portable across the next model change. When the frontier moves, and it will, the investment you made in curated, verified, self-describing knowledge moves with you."
+        "text": "Self-describing knowledge does not replace your catalogs, repositories or configuration database. It sits on top of them and points back to them through the resource and sources fields. Serve the files through an MCP server and every coding agent, chat assistant and operations tool reads the same governed knowledge."
       },
       {
         "type": "h2",
@@ -787,15 +780,15 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Once teams see the value of metadata, the temptation is to keep adding fields. I have watched this happen with data catalogs: dozens of attributes per table, most of them empty, and the empty ones quietly teaching everyone that the metadata cannot be trusted. A field that is filled in for a third of concepts can be worse than no field, because consumers cannot tell missing from unknown."
+        "text": "Once teams see the value of metadata, the temptation is to keep adding fields. I have watched this happen with data catalogs: dozens of attributes per table, most of them empty, quietly teaching everyone that the metadata cannot be trusted."
       },
       {
         "type": "p",
-        "text": "My rule is that a field earns its place only if an agent or a control will act on it. Owner, freshness, confidence and classification pass that test easily, because each one changes what an agent is allowed to do. A field such as business criticality might pass if your incident tooling reads it. Most other details belong in the body of the file, where people can read them, rather than in frontmatter that implies someone maintains them."
+        "text": "My rule is that a field earns its place only if an agent or a control will act on it. Owner, classification and required trust pass that test easily, as do the core's verification and staleness fields, because each one changes what an agent is allowed to do. Most other details belong in the body of the file, where people can read them, rather than in frontmatter that implies someone maintains them."
       },
       {
         "type": "p",
-        "text": "Enforce the profile where files are written, not where they are read. A check on the pull request that rejects a concept without an owner or a review date costs almost nothing, and it stops decay before it starts."
+        "text": "Enforce the profile where files are written, not where they are read. A check on the pull request that rejects a concept without an owner or a `stale_after` date costs almost nothing, and it stops decay before it starts."
       },
       {
         "type": "h2",
@@ -803,19 +796,19 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "OKF is at v0.1, and it is early. An [independent review of the spec](https://agentic-ai.readthedocs.io/en/latest/Standards/open-knowledge-format/) notes that it has no formal governance body yet, unlike [AGENTS.md](https://agentic-ai.readthedocs.io/en/latest/Standards/agents-md/), which now sits with the Agentic AI Foundation under the Linux Foundation. Validators and ecosystem tooling are still forming, and there are no published benchmarks of retrieval or agent gains. Because the core is minimally opinionated, consistency inside a large organization depends on your own conventions."
+        "text": "OKF is at v0.2, and it is early: two versions in six weeks and a new home in August. An [independent review of the spec](https://agentic-ai.readthedocs.io/en/latest/Standards/open-knowledge-format/), written at the v0.1 release, noted that it had no formal governance body, unlike AGENTS.md, which now sits with the Agentic AI Foundation under the Linux Foundation. That has not changed with v0.2: Google still publishes and controls the spec. Validators and ecosystem tooling are still forming, and I have not seen published benchmarks of retrieval or agent gains. Because the core is minimally opinionated, consistency inside a large organization depends on your own conventions."
       },
       {
         "type": "p",
-        "text": "Treat it as a strong direction rather than a finished standard: adopt the core, keep your enterprise fields in a documented profile, and contribute back. The worst outcome would be every enterprise inventing its own incompatible extensions and recreating the fragmentation the format was meant to solve."
+        "text": "Treat it as a strong direction rather than a finished standard: adopt the core, pin the version you build against, keep your enterprise fields in a documented profile, and contribute back. The worst outcome would be every enterprise inventing its own incompatible extensions and recreating the fragmentation the format was meant to solve."
       },
       {
         "type": "monday",
         "items": [
           "Pick ten knowledge files for one critical application and check whether each could state its owner, sources and last verified date.",
-          "Draft an enterprise profile of no more than seven fields on top of the OKF core and circulate it to architecture and risk.",
-          "Add a pull request check that rejects any knowledge file missing an **owner** or a review-by date.",
-          "Instruct one internal agent to label unverified content as draft and to decline actions based on expired knowledge."
+          "Draft an enterprise profile of no more than four fields on top of the OKF v0.2 core and circulate it to architecture and risk.",
+          "Add a pull request check that rejects any knowledge file missing an **owner** or a `stale_after` date.",
+          "Instruct one internal agent to label anything below human-reviewed as draft and to decline actions based on stale knowledge."
         ]
       },
       {
@@ -824,7 +817,7 @@ export const contextEngineeringEssays: Essay[] = [
       },
       {
         "type": "bottomLine",
-        "text": "Knowledge for the AI era should be plain, portable and self-describing: Markdown people can read, structure agents can parse, and metadata that says who owns it, where it came from, when it expires and how far to trust it. OKF gives us the first two. Enterprises should build the third, together."
+        "text": "Knowledge for the AI era should be plain, portable and self-describing: Markdown people can read, structure agents can parse, and metadata that says who owns it, where it came from, when it expires and how far to trust it. OKF v0.2 now covers most of that. Enterprises should add ownership, classification and trust policy, together."
       }
     ]
   }

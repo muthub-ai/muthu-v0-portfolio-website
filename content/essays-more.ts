@@ -64,7 +64,7 @@ export const moreEssays: Essay[] = [
         "items": [
           "**The dashboard has no database.** It reads the repository at build time through server components and is rebuilt when main changes. There is nothing at runtime that can drift from Git, which is the property you want from a governance view. The cost is that the dashboard is only as fresh as the last merge, and for architecture that is the right cadence.",
           "**The CLI validates against published schemas, not local copies.** It fetches them from the repository's public URL with ETag caching and falls back to the cache when offline. A product team's pipeline therefore validates against the same contract the platform publishes, and a schema change reaches every team on its next run without anyone upgrading a package.",
-          "**Waivers live next to the standards they bend.** An exception is a versioned record with its risk, compensating controls, financial impact, approver, remediation plan and expiry date. Once exceptions are data, the pipeline can honor them automatically and stop honoring them the day they lapse, and the scorecard can report exception debt the same way it reports technical debt."
+          "**Waivers live next to the standards they bend.** An exception is a versioned record with its risk, compensating controls, financial impact, approver, remediation plan and expiry date. Once exceptions are data, the scorecard can report exception debt the same way it reports technical debt, and a pipeline can check an expiry date instead of relying on someone's memory."
         ]
       },
       {
@@ -85,7 +85,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The MCP server is the container that earns a Level 3 view, because its internal shape is the governance contract for agents. Built on the open [Model Context Protocol](https://modelcontextprotocol.io/introduction), it separates three kinds of capability. **Resources** are read-only views of the repository: systems, standards, patterns, schemas and, importantly, `aac://waivers/active`, which returns only approved, unexpired exceptions so an agent never treats a lapsed waiver as permission. **Tools** act: validate a document, run the five compliance rules, scaffold a waiver. **Prompts** are guided workflows for designing a new system or requesting an exception."
+        "text": "The MCP server is the container that earns a Level 3 view, because its internal shape is the governance contract for agents. Built on the open [Model Context Protocol](https://modelcontextprotocol.io/introduction), it separates three kinds of capability. **Resources** are read-only views of the repository: systems, standards, patterns, schemas and, importantly, `aac://waivers/active`, which is meant to give an agent only the exceptions currently in force, so it does not treat a pending or rejected waiver as permission. **Tools** act: validate a document, run the five compliance rules, scaffold a waiver. **Prompts** are guided workflows for designing a new system or requesting an exception."
       },
       {
         "type": "p",
@@ -144,6 +144,7 @@ export const moreEssays: Essay[] = [
         "items": [
           "**Validation lives in three places.** The CLI and the MCP server each validate with JSON Schema, and the web app validates with Zod. The five compliance rules exist in the pipeline script and again in the MCP tool. They agree today; nothing guarantees they will tomorrow. The fix is one rules package that the pipeline, the MCP server and the editor all import.",
           "**Some rules infer intent from free text.** The rule that stops a frontend talking directly to a database decides what counts as a frontend from keywords in tags and technology names. That is fine for a prototype and fragile at scale. An enterprise version needs explicit types in the schema, enforced by the schema.",
+          "**Expiry is recorded, not enforced.** Every waiver carries an expiration date, but today a waiver stops counting only when someone changes its status. The active-waivers resource and the pipeline should compare the date themselves, so a lapsed exception stops granting permission on the day it lapses.",
           "**Policy lives in two languages.** Structural rules run as TypeScript and infrastructure rules run as Rego in [Open Policy Agent](https://www.openpolicyagent.org/docs). Two engines are defensible, but the boundary should be written down, or teams will add the next rule wherever is convenient."
         ]
       },
@@ -198,7 +199,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The less obvious reason matters more. A registry is the one place where you can say with confidence which tools exist in your environment. GitHub's design makes the point concrete: administrators point Copilot at an internal registry, and a registry-only policy blocks unlisted servers at runtime. Discovery and allowlisting become the same artifact. Once that is true, security review, third-party risk assessment and data classification share a single gate, and the gate is enforced by software instead of by memo."
+        "text": "The less obvious reason matters more. A registry is the one place where you can say with confidence which tools exist in your environment. GitHub's design makes the point concrete: administrators point Copilot at an internal registry, and a registry-only policy blocks unlisted servers at runtime (enforced in VS Code Insiders today, with the stable release to follow). Discovery and allowlisting become the same artifact. Once that is true, security review, third-party risk assessment and data classification share a single gate, and the gate is enforced by software instead of by memo."
       },
       {
         "type": "figure",
@@ -226,7 +227,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "My original list of discovery, trust, ecosystem support and metadata still holds. After watching the ecosystem grow for a year, I would sharpen it into six requirements."
+        "text": "My original list of discovery, trust, ecosystem support and metadata still holds. After watching the ecosystem grow through most of this year, I would sharpen it into six requirements."
       },
       {
         "type": "ol",
@@ -302,7 +303,7 @@ export const moreEssays: Essay[] = [
     "body": [
       {
         "type": "p",
-        "text": "**Coding agents should be chosen by how their work gets verified, not by which model sits underneath.** Within one week in May 2025, Google DeepMind, OpenAI and GitHub each shipped a serious coding agent. They shared a goal, taking real software work off engineers' plates, but they rested on different architectural philosophies. Eighteen months on, I think those differences matter more to enterprises than the benchmark race does."
+        "text": "**Coding agents should be chosen by how their work gets verified, not by which model sits underneath.** Within one week in May 2025, Google DeepMind, OpenAI and GitHub each shipped a serious coding agent. They shared a goal, taking real software work off engineers' plates, but they rested on different architectural philosophies. Seven months on, I think those differences matter more to enterprises than the benchmark race does."
       },
       {
         "type": "p",
@@ -350,7 +351,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "By late 2025 the question had shifted from which agent to how many. [VS Code's November 2025 release](https://visualstudiomagazine.com/Articles/2025/12/12/VS-Code-1-107-November-2025-Update-Expands-Multi-Agent-Orchestration-Model-Management.aspx) made the hierarchy explicit: a local agent as the manager for strategy and quick answers, background agents as workers in their own Git worktrees so several can run without clobbering each other's files, and hand-off to cloud agents for heavier lifting such as documentation or security scanning. Shared context through an MCP server keeps them from inventing the project structure."
+        "text": "By December the question had shifted from which agent to how many. [VS Code's November 2025 release](https://code.visualstudio.com/updates/v1_107), version 1.107, makes the hierarchy explicit. A local agent keeps running in the background and is a natural place to plan the work. From there a task can be handed off to a background agent, which can run in its own Git worktree so several can work without clobbering each other's files, or to a cloud agent that executes it autonomously. In my own use the local agent acts as the manager and the others as workers, and shared repository instructions keep them from inventing the project structure."
       },
       {
         "type": "p",
@@ -437,7 +438,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Agents act on their own, at machine speed, across many systems. Static API keys and network perimeters were designed for a world where a person sat behind each request, or a service did one predictable thing. Neither assumption holds anymore. [Gartner expects over 40% of agentic AI projects to be canceled by the end of 2027](https://www.gartner.com/en/newsroom/press-releases/2025-06-25-gartner-predicts-over-40-percent-of-agentic-ai-projects-will-be-canceled-by-end-of-2027), citing rising costs, unclear business value and inadequate risk controls. My guess is that a good share of those risk-control failures will trace back to identity."
+        "text": "Agents act on their own, at machine speed, across many systems. Static API keys and network perimeters were designed for a world where a person sat behind each request, or a service did one predictable thing. Neither assumption holds anymore. Last October [Gartner predicted that by 2028, 25% of enterprise breaches will be traced back to AI agent abuse](https://www.gartner.com/en/newsroom/press-releases/2024-10-22-gartner-unveils-top-predictions-for-it-organizations-and-users-in-2025-and-beyond), from both external and malicious internal actors. My guess is that a good share of those breaches will start with an identity problem: a credential that was too broad, too long-lived or never tied to a specific agent."
       },
       {
         "type": "h2",
@@ -457,11 +458,11 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-06-18/basic/authorization) makes much of this practical for HTTP-based servers. An MCP server acts as an OAuth 2.1 resource server. Clients must name the target server with a resource indicator, servers must reject tokens that were not issued for them, and a server calling downstream APIs must obtain its own token rather than passing through the one it received. The spec also recommends short-lived access tokens."
+        "text": "The [MCP authorization specification](https://modelcontextprotocol.io/specification/2025-03-26/basic/authorization), added in the March 2025 revision, makes much of this practical for HTTP-based servers. It builds on OAuth 2.1 and requires PKCE for every client. A bearer token must accompany every HTTP request, even within the same session, and tokens may never appear in a query string. Servers should enforce token expiration and rotation and keep lifetimes limited. When a server delegates login to a third-party identity provider, it issues its own token bound to that session rather than handing the upstream token to the client, and the spec tells implementers to consider the security implications of token chaining."
       },
       {
         "type": "p",
-        "text": "Those rules close the confused-deputy and token-reuse holes that early servers left open. They do not decide what an agent may do with a perfectly valid token. That is the policy layer's job, and in most designs I review it is the thinnest part."
+        "text": "That is real progress over the shared API keys most early servers relied on. It still leaves two things to you. The spec does not spell out how a token is tied to the one server it was meant for, so audience checks deserve explicit attention in your own design. And it does not decide what an agent may do with a perfectly valid token. That is the policy layer's job, and in most designs I review it is the thinnest part."
       },
       {
         "type": "p",
@@ -473,7 +474,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "In May 2025 [Invariant Labs disclosed a toxic agent flow](https://invariantlabs.ai/blog/mcp-github-vulnerability) involving the official GitHub MCP server. A malicious issue planted in a public repository could steer an agent, during a routine request to look at open issues, into pulling data from the user's private repositories and publishing it in a public pull request. The researchers were clear that the server code itself was not flawed. They called it an architectural problem at the level of the agent system."
+        "text": "Earlier this week [Invariant Labs disclosed a toxic agent flow](https://invariantlabs.ai/blog/mcp-github-vulnerability) involving the official GitHub MCP server. A malicious issue planted in a public repository could steer an agent, during a routine request to look at open issues, into pulling data from the user's private repositories and publishing it in a public pull request. The researchers were clear that the server code itself was not flawed. They called it an architectural problem at the level of the agent system."
       },
       {
         "type": "p",
@@ -493,7 +494,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The enforcement point has to sit outside the model. A model can be talked into things; a policy engine evaluating a signed request cannot. That is how I think about guardrails in general: the model proposes, deterministic code decides. The [OWASP Top 10 for Agentic Applications](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/), released in December 2025, is a good reference for the threat classes your policy layer should expect to meet."
+        "text": "The enforcement point has to sit outside the model. A model can be talked into things; a policy engine evaluating a signed request cannot. That is how I think about guardrails in general: the model proposes, deterministic code decides. The OWASP GenAI Security Project's [Agentic AI: Threats and Mitigations](https://genai.owasp.org/resource/agentic-ai-threats-and-mitigations/), published in February, is a good reference for the threat classes your policy layer should expect to meet."
       },
       {
         "type": "h2",
@@ -531,7 +532,7 @@ export const moreEssays: Essay[] = [
   {
     "slug": "python-or-jvm-for-enterprise-ai",
     "title": "Python or the JVM for production enterprise AI? Put the agent where the transaction lives",
-    "summary": "Python is unrivaled for research and prototyping. Production enterprise AI is mostly integration, security and scale, and with JVM agent frameworks now maturing, the runtime that owns the transaction is often the right home for the agent.",
+    "summary": "Python is unrivaled for research and prototyping. Production enterprise AI is mostly integration, security and scale, and with JVM agent frameworks now arriving, the runtime that owns the transaction is often the right home for the agent.",
     "theme": "data-ai-platforms",
     "status": "published",
     "published": "2025-06-24",
@@ -564,7 +565,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "In most large financial institutions, that everything runs on the JVM. Decades of reliability engineering, security tooling, identity integration and operational know-how sit there. When we wire an agent into a payment, a claim or a servicing workflow, the hard questions are about transactions and controls, not about which language has the nicer notebook."
+        "text": "In most large financial institutions, almost everything runs on the JVM. Decades of reliability engineering, security tooling, identity integration and operational know-how sit there. When we wire an agent into a payment, a claim or a servicing workflow, the hard questions are about transactions and controls, not about which language has the nicer notebook."
       },
       {
         "type": "h2",
@@ -576,7 +577,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "[LangChain4j](https://docs.langchain4j.dev/tutorials/agents/) offers model clients, retrieval, tools and memory, plus an agentic module with sequential, parallel, loop and conditional workflows and a supervisor pattern. Google followed with [ADK for Java 1.0](https://developers.googleblog.com/announcing-adk-for-java-100-building-the-future-of-ai-agents-in-java/) in March 2026, including tool confirmation workflows that pause for human approval and support for the Agent2Agent protocol."
+        "text": "[LangChain4j reached 1.0 in May 2025](https://github.com/langchain4j/langchain4j/releases/tag/1.0.0), with model clients, retrieval, tool calling, chat memory and MCP client support. The following week Google announced the [initial Java release of its Agent Development Kit](https://developers.googleblog.com/agents-adk-agent-engine-a2a-enhancements-google-io/), which puts a major cloud provider's agent framework on the JVM alongside its Python original."
       },
       {
         "type": "h2",
@@ -596,7 +597,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "I want to be fair about the limits. New agent patterns still tend to appear in Python first, and some JVM pieces are young. LangChain4j's own documentation says its agentic module is experimental and subject to change. If you need this month's research technique, Python will get you there sooner."
+        "text": "I want to be fair about the limits. New agent patterns still tend to appear in Python first, and some JVM pieces are young. Google's Java ADK shipped as version 0.1.0, while the Python version it follows is already at a stable 1.0. If you need this month's research technique, Python will get you there sooner."
       },
       {
         "type": "h2",
@@ -958,7 +959,7 @@ export const moreNotes: Note[] = [
       },
       {
         "type": "p",
-        "text": "I treat this as an architecture principle rather than a feature. In a harness, these feedback mechanisms are the sensors: compilers, linters, unit tests, policy checks and schema validators that reject a change and force the agent to correct itself before a human ever looks. The model supplies the effort. The sensors supply the judgment you can actually trust."
+        "text": "I treat this as an architecture principle rather than a feature. I think of these feedback mechanisms as the agent's sensors: compilers, linters, unit tests, policy checks and schema validators that reject a change and force the agent to correct itself before a human ever looks. The model supplies the effort. The sensors supply the judgment you can actually trust."
       },
       {
         "type": "p",
@@ -1035,7 +1036,7 @@ export const moreNotes: Note[] = [
     "body": [
       {
         "type": "p",
-        "text": "**Technical debt is an architecture problem, and treating it as a developer housekeeping issue is why it keeps growing.** Left unaddressed, it slows every new initiative, inflates operating cost and creates systemic risk. Martin Fowler's framing of [technical debt](https://martinfowler.com/bliki/TechnicalDebt.html) as interest you keep paying on every change still holds, and in large enterprises the interest compounds across hundreds of interconnected systems."
+        "text": "**Technical debt is an architecture problem, and treating it as a developer housekeeping issue is why it keeps growing.** Left unaddressed, it slows every new initiative, inflates operating cost and creates systemic risk. Martin Fowler's framing of [technical debt](https://martinfowler.com/bliki/TechnicalDebt.html) as interest you pay every time you have to work in the neglected code still holds, and in large enterprises the interest compounds across hundreds of interconnected systems."
       },
       {
         "type": "p",
@@ -1066,7 +1067,7 @@ export const moreNotes: Note[] = [
       },
       {
         "type": "p",
-        "text": "MCP's answer is three primitives. Tools are actions a model can take. Resources are data it can read for context. Prompts are reusable, user-defined inputs. I like this design because it is small enough to explain to a non-specialist in a minute, which is rare for an integration standard and a good sign it will last."
+        "text": "MCP's answer is three primitives. Tools are actions a model can take. Resources are data it can read for context. Prompts are reusable templates that a user can invoke. I like this design because it is small enough to explain to a non-specialist in a minute, which is rare for an integration standard and a good sign it will last."
       },
       {
         "type": "p",
@@ -1074,7 +1075,7 @@ export const moreNotes: Note[] = [
       },
       {
         "type": "p",
-        "text": "Small, open standards tend to win; the [MCP specification](https://modelcontextprotocol.io/) is a good example of why."
+        "text": "Small, open standards tend to win; the [MCP specification](https://modelcontextprotocol.io/specification/2025-03-26) is a good example of why."
       }
     ]
   },
@@ -1089,7 +1090,7 @@ export const moreNotes: Note[] = [
     "body": [
       {
         "type": "p",
-        "text": "**When remote MCP servers became reachable directly through the Messages API, agent integration got a lot less hacky.** With the Claude 4 release, Anthropic's [MCP connector](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector) let developers point the API at a remote MCP server without building and running their own MCP client."
+        "text": "**When remote MCP servers became reachable directly through the Messages API, agent integration got a lot less hacky.** With the Claude 4 release, Anthropic's [MCP connector](https://www.anthropic.com/news/agent-capabilities-api) let developers point the API at a remote MCP server without building and running their own MCP client."
       },
       {
         "type": "p",
@@ -1124,7 +1125,7 @@ export const moreNotes: Note[] = [
       },
       {
         "type": "p",
-        "text": "The ecosystem moved the same week. The OpenAI Agents SDK added MCP support, and Playwright's MCP server let agents use web pages through accessibility snapshots rather than screenshots, which is faster and far more reliable. When Google signaled support days later, it was clear to me that MCP would become the default way agents connect to tools."
+        "text": "The ecosystem moved the same week. OpenAI added MCP support to its Agents SDK, and Microsoft's new Playwright MCP server let agents use web pages through accessibility snapshots rather than screenshots, which is faster and far more reliable. When a direct competitor adopts a protocol that Anthropic created, it is clear to me that MCP will become the default way agents connect to tools."
       },
       {
         "type": "p",
@@ -1174,7 +1175,7 @@ export const moreNotes: Note[] = [
       },
       {
         "type": "p",
-        "text": "The paper shows that LLMs can generate meaningful assertions comparable to those written by experienced developers. That caught my attention because assertions do three useful things at once. They validate assumptions at runtime, they make debugging faster by failing close to the cause, and they document intent right next to the code."
+        "text": "The paper shows that LLMs can generate meaningful assertions that closely resemble the ones the original developers wrote. That caught my attention because assertions do three useful things at once. They validate assumptions at runtime, they make debugging faster by failing close to the cause, and they document intent right next to the code."
       },
       {
         "type": "p",
