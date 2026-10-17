@@ -180,7 +180,7 @@ export function SearchDialog() {
                 aria-controls={listId}
                 aria-activedescendant={results.length > 0 ? `${listId}-${active}` : undefined}
                 aria-autocomplete="list"
-                className="h-14 w-full bg-transparent text-[17px] text-ink outline-none placeholder:text-muted"
+                className="h-14 w-full bg-transparent text-[17px] text-ink outline-none placeholder:text-muted focus-visible:outline-none [&::-webkit-search-cancel-button]:hidden"
               />
               <button type="button" onClick={hide} className="rounded border border-line px-2 py-0.5 text-[12px] text-muted hover:text-ink">
                 Esc
@@ -270,7 +270,7 @@ export function InlineSearch({ initialQuery = "", autoFocus = false }: { initial
           autoFocus={autoFocus}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search essays, playbooks, initiatives…"
-          className="h-14 w-full bg-transparent text-[17px] text-ink outline-none placeholder:text-muted"
+          className="h-14 w-full bg-transparent text-[17px] text-ink outline-none placeholder:text-muted focus-visible:outline-none [&::-webkit-search-cancel-button]:hidden"
         />
       </form>
       {query.trim() !== "" && ready && (

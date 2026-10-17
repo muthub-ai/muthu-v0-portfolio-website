@@ -111,7 +111,7 @@ export function aboutMarkdown() {
 
 export function reachMarkdown() {
   return (
-    `# Reach ${site.displayName}\n\nEmail: ${site.email}\n\n## Happy to talk about\n\n${about.reach.yes.map((x) => `- ${x}`).join("\n")}\n\n` +
+    `# Reach ${site.displayName}\n\nThe best way to reach me is LinkedIn: ${site.social.find((s) => s.label === "LinkedIn")?.url}\n\n## Happy to talk about\n\n${about.reach.yes.map((x) => `- ${x}`).join("\n")}\n\n` +
     `## Not a fit\n\n${about.reach.no.map((x) => `- ${x}`).join("\n")}` +
     footer
   )

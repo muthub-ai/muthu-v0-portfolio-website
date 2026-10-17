@@ -12,7 +12,8 @@ const csp = [
   "base-uri 'self'",
   "form-action 'self' https://buttondown.com https://buttondown.email",
   "object-src 'none'",
-  "upgrade-insecure-requests",
+  // Only on Vercel: upgrading requests would break a local `pnpm start` served over http.
+  ...(process.env.VERCEL ? ["upgrade-insecure-requests"] : []),
 ].join("; ")
 
 const securityHeaders = [

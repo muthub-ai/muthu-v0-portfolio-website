@@ -3,6 +3,9 @@ import type { Metadata } from "next"
 import { about } from "@/content/about"
 import { site } from "@/content/site"
 import { pageMetadata } from "@/lib/seo"
+import { BrandIcon } from "@/components/social-icons"
+
+const linkedin = site.social.find((s) => s.label === "LinkedIn")?.url ?? "https://www.linkedin.com/in/mbommiah/"
 
 export const metadata: Metadata = pageMetadata({
   path: "/reach",
@@ -15,17 +18,20 @@ export default function ReachPage() {
     <div className="container-site flex flex-wrap gap-14 pb-24 pt-16 sm:pt-[72px]">
       <div className="flex flex-[1_1_320px] flex-col gap-4">
         <h1 className="h-display text-5xl leading-[1.05] sm:text-[56px]">Reach me</h1>
-        <p className="text-copy leading-relaxed text-body">The best way to reach me is email. I read everything and reply when I can.</p>
-        <a href={`mailto:${site.email}`} className="link text-lg font-semibold">
-          {site.email}
-        </a>
-        <p className="text-[15px] text-muted">
-          Organizing an event? The{" "}
-          <Link href="/about#speaker-kit" className="link">
-            speaker kit
-          </Link>{" "}
-          has bios and a headshot.
+        <p className="text-copy leading-relaxed text-body">
+          The best way to reach me is LinkedIn. Send a connection request or a message with a line on what you would like to discuss; I read everything and
+          reply when I can.
         </p>
+        <div className="flex flex-wrap items-center gap-3">
+          <a href={linkedin} className="btn-primary" rel="me noopener noreferrer">
+            <BrandIcon name="LinkedIn" />
+            Connect on LinkedIn
+          </a>
+          <Link href="/about#speaker-kit" className="btn-secondary">
+            Speaker kit
+          </Link>
+        </div>
+        <p className="text-[15px] text-muted">Organizing an event? The speaker kit has bios, a headshot and a speaking photo you can use as they are.</p>
       </div>
       <div className="grid min-w-0 flex-[999_1_480px] gap-8 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]">
         <div className="flex flex-col gap-2.5 border-t-2 border-ink pt-4">

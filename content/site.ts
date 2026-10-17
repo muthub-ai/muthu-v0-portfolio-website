@@ -14,7 +14,6 @@ export const site = {
   jobTitle: "Distinguished Engineer",
   employer: "Wells Fargo",
   location: "San Antonio, Texas",
-  email: "muthukrishnanb@gmail.com",
   tagline: "Architecting how banks put AI to work, at scale and under control.",
   shortBio:
     "Executive Director and Distinguished Engineer at Wells Fargo. Over two decades building enterprise AI, data and cloud platforms across financial services and global industry. I write about governed AI, the AI-native software lifecycle and the platforms that make both work.",

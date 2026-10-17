@@ -34,7 +34,7 @@ export function SiteHeader() {
         Skip to content
       </a>
       <div className="container-site flex items-center justify-between gap-6 py-3 sm:py-4">
-        <Link href="/" className="group font-serif text-2xl font-semibold tracking-[-0.01em] text-ink">
+        <Link href="/" className="group whitespace-nowrap font-serif text-[22px] font-semibold tracking-[-0.01em] text-ink sm:text-2xl">
           {site.name}
           <span aria-hidden="true" className="brand-cursor ml-[2px] font-sans font-medium text-accent">
             _
