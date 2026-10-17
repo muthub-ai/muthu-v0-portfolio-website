@@ -525,7 +525,7 @@ export const essays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The first pattern now has a concrete form. [Agent Trace](https://agent-trace.dev/) is an open specification, published as a version 0.1.0 RFC in January 2026, that records file paths, line ranges, a model identifier, a link to the producing conversation and a contributor type of human, AI, mixed or unknown. Thoughtworks placed it in [Assess on the April 2026 Technology Radar](https://www.thoughtworks.com/radar/platforms/agent-trace), noting that it works across Git, Mercurial and Jujutsu. The second pattern has tools too. The same Radar edition assessed [Entire CLI](https://www.thoughtworks.com/radar/tools/entire-cli), which hooks into Git to capture agent sessions and supports checkpoints for rolling back to a known-good state."
+        "text": "The first pattern now has a concrete form. [Agent Trace](https://agent-trace.dev/) is an open specification started by Cursor and published as a version 0.1.0 RFC in January 2026. It records file paths, line ranges, a model identifier, a link to the producing conversation and a contributor type of human, AI, mixed or unknown, and its schema covers Git, Mercurial and Jujutsu. It is a request for comments, not a settled standard, but it is the first vendor-neutral format I have seen that asks the right questions. The second pattern has tools too. Earlier this month Entire [released its open-source CLI](https://entire.io/blog/hello-entire-world), which hooks into Git to capture agent sessions as checkpoints on a separate branch and lets you rewind to a known-good state."
       },
       {
         "type": "p",

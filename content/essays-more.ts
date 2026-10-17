@@ -662,7 +662,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Five years later, generative and agentic AI have widened the scope, and much of the industry is rediscovering those lessons under new names. I think the discipline now deserves a broader name, AI engineering, but the core ideas have changed less than the marketing suggests."
+        "text": "Three years later, generative AI has widened the scope, the first agentic systems are widening it again, and much of the industry is rediscovering those lessons under new names. I think the discipline now deserves a broader name, AI engineering, but the core ideas have changed less than the marketing suggests."
       },
       {
         "type": "h2",
@@ -714,7 +714,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Sculley's risks map almost one to one. Data dependencies become the document corpus behind retrieval, which drifts every time someone edits a policy page. Undeclared consumers become agents that discover and call your tools. Hidden feedback loops appear when AI-generated content flows back into the knowledge base the next answer draws from. And drift now includes a provider updating a model version underneath you, which can change behavior without a single line of your code changing."
+        "text": "Sculley's risks map almost one to one. Data dependencies become the document corpus behind retrieval, which drifts every time someone edits a policy page. Undeclared consumers become LLM applications and agents wired to your APIs through function calling. Hidden feedback loops appear when AI-generated content flows back into the knowledge base the next answer draws from. And drift now includes a provider updating a model version underneath you, which can change behavior without a single line of your code changing."
       },
       {
         "type": "h2",
@@ -722,11 +722,11 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The analogy has limits, and teams that miss them get hurt. The first is determinism. A classical model given the same input returns the same score. A generative system can answer the same question differently on consecutive runs, so a single pass of your evaluation set proves less than it seems. [Anthropic's guidance on agent evaluations](https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents) recommends running each task several times and distinguishing between succeeding at least once and succeeding every time. For a customer-facing system in a bank, the second measure is the one that matters."
+        "text": "The analogy has limits, and teams that miss them get hurt. The first is determinism. A classical model given the same input returns the same score. A generative system can answer the same question differently on consecutive runs, so a single pass of your evaluation set proves less than it seems. The [τ-bench paper](https://arxiv.org/abs/2406.12045), published in June 2024, makes the point well: it proposes a pass^k metric that asks whether an agent succeeds on every one of k repeated trials, not just once, and reports that even state-of-the-art function-calling agents failed most of its tasks and were inconsistent across runs. For a customer-facing system in a bank, succeeding every time is the measure that matters."
       },
       {
         "type": "p",
-        "text": "The second is grading. Held-out data came with labels. Many generative outputs have no single right answer, so teams use one model to grade another. That is workable, but the grader is now a model in production too, and it needs the same calibration against human experts that we demanded of any other model before we trusted its scores, plus an explicit way to say it does not know."
+        "text": "The second is grading. Held-out data came with labels. Many generative outputs have no single right answer, so teams use one model to grade another. That is workable, and [research on LLM-as-a-judge](https://arxiv.org/abs/2306.05685) found strong models agreeing with human preferences about as often as humans agree with each other, while also documenting position and verbosity biases. But the grader is now a model in production too, and it needs the same calibration against human experts that we demanded of any other model before we trusted its scores, plus an explicit way to say it does not know."
       },
       {
         "type": "p",
@@ -742,7 +742,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The research points the same way. [DORA's 2025 report](https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report) found that AI amplifies whatever system it lands in, and its AI capabilities model lists healthy data ecosystems and AI-accessible internal data among the practices that make AI pay off. That is a DataOps finding as much as an AI one. When we moved hundreds of data scientists onto one governed platform, the hardest conversations were rarely about tools. They were about who owned a feature definition when three models depended on it."
+        "text": "The research points the same way. [DORA's 2024 report](https://cloud.google.com/blog/products/devops-sre/announcing-the-2024-dora-report) found that a 25% increase in AI adoption was associated with better documentation and code quality, but also with an estimated 7.2% reduction in delivery stability. My reading is that AI speeds up change without supplying the discipline to absorb it, and that discipline lives in the pipelines and the data underneath them. That is a DataOps finding as much as an AI one. When we moved hundreds of data scientists onto one governed platform, the hardest conversations were rarely about tools. They were about who owned a feature definition when three models depended on it."
       },
       {
         "type": "p",
@@ -750,7 +750,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "The cost of skipping this is becoming visible. [Gartner expects more than 40% of agentic AI projects to be cancelled by the end of 2027](https://www.gartner.com/en/articles/hype-cycle-for-artificial-intelligence), citing cost, unclear value and inadequate risk controls. Those are the same reasons ML projects stalled at proof of concept a decade ago. The technology changed. The failure pattern did not."
+        "text": "The cost of skipping this is already visible. In July 2024, [Gartner predicted that at least 30% of generative AI projects will be abandoned after proof of concept by the end of 2025](https://www.gartner.com/en/newsroom/press-releases/2024-07-29-gartner-predicts-30-percent-of-generative-ai-projects-will-be-abandoned-after-proof-of-concept-by-end-of-2025), citing poor data quality, inadequate risk controls, escalating costs or unclear business value. Those are the same reasons ML projects stalled at proof of concept a decade ago. The technology changed. The failure pattern did not."
       },
       {
         "type": "h2",
@@ -761,13 +761,13 @@ export const moreEssays: Essay[] = [
         "items": [
           "Inventory the prompts, retrieval corpora and tool definitions behind your most important generative use case and put each under version control.",
           "Build an evaluation set of fifty real questions for that use case and run it automatically on every prompt or model change.",
-          "Add cost per task and a provider model-version alert to the monitoring dashboard of each production agent.",
+          "Add cost per task and a provider model-version alert to the monitoring dashboard of each production generative AI application.",
           "Give your model risk team access to evaluation results on the same platform where builders see them."
         ]
       },
       {
         "type": "p",
-        "text": "Firms that built real MLOps platforms have an advantage they may not recognize. Lineage, evaluation, monitoring and shared evidence with risk partners are exactly what agentic systems need, and those capabilities take years to build and earn trust. Firms that skipped that work are about to pay for it twice, once for the models they already run and again for the agents they are about to deploy. If a provider changed the model under your most important AI use case tonight, how quickly would you know?"
+        "text": "Firms that built real MLOps platforms have an advantage they may not recognize. Lineage, evaluation, monitoring and shared evidence with risk partners are exactly what generative and agentic systems need, and those capabilities take years to build and earn trust. Firms that skipped that work are about to pay for it twice, once for the models they already run and again for the agents they are about to deploy. If a provider changed the model under your most important AI use case tonight, how quickly would you know?"
       },
       {
         "type": "bottomLine",
@@ -886,7 +886,7 @@ export const moreEssays: Essay[] = [
         "items": [
           "**Make the compliant path the easy path.** Reusable patterns and automated checks win more adoption than mandates.",
           "**Lead through the managers.** Set architecture, roadmap and standards; let the teams own how they deliver.",
-          "**Show, don't tell.** A working prototype changes more minds than a strategy deck. That is why I build public examples like [aac.muthub.org](https://aac.muthub.org) instead of only writing about the idea.",
+          "**Show, don't tell.** A working prototype changes more minds than a strategy deck. That is why I build a small working reference before I write the standard, instead of only writing about the idea.",
           "**Measure what changed.** Adoption, review time and delivery metrics keep the conversation about outcomes rather than opinions.",
           "**Protect the people who adopt early.** The first team on a new standard takes the risk. Make sure they get the credit and the support."
         ]
