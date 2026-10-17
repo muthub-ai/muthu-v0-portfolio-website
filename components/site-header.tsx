@@ -34,8 +34,11 @@ export function SiteHeader() {
         Skip to content
       </a>
       <div className="container-site flex items-center justify-between gap-6 py-3 sm:py-4">
-        <Link href="/" className="font-serif text-2xl font-semibold tracking-[-0.01em] text-ink">
+        <Link href="/" className="group font-serif text-2xl font-semibold tracking-[-0.01em] text-ink">
           {site.name}
+          <span aria-hidden="true" className="brand-cursor ml-[2px] font-sans font-medium text-accent">
+            _
+          </span>
         </Link>
 
         <nav aria-label="Main" className="hidden items-center gap-x-6 text-[15px] font-medium lg:flex">

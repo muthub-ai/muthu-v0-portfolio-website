@@ -144,9 +144,28 @@ body {
   }
 }
 
+/* Blinking cursor after the name in the header: a quiet nod to the work. */
+@keyframes brand-blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+.brand-cursor {
+  display: inline-block;
+  animation: brand-blink 1.1s step-end infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  .brand-cursor {
+    animation: none;
   }
 }
 
