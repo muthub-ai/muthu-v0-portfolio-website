@@ -149,3 +149,61 @@ body {
     scroll-behavior: auto;
   }
 }
+
+/* Print: essays, playbooks, assessments and case studies print as clean documents. */
+@media print {
+  :root,
+  .dark {
+    --page: 255 255 255;
+    --ink: 0 0 0;
+    --body: 34 34 34;
+    --muted: 85 85 85;
+    --line: 210 210 210;
+    --strong: 170 170 170;
+    --panel: 255 255 255;
+    --chip: 243 243 243;
+    --accent: 0 0 0;
+    --accent-soft: 245 245 245;
+  }
+  @page {
+    margin: 18mm 16mm;
+  }
+  html {
+    font-size: 11pt;
+  }
+  body {
+    background: #fff !important;
+  }
+  header,
+  footer,
+  #subscribe,
+  [data-print="hide"],
+  .print-hide {
+    display: none !important;
+  }
+  .prose-essay {
+    font-size: 11.5pt;
+    line-height: 1.55;
+  }
+  .prose-essay a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    color: rgb(var(--muted));
+    word-break: break-all;
+  }
+  figure,
+  pre,
+  blockquote,
+  aside,
+  li {
+    break-inside: avoid;
+  }
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+  figure svg {
+    min-width: 0 !important;
+  }
+}

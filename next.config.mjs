@@ -1,5 +1,36 @@
+// Security headers. The CSP allows only this site, Microsoft Clarity and Vercel's own analytics.
+// Inline scripts are needed for the theme switcher, structured data and Next.js hydration.
+const isDev = process.env.NODE_ENV !== "production"
+const csp = [
+  "default-src 'self'",
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.clarity.ms https://scripts.clarity.ms https://va.vercel-scripts.com`,
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data: blob: https://*.clarity.ms https://c.bing.com",
+  "font-src 'self' data:",
+  `connect-src 'self' https://*.clarity.ms https://c.bing.com https://vitals.vercel-insights.com${isDev ? " ws:" : ""}`,
+  "frame-ancestors 'none'",
+  "base-uri 'self'",
+  "form-action 'self' https://buttondown.com https://buttondown.email",
+  "object-src 'none'",
+  "upgrade-insecure-requests",
+].join("; ")
+
+const securityHeaders = [
+  { key: "Content-Security-Policy", value: csp },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "DENY" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), browsing-topics=(), payment=(), usb=()" },
+  { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+]
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  poweredByHeader: false,
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }]
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
@@ -26,6 +57,9 @@ const nextConfig = {
       { source: "/projects/:slug", destination: "/initiatives/:slug", statusCode: 301 },
       { source: "/projects", destination: "/initiatives", statusCode: 301 },
       { source: "/Muthu_resume.pdf", destination: "/about", statusCode: 301 },
+      // The single playbook became a collection.
+      { source: "/playbook.md", destination: "/playbooks/governing-coding-agents.md", statusCode: 301 },
+      { source: "/playbook", destination: "/playbooks/governing-coding-agents", statusCode: 301 },
     ]
   },
   async rewrites() {
@@ -35,6 +69,7 @@ const nextConfig = {
       { source: "/:section.md", destination: "/md/:section" },
       { source: "/:section/:slug.md", destination: "/md/:section/:slug" },
       { source: "/writing/theme/:theme.md", destination: "/md/writing/theme/:theme" },
+      { source: "/writing/tag/:tag.md", destination: "/md/writing/tag/:tag" },
     ]
   },
 }

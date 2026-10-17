@@ -6,6 +6,7 @@ import { dateLabel, getEssays, getInitiatives, readingMinutes } from "@/lib/cont
 import { pageMetadata } from "@/lib/seo"
 import { JsonLd, profilePageSchema } from "@/components/json-ld"
 import { Newsletter } from "@/components/newsletter"
+import { playbooks } from "@/content/playbooks"
 
 export const metadata: Metadata = pageMetadata({ path: "/", description: site.description })
 
@@ -18,7 +19,7 @@ const startHere: Record<string, { label: string; href: string }[]> = {
     { label: "Self-describing knowledge", href: "/writing/self-describing-knowledge-open-knowledge-format" },
   ],
   "governed-ai": [
-    { label: "Playbook: governing coding agents", href: "/playbook" },
+    { label: "Playbook: governing coding agents", href: "/playbooks/governing-coding-agents" },
     { label: "Architecture that runs", href: "/writing/architecture-that-runs" },
     { label: "Inside an Architecture-as-Code platform", href: "/writing/inside-an-architecture-as-code-platform" },
     { label: "Model is a tool, harness is the strategy", href: "/writing/model-is-a-tool-harness-is-the-strategy" },
@@ -164,6 +165,36 @@ export default function HomePage() {
             </li>
           ))}
         </ol>
+      </section>
+
+      <section aria-labelledby="playbooks-heading" className="border-t border-line bg-panel">
+        <div className="container-site flex flex-col gap-9 py-[72px]">
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div className="flex max-w-[640px] flex-col gap-2.5">
+              <h2 id="playbooks-heading" className="h-display text-4xl tracking-[-0.01em]">
+                Playbooks
+              </h2>
+              <p className="lede">Checklists for running AI in a regulated enterprise, each with a two-minute self-assessment.</p>
+            </div>
+            <Link href="/playbooks" className="link text-[15px] font-semibold">
+              All playbooks
+            </Link>
+          </div>
+          <div className="grid gap-6 [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))]">
+            {playbooks.map((p) => (
+              <div key={p.slug} className="flex flex-col gap-3.5 rounded-md border border-line bg-page p-7">
+                <span className="label">{p.items.length} points</span>
+                <Link href={`/playbooks/${p.slug}`} className="font-serif text-[24px] font-medium leading-tight text-ink hover:text-accent">
+                  {p.title}
+                </Link>
+                <span className="text-copy leading-relaxed text-body">{p.summary}</span>
+                <Link href={`/playbooks/${p.slug}/assessment`} className="link mt-auto border-t border-line pt-4 text-[15px] font-semibold">
+                  Take the self-assessment
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       <section aria-labelledby="start" className="border-t border-line">

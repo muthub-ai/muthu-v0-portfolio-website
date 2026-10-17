@@ -90,9 +90,9 @@ export function SiteFooter() {
               {s.label}
             </a>
           ))}
-          <Link href="/playbook" className={linkClass}>
+          <Link href="/playbooks" className={linkClass}>
             {icons.playbook}
-            Playbook
+            Playbooks
           </Link>
           <Link href="/now" className={linkClass}>
             {icons.now}

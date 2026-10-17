@@ -8,6 +8,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { SearchDialog } from "@/components/search"
 import { site } from "@/content/site"
 import { ogImage } from "@/lib/seo"
 
@@ -49,10 +50,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <div className="flex min-h-screen flex-col">
             <SiteHeader />
+            <p className="hidden border-b border-line pb-2 text-[10pt] text-muted print:block">
+              {site.fullName} · muthub.org
+            </p>
             <main id="main" className="flex-1">
               {children}
             </main>
             <SiteFooter />
+            <SearchDialog />
           </div>
         </ThemeProvider>
         {/* Microsoft Clarity, loaded after the page is idle so it never delays first paint. */}

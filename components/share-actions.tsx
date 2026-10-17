@@ -16,7 +16,7 @@ export function ShareActions({ url, title }: { url: string; title: string }) {
   }
   const linkedin = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`
   return (
-    <div className="flex flex-wrap items-center gap-2.5" aria-label={`Share "${title}"`}>
+    <div data-print="hide" className="flex flex-wrap items-center gap-2.5" aria-label={`Share "${title}"`}>
       <button
         type="button"
         onClick={copy}

@@ -1,0 +1,283 @@
+# The Architecture-as-Code platform, described in its own notation.
+# Validated by the same schema, Zod rules and compliance linter it applies to every other system.
+name: Architecture as Code Platform
+description: >-
+  A full-lifecycle platform that defines, validates, visualizes and governs enterprise system
+  architectures from declarative YAML, and exposes the same governance data to people, pipelines
+  and AI coding agents.
+model:
+  people:
+  - id: EnterpriseArchitect
+    name: Enterprise Architect
+    description: Authors standards, patterns and reference models; reviews waivers and architecture pull requests
+    relationships:
+    - destinationId: AaCPlatform.ArchitectureRepository
+      description: Authors standards, patterns and models in
+      technology: Git pull requests
+    - destinationId: AaCPlatform.WebDashboard
+      description: Designs systems and reviews compliance in
+      technology: HTTPS
+  - id: ApplicationEngineer
+    name: Application Engineer
+    description: Designs and changes systems; validates architecture locally and in CI, often through an AI coding agent
+    relationships:
+    - destinationId: AaCPlatform.Cli
+      description: Scaffolds and validates architecture YAML with
+      technology: Shell
+    - destinationId: AICodingAssistant
+      description: Asks for compliant designs and code through
+      technology: IDE chat
+    - destinationId: AaCPlatform.DocsMicrosite
+      description: Reads patterns, standards and waivers in
+      technology: HTTPS
+  - id: TechnologyLeader
+    name: Technology Leader
+    description: Tracks standards conformance, risk posture and remediation trends
+    relationships:
+    - destinationId: AaCPlatform.WebDashboard
+      description: Reads the executive scorecard in
+      technology: HTTPS
+  softwareSystems:
+  - id: AaCPlatform
+    name: Architecture as Code Platform
+    description: Architecture-as-code control plane; one Git repository of YAML is the single source of truth for every consumer
+    group: Architecture Governance
+    tags: internal, governance, architecture-as-code
+    disposition: Invest
+    dataClassification: Internal Use
+    containers:
+    - id: ArchitectureRepository
+      name: Architecture Repository
+      technology: Git monorepo (YAML, JSON Schema 2020-12)
+      description: System models, patterns, standards, waivers, schemas and trend history; the single source of truth
+      tags: source-of-truth, yaml, git
+      properties:
+        type: other
+        softwreType: custom
+        hostingPlatform: GitHub
+        dataClassification: Internal Use
+      relationships:
+      - destinationId: AaCPlatform.GovernancePipeline
+        description: Triggers on every pull request and merge to main
+        technology: GitHub webhook
+    - id: GovernancePipeline
+      name: Governance Pipeline
+      technology: GitHub Actions (9 jobs), Node.js, tsx
+      description: Lint and test gate, then parallel stages for models, patterns, standards, waivers and policies; assembles and publishes the microsite and comments diagram previews on pull requests
+      tags: ci-cd, governance
+      properties:
+        type: batch
+        softwreType: custom
+        primaryLanguage: TypeScript
+        hostingPlatform: GitHub Actions
+        deploymentType: single
+      relationships:
+      - destinationId: AaCPlatform.ArchitectureRepository
+        description: Reads models, schemas, standards and waivers from
+        technology: Git checkout
+      - destinationId: AaCPlatform.PolicyEngine
+        description: Formats, compiles and unit-tests policies with
+        technology: OPA CLI
+      - destinationId: AaCPlatform.DocsMicrosite
+        description: Generates and publishes
+        technology: Asciidoctor.js, gh-pages
+      - destinationId: GitHub
+        description: Posts PlantUML and Draw.io diagram previews to pull requests on
+        technology: GitHub REST API
+    - id: PolicyEngine
+      name: Policy Engine
+      technology: Open Policy Agent (Rego)
+      description: Security (KMS), integration (API gateway) and FinOps (rightsizing) rules with unit tests, shipped as a deployable policy bundle
+      tags: policy-as-code, opa
+      properties:
+        type: other
+        softwreType: open-source
+        primaryLanguage: Rego
+        hostingPlatform: OPA bundle
+    - id: WebDashboard
+      name: Web Dashboard and Diagram Editor
+      technology: Next.js 16, React 19, React Flow, Monaco, Zustand
+      description: Systems overview, executive scorecard and a bidirectional YAML-to-diagram editor with Draw.io and PlantUML export; reads the repository at build time
+      tags: webapp, dashboard
+      properties:
+        type: UI
+        softwreType: custom
+        primaryLanguage: TypeScript
+        hostingPlatform: Vercel
+        deploymentType: active-active
+        dataClassification: Internal Use
+      relationships:
+      - destinationId: AaCPlatform.ArchitectureRepository
+        description: Loads systems, standards and waivers from at build time
+        technology: File system (server components)
+    - id: DocsMicrosite
+      name: Documentation Microsite
+      technology: Static HTML (Asciidoctor.js)
+      description: Generated catalogs for systems, patterns, standards and waivers, plus rendered diagrams
+      tags: static-site, docs
+      properties:
+        type: UI
+        softwreType: custom
+        hostingPlatform: GitHub Pages
+        deploymentType: single
+    - id: Cli
+      name: aac CLI
+      technology: TypeScript, Commander, AJV
+      description: init, create and validate commands; validates against the published schemas with ETag caching and an offline fallback
+      tags: cli, developer-tooling
+      properties:
+        type: other
+        softwreType: open-source
+        primaryLanguage: TypeScript
+        hostingPlatform: npm package and native binaries
+      relationships:
+      - destinationId: AaCPlatform.ArchitectureRepository
+        description: Fetches published JSON Schemas from
+        technology: HTTPS (raw content, ETag)
+    - id: McpServer
+      name: MCP Server
+      technology: TypeScript, Model Context Protocol SDK, AJV
+      description: Ten resources, three tools and two guided prompts that give AI coding agents governed access to models, standards, waivers, patterns and schemas
+      tags: mcp, ai-agents
+      properties:
+        type: API
+        softwreType: open-source
+        primaryLanguage: TypeScript
+        hostingPlatform: Local process (stdio)
+      relationships:
+      - destinationId: AaCPlatform.ArchitectureRepository
+        description: Reads and validates artifacts in a local clone of
+        technology: File system
+  - id: AICodingAssistant
+    name: AI Coding Assistant
+    description: Agent in the engineer's IDE, such as GitHub Copilot, Cursor or Claude Desktop
+    group: Developer Environment
+    tags: external, ai-agent
+    disposition: Tolerate
+    dataClassification: Internal Use
+    relationships:
+    - destinationId: AaCPlatform.McpServer
+      description: Reads standards and validates designs through
+      technology: MCP over stdio
+    - destinationId: CopilotSpaces
+      description: Retrieves grounding context from
+      technology: GitHub MCP server
+  - id: CopilotSpaces
+    name: GitHub Copilot Spaces
+    description: Retrieval index over the standards and patterns folders, used to ground code generation
+    group: GitHub
+    tags: external, rag
+    disposition: Tolerate
+    dataClassification: Internal Use
+    relationships:
+    - destinationId: AaCPlatform.ArchitectureRepository
+      description: Indexes standards and patterns from
+      technology: GitHub indexing
+  - id: GitHub
+    name: GitHub
+    description: Hosts the repository, pull requests, Actions runners and Pages
+    group: GitHub
+    tags: external, scm
+    disposition: Tolerate
+    dataClassification: Internal Use
+  - id: Npm
+    name: npm Registry
+    description: Distributes the aac CLI and the MCP server packages
+    group: Package distribution
+    tags: external, registry
+    disposition: Tolerate
+    dataClassification: Public
+    relationships:
+    - destinationId: AaCPlatform.Cli
+      description: Distributes
+      technology: npm install
+    - destinationId: AaCPlatform.McpServer
+      description: Distributes
+      technology: npm install
+  - id: ApplicationRepositories
+    name: Application Repositories
+    description: Product teams' code repositories running the reference CI pipeline against the published schemas and policies
+    group: Product teams
+    tags: external, ci
+    disposition: Tolerate
+    dataClassification: Internal Use
+    relationships:
+    - destinationId: AaCPlatform.Cli
+      description: Validate their architecture YAML in CI with
+      technology: GitHub Actions
+    - destinationId: AaCPlatform.PolicyEngine
+      description: Evaluate infrastructure and integration choices against
+      technology: OPA bundle
+  deploymentNodes:
+  - id: github-cloud
+    name: GitHub
+    environment: Production
+    technology: GitHub.com
+    tags: github, saas
+    children:
+    - id: actions-runners
+      name: GitHub Actions Runners
+      technology: ubuntu-latest hosted runners
+      tags: ci
+      containerInstances:
+      - containerId: AaCPlatform.GovernancePipeline
+        instanceId: 1
+      - containerId: AaCPlatform.PolicyEngine
+        instanceId: 1
+    - id: github-pages
+      name: GitHub Pages
+      technology: Static hosting (gh-pages branch)
+      tags: hosting
+      containerInstances:
+      - containerId: AaCPlatform.DocsMicrosite
+        instanceId: 1
+    - id: github-repo
+      name: muthub-ai/aac
+      technology: Git repository
+      tags: scm
+      containerInstances:
+      - containerId: AaCPlatform.ArchitectureRepository
+        instanceId: 1
+  - id: vercel
+    name: Vercel
+    environment: Production
+    technology: Vercel edge network
+    tags: hosting, edge
+    children:
+    - id: vercel-project
+      name: Vercel Project (aac.muthub.org)
+      technology: Next.js serverless and static output
+      tags: hosting
+      containerInstances:
+      - containerId: AaCPlatform.WebDashboard
+        instanceId: 1
+  - id: engineer-workstation
+    name: Engineer Workstation
+    environment: Production
+    technology: macOS, Linux or Windows with Node.js 22
+    tags: workstation
+    children:
+    - id: node-runtime
+      name: Node.js 22 Runtime
+      technology: Node.js
+      tags: runtime
+      containerInstances:
+      - containerId: AaCPlatform.Cli
+        instanceId: 1
+      - containerId: AaCPlatform.McpServer
+        instanceId: 1
+views:
+  systemContextViews:
+  - key: AaCPlatform-SystemContext
+    softwareSystemId: AaCPlatform
+    description: Who uses the platform and which external systems it depends on
+  containerViews:
+  - key: AaCPlatform-Containers
+    softwareSystemId: AaCPlatform
+    description: The seven containers and how one Git repository feeds every consumer
+  deploymentViews:
+  - key: AaCPlatform-Deployment
+    softwareSystemId: AaCPlatform
+    environment: Production
+    title: Where each container runs
+    description: GitHub hosts the repository, pipeline and microsite; Vercel serves the dashboard; the CLI and MCP server run on engineers' machines.

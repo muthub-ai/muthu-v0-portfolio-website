@@ -1,9 +1,10 @@
 import { about, now } from "@/content/about"
-import { playbook } from "@/content/playbook"
+import { getPlaybook, playbooks } from "@/content/playbooks"
+import { getTag } from "@/content/tags"
 import { archive } from "@/content/archive"
 import { site, themeName, themes } from "@/content/site"
 import { figureMeta } from "@/components/figures"
-import { blocksToMarkdown, dateLabel, getEssay, getEssays, getInitiative, getInitiatives, getNote, getNotes } from "@/lib/content"
+import { blocksToMarkdown, dateLabel, getByTag, getEssay, getEssays, getInitiative, getInitiatives, getNote, getNotes } from "@/lib/content"
 
 // Markdown copies of every page, served at /<path>.md and listed in /llms.txt.
 const footer = `\n\n---\n${site.displayName} · ${site.url} · ${site.disclosure}\n`
@@ -120,11 +121,32 @@ export function nowMarkdown() {
   return `# Now\n\nUpdated ${now.updated}.\n\n${now.items.map((x) => `- ${x}`).join("\n")}` + footer
 }
 
-export function playbookMarkdown() {
+export function playbooksMarkdown() {
+  return (
+    `# Playbooks\n\nEvergreen checklists for governing and scaling AI in a regulated enterprise.\n\n` +
+    playbooks.map((p) => `- [${p.title}](${site.url}/playbooks/${p.slug}.md): ${p.summary}`).join("\n") +
+    footer
+  )
+}
+
+export function tagMarkdown(slug: string) {
+  const tag = getTag(slug)
+  if (!tag) return null
+  const { essays, notes } = getByTag(slug)
+  return (
+    `# ${tag.name}\n\nEssays and notes tagged ${tag.name}.\n\n` +
+    [...essays, ...notes].map((e) => `- [${e.title}](${site.url}/writing/${e.slug}.md) (${dateLabel(e)}): ${e.summary}`).join("\n") +
+    footer
+  )
+}
+
+export function playbookMarkdown(slug: string) {
+  const playbook = getPlaybook(slug)
+  if (!playbook) return null
   return (
     `# ${playbook.title}\n\n> ${playbook.summary}\n\nLast reviewed ${playbook.reviewed}.\n\n${playbook.intro.join("\n\n")}\n\n` +
     playbook.items.map((item, i) => `## ${i + 1}. ${item.title}\n\n${item.text}\n\n**Check:** ${item.check}`).join("\n\n") +
-    `\n\n${playbook.closing}` +
+    `\n\n${playbook.closing}\n\nSelf-assessment: ${site.url}/playbooks/${playbook.slug}/assessment` +
     footer
   )
 }
@@ -139,11 +161,12 @@ export function llmsTxt() {
     `- [About](${site.url}/about.md): biography, career, education, certifications and speaker bios\n` +
     `- [Initiatives](${site.url}/initiatives.md): case studies of work he has led\n` +
     `- [Writing](${site.url}/writing.md): essays and notes\n` +
-    `- [Playbook](${site.url}/playbook.md): ${playbook.title}\n` +
+    `- [Playbooks](${site.url}/playbooks.md): ${playbooks.map((p) => p.short).join("; ")}\n` +
     `- [Now](${site.url}/now.md): current focus\n` +
     `- [Reach me](${site.url}/reach.md): how to get in touch\n\n` +
     `## Initiatives\n\n${getInitiatives().map((i) => `- [${i.title}](${site.url}/initiatives/${i.slug}.md): ${i.summary}`).join("\n")}\n\n` +
     (essays.length ? `## Essays\n\n${essays.map((e) => `- [${e.title}](${site.url}/writing/${e.slug}.md): ${e.summary}`).join("\n")}\n\n` : "") +
+    `## Playbooks\n\n${playbooks.map((p) => `- [${p.title}](${site.url}/playbooks/${p.slug}.md): ${p.summary}`).join("\n")}\n\n` +
     `## Archive\n\n${archive.map((a) => `- [${a.title}](${a.url}): ${a.summary}`).join("\n")}\n\n` +
     `## Optional\n\n- [Architecture-as-Code reference platform](https://aac.muthub.org): working prototype of an architecture control plane\n${site.social.map((s) => `- [${s.label}](${s.url})`).join("\n")}\n`
   )

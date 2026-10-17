@@ -5,7 +5,7 @@ import { site } from "@/content/site"
 export function Newsletter({ compact = false }: { compact?: boolean }) {
   const linkedin = site.social.find((s) => s.label === "LinkedIn")?.url
   return (
-    <section id="subscribe" aria-labelledby="newsletter-heading" className="scroll-mt-8 bg-band text-band-ink">
+    <section id="subscribe" data-print="hide" aria-labelledby="newsletter-heading" className="scroll-mt-8 bg-band text-band-ink">
       <div className={`container-site flex flex-wrap items-center justify-between gap-10 ${compact ? "py-14" : "py-[72px]"}`}>
         <div className="flex flex-[1_1_420px] flex-col gap-3">
           <h2 id="newsletter-heading" className="font-serif text-[2rem] font-medium leading-tight tracking-[-0.01em] sm:text-4xl">

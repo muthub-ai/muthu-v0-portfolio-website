@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { site, themeName, themes, type ThemeSlug } from "@/content/site"
-import { dateLabel, getEssays, getNotes, readingMinutes } from "@/lib/content"
+import { dateLabel, getEssays, getNotes, getTagCounts, readingMinutes } from "@/lib/content"
 import { archive } from "@/content/archive"
 
 // The writing list. Each theme filter is a real page (/writing/theme/<slug>) so it can be shared, bookmarked and indexed.
@@ -67,6 +67,17 @@ export function WritingHub({ theme }: { theme?: ThemeSlug }) {
           )
         })}
       </nav>
+
+      {!theme && (
+        <nav aria-label="Topics" className="-mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-[15px]">
+          <span className="label">Topics</span>
+          {getTagCounts().map((t) => (
+            <Link key={t.slug} href={`/writing/tag/${t.slug}`} className="text-body hover:text-accent">
+              {t.name} <span className="text-muted">{t.count}</span>
+            </Link>
+          ))}
+        </nav>
+      )}
 
       <div className="flex flex-wrap gap-14">
         <section aria-labelledby="essays-heading" className="flex min-w-0 flex-[999_1_560px] flex-col">

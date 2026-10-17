@@ -30,12 +30,12 @@ export function ReadingProgress() {
   const percent = Math.round(progress)
   return (
     <>
-      <div aria-hidden="true" className="fixed inset-x-0 top-0 z-50 h-[3px] bg-transparent">
+      <div aria-hidden="true" data-print="hide" className="fixed inset-x-0 top-0 z-50 h-[3px] bg-transparent">
         <div className="h-full bg-accent transition-[width] duration-150 ease-out" style={{ width: `${progress}%` }} />
       </div>
       <div
         aria-hidden="true"
-        className={`fixed bottom-5 right-5 z-50 rounded-full border border-line bg-page/90 px-3 py-1.5 text-[13px] font-semibold tabular-nums text-ink shadow-sm backdrop-blur transition-opacity duration-300 ${
+        data-print="hide" className={`fixed bottom-5 right-5 z-50 rounded-full border border-line bg-page/90 px-3 py-1.5 text-[13px] font-semibold tabular-nums text-ink shadow-sm backdrop-blur transition-opacity duration-300 ${
           percent > 2 ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >

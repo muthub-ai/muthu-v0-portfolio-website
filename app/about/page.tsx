@@ -154,17 +154,45 @@ export default function AboutPage() {
           </h2>
           <div className="flex min-w-0 flex-[999_1_560px] flex-col gap-3 text-[15px] leading-[1.7] text-body">
             <p>Views are my own and do not represent Wells Fargo. There is no paid or sponsored content on this site.</p>
-            <p>
-              Built with Next.js and hosted on Vercel. Every page is also published as Markdown (add <code>.md</code> to any URL) and listed in{" "}
-              <a href="/llms.txt" className="link">
-                llms.txt
-              </a>
-              , with structured data, so search engines and AI assistants can read and cite it accurately. Questions?{" "}
-              <Link href="/reach" className="link">
-                Reach me
-              </Link>
-              .
+            <p id="colophon" className="font-semibold text-ink">
+              How this site is built
             </p>
+            <ul className="flex list-disc flex-col gap-2 pl-5">
+              <li>
+                <strong className="text-ink">Governed like a production system.</strong> Every build runs a content check that blocks confidential terms and
+                employer-internal details from ever being published, the same way a pipeline gate blocks a non-compliant release.
+              </li>
+              <li>
+                <strong className="text-ink">Readable by people and agents.</strong> Every page is also published as Markdown (add <code>.md</code> to any URL),
+                listed in{" "}
+                <a href="/llms.txt" className="link">
+                  llms.txt
+                </a>{" "}
+                and described with structured data, so search engines and AI assistants can read and cite it accurately.
+              </li>
+              <li>
+                <strong className="text-ink">Diagrams from models.</strong> The architecture figures are drawn as code in the site&apos;s own palette, and the C4
+                views of the Architecture-as-Code platform come from its{" "}
+                <a href="/downloads/aac-platform-system.yaml" className="link">
+                  published model
+                </a>
+                .
+              </li>
+              <li>
+                <strong className="text-ink">Private by default.</strong> Search and the self-assessments run entirely in your browser. Analytics are limited to
+                Vercel&apos;s privacy-friendly page metrics and Microsoft Clarity; there is no advertising and no third-party tracking beyond that.
+              </li>
+              <li>
+                <strong className="text-ink">Secure by default.</strong> A strict content security policy and standard security headers on every response.
+              </li>
+              <li>
+                Built with Next.js, set in Newsreader and Instrument Sans, hosted on Vercel. Questions?{" "}
+                <Link href="/reach" className="link">
+                  Reach me
+                </Link>
+                .
+              </li>
+            </ul>
           </div>
         </div>
       </section>

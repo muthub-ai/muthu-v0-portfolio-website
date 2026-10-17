@@ -126,6 +126,7 @@ export const initiatives: Initiative[] = [
     links: [
       { label: "Explore the live platform: aac.muthub.org", url: "https://aac.muthub.org" },
       { label: "Read the source on GitHub", url: "https://github.com/muthub-ai/aac" },
+      { label: "Download the platform's C4 model (YAML)", url: "/downloads/aac-platform-system.yaml" },
     ],
     architecture: {
       intro:

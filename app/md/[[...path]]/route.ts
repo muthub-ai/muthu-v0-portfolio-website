@@ -1,4 +1,6 @@
 import { themes } from "@/content/site"
+import { playbooks } from "@/content/playbooks"
+import { tags } from "@/content/tags"
 import { getEssays, getInitiatives, getNotes } from "@/lib/content"
 import {
   aboutMarkdown,
@@ -8,6 +10,8 @@ import {
   initiativesMarkdown,
   nowMarkdown,
   playbookMarkdown,
+  playbooksMarkdown,
+  tagMarkdown,
   reachMarkdown,
   themeMarkdown,
   writingMarkdown,
@@ -25,7 +29,9 @@ export function generateStaticParams() {
     { path: ["about"] },
     { path: ["reach"] },
     { path: ["now"] },
-    { path: ["playbook"] },
+    { path: ["playbooks"] },
+    ...playbooks.map((p) => ({ path: ["playbooks", p.slug] })),
+    ...tags.map((t) => ({ path: ["writing", "tag", t.slug] })),
     ...[...getEssays(), ...getNotes()].map((e) => ({ path: ["writing", e.slug] })),
     ...getInitiatives().map((i) => ({ path: ["initiatives", i.slug] })),
     ...themes.map((t) => ({ path: ["writing", "theme", t.slug] })),
@@ -35,6 +41,8 @@ export function generateStaticParams() {
 function render(path: string[]): string | null {
   const [section, slug, sub] = path
   if (section === "writing" && slug === "theme" && sub) return themeMarkdown(sub)
+  if (section === "writing" && slug === "tag" && sub) return tagMarkdown(sub)
+  if (section === "playbooks" && slug) return playbookMarkdown(slug)
   if (!section || section === "index") return homeMarkdown()
   if (!slug) {
     switch (section) {
@@ -48,8 +56,8 @@ function render(path: string[]): string | null {
         return reachMarkdown()
       case "now":
         return nowMarkdown()
-      case "playbook":
-        return playbookMarkdown()
+      case "playbooks":
+        return playbooksMarkdown()
       default:
         return null
     }

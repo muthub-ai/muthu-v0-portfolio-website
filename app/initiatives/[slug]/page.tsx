@@ -72,7 +72,7 @@ export default function InitiativePage({ params }: Props) {
         {item.links && item.links.length > 0 && (
           <div className="flex flex-wrap gap-3">
             {item.links.map((l) => (
-              <a key={l.url} href={l.url} className="btn-secondary" rel="noopener noreferrer">
+              <a key={l.url} href={l.url} className="btn-secondary" {...(l.url.startsWith("/") ? { download: "" } : { rel: "noopener noreferrer" })}>
                 {l.label}
                 <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="ml-2">
                   <path d="M7 17L17 7M9 7h8v8" />

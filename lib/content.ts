@@ -4,6 +4,7 @@ import { contextEngineeringEssays } from "@/content/context-engineering"
 import { initiatives, type Initiative } from "@/content/initiatives"
 import type { Block, ThemeSlug } from "@/content/site"
 import { figureMeta } from "@/components/figures"
+import { tags as allTags, tagsFor } from "@/content/tags"
 
 // Drafts are visible in local development, or anywhere NEXT_PUBLIC_SHOW_DRAFTS=true is set.
 // A production build on Vercel hides them until their status is "published".
@@ -103,4 +104,29 @@ export function lastUpdated(): string | null {
   const latest = dates[dates.length - 1]
   if (!latest) return null
   return new Date(`${latest}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })
+}
+
+// ── Tags ────────────────────────────────────────────────────────────
+
+type Taggable = { slug: string; title: string; summary: string }
+
+export function itemTags(item: Taggable) {
+  return tagsFor(item.slug, `${item.title} ${item.summary}`)
+}
+
+/** Every tag in use with its piece count, most used first. */
+export function getTagCounts() {
+  const counts = new Map<string, number>()
+  for (const item of [...getEssays(), ...getNotes()]) {
+    for (const t of itemTags(item)) counts.set(t.slug, (counts.get(t.slug) ?? 0) + 1)
+  }
+  return allTags
+    .filter((t) => counts.has(t.slug))
+    .map((t) => ({ ...t, count: counts.get(t.slug) ?? 0 }))
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+}
+
+export function getByTag(tag: string) {
+  const has = (item: Taggable) => itemTags(item).some((t) => t.slug === tag)
+  return { essays: getEssays().filter(has), notes: getNotes().filter(has) }
 }

@@ -1,25 +1,42 @@
 import Link from "next/link"
 import type { Metadata } from "next"
 import { site } from "@/content/site"
-import { playbook } from "@/content/playbook"
+import { notFound } from "next/navigation"
+import { getPlaybook, playbooks } from "@/content/playbooks"
 import { pageMetadata, writingImage } from "@/lib/seo"
 import { Inline } from "@/components/rich-text"
 import { JsonLd, personId, personSchema } from "@/components/json-ld"
 import { ShareActions } from "@/components/share-actions"
 
-export const metadata: Metadata = pageMetadata({
-  path: "/playbook",
-  title: playbook.title,
-  description: playbook.summary,
-  type: "article",
-  modifiedTime: playbook.reviewed,
-  image: writingImage("playbook", playbook.title),
-})
+interface Props {
+  params: { slug: string }
+}
 
-const reviewed = new Date(`${playbook.reviewed}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })
+export const dynamicParams = false
 
-export default function PlaybookPage() {
-  const url = `${site.url}/playbook`
+export function generateStaticParams() {
+  return playbooks.map((p) => ({ slug: p.slug }))
+}
+
+export function generateMetadata({ params }: Props): Metadata {
+  const playbook = getPlaybook(params.slug)
+  if (!playbook) return {}
+  return pageMetadata({
+    path: `/playbooks/${playbook.slug}`,
+    title: playbook.title,
+    description: playbook.summary,
+    type: "article",
+    modifiedTime: playbook.reviewed,
+    image: writingImage(`playbooks-${playbook.slug}`, playbook.title),
+  })
+}
+
+export default function PlaybookPage({ params }: Props) {
+  const playbook = getPlaybook(params.slug)
+  if (!playbook) notFound()
+  const reviewed = new Date(`${playbook.reviewed}T12:00:00Z`).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric", timeZone: "UTC" })
+  const url = `${site.url}/playbooks/${playbook.slug}`
+  const others = playbooks.filter((p) => p.slug !== playbook.slug)
   const schema = {
     "@context": "https://schema.org",
     "@type": "HowTo",
@@ -36,7 +53,9 @@ export default function PlaybookPage() {
       <JsonLd data={schema} />
       <article className="mx-auto flex max-w-prose flex-col gap-7 px-5 pb-20 pt-16 sm:px-8 sm:pt-[72px]">
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-[15px] text-muted">
-          <span className="eyebrow">Playbook</span>
+          <Link href="/playbooks" className="eyebrow hover:text-ink hover:underline">
+            Playbook
+          </Link>
           <span>Last reviewed {reviewed}</span>
         </div>
         <h1 className="h-display text-[2.5rem] leading-[1.08] sm:text-[52px]">{playbook.title}</h1>
@@ -47,8 +66,19 @@ export default function PlaybookPage() {
           </p>
         ))}
 
-        <nav aria-label="The twelve points" className="rounded-md border border-line px-6 py-5">
-          <p className="label">The twelve points</p>
+        <Link
+          href={`/playbooks/${playbook.slug}/assessment`}
+          className="group flex flex-wrap items-center justify-between gap-3 rounded-md bg-accent-soft px-6 py-5 print:hidden"
+        >
+          <span className="flex flex-col gap-1">
+            <span className="label">Self-assessment</span>
+            <span className="text-copy text-ink">Score your organization against these {playbook.items.length} points in about two minutes. Nothing is stored.</span>
+          </span>
+          <span className="btn-primary">Take the assessment</span>
+        </Link>
+
+        <nav aria-label={`The ${playbook.items.length} points`} className="rounded-md border border-line px-6 py-5">
+          <p className="label">The {playbook.items.length} points</p>
           <ol className="mt-3 grid list-decimal gap-x-8 gap-y-1.5 pl-5 text-copy leading-snug marker:text-muted sm:grid-cols-2">
             {playbook.items.map((item, i) => (
               <li key={item.title}>
@@ -91,20 +121,22 @@ export default function PlaybookPage() {
           <ShareActions url={url} title={playbook.title} />
           <p className="text-[15px] leading-relaxed text-muted">
             Copy it, adapt it, use it in your own standards. A{" "}
-            <a href="/playbook.md" className="link">
+            <a href={`/playbooks/${playbook.slug}.md`} className="link">
               Markdown version
             </a>{" "}
-            is easier to paste. Related:{" "}
-            <Link href="/writing/model-is-a-tool-harness-is-the-strategy" className="link">
-              Model is a tool, harness is the strategy
-            </Link>{" "}
-            and{" "}
-            <Link href="/writing/adopting-mcp-in-a-bank" className="link">
-              Adopting MCP in a bank
-            </Link>
-            . {site.disclosure}
+            is easier to paste. {site.disclosure}
           </p>
         </div>
+
+        <nav aria-label="More playbooks" className="flex flex-col gap-3 border-t border-line pt-6 print:hidden">
+          <p className="label">More playbooks</p>
+          {others.map((o) => (
+            <Link key={o.slug} href={`/playbooks/${o.slug}`} className="group flex flex-col gap-1">
+              <span className="font-serif text-[22px] font-medium leading-snug text-ink group-hover:text-accent">{o.title}</span>
+              <span className="text-[15px] text-muted">{o.items.length} points · reviewed {o.reviewed}</span>
+            </Link>
+          ))}
+        </nav>
       </article>
     </>
   )

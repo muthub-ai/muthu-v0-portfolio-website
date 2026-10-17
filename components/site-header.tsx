@@ -5,19 +5,19 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { nav, site } from "@/content/site"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { SearchButton } from "@/components/search"
+import { BrandIcon } from "@/components/social-icons"
 
-// Until the newsletter is live, the header's call to action is "Follow" (LinkedIn) rather than a dead "Subscribe".
-function CallToAction({ className = "" }: { className?: string }) {
-  const linkedin = site.social.find((s) => s.label === "LinkedIn")?.url ?? "/reach"
-  const base = `inline-flex min-h-[40px] items-center rounded-full bg-accent px-4 text-[15px] font-medium text-page hover:bg-accent-strong ${className}`
-  return site.newsletterAction ? (
-    <Link href="/#subscribe" className={base}>
-      Subscribe
+const headerSocial = site.social.filter((s) => s.label === "LinkedIn" || s.label === "GitHub")
+
+function ReachMe({ className = "" }: { className?: string }) {
+  return (
+    <Link
+      href="/reach"
+      className={`inline-flex min-h-[40px] items-center rounded-full bg-ink px-4 text-[15px] font-medium text-page transition-opacity hover:opacity-90 ${className}`}
+    >
+      Reach me
     </Link>
-  ) : (
-    <a href={linkedin} className={base} rel="noopener noreferrer">
-      Follow
-    </a>
   )
 }
 
@@ -26,13 +26,10 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
   useEffect(() => setOpen(false), [pathname])
 
-  const links = nav.map((item) => {
-    const active = pathname === item.href || pathname.startsWith(`${item.href}/`)
-    return { ...item, active }
-  })
+  const links = nav.map((item) => ({ ...item, active: pathname === item.href || pathname.startsWith(`${item.href}/`) }))
 
   return (
-    <header className="relative border-b border-line">
+    <header className="relative border-b border-line print:hidden">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-page focus:px-4 focus:py-2">
         Skip to content
       </a>
@@ -41,7 +38,7 @@ export function SiteHeader() {
           {site.name}
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-x-6 text-[15px] font-medium sm:flex">
+        <nav aria-label="Main" className="hidden items-center gap-x-6 text-[15px] font-medium lg:flex">
           {links.map((item) => (
             <Link
               key={item.href}
@@ -52,11 +49,28 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
-          <CallToAction />
-          <ThemeToggle />
         </nav>
 
-        <div className="flex items-center gap-1 sm:hidden">
+        <div className="hidden items-center gap-1.5 lg:flex">
+          <SearchButton />
+          {headerSocial.map((s) => (
+            <a
+              key={s.label}
+              href={s.url}
+              rel="me noopener noreferrer"
+              aria-label={`${s.label} profile`}
+              title={s.label}
+              className="inline-flex h-10 w-10 items-center justify-center rounded-full text-muted transition-colors hover:bg-chip hover:text-ink"
+            >
+              <BrandIcon name={s.label} />
+            </a>
+          ))}
+          <ThemeToggle />
+          <ReachMe className="ml-1.5" />
+        </div>
+
+        <div className="flex items-center gap-1 lg:hidden">
+          <SearchButton />
           <ThemeToggle />
           <button
             type="button"
@@ -74,7 +88,7 @@ export function SiteHeader() {
       </div>
 
       {open && (
-        <nav id="mobile-menu" aria-label="Main" className="border-t border-line bg-page sm:hidden">
+        <nav id="mobile-menu" aria-label="Main" className="border-t border-line bg-page lg:hidden">
           <ul className="container-site flex flex-col py-2">
             {links.map((item) => (
               <li key={item.href}>
@@ -87,8 +101,19 @@ export function SiteHeader() {
                 </Link>
               </li>
             ))}
-            <li className="pb-3 pt-2">
-              <CallToAction />
+            <li className="flex items-center gap-3 pb-3 pt-2">
+              <ReachMe />
+              {headerSocial.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.url}
+                  rel="me noopener noreferrer"
+                  aria-label={`${s.label} profile`}
+                  className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-line text-muted hover:text-ink"
+                >
+                  <BrandIcon name={s.label} size={18} />
+                </a>
+              ))}
             </li>
           </ul>
         </nav>

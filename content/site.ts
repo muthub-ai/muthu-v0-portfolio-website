@@ -50,8 +50,8 @@ export const site = {
 export const nav = [
   { label: "Initiatives", href: "/initiatives" },
   { label: "Writing", href: "/writing" },
+  { label: "Playbooks", href: "/playbooks" },
   { label: "About", href: "/about" },
-  { label: "Reach me", href: "/reach" },
 ] as const
 
 export type ThemeSlug = "context-engineering" | "governed-ai" | "ai-native-sdlc" | "data-ai-platforms" | "leading-ai-change"

@@ -3,7 +3,7 @@ import Link from "next/link"
 import { notFound } from "next/navigation"
 import type { Metadata } from "next"
 import { site, themeName } from "@/content/site"
-import { dateLabel, getEssay, getEssays, getNote, getNotes, getSeries, readingMinutes } from "@/lib/content"
+import { dateLabel, getEssay, getEssays, getNote, getNotes, getSeries, itemTags, readingMinutes } from "@/lib/content"
 import { pageMetadata, writingImage } from "@/lib/seo"
 import { Blocks, Inline, headingId } from "@/components/rich-text"
 import { ShareActions } from "@/components/share-actions"
@@ -61,6 +61,21 @@ export default function WritingItemPage({ params }: Props) {
     .slice(0, 2)
 
   const minutes = readingMinutes(item.body)
+  const updated =
+    "updated" in item && item.updated && item.updated !== item.published
+      ? new Date(`${item.updated}T12:00:00Z`).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })
+      : null
+  // Sources: every external link cited in the piece, once, in order of first mention.
+  const sources: { text: string; url: string; host: string }[] = []
+  for (const block of item.body) {
+    const texts = block.type === "ul" || block.type === "ol" || block.type === "monday" ? block.items : "text" in block ? [block.text] : []
+    for (const t of texts) {
+      for (const m of t.matchAll(/\[([^\]]+)\]\((https?:\/\/[^)\s]+)\)/g)) {
+        if (sources.some((s) => s.url === m[2])) continue
+        sources.push({ text: m[1], url: m[2], host: new URL(m[2]).hostname.replace(/^www\./, "") })
+      }
+    }
+  }
   const sections = item.body.filter((b): b is { type: "h2"; text: string } => b.type === "h2")
   const showContents = kind === "Essay" && sections.length >= 3 && minutes >= 4
   const takeaway = kind === "Essay" && minutes >= 4 ? item.body.find((b): b is { type: "bottomLine"; text: string } => b.type === "bottomLine") : undefined
@@ -119,6 +134,7 @@ export default function WritingItemPage({ params }: Props) {
             <span className="font-semibold">{site.name}</span>
             <span className="text-muted">
               {dateLabel(item)} · {minutes} min read
+              {updated && <> · Updated {updated}</>}
             </span>
           </div>
           <a href={`/writing/${item.slug}.md`} className="link ml-auto text-[15px] font-semibold">
@@ -152,7 +168,35 @@ export default function WritingItemPage({ params }: Props) {
 
         <Blocks blocks={item.body} />
 
+        {sources.length > 0 && (
+          <section aria-labelledby="sources-heading" className="mt-2 flex flex-col gap-3 rounded-md border border-line px-6 py-5">
+            <h2 id="sources-heading" className="label">
+              Sources cited
+            </h2>
+            <ol className="flex list-decimal flex-col gap-1.5 pl-5 text-[15px] leading-snug marker:text-muted">
+              {sources.map((src) => (
+                <li key={src.url}>
+                  <a href={src.url} className="link" rel="noopener noreferrer">
+                    {src.text}
+                  </a>
+                  <span className="text-muted"> · {src.host}</span>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
         <div className="mt-2 flex flex-col gap-5 border-t border-line pt-6">
+          {itemTags(item).length > 0 && (
+            <nav aria-label="Topics" className="flex flex-wrap items-center gap-2">
+              <span className="label mr-1">Topics</span>
+              {itemTags(item).map((t) => (
+                <Link key={t.slug} href={`/writing/tag/${t.slug}`} className="chip hover:text-ink">
+                  {t.name}
+                </Link>
+              ))}
+            </nav>
+          )}
           <ShareActions url={url} title={item.title} />
           <p className="text-[15px] leading-relaxed text-muted">
             <span className="font-semibold text-body">Cite this:</span> Bommiah, M. ({year}{citeDate ? `, ${citeDate}` : ""}). <em>{item.title}</em>. muthub.org.{" "}

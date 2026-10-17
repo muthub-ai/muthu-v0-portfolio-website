@@ -155,10 +155,9 @@ def read_items():
                 "published": get("published"),
                 "series": part.group(1) if part else None,
             })
-    pb = (ROOT / "content/playbook.ts").read_text()
-    title = re.search(r'title: "((?:[^"\\]|\\.)*)"', pb)
-    if title:
-        items.append({"slug": "playbook", "title": title.group(1), "label": "PLAYBOOK", "published": None, "series": None})
+    pb = (ROOT / "content/playbooks.ts").read_text()
+    for m in re.finditer(r'slug: "([^"]+)",\s*short: "[^"]*",\s*title: "((?:[^"\\]|\\.)*)"', pb):
+        items.append({"slug": f"playbooks-{m.group(1)}", "title": m.group(2), "label": "PLAYBOOK", "published": None, "series": None})
     return items
 
 

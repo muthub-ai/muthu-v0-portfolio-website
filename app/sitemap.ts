@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next"
 import { site, themes } from "@/content/site"
+import { playbooks } from "@/content/playbooks"
+import { tags } from "@/content/tags"
 import { getEssays, getInitiatives, getNotes } from "@/lib/content"
 
 // Generated at build time. Drafts are excluded automatically in production builds.
@@ -16,7 +18,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     page("/", 1, "weekly"),
     page("/writing", 0.9, "weekly"),
     ...themes.map((t) => page(`/writing/theme/${t.slug}`, 0.7, "weekly")),
-    page("/playbook", 0.8, "monthly"),
+    page("/playbooks", 0.8, "monthly"),
+    ...playbooks.map((p) => page(`/playbooks/${p.slug}`, 0.8, "monthly", new Date(`${p.reviewed}T12:00:00Z`))),
+    ...playbooks.map((p) => page(`/playbooks/${p.slug}/assessment`, 0.6, "monthly")),
+    ...tags.map((t) => page(`/writing/tag/${t.slug}`, 0.5, "weekly")),
     page("/initiatives", 0.8, "monthly"),
     page("/about", 0.8, "monthly"),
     page("/reach", 0.5, "yearly"),
