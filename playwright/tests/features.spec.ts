@@ -59,7 +59,7 @@ test.describe("header", () => {
   test("mobile menu opens and the name stays on one line", async ({ page }) => {
     await page.setViewportSize({ width: 390, height: 844 })
     await page.goto("/")
-    const brand = page.getByRole("link", { name: /Muthukrishnan Bommiah/ }).first()
+    const brand = page.getByRole("link", { name: /Bommiah/ }).first()
     const box = await brand.boundingBox()
     expect(box!.height).toBeLessThan(48)
     await page.getByRole("button", { name: "Menu" }).click()
