@@ -23,6 +23,14 @@ jobs:
         run: node scripts/check-links.mjs --external --strict | tee links.txt
         env: { BASE_URL: "https://muthub.org" }
         continue-on-error: true
+      # One open issue at a time: while it stays open, later runs add a comment to it instead of opening another.
       - if: steps.check.outcome == 'failure'
-        run: gh issue create --title "Broken links on muthub.org ($(date -u +%F))" --body-file links.txt --label links || gh issue create --title "Broken links on muthub.org ($(date -u +%F))" --body-file links.txt
+        run: |
+          open=$(gh issue list --state open --search "Broken links on muthub.org in:title" --json number --jq '.[0].number // empty')
+          if [ -n "$open" ]; then
+            gh issue comment "$open" --body-file links.txt
+          else
+            gh issue create --title "Broken links on muthub.org ($(date -u +%F))" --body-file links.txt --label links ||
+              gh issue create --title "Broken links on muthub.org ($(date -u +%F))" --body-file links.txt
+          fi
         env: { GH_TOKEN: "${{ github.token }}" }
