@@ -38,7 +38,7 @@ jobs:
           printf '/// <reference types="next" />\n/// <reference types="next/image-types/global" />\n' > next-env.d.ts
           pnpm exec tsc --noEmit
       - name: Content rules (dates, sources, house style)
-        run: pnpm exec playwright test playwright/tests/content.spec.ts --project=chromium
+        run: bash .github/ci-run.sh "content rules" pnpm exec playwright test playwright/tests/content.spec.ts --project=chromium --reporter=line
         env: { CI: "" }
 
   build-and-test:
@@ -59,13 +59,13 @@ jobs:
         env: { PUBLIC_CONTENT_BLOCKLIST: "${{ secrets.PUBLIC_CONTENT_BLOCKLIST }}" }
       - run: pnpm exec playwright install --with-deps chromium
       - name: End-to-end tests against the production build
-        run: pnpm exec playwright test playwright/tests/site.spec.ts playwright/tests/features.spec.ts
+        run: bash .github/ci-run.sh "end-to-end tests" pnpm exec playwright test playwright/tests/site.spec.ts playwright/tests/features.spec.ts --reporter=line
         env: { CI: "true" }
       - name: Internal link check
         run: |
           pnpm start &
           npx --yes wait-on@8.0.1 http://localhost:3000 --timeout 60000
-          node scripts/check-links.mjs
+          bash .github/ci-run.sh "link check" node scripts/check-links.mjs
       - if: failure()
         uses: actions/upload-artifact@v4
         with: { name: playwright-report, path: playwright-report, retention-days: 7 }
