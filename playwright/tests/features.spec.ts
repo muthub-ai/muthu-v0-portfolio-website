@@ -48,9 +48,10 @@ test.describe("header", () => {
     await page.setViewportSize({ width: 1280, height: 800 })
     await page.goto("/")
     const nav = page.getByRole("navigation", { name: "Main" }).first()
-    for (const label of ["Initiatives", "Writing", "Playbooks", "About", "Reach me"]) {
+    for (const label of ["Initiatives", "Writing", "Graph", "Playbooks", "About", "Reach me"]) {
       await expect(nav.getByRole("link", { name: label, exact: true })).toBeVisible()
     }
+    await expect(nav.getByRole("link", { name: "Graph", exact: true })).toHaveAttribute("href", "https://wiki.muthub.org/")
     await expect(page.getByRole("link", { name: "LinkedIn profile" }).first()).toBeVisible()
     await expect(page.getByRole("link", { name: "GitHub profile" }).first()).toBeVisible()
     await expect(page.locator(".brand-cursor")).toHaveCount(1)
