@@ -5,6 +5,148 @@ import type { Essay, Note } from "./essays"
 
 export const moreEssays: Essay[] = [
   {
+    "slug": "six-runs-one-canary-governed-extraction",
+    "title": "Six runs, one canary: what it takes to let a model touch a knowledge graph",
+    "summary": "Adding LLM entity extraction to my public knowledge graph took six CI runs. Five failed, and four of the failures looked like success. The fix was not a better model. It was a build that refuses to report a result it cannot prove.",
+    "theme": "context-engineering",
+    "status": "published",
+    "published": "2026-10-18",
+    "plannedFor": "Oct 2026",
+    "source": "Built in public: muthub-ai/knowledge-foundation pull request #10, October 17 and 18, 2026.",
+    "related": [
+      "self-describing-knowledge-open-knowledge-format",
+      "if-you-cant-prove-why-an-ai-wrote-it",
+      "architecture-that-runs"
+    ],
+    "body": [
+      {
+        "type": "p",
+        "text": "**It took six CI runs to let a language model add edges to my knowledge graph, and five of them failed. The interesting part is that four of the five failures reported success.** This is the engineering record of those runs, with the code, the errors and the run logs, because the lesson is the one I keep making in the abstract: when a model writes into a system of record, the control that matters is not the prompt. It is the step that proves the model actually did what the build says it did."
+      },
+      {
+        "type": "p",
+        "text": "The system is [Knowledge Foundation](https://wiki.muthub.org/), the public wiki I keep as a graph of my essays, their sources and the connections between them. It is built from an [Open Knowledge Format](https://muthub.org/writing/self-describing-knowledge-open-knowledge-format) bundle in a public repository, [muthub-ai/knowledge-foundation](https://github.com/muthub-ai/knowledge-foundation), by an LLM librarian whose work I review before anything is marked as verified. Every merge to `main` builds `graph.json` and publishes a release; the website rebuilds from the release. Nothing reaches the graph without passing through that pipeline."
+      },
+      {
+        "type": "h2",
+        "text": "The architecture: a backbone that cannot be wrong, and a layer that can"
+      },
+      {
+        "type": "p",
+        "text": "The graph has two layers, and the separation is the whole design. The backbone is deterministic: typed relations declared in each note's frontmatter, links in the text, theme membership from the folder a note lives in, and sources with their publication dates. No model is involved. If every model API in the world went dark, this layer would still build, and the site would still publish. That is [ADR 009](https://github.com/muthub-ai/knowledge-foundation/blob/main/decisions/009-deterministic-graph-backbone-semantica-behind-an-adapter.md): deterministic backbone first, semantics behind an adapter."
+      },
+      {
+        "type": "p",
+        "text": "The second layer is extracted. It uses [Semantica](https://github.com/semantica-agi/semantica), an open-source knowledge-graph toolkit, to find the entities each note talks about (a protocol, a standard, a product, an organization) and add `mentions` edges between notes and those entities. On the explorer those edges are drawn dashed, labelled as extracted, and can be switched off with one click. The layer is optional in the code too: Semantica sits behind a one-function adapter, `tools/kb/extractors/semantica_adapter.py`, so the build can run with it, without it, or with a different extractor, and a failure in the semantic layer can only ever cost you the semantic layer."
+      },
+      {
+        "type": "p",
+        "text": "Because the library is young and changes between minor versions, the repository pins it (`semantica==0.7.0`) and runs a canary on every pull request: a job per extraction method (`pattern`, `ml`, `llm`) that builds the graph with the real library and writes what it found into the check's annotations, where a reviewer and an agent can both read it. The canary is advisory, never required. Its only job is to tell the truth about the layer before anyone turns it on."
+      },
+      {
+        "type": "h2",
+        "text": "Run one: a success that was not one"
+      },
+      {
+        "type": "p",
+        "text": "The pattern-based methods had been running for a day. On the 51 seeded notes they found 19 entities and 43 edges after the adapter filtered out numbers, dates, section headings and spans that ran across lines. Some were real (The Model Context Protocol, Open Knowledge Format, Google Cloud). Some were fragments (\"In June\", \"Enterprise Generative\"). Good enough to see the shape, not good enough to publish, so the layer stayed off and I added the LLM method, which sends each note to a small Claude model and asks for entities as structured output."
+      },
+      {
+        "type": "p",
+        "text": "The first LLM run came back green: 19 entities, 43 edges. Exactly the numbers the pattern method produced, down to \"In June\". A model call does not return the same fragments as a regular expression. The LLM method had not run at all."
+      },
+      {
+        "type": "p",
+        "text": "The cause was a default. Semantica's entity extractor merges the results of its methods with a strategy called `fallback`: if the method you asked for fails, it quietly runs pattern matching instead and returns that. The failure was logged as a warning that nobody reads, and the build exited zero with a plausible graph. From the outside, a broken API call and a working one were indistinguishable."
+      },
+      {
+        "type": "p",
+        "text": "Two changes fixed the observability, before anything else. The adapter now requests the `union` strategy, which returns only what the requested method found, so a failed method produces an empty result rather than a borrowed one. And it attaches a logging handler to the library for the duration of the build and copies every distinct warning into the graph report, which the canary prints. A silent failure became a loud one. Only then was it worth debugging."
+      },
+      {
+        "type": "code",
+        "lang": "python",
+        "text": "# Semantica's default \"fallback\" strategy substitutes pattern matching when a\n# method fails: a failed LLM call looks exactly like a pattern run. \"union\" keeps\n# only what the requested method found; the library's warnings go into the report.\nextra = {\"merge_strategy\": \"union\"} if ner != \"pattern\" else {}\nwarnings = _Warnings()                      # a logging.Handler collecting WARNING+\nlogging.getLogger(\"semantica\").addHandler(warnings)\nfor note in notes:\n    kg = builder.build([note.text], extract_relations=True,\n                       ner_method=ner, relation_method=rel, **extra)\n    ...\nout.notes.extend(f\"semantica warned: {w}\" for w in warnings.seen[:5])"
+      },
+      {
+        "type": "h2",
+        "text": "Runs two and three: the key, the money"
+      },
+      {
+        "type": "p",
+        "text": "With warnings surfaced, run two reported zero entities and the reason: `This API key is not scoped to a workspace, so this request must include the anthropic-workspace-id header`. The key had been created at the account level; the library cannot send that header; a workspace-scoped key fixed it. Run three: `Your credit balance is too low to access the Anthropic API`. API credit is separate from a chat subscription. Five dollars covers this workload for a year, since one pass over 51 notes costs a few cents."
+      },
+      {
+        "type": "p",
+        "text": "Neither of these is an engineering failure, and both would have been invisible under the old behaviour: a graph with 19 pattern-matched entities, a green check, and a layer everyone believed was running on a model."
+      },
+      {
+        "type": "h2",
+        "text": "Run four: the clock"
+      },
+      {
+        "type": "p",
+        "text": "Run four made calls. It also hit the job's 15-minute limit and was [cancelled by the runner](https://github.com/muthub-ai/knowledge-foundation/actions/runs/39094551113/job/117580769877). Something was slow, and I could not see what, because a cancelled job writes no report. So the adapter learned to time itself: elapsed per note printed to the log, and a summary line in the report with the total and the slowest note. The LLM job got a 50-minute budget, the local methods kept 15. You cannot tune what you do not measure, and a timeout is the least informative failure there is."
+      },
+      {
+        "type": "h2",
+        "text": "Run five: the library and the model disagreed about what a reply is"
+      },
+      {
+        "type": "p",
+        "text": "Run five [finished in 17 minutes with 13 entities](https://github.com/muthub-ai/knowledge-foundation/actions/runs/39096373507/job/117583579913), most of them junk (a year range from a career note, \"25B+ records a day\"), and a warning repeated for almost every note: `'ThinkingBlock' object has no attribute 'text'`. The timing line said 51 notes in 1,029 seconds, the slowest at 31 seconds. Three retries per note, with backoff, on a call that could never succeed."
+      },
+      {
+        "type": "p",
+        "text": "The bug is one line in Semantica's Anthropic provider, [providers.py line 1223](https://github.com/semantica-agi/semantica/blob/ca6c9f19/semantica/semantic_extract/providers.py#L1223) and again at 1256: `return response.content[0].text`. It assumes the first block of the model's reply is text. Current Claude models can return a thinking block first, which has no `text` attribute. Every structured call raised, retried three times, then fell through to a plain-text path that worked for a handful of notes, which is where the 13 entities came from. An integration written against one generation of a model API broke on the next, and the failure mode was not an error. It was a worse answer."
+      },
+      {
+        "type": "p",
+        "text": "The fix lives in the adapter, not in a fork: at load time it replaces the provider's two generate methods with versions that join all the text blocks in the reply and ignore the rest. Twenty lines, marked for removal when the library catches up. A test with a fake response that puts a thinking block first proves it."
+      },
+      {
+        "type": "code",
+        "lang": "python",
+        "text": "def text_of(response):\n    # all text blocks, joined; a leading thinking block has no .text\n    return \"\".join(getattr(b, \"text\", \"\") for b in response.content\n                   if getattr(b, \"type\", \"text\") == \"text\").strip()\n\ndef generate_structured(self, prompt, **kwargs):\n    response = create(self, f\"{prompt}\\n\\nReturn the response as valid JSON only.\", kwargs)\n    return self._parse_json(text_of(response))\n\nAnthropicProvider.generate_structured = generate_structured  # until upstream reads text blocks"
+      },
+      {
+        "type": "h2",
+        "text": "Run six: 51 notes, 153 seconds, 130 entities"
+      },
+      {
+        "type": "p",
+        "text": "Run six completed every note on the first attempt: 130 entities and 248 mention edges in 153 seconds, slowest note 5 seconds, no failures. The top of the list is what the wiki is about: MCP, Model Context Protocol, Open Knowledge Format, OPA, Google Cloud, open lakehouse, DataOps, MLOps, agentic AI, Git, Python. The noise is visible too, and instructive. Every note \"mentions\" muthub.org, because every note cites it. Month names, year ranges, durations (\"3 years\", \"5 days\") and version numbers (\"v0.2\") all came back as entities. None of that is knowledge. The adapter's filter now drops those classes, and the canary shows the list after filtering, so the next reviewer sees exactly what will be published."
+      },
+      {
+        "type": "p",
+        "text": "Two things the sixth run also shows, which become the next pull request. \"MCP\" and \"Model Context Protocol\" are two nodes; entity resolution should make them one, with aliases. And every edge is still the generic `mentions`. The wiki's ontology has ten typed relations (`builds_on`, `refines`, `contradicts`, `applies` and so on); constraining extraction to those, and proposing the results as frontmatter changes in a pull request I approve, is how machine-found structure gets promoted into the deterministic backbone. The model proposes, the pipeline checks, a person decides."
+      },
+      {
+        "type": "h2",
+        "text": "What this says about governed AI, in miniature"
+      },
+      {
+        "type": "ul",
+        "items": [
+          "**Separate what must be right from what may be wrong.** The deterministic backbone never depended on the model, so six failed runs cost nothing but time. If the extracted layer had been load-bearing, run one would have shipped a lie.",
+          "**Make the default fail loud.** The most dangerous behaviour in the whole chain was a library defaulting to a plausible substitute when its real method failed. Graceful degradation is a feature only when it is visible. I would rather have an empty layer and a warning than a full layer and a mystery.",
+          "**Prove the model ran.** The canary's check is not \"did the build exit zero\"; it is \"does the report say the extractor ran, how many notes failed, and what did it find\". Same-as-last-time is a signal, not a comfort.",
+          "**Budget for the boring failures.** Key scope, credit, timeouts. They are not interesting and they will consume most of the calendar. Each one needs to produce a message a human can act on in one step.",
+          "**Pin the library, patch at the edge.** A one-function adapter meant a provider bug in a dependency was a twenty-line local fix with a test, not a fork and not a blocked release.",
+          "**Filter before you publish, and show the filter's output.** A model returning \"3 years\" as an entity is not a model problem. Publishing it would be."
+        ]
+      },
+      {
+        "type": "p",
+        "text": "Everything above is public: the [pull request](https://github.com/muthub-ai/knowledge-foundation/pull/10) with the adapter and the workflow, the canary annotations on each run, and the [architecture decision](https://github.com/muthub-ai/knowledge-foundation/blob/main/decisions/009-deterministic-graph-backbone-semantica-behind-an-adapter.md) that made the failures cheap. The graph itself is at [wiki.muthub.org](https://wiki.muthub.org/); the dashed edges are the ones a model found, and the filter that hides them is one click away. That click is the point. Machine-found structure is useful exactly as long as a reader can tell it apart from the structure a person stood behind."
+      },
+      {
+        "type": "bottomLine",
+        "text": "The hard part of letting a model write into a knowledge graph was not extraction. It was building a pipeline that could not mistake a fallback for a result. Six runs, four silent failures, one canary: the canary is the architecture."
+      }
+    ]
+  },
+  {
     "slug": "inside-an-architecture-as-code-platform",
     "title": "Inside an Architecture-as-Code platform: a C4 walkthrough",
     "summary": "The open prototype at aac.muthub.org, described in its own notation and validated by its own rules. A level-by-level C4 walkthrough of the design decisions that mattered, and what I would change before an enterprise ran it.",
