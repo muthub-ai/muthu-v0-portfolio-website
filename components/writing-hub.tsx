@@ -24,6 +24,15 @@ export function WritingHub({ theme }: { theme?: ThemeSlug }) {
             ? current.blurb
             : "Essays and notes on governed AI in financial services. Essays argue one idea; notes are shorter takes on what I am reading and testing."}
         </p>
+        {!current && (
+          <p className="text-[15px] text-muted">
+            Prefer a map? Every essay is also a note in the{" "}
+            <a href="https://wiki.muthub.org/" className="link">
+              Knowledge Foundation graph
+            </a>
+            , with its sources and review state.
+          </p>
+        )}
         <p className="text-[15px] text-muted">
           Follow by{" "}
           <a href="/rss.xml" className="link">

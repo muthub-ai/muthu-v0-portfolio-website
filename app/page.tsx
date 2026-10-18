@@ -7,6 +7,7 @@ import { pageMetadata } from "@/lib/seo"
 import { JsonLd, profilePageSchema } from "@/components/json-ld"
 import { Newsletter } from "@/components/newsletter"
 import { playbooks } from "@/content/playbooks"
+import { KnowledgeFoundationBand } from "@/components/knowledge-foundation-band"
 
 export const metadata: Metadata = pageMetadata({ path: "/", description: site.description })
 
@@ -58,7 +59,7 @@ function StartList({ theme, visibleSlugs }: { theme: string; visibleSlugs: Set<s
   )
 }
 
-export default function HomePage() {
+export default async function HomePage() {
   const latest = getEssays().slice(0, 5)
   const featured = getInitiatives().filter((i) => i.featured)
   const visibleSlugs = new Set(getEssays().map((e) => e.slug))
@@ -109,7 +110,9 @@ export default function HomePage() {
         </figure>
       </section>
 
-      <section aria-labelledby="featured" className="border-y border-line bg-panel">
+      <KnowledgeFoundationBand />
+
+      <section aria-labelledby="featured" className="border-b border-line bg-panel">
         <div className="container-site flex flex-col gap-9 py-[72px]">
           <div className="flex flex-wrap items-baseline justify-between gap-3">
             <h2 id="featured" className="h-display text-4xl tracking-[-0.01em]">
