@@ -13,10 +13,12 @@ export async function wikiCounts(): Promise<WikiCounts> {
   try {
     const res = await fetch(`${WIKI_URL}/graph.json`, { signal: AbortSignal.timeout(4000), cache: "force-cache" })
     if (!res.ok) return FALLBACK
-    const g = (await res.json()) as { nodes: { type: string }[]; edges: { origin: string }[] }
-    const notes = g.nodes.filter((n) => n.type !== "Source" && n.type !== "Theme").length
+    const g = (await res.json()) as { nodes: { id: string; type: string }[]; edges: { origin: string }[] }
+    // Same rules as the wiki's own counts: entities Semantica extracted ("ext:" ids) are not notes, and machine-found
+    // edges (origin "extracted") are not connections an author made.
+    const notes = g.nodes.filter((n) => n.type !== "Source" && n.type !== "Theme" && !n.id.startsWith("ext:")).length
     const themes = g.nodes.filter((n) => n.type === "Theme").length
-    const connections = g.edges.filter((e) => e.origin !== "source").length
+    const connections = g.edges.filter((e) => e.origin !== "source" && e.origin !== "extracted").length
     return notes && themes ? { notes, connections, themes } : FALLBACK
   } catch {
     return FALLBACK
