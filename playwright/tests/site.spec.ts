@@ -79,6 +79,14 @@ test('the Knowledge Foundation band sits under the hero and links to the wiki', 
   await expect(band.getByRole('link', { name: 'Explore the graph →' })).toHaveAttribute('href', 'https://wiki.muthub.org/');
   // Live counts from graph.json, or the last known figures: never empty.
   for (const dd of await band.locator('dd').allInnerTexts()) expect(dd).toMatch(/^\d+$/);
+  // When the wiki is reachable, the counts follow its rules: extracted entities are not notes, machine edges are not
+  // connections (they once showed 156 notes and 307 connections for a 51-note wiki).
+  const g = await page.request.get('https://wiki.muthub.org/graph.json').then((r) => (r.ok() ? r.json() : null)).catch(() => null);
+  if (g) {
+    const notes = g.nodes.filter((n: any) => n.type !== 'Source' && n.type !== 'Theme' && !String(n.id).startsWith('ext:')).length;
+    const connections = g.edges.filter((e: any) => e.origin !== 'source' && e.origin !== 'extracted').length;
+    expect(await band.locator('dd').allInnerTexts()).toEqual([String(notes), String(connections), String(g.nodes.filter((n: any) => n.type === 'Theme').length)]);
+  }
   // Directly after the hero (the first section), before "Featured".
   const order = await page.evaluate(() => [...document.querySelectorAll('main > section, main section[data-testid]')].map((s) => s.getAttribute('data-testid') || s.getAttribute('aria-labelledby') || ''));
   expect(order.indexOf('knowledge-foundation')).toBeLessThan(order.indexOf('featured'));
