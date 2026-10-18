@@ -70,3 +70,18 @@ test('no stale or private strings on the home page', async ({ page }) => {
     expect(text).not.toContain(banned);
   }
 });
+
+test('the Knowledge Foundation band sits under the hero and links to the wiki', async ({ page }) => {
+  await page.goto('/');
+  const band = page.getByTestId('knowledge-foundation');
+  await expect(band).toBeVisible();
+  await expect(band.getByRole('heading', { level: 2 })).toHaveText('The essays, as a graph you can walk.');
+  await expect(band.getByRole('link', { name: 'Explore the graph →' })).toHaveAttribute('href', 'https://wiki.muthub.org/');
+  // Live counts from graph.json, or the last known figures: never empty.
+  for (const dd of await band.locator('dd').allInnerTexts()) expect(dd).toMatch(/^\d+$/);
+  // Directly after the hero (the first section), before "Featured".
+  const order = await page.evaluate(() => [...document.querySelectorAll('main > section, main section[data-testid]')].map((s) => s.getAttribute('data-testid') || s.getAttribute('aria-labelledby') || ''));
+  expect(order.indexOf('knowledge-foundation')).toBeLessThan(order.indexOf('featured'));
+  const over = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(over).toBeLessThanOrEqual(1);
+});
