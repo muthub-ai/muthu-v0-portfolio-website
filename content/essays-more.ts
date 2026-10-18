@@ -94,7 +94,7 @@ export const moreEssays: Essay[] = [
       },
       {
         "type": "p",
-        "text": "Run five [finished in 17 minutes with 13 entities](https://github.com/muthub-ai/knowledge-foundation/actions/runs/39096373507/job/117583579913), most of them junk (\"2012 – 2017\", \"25B+ records a day\"), and a warning repeated for almost every note: `'ThinkingBlock' object has no attribute 'text'`. The timing line said 51 notes in 1,029 seconds, the slowest at 31 seconds. Three retries per note, with backoff, on a call that could never succeed."
+        "text": "Run five [finished in 17 minutes with 13 entities](https://github.com/muthub-ai/knowledge-foundation/actions/runs/39096373507/job/117583579913), most of them junk (a year range from a career note, \"25B+ records a day\"), and a warning repeated for almost every note: `'ThinkingBlock' object has no attribute 'text'`. The timing line said 51 notes in 1,029 seconds, the slowest at 31 seconds. Three retries per note, with backoff, on a call that could never succeed."
       },
       {
         "type": "p",
