@@ -72,7 +72,7 @@ export default async function HomePage() {
       <section className="container-site grid items-start gap-12 pb-16 pt-12 sm:pt-20 md:grid-cols-[minmax(0,1fr)_300px] lg:grid-cols-[minmax(0,1fr)_340px] lg:gap-16">
         <div className="flex min-w-0 flex-col gap-7">
           <p className="eyebrow hidden sm:block">{site.displayName}</p>
-          <h1 className="h-display max-w-[860px] text-[2.75rem] leading-[1.05] sm:text-[4rem]">{site.tagline}</h1>
+          <h1 className="h-display max-w-[860px] text-[2.5rem] leading-[1.05] [text-wrap:balance] sm:text-[4rem]">{site.tagline}</h1>
           <p className="max-w-[640px] text-xl leading-relaxed text-body">{site.shortBio}</p>
           <div className="mt-1 flex flex-wrap items-center gap-3">
             <Link href="/writing" className="btn-primary">

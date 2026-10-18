@@ -49,7 +49,7 @@ export const site = {
 export const nav = [
   { label: "Initiatives", href: "/initiatives" },
   { label: "Writing", href: "/writing" },
-  { label: "Graph", href: "https://wiki.muthub.org/" }, // the Knowledge Foundation: the essays as a graph
+  { label: "Graph", href: "https://wiki.muthub.org/", highlight: true }, // the Knowledge Foundation: the essays as a graph
   { label: "Playbooks", href: "/playbooks" },
   { label: "About", href: "/about" },
   { label: "Reach me", href: "/reach" },
