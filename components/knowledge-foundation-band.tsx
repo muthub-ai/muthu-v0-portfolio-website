@@ -7,9 +7,9 @@ import Link from "next/link"
 export const WIKI_URL = "https://wiki.muthub.org"
 const FALLBACK = { notes: 51, connections: 133, themes: 5 }
 
-type Counts = typeof FALLBACK
+export type WikiCounts = typeof FALLBACK
 
-export async function wikiCounts(): Promise<Counts> {
+export async function wikiCounts(): Promise<WikiCounts> {
   try {
     const res = await fetch(`${WIKI_URL}/graph.json`, { signal: AbortSignal.timeout(4000), cache: "force-cache" })
     if (!res.ok) return FALLBACK
@@ -31,8 +31,7 @@ const chips = [
   { name: "Context engineering", colour: "#74d6a0" },
 ]
 
-export async function KnowledgeFoundationBand() {
-  const counts = await wikiCounts()
+export function KnowledgeFoundationBand({ counts }: { counts: WikiCounts }) {
   return (
     <section aria-labelledby="kf-heading" data-testid="knowledge-foundation" className="border-y border-line bg-[#0f1114] text-[#c3c6cc]">
       <div className="container-site flex flex-wrap items-stretch">

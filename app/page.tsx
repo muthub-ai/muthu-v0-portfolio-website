@@ -7,7 +7,7 @@ import { pageMetadata } from "@/lib/seo"
 import { JsonLd, profilePageSchema } from "@/components/json-ld"
 import { Newsletter } from "@/components/newsletter"
 import { playbooks } from "@/content/playbooks"
-import { KnowledgeFoundationBand } from "@/components/knowledge-foundation-band"
+import { KnowledgeFoundationBand, wikiCounts } from "@/components/knowledge-foundation-band"
 
 export const metadata: Metadata = pageMetadata({ path: "/", description: site.description })
 
@@ -60,6 +60,7 @@ function StartList({ theme, visibleSlugs }: { theme: string; visibleSlugs: Set<s
 }
 
 export default async function HomePage() {
+  const wiki = await wikiCounts()
   const latest = getEssays().slice(0, 5)
   const featured = getInitiatives().filter((i) => i.featured)
   const visibleSlugs = new Set(getEssays().map((e) => e.slug))
@@ -110,7 +111,7 @@ export default async function HomePage() {
         </figure>
       </section>
 
-      <KnowledgeFoundationBand />
+      <KnowledgeFoundationBand counts={wiki} />
 
       <section aria-labelledby="featured" className="border-b border-line bg-panel">
         <div className="container-site flex flex-col gap-9 py-[72px]">
