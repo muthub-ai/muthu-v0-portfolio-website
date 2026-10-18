@@ -11,7 +11,8 @@ export type WikiCounts = typeof FALLBACK
 
 export async function wikiCounts(): Promise<WikiCounts> {
   try {
-    const res = await fetch(`${WIKI_URL}/graph.json`, { signal: AbortSignal.timeout(4000), cache: "force-cache" })
+    // Re-read hourly (ISR), so a new knowledge release shows here without waiting for the next muthub.org deploy.
+    const res = await fetch(`${WIKI_URL}/graph.json`, { signal: AbortSignal.timeout(4000), next: { revalidate: 3600 } })
     if (!res.ok) return FALLBACK
     const g = (await res.json()) as { nodes: { id: string; type: string }[]; edges: { origin: string }[] }
     // Same rules as the wiki's own counts: entities Semantica extracted ("ext:" ids) are not notes, and machine-found

@@ -4,6 +4,10 @@ import { execSync } from "node:child_process"
 // Falls back to the build date when git history is not available.
 export function siteLastUpdated(): { iso: string; label: string } {
   let date = new Date()
+  if (process.env.SITE_UPDATED) {
+    date = new Date(process.env.SITE_UPDATED)
+    return { iso: date.toISOString().slice(0, 10), label: date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "America/Chicago" }) }
+  }
   try {
     const out = execSync("git log -1 --format=%cI", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim()
     if (out) date = new Date(out)
