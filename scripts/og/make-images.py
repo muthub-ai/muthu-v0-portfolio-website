@@ -94,6 +94,12 @@ def headshot(size, radius):
     return rounded(img.resize((size, size), Image.LANCZOS), radius)
 
 
+def tagline():
+    """The home page's H1, read from content/site.ts so the card never drifts from the site."""
+    m = re.search(r'tagline:\s*"([^"]+)"', (ROOT / "content/site.ts").read_text(encoding="utf-8"))
+    return m.group(1)
+
+
 def site_card():
     img = Image.new("RGB", (W, H), PAGE)
     d = ImageDraw.Draw(img)
@@ -102,7 +108,7 @@ def site_card():
     img.paste(headshot(photo, 6), (W - PAD - photo, (H - photo) // 2), headshot(photo, 6))
     text_w = W - PAD * 2 - photo - 64
     tracked(d, (PAD, 112), "MUTHUKRISHNAN (MUTHU) BOMMIAH", font(SANS_BOLD, 20), ACCENT, 2.4)
-    fnt, lines, size = fit_title(d, "Architecting how banks put AI to work, at scale and under control.", text_w, 4, [64, 58, 52])
+    fnt, lines, size = fit_title(d, tagline(), text_w, 4, [64, 58, 52, 48, 44], max_height=(H - PAD - 26) - 168 - 28)
     y = 168
     for line in lines:
         d.text((PAD, y), line, font=fnt, fill=INK)
