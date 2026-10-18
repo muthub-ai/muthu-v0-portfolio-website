@@ -26,9 +26,20 @@ const securityHeaders = [
   { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
 ]
 
+// The footer's "Last updated" is the latest commit, read once at build and inlined: pages regenerated later (the
+// home page re-reads the wiki's counts hourly) must not show their regeneration time instead.
+import { execSync } from "node:child_process"
+let siteUpdated = ""
+try {
+  siteUpdated = execSync("git log -1 --format=%cI", { stdio: ["ignore", "pipe", "ignore"] }).toString().trim()
+} catch {
+  siteUpdated = new Date().toISOString()
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  env: { SITE_UPDATED: siteUpdated },
   async headers() {
     // Markdown twins are for agents; keep them out of Google's index so they never compete with the HTML pages.
     const noindex = [{ key: "X-Robots-Tag", value: "noindex, follow" }]
