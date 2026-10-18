@@ -14,11 +14,11 @@ export const site = {
   jobTitle: "Distinguished Engineer",
   employer: "Wells Fargo",
   location: "San Antonio, Texas",
-  tagline: "Architecting how banks put AI to work, at scale and under control.",
+  tagline: "Taking AI from pilot to production in regulated banks, with the controls built in.",
   shortBio:
     "Executive Director and Distinguished Engineer at Wells Fargo. Over two decades building enterprise AI, data and cloud platforms across financial services and global industry. I write about governed AI, the AI-native software lifecycle and the platforms that make both work.",
   description:
-    "Muthukrishnan (Muthu) Bommiah is a Distinguished Engineer at Wells Fargo who architects how banks put AI to work at scale and under control: governed Generative and agentic AI, AI-augmented software delivery, Architecture-as-Code and production machine learning.",
+    "Muthukrishnan (Muthu) Bommiah is a Distinguished Engineer at Wells Fargo who takes AI from pilot to production in regulated banks, with the controls built in: governed Generative and agentic AI, AI-augmented software delivery, Architecture-as-Code and production machine learning.",
   disclosure: "Views are my own and do not represent my employer.",
   headshot: "/headshot.jpg",
   ogImage: "/og-image.png",
@@ -49,6 +49,7 @@ export const site = {
 export const nav = [
   { label: "Initiatives", href: "/initiatives" },
   { label: "Writing", href: "/writing" },
+  { label: "Graph", href: "https://wiki.muthub.org/", highlight: true }, // the Knowledge Foundation: the essays as a graph
   { label: "Playbooks", href: "/playbooks" },
   { label: "About", href: "/about" },
   { label: "Reach me", href: "/reach" },

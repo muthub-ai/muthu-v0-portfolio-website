@@ -15,7 +15,10 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false)
   useEffect(() => setOpen(false), [pathname])
 
-  const links = nav.map((item) => ({ ...item, active: pathname === item.href || pathname.startsWith(`${item.href}/`) }))
+  const links = nav.map((item) => ({ ...item, active: pathname === item.href || pathname.startsWith(`${item.href}/`), highlight: "highlight" in item && item.highlight }))
+  // The highlighted entry (the new Knowledge Foundation graph) reads as a small accent pill with a live dot.
+  const pill = "inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent-soft px-3 py-1 font-semibold text-accent hover:border-accent"
+  const dot = <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
 
   return (
     <header className="relative border-b border-line print:hidden">
@@ -36,8 +39,9 @@ export function SiteHeader() {
               key={item.href}
               href={item.href}
               aria-current={item.active ? "page" : undefined}
-              className={item.active ? "text-accent underline underline-offset-[6px]" : "text-ink hover:text-accent"}
+              className={item.highlight ? pill : item.active ? "text-accent underline underline-offset-[6px]" : "text-ink hover:text-accent"}
             >
+              {item.highlight && dot}
               {item.label}
             </Link>
           ))}
@@ -86,9 +90,11 @@ export function SiteHeader() {
                 <Link
                   href={item.href}
                   aria-current={item.active ? "page" : undefined}
-                  className={`flex min-h-[48px] items-center text-lg ${item.active ? "font-semibold text-accent" : "text-ink"}`}
+                  className={`flex min-h-[48px] items-center gap-2 text-lg ${item.active || item.highlight ? "font-semibold text-accent" : "text-ink"}`}
                 >
+                  {item.highlight && dot}
                   {item.label}
+                  {item.highlight && <span className="rounded-full bg-accent-soft px-2 py-0.5 text-xs font-semibold uppercase tracking-wide text-accent">New</span>}
                 </Link>
               </li>
             ))}
